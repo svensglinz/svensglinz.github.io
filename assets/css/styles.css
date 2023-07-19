@@ -1,5 +1,6 @@
 /* import default font */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Static Variables */
 :root {
@@ -18,8 +19,17 @@
     --transition: 0.3s;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-image: url('/website_backround.jpg');
+    background-image: url('/assets/images/website_backround.jpg');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
@@ -61,7 +71,6 @@ nav a {
     text-transform: capitalize;
     text-decoration: none;
     color: white;
-    /*this does not work for some reason!*/
 }
 
 nav a:hover {
@@ -151,35 +160,217 @@ footer {
     left: 3%;
 }
 
-/*
-.project-post {
-    background-color: rgb(158, 158, 149);
-    background-image: none;
-}
-*/
-
-.project-post {
-    background-image: none;
-}
-
-.project-post main {
-    background-color: white;
-    width: 80%;
-    position: relative;
-    left: 10%;
-    right: 10%;
-    border-radius: 5%;
-    padding: 15px;
-    opacity: .95;
-    /* or do one entirely?*/
-    z-index: 1;
-}
-
-.project-post h1 {}
-
-img {
-    width: 100%;
-    height: 200%;
-}
-
 /*project posts formatting*/
+.project-post h1,
+h2,
+h3,
+p {
+    font-family: 'Montserrat';
+    font-weight: 250;
+}
+
+.project-post {
+    font-family: 'Montserrat';
+    font-weight: 100;
+    background-image: none;
+}
+
+.project-post nav {
+    margin-top: 0;
+    font-family: Arial;
+    position: sticky;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    align-items: center;
+    justify-content: space-between;
+    border-color: transparent;
+    /* need to make a transparent box*/
+    color: black;
+    padding: 1.5rem 3.5rem;
+}
+
+.project-post .navigation {
+    list-style-type: none;
+    position: flex;
+}
+
+.project-post .navigation li:hover {
+    transform: scale(1.08);
+    transition: .4s ease-in-out;
+}
+
+.project-post nav ul {
+    display: flex;
+    gap: 1.9rem;
+    float: left;
+}
+
+.project-post nav a {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: black;
+}
+
+.project-post nav a:hover {
+    color: royalblue;
+    /*selected tab should be blue per default*/
+    text-transform: capitalize;
+}
+
+.project-post .social-media svg {
+    fill: black;
+}
+
+.project-post .social-media svg:hover {
+    fill: royalblue;
+}
+
+
+.project-post .verticalLine-one {
+    width: 0;
+    border-left: 2px solid rgba(43, 43, 43, 0.4);
+    height: 25%;
+    position: fixed;
+    top: 10%;
+    left: 3%;
+}
+
+.project-post .verticalLine-two {
+    width: 0;
+    border-left: 2px solid rgba(43, 43, 43, 0.4);
+    ;
+    height: 25%;
+    position: fixed;
+    bottom: 10%;
+    left: 3%;
+}
+
+.title-image img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+.project-post p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.project-post h1,
+.project-post h2,
+.project-post p,
+.project-post h3 {
+    display: block;
+    text-align: left;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.project-post h1 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.project-post h2 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.project-post h3 {
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.project-post p {
+    line-height: 1.6;
+    text-align: justify;
+}
+
+#date-written {
+    text-align: left;
+    font-weight: bold;
+    color: royalblue;
+    margin-bottom: 10px;
+}
+
+#report-title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 3.3em;
+}
+
+#report-subtitle {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.project-post img {
+    margin-bottom: 15px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(38, 38, 144, .5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#header-placeholder {
+    position: sticky;
+    top: 0;
+    left: 0;
+
+}
+
+/* code block styling */
+.code-block {
+    border-radius: 1px;
+}
+
+.blue {
+    color: royalblue;
+    font-weight: 500;
+}
+
+/*overwrite default style for code blocks*/
+code {
+    white-space: pre-line !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    font-size: 1.2rm !important;
+    padding: 0 !important;
+    background-color: rgb(92, 90, 90) !important;
+    color: white !important;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    padding: 0px;
+    border-color: red;
+}
+
+.indent {
+    display: block !important;
+    margin-left: 10px !important;
+}
