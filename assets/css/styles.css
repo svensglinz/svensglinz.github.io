@@ -159,50 +159,7 @@ footer {
 }
 
 
-.project-post nav {
-    margin-top: 0;
-    font-family: Arial;
-    position: sticky;
-    width: 100%;
-    background-color: white;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    align-items: center;
-    justify-content: space-between;
-    border-color: transparent;
-    /* need to make a transparent box*/
-    color: black;
-    padding: 1.5rem 3.5rem;
-}
 
-.project-post .navigation {
-    list-style-type: none;
-    position: flex;
-}
-
-.project-post .navigation li:hover {
-    transform: scale(1.08);
-    transition: .4s ease-in-out;
-}
-
-.project-post nav ul {
-    display: flex;
-    gap: 1.9rem;
-    float: left;
-}
-
-.project-post nav a {
-    text-transform: capitalize;
-    text-decoration: none;
-    color: black;
-}
-
-.project-post nav a:hover {
-    color: royalblue;
-    /*selected tab should be blue per default*/
-    text-transform: capitalize;
-}
 
 #date-written {
     text-align: left;
@@ -285,10 +242,55 @@ code {
     overflow-x: hidden;
 }
 
+/* navbar general styling */
+.navigation {
+    list-style-type: none;
+    position: flex;
+}
+
+.navigation li:hover {
+    transform: scale(1.08);
+    transition: .4s ease-in-out;
+}
+
+nav ul {
+    display: flex;
+    gap: 1.9rem;
+    float: left;
+}
+
+nav a:hover {
+    color: royalblue;
+    /*selected tab should be blue per default*/
+    text-transform: capitalize;
+}
 
 /*-----------------------------------------------------------
 Blogpost specific design elements
 -----------------------------------------------------------*/
+
+/* navbar adjustments for projects */
+.project-post nav {
+    margin-top: 0;
+    font-family: Arial;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    align-items: center;
+    justify-content: space-between;
+    border-color: transparent;
+    color: black;
+    padding: 1.5rem 3.5rem;
+}
+
+.project-post nav a {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: black;
+}
 
 /*static formating*/
 .project-post,
@@ -342,16 +344,44 @@ p {
     display: none;
 }
 
-.project-post .verticalLine-two {
+.social-media-bar * {
+    display: none;
+}
+
+/*
+.social-media {
+    position: fixed;
+    top: 35%;
+    left: -.5%;
+    flex-direction: column;
+}
+
+.social-media ul {
+    list-style-type: none;
+    color: red;
+    size: 500px;
+    column-gap: 100px;
+}
+
+.verticalLine-one {
     width: 0;
-    border-left: 2px solid rgba(43, 43, 43, 0.4);
+    border-left: 2px solid rgba(228, 224, 224, 0.4);
+    height: 25%;
+    position: fixed;
+    top: 10%;
+    left: 3%;
+}
+
+.verticalLine-two {
+    width: 0;
+    border-left: 2px solid rgba(228, 224, 224, 0.4);
+    ;
     height: 25%;
     position: fixed;
     bottom: 10%;
     left: 3%;
-    display: none;
-}
-
+    color: white;
+} */
 
 /*smartphone*/
 main.project-post {
@@ -381,15 +411,12 @@ main.project-post {
         min-width: 614.4px;
     }
 
-    .project-post .verticalLine-two {
-        display: block;
+    /*social media bar*/
+    .social-media-bar * {
+        display: unset;
     }
 
-    .project-post .verticalLine-one {
-        display: block;
-    }
-
-    .project-post .social-media svg {
+    .social-media-bar .project-post .social-media svg {
         fill: black;
     }
 
