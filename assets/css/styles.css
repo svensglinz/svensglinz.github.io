@@ -1,31 +1,29 @@
-/* import default font */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap");
+/* import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Static Variables */
+/* root depending on the screen size!*/
 :root {
+    scroll-behavior: smooth;
+    /* relative font size adapts to browser settings --> 1em = 10px per default*/
+    font-size: 62.5%;
+    /*static variables*/
     --font-family: Arial, sans-serf;
     --normal-font: 400;
     --bold-font: 700;
     --bolder-font: 900;
-    --bg-color: #fcfcfc;
-    --primary-color: #4756df;
-    --secondary-color: #ff7235;
-    --primary-shadow: #8b8eaf;
-    --secondary-shadow: #a17a69;
     --bottom-margin: 0.5rem;
     --bottom-margin-2: 1rem;
-    --line-height: 1.7rem;
+    --line-height: 100rem;
     --transition: 0.3s;
+    /*project variables*/
+    --blog-font: 'Montserrat';
+    --blog-font-weight: 500;
 }
 
+/*reset default CSS stylings*/
 * {
     margin: 0;
     padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
@@ -160,20 +158,6 @@ footer {
     left: 3%;
 }
 
-/*project posts formatting*/
-.project-post h1,
-h2,
-h3,
-p {
-    font-family: 'Montserrat';
-    font-weight: 250;
-}
-
-.project-post {
-    font-family: 'Montserrat';
-    font-weight: 100;
-    background-image: none;
-}
 
 .project-post nav {
     margin-top: 0;
@@ -220,80 +204,6 @@ p {
     text-transform: capitalize;
 }
 
-.project-post .social-media svg {
-    fill: black;
-}
-
-.project-post .social-media svg:hover {
-    fill: royalblue;
-}
-
-
-.project-post .verticalLine-one {
-    width: 0;
-    border-left: 2px solid rgba(43, 43, 43, 0.4);
-    height: 25%;
-    position: fixed;
-    top: 10%;
-    left: 3%;
-}
-
-.project-post .verticalLine-two {
-    width: 0;
-    border-left: 2px solid rgba(43, 43, 43, 0.4);
-    ;
-    height: 25%;
-    position: fixed;
-    bottom: 10%;
-    left: 3%;
-}
-
-.title-image img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-}
-
-.project-post p {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    text-align: center;
-}
-
-.project-post h1,
-.project-post h2,
-.project-post p,
-.project-post h3 {
-    display: block;
-    text-align: left;
-    width: 60%;
-    margin: 0 auto;
-}
-
-.project-post h1 {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.project-post h2 {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.project-post h3 {
-    font-weight: 500;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.project-post p {
-    line-height: 1.6;
-    text-align: justify;
-}
-
 #date-written {
     text-align: left;
     font-weight: bold;
@@ -309,10 +219,6 @@ p {
 
 #report-subtitle {
     margin-top: 0px;
-    margin-bottom: 15px;
-}
-
-.project-post img {
     margin-bottom: 15px;
 }
 
@@ -373,4 +279,131 @@ code {
 .indent {
     display: block !important;
     margin-left: 10px !important;
+}
+
+.project-post {
+    overflow-x: hidden;
+}
+
+
+/*-----------------------------------------------------------
+Blogpost specific design elements
+-----------------------------------------------------------*/
+
+/*static formating*/
+.project-post,
+.project-post * {
+    font-family: 'Montserrat';
+    font-weight: 300;
+    background-image: none;
+}
+
+main.project-post {
+    display: block;
+    text-align: left;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 10em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+p {
+    font-size: 1.5em;
+    line-height: 1.8;
+}
+
+/*image always displays full*/
+.title-image img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+/*social media bar*/
+.project-post .verticalLine-one {
+    width: 0;
+    border-left: 2px solid rgba(43, 43, 43, 0.4);
+    height: 25%;
+    position: fixed;
+    top: 10%;
+    left: 3%;
+    display: none;
+}
+
+.project-post .verticalLine-two {
+    width: 0;
+    border-left: 2px solid rgba(43, 43, 43, 0.4);
+    height: 25%;
+    position: fixed;
+    bottom: 10%;
+    left: 3%;
+    display: none;
+}
+
+
+/*smartphone*/
+main.project-post {
+    font-family: Arial;
+    font-weight: var(--blog-font);
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/*tablet* (480 - 768 px) and up*/
+@media only screen and (min-width: 480px) {
+
+    main.project-post {
+        max-width: 80%;
+        min-width: 480px;
+    }
+
+}
+
+/*small computer (768 - 1024 px) and up*/
+@media only screen and (min-width: 768px) {
+
+    main.project-post {
+        max-width: 60%;
+        min-width: 614.4px;
+    }
+
+    .project-post .verticalLine-two {
+        display: block;
+    }
+
+    .project-post .verticalLine-one {
+        display: block;
+    }
+
+    .project-post .social-media svg {
+        fill: black;
+    }
+
+    .project-post .social-media svg:hover {
+        fill: royalblue;
+    }
+
+}
+
+/*larger computer (1024 - ... px) and up*/
+@media screen and (min-width: 1024px) {
+
+    main.project-post {
+        max-width: 60%;
+        min-width: 614.4px;
+    }
 }
