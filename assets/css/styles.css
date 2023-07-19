@@ -177,4 +177,9 @@ footer {
 
 .project-post h1 {}
 
+img {
+    width: 100%;
+    height: 200%;
+}
+
 /*project posts formatting*/
