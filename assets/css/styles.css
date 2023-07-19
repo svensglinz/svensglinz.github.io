@@ -389,7 +389,7 @@ main.project-post {
     font-weight: var(--blog-font);
     display: block;
     text-align: left;
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -398,7 +398,7 @@ main.project-post {
 
     main.project-post {
         max-width: 80%;
-        min-width: 480px;
+        min-width: 436px;
     }
 
 }
