@@ -1,0 +1,180 @@
+/* import default font */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap");
+
+/* Static Variables */
+:root {
+    --font-family: Arial, sans-serf;
+    --normal-font: 400;
+    --bold-font: 700;
+    --bolder-font: 900;
+    --bg-color: #fcfcfc;
+    --primary-color: #4756df;
+    --secondary-color: #ff7235;
+    --primary-shadow: #8b8eaf;
+    --secondary-shadow: #a17a69;
+    --bottom-margin: 0.5rem;
+    --bottom-margin-2: 1rem;
+    --line-height: 1.7rem;
+    --transition: 0.3s;
+}
+
+body {
+    background-image: url('/website_backround.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+}
+
+/*style navigation bar*/
+nav {
+    font-family: Arial;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-color: transparent;
+    /* need to make a transparent box*/
+    color: white;
+    padding: 1.5rem 3.5rem;
+}
+
+.navigation {
+    list-style-type: none;
+    position: flex;
+}
+
+.navigation li:hover {
+    transform: scale(1.08);
+    transition: .4s ease-in-out;
+}
+
+nav ul {
+    display: flex;
+    gap: 1.9rem;
+    float: left;
+}
+
+nav a {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: white;
+    /*this does not work for some reason!*/
+}
+
+nav a:hover {
+    color: royalblue;
+    /*selected tab should be blue per default*/
+    text-transform: capitalize;
+}
+
+#name {
+    font-size: larger;
+}
+
+h2 {
+    font-family: var(--font-family);
+}
+
+p {
+    font-family: var(--font-family);
+}
+
+.start-page h2 {
+    position: relative;
+    left: 10%;
+    font-size: 60px;
+    color: white;
+}
+
+li {
+    margin-top: 20px;
+}
+
+.start-page p {
+    position: relative;
+    left: 10%;
+    color: white;
+}
+
+.social-media {
+    position: fixed;
+    top: 35%;
+    left: -.5%;
+    flex-direction: column;
+}
+
+.social-media ul {
+    list-style-type: none;
+    color: red;
+    size: 500px;
+    column-gap: 100px;
+}
+
+.verticalLine-one {
+    width: 0;
+    border-left: 2px solid rgba(228, 224, 224, 0.4);
+    height: 25%;
+    position: fixed;
+    top: 10%;
+    left: 3%;
+}
+
+.verticalLine-two {
+    width: 0;
+    border-left: 2px solid rgba(228, 224, 224, 0.4);
+    ;
+    height: 25%;
+    position: fixed;
+    bottom: 10%;
+    left: 3%;
+    color: white;
+}
+
+svg {
+    transform: scale(.7);
+    fill: white;
+}
+
+svg:hover {
+    transform: scale(.85);
+    transition: .3s ease-in-out;
+    fill: royalblue;
+}
+
+footer {
+    color: white;
+    position: fixed;
+    bottom: 3%;
+    left: 3%;
+}
+
+/*
+.project-post {
+    background-color: rgb(158, 158, 149);
+    background-image: none;
+}
+*/
+
+.project-post {
+    background-image: none;
+}
+
+.project-post main {
+    background-color: white;
+    width: 80%;
+    position: relative;
+    left: 10%;
+    right: 10%;
+    border-radius: 5%;
+    padding: 15px;
+    opacity: .95;
+    /* or do one entirely?*/
+    z-index: 1;
+}
+
+.project-post h1 {}
+
+/*project posts formatting*/
