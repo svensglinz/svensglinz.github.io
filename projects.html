@@ -15,33 +15,56 @@
 
 
     <!--add code highlighting (prism)-->
-    <link href="assets/css/prism.css" rel="stylesheet" />
-    <script src="assets/js/prism.js"></script>
+    <link href="/assets/css/prism.css" rel="stylesheet" />
+    <script src="/assets/js/prism.js"></script>
 
     <!--add prop js script-->
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
     <title>projects</title>
 </head>
 
 <body class="projects">
-    <h1>Welcome to my Projects</h1>
+
+    <!--include navbar / header-->
+    <div id="header-placeholder"></div>
+
+    <!--include social media bar-->
+    <div id="social-media-placeholder"></div>
 
     <main>
-        <div class="project-thumbnail">
-            <img src="/assets/images/candlestick_chart.png" width="100" height="100">
-            <h2 class="title">Project Description</h2>
-            <p class="description">more project text</p>
-        </div>
-        <div class="project-thumbnail">
-            <img src="/assets/images/candlestick_chart.png" width="100" height="100">
-            <h2 class="title">Project Description</h2>
-            <p class="description">more project text</p>
-        </div>
-        <div class="project-thumbnail">
-            <img src="/assets/images/candlestick_chart.png" width="100" height="100">
-            <h2 class="title">Project Description</h2>
-            <p class="description">more project text</p>
-        </div>
+        <h1 id="title">Welcome to my Projects</h1>
+        <a href="#project-link">
+            <div class="project-thumbnail">
+                <img src="/assets/images/election_funding_image.jpg">
+                <div class="description">
+                    <h2>Project Description</h2>
+                    <p>This is a more detailed description of the project. Click anywhere inside this box
+                        to get to a detailed post about this project...
+                    </p>
+                </div>
+            </div>
+        </a>
+        <hr class="solid">
+        <a href="#project-link">
+            <div class="project-thumbnail">
+                <img src="/assets/images/election_funding_image.jpg">
+                <div class="description">
+                    <h2>Project Description</h2>
+                    <p>more project text</p>
+                </div>
+            </div>
+        </a>
+        <hr class="solid">
+        <a href="#project-link">
+            <div class="project-thumbnail">
+                <img src="/assets/images/election_funding_image.jpg">
+                <div class="description">
+                    <h2>Project Description</h2>
+                    <p>more project text</p>
+                </div>
+            </div>
+        </a>
+        <hr class="solid">
     </main>
 </body>
 

@@ -447,36 +447,61 @@ main.project-post {
     }
 }
 
-/*projects landing page styling*/
-div.project-thumbnail {
-    display: block;
-    /* could be an inline block for wider devices --> first for smartphone*/
-    margin: 10px 10px;
-    position: relative;
-    left: 10%;
-    right: 10%;
-    width: 80%;
+/*---------------------------------------
+projects landing page styling
+---------------------------------------*/
+
+/* project thumbnails layout*/
+.project-thumbnail {
+    margin: 1em auto;
+    width: 90%;
     height: 20em;
-    border: solid red 5px;
+    border: solid red .2em;
+    position: relative;
 }
 
 .project-thumbnail img {
-    position: absolute;
-    top: 0;
+    top: 100;
     left: 0;
-    width: 20em;
-    height: 19em;
-    /* have to change box model to standard model!*/
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.project-thumbnail .title {
-    color: red;
+.project-thumbnail .description {
+    border: solid 1px blue;
     position: absolute;
-    right: 0;
-    size: 100px;
-    z-index: 0;
+    left: 42%;
+    top: 5%;
 }
+
+.projects h1 {
+    position: relative;
+    left: 5%;
+}
+
+.projects p {
+    line-height: 1.4em;
+}
+
+
+
+
+
+
+
 
 div.project-thumbnail:hover {
     box-shadow: 10px 10px 10px blue;
+}
+
+hr.solid {
+    border-top: .1em solid #bbb;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* temp formatting */
+.projects {
+    background-color: grey;
 }
