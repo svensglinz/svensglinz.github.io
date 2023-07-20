@@ -454,54 +454,57 @@ projects landing page styling
 /* project thumbnails layout*/
 .project-thumbnail {
     margin: 1em auto;
-    width: 90%;
-    height: 20em;
-    border: solid red .2em;
+    width: 100%;
+    height: auto;
     position: relative;
 }
 
 .project-thumbnail img {
-    top: 100;
-    left: 0;
-    width: 40%;
-    height: 100%;
+    display: block;
+    width: 90%;
+    height: 11em;
+    margin: 0 auto 2em auto;
     object-fit: cover;
+
 }
 
 .project-thumbnail .description {
-    border: solid 1px blue;
-    position: absolute;
-    left: 42%;
-    top: 5%;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
 }
 
-.projects h1 {
+.project-thumbnail h2 {
+    margin-bottom: .2em;
+}
+
+#title {
     position: relative;
+    font-size: 3em;
     left: 5%;
 }
 
 .projects p {
-    line-height: 1.4em;
+    line-height: 1.3em;
+    font-size: 1.5em;
+    margin-bottom: 1em;
 }
 
-
-
-
-
-
-
-
-div.project-thumbnail:hover {
-    box-shadow: 10px 10px 10px blue;
+a {
+    text-decoration: none;
+    color: black;
 }
 
 hr.solid {
-    border-top: .1em solid #bbb;
-    width: 80%;
+    border-top: .1em solid grey;
+    width: 100%;
+    height: 0;
     margin: 0 auto;
 }
 
-/* temp formatting */
-.projects {
-    background-color: grey;
+button {
+    background-color: black;
+    color: white;
+    padding: 2px 2px;
+
 }
