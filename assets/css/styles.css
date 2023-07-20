@@ -28,16 +28,21 @@
 }
 
 /* default spec (smartphone) */
-#section0 {
+#slide-home {
     background-image: url('/assets/images/smartphone_background.jpeg');
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
 
+#slide-about,
+#slide-projects {
+    background-color: lightsalmon;
+}
+
 @media screen and (min-device-width: 480px) {
 
-    #section0 {
+    #slide-home {
         background-image: url('/assets/images/website_backround.jpg');
         background-size: cover;
         background-attachment: fixed;

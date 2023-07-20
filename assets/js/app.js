@@ -12,6 +12,6 @@ function includeFile(fileName, idName) {
 }
 
 // Call the function to include the header on each page
-includeFile(fileName = '/footer.html', idName = 'footer-placeholder');
+includeFile(fileName = '/footer.html', idName = 'footer');
 includeFile(fileName = '/header.html', idName = 'header');
-includeFile(fileName = '/social-media.html', idName = 'social-media-placeholder');
+includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
