@@ -28,7 +28,7 @@
 }
 
 /* default spec (smartphone) */
-body.start-page {
+#section0 {
     background-image: url('/assets/images/smartphone_background.jpeg');
     background-size: cover;
     background-attachment: fixed;
@@ -36,9 +36,15 @@ body.start-page {
 }
 
 @media screen and (min-device-width: 480px) {
-    body.start-page {
+
+    #section0 {
         background-image: url('/assets/images/website_backround.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
     }
+
+
 }
 
 /*start page specific styling*/
@@ -47,52 +53,45 @@ body.start-page {
 }
 
 /*style navigation bar*/
-nav {
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 0;
+#header {
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    background-color: blue;
+    z-index: 9;
+    text-align: center;
+    color: #f2f2f2;
+}
+
+.navbar {
+    line-height: 60px;
+    display: flex;
+}
+
+.navname,
+.test {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    border-color: transparent;
-    color: white;
-    padding: 1.5rem 3.5rem;
 }
 
-.navigation {
-    list-style-type: none;
-    position: flex;
+.navname {
+    width: 30%;
+    padding-left: 10px;
 }
 
-.navigation li:hover {
-    transform: scale(1.08);
-    transition: .4s ease-in-out;
-}
-
-nav ul {
-    display: flex;
-    gap: 1.9rem;
-    float: left;
-}
-
-nav a {
-    text-transform: capitalize;
+.navbar a {
+    text-transform: uppercase;
     text-decoration: none;
-    color: white;
+    color: red;
+    font-size: large;
+    margin-right: 28px;
 }
 
-nav a:hover {
+.navbar a:hover {
     color: royalblue;
-    /*selected tab should be blue per default*/
-    text-transform: capitalize;
 }
 
-#name {
-    font-size: larger;
-}
-
-h2 {
+*/ h2 {
     font-family: var(--font-family);
 }
 
@@ -100,7 +99,7 @@ p {
     font-family: var(--font-family);
 }
 
-.start-page h2 {
+/* .start-page h2 {
     position: relative;
     left: 10%;
     font-size: 60px;
@@ -116,6 +115,8 @@ li {
     left: 10%;
     color: white;
 }
+
+*/
 
 .social-media {
     position: fixed;
@@ -170,8 +171,6 @@ footer {
 }
 
 
-
-
 #date-written {
     text-align: left;
     font-weight: bold;
@@ -211,13 +210,6 @@ footer {
     background: #555;
 }
 
-#header-placeholder {
-    position: sticky;
-    top: 0;
-    left: 0;
-
-}
-
 /* code block styling */
 .code-block {
     border-radius: 1px;
@@ -253,55 +245,10 @@ code {
     overflow-x: hidden;
 }
 
-/* navbar general styling */
-.navigation {
-    list-style-type: none;
-    position: flex;
-}
-
-.navigation li:hover {
-    transform: scale(1.08);
-    transition: .4s ease-in-out;
-}
-
-nav ul {
-    display: flex;
-    gap: 1.9rem;
-    float: left;
-}
-
-nav a:hover {
-    color: royalblue;
-    /*selected tab should be blue per default*/
-    text-transform: capitalize;
-}
 
 /*-----------------------------------------------------------
 Blogpost specific design elements
 -----------------------------------------------------------*/
-
-/* navbar adjustments for projects */
-.project-post nav {
-    margin-top: 0;
-    font-family: Arial;
-    position: absolute;
-    width: 100%;
-    background-color: white;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    align-items: center;
-    justify-content: space-between;
-    border-color: transparent;
-    color: black;
-    padding: 1.5rem 3.5rem;
-}
-
-.project-post nav a {
-    text-transform: capitalize;
-    text-decoration: none;
-    color: black;
-}
 
 /*static formating*/
 .project-post,
@@ -507,10 +454,42 @@ button {
 
 }
 
-/*small computer (768 - 1024 px) and up*/
+/*tablet* (480 - 768 px) and up*/
 @media only screen and (min-width: 480px) {
     .project-thumbnail {
-        width: 90%;
+        min-width: calc(0.95*480px);
+        max-width: 75%;
+    }
+
+    .project-thumbnail img {
+        display: flex;
+        width: 40%;
+        height: 20em;
+        object-fit: cover;
+    }
+
+    .project-thumbnail img[class="left"] {
+        float: left;
+        margin-right: 10px;
+    }
+
+    .project-thumbnail img[class="right"] {
+        float: right;
+        margin-left: 10px;
+    }
+
+    .project-thumbnail.description {
+        display: flex;
+        width: 50%;
+        float: auto;
+    }
+}
+
+/*small computer (768 - 1024 px) and up*/
+@media only screen and (min-width: 768px) {
+    .project-thumbnail {
+        min-width: calc(0.75*768)px;
+        max-width: 60%;
     }
 
     .project-thumbnail img {
@@ -544,3 +523,30 @@ CV styling
 /*-------------------------------------------
 Contact Me styling
 -------------------------------------------*/
+
+/*
+about me page
+*/
+.start-page {
+    overflow-x: hidden;
+}
+
+.welcome-page div {
+    position: sticky;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+
+}
+
+.about-page div {
+    width: 100vw;
+    height: 100vh;
+    background-color: blue;
+}
+
+.projects-page div {
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: pink;
+}
