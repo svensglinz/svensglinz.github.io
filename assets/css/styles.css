@@ -34,15 +34,19 @@ body {
     background-repeat: no-repeat;
 }
 
-@media screen and (min-screen-width: 480px) {
+@media screen and (min-device-width: 480px) {
     body {
         background-image: url('/assets/images/website_backround.jpg');
     }
 }
 
+/*start page specific styling*/
+.start-page * {
+    font-family: Arial;
+}
+
 /*style navigation bar*/
 nav {
-    font-family: Arial;
     position: sticky;
     top: 0;
     left: 0;
@@ -51,7 +55,6 @@ nav {
     align-items: center;
     justify-content: space-between;
     border-color: transparent;
-    /* need to make a transparent box*/
     color: white;
     padding: 1.5rem 3.5rem;
 }
