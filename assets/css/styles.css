@@ -62,8 +62,8 @@
     position: fixed;
     height: 60px;
     width: 100%;
-    background-color: blue;
-    z-index: 9;
+    background-color: transparent;
+    z-index: 10;
     text-align: center;
     color: #f2f2f2;
 }
@@ -81,13 +81,19 @@
 
 .navname {
     width: 30%;
-    padding-left: 10px;
+    padding-left: 2.5%;
+}
+
+.test {
+    justify-content: flex-end;
+    padding-right: 2.5%;
+    width: 100%;
 }
 
 .navbar a {
     text-transform: uppercase;
     text-decoration: none;
-    color: red;
+    color: white;
     font-size: large;
     margin-right: 28px;
 }
@@ -123,19 +129,21 @@ li {
 
 */
 
-.social-media {
-    position: fixed;
-    top: 35%;
-    left: -.5%;
-    flex-direction: column;
+li {
+    display: block !important;
 }
 
-.social-media ul {
-    list-style-type: none;
-    color: red;
-    size: 500px;
-    column-gap: 100px;
+svg {
+    transform: scale(.7);
+    fill: white;
 }
+
+svg:hover {
+    transform: scale(.85);
+    transition: .3s ease-in-out;
+    fill: royalblue;
+}
+
 
 .verticalLine-one {
     width: 0;
@@ -157,43 +165,8 @@ li {
     color: white;
 }
 
-svg {
-    transform: scale(.7);
-    fill: white;
-}
 
-svg:hover {
-    transform: scale(.85);
-    transition: .3s ease-in-out;
-    fill: royalblue;
-}
-
-footer {
-    color: white;
-    position: fixed;
-    bottom: 3%;
-    left: 3%;
-}
-
-
-#date-written {
-    text-align: left;
-    font-weight: bold;
-    color: royalblue;
-    margin-bottom: 10px;
-}
-
-#report-title {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 3.3em;
-}
-
-#report-subtitle {
-    margin-top: 0px;
-    margin-bottom: 15px;
-}
-
+*/
 
 /* width */
 ::-webkit-scrollbar {
@@ -250,10 +223,26 @@ code {
     overflow-x: hidden;
 }
 
-
 /*-----------------------------------------------------------
 Blogpost specific design elements
 -----------------------------------------------------------*/
+#date-written {
+    text-align: left;
+    font-weight: bold;
+    color: royalblue;
+    margin-bottom: 10px;
+}
+
+#report-title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 3.3em;
+}
+
+#report-subtitle {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
 
 /*static formating*/
 .project-post,
@@ -523,10 +512,6 @@ button {
 
 /*-------------------------------------------
 CV styling
--------------------------------------------*/
-
-/*-------------------------------------------
-Contact Me styling
 -------------------------------------------*/
 
 /*
