@@ -22,32 +22,41 @@
     <script src="assets/js/app.js"></script>
     <title>Sven Glinz</title>
 
-    <!--add fullpage.js script-->
-    <link rel="stylesheet" type="text/css" href="assets/js/fullPage.js-master/src/css/fullpage.css" />
-    <script type="text/javascript" src="assets/js/fullPage.js-master/src/js/fullpage.js"></script>
 </head>
 
-<body>
+<body class="landing-page">
     <!--insert navbar / header-->
     <div id="header"></div>
     <div id="social-media-bar"></div>
 
     <!--layout for fullpage.js framework-->
     <div id="fullpage">
-        <div class="section active start-page" id="slide-home">
-            <div class="welcome-page">
+        <div id="welcome-page">
+            <div class="welcome-text">
                 <h2>Sven Glinz</h2>
-                <p>I am Sven, .... DESCRIPTION</p>
+                <br>
+                <p>Her you will find a short description about the website and other stuff. Her you will find a short
+                    description about the website and other stuff. </p>
+                <br>
                 <p>scroll down to explore some of my projects and check out my CV</p>
             </div>
         </div>
-        <div class="section" id="slide-about">
+        <div id="about-page">
             <h1>No wraps, no extra markup</h1>
             <a href="about.html"><button>Find out More</button></a>
 
         </div>
-        <div class="section" id="slide-projects">
-            <h1>Just the simplest demo ever</h1>
+        <div id="projects-page">
+
+            <h1>Some recent projects</h1>
+
+            <div class="recent-projects">
+                <div id=#project1></div>
+                <div id=#project2></div>
+                <div id=#project3></div>
+                <div id=#project4></div>
+            </div>
+
             <a href="projects.html"><button>See all Projects</button></a>
         </div>
     </div>

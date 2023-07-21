@@ -27,35 +27,65 @@
     box-sizing: border-box;
 }
 
-/* default spec (smartphone) */
-#slide-home {
+body.landing-page {
     background-image: url('/assets/images/smartphone_background.jpeg');
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
 
-#slide-about,
-#slide-projects {
-    background-color: lightsalmon;
+/* default spec (smartphone) */
+#welcome-page {
+    height: 100vh;
+    width: 100vw;
+
 }
 
+#about-page,
+#projects-page {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* idea - 
+https://www.ojieame.design/#GRAPHIC
+background fades to black as you scroll down and one can first scroll through my cv and then scroll through my projects!*/
 @media screen and (min-device-width: 480px) {
 
-    #slide-home {
+    body.landing-page {
         background-image: url('/assets/images/website_backround.jpg');
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
 
-
 }
 
 /*start page specific styling*/
 .start-page * {
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
+div {
+    clear: both;
+    border: red solid 1px;
+}
+
+div.welcome-text {
+    position: absolute;
+    display: block;
+    left: 10%;
+    top: 20%;
+    max-width: 50%;
+    border: yellow solid 3px;
+    color: white;
+}
+
+.welcome-text h2 {
+    font-size: 4em;
+}
+
 
 /*style navigation bar*/
 #header {
@@ -129,8 +159,24 @@ li {
 
 */
 
-li {
-    display: block !important;
+
+/*social media bar*/
+.social-media-bar * {
+    z-index: 15;
+}
+
+.social-media-bar {
+    border: red 1px solid;
+    color: transparent;
+    position: fixed;
+    top: 35%;
+    border: 1px red solid;
+    left: 0%;
+    z-index: 10;
+}
+
+.social-media-bar li {
+    display: block;
 }
 
 svg {
@@ -144,29 +190,25 @@ svg:hover {
     fill: royalblue;
 }
 
-
 .verticalLine-one {
-    width: 0;
-    border-left: 2px solid rgba(228, 224, 224, 0.4);
+    width: 2.65%;
+    border-right: 2px solid rgba(228, 224, 224, 0.4);
     height: 25%;
     position: fixed;
     top: 10%;
-    left: 3%;
+    left: 0%;
 }
 
 .verticalLine-two {
     width: 0;
-    border-left: 2px solid rgba(228, 224, 224, 0.4);
-    ;
+    border-right: 2px solid rgba(228, 224, 224, 0.4);
     height: 25%;
     position: fixed;
     bottom: 10%;
-    left: 3%;
+    left: 2.65%;
     color: white;
 }
 
-
-*/
 
 /* width */
 ::-webkit-scrollbar {
@@ -287,6 +329,7 @@ p {
 }
 
 /*social media bar*/
+/*
 .project-post .verticalLine-one {
     width: 0;
     border-left: 2px solid rgba(43, 43, 43, 0.4);
@@ -302,19 +345,6 @@ p {
 }
 
 
-.social-media {
-    position: fixed;
-    top: 35%;
-    left: -.5%;
-    flex-direction: column;
-}
-
-.social-media ul {
-    list-style-type: none;
-    color: red;
-    size: 500px;
-    column-gap: 100px;
-}
 
 .verticalLine-one {
     width: 0;
@@ -540,3 +570,47 @@ about me page
     height: 100vh !important;
     background-color: pink;
 }
+
+/*
+.line-1 {
+    position: relative;
+    top: 50%;
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255, 255, 255, .75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);
+}
+
+/* Animation */
+
+/*
+.anim-typewriter {
+    animation: typewriter 4s steps(44) 1s 1 normal both,
+        blinkTextCursor 500ms steps(44) infinite normal;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 24em;
+    }
+}
+
+@keyframes blinkTextCursor {
+    from {
+        border-right-color: rgba(255, 255, 255, .75);
+    }
+
+    to {
+        border-right-color: transparent;
+    }
+}
+
+*/
