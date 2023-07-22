@@ -21,11 +21,9 @@
 }
 
 .fade-in {
-    transform: scale(.8);
     overflow: hidden;
     color: pink;
-    transition: opacity 0.9s ease-out;
-    transition-delay: 0s;
+    transition: all 2s ease-out;
 }
 
 /*reset default CSS stylings*/
@@ -36,7 +34,8 @@
 }
 
 body.landing-page {
-    background-image: url('/assets/images/smartphone_background.jpeg');
+    background-image: linear-gradient(to bottom, rgba(000, 000, 000, var(--scroll)), rgba(000, 000, 000, var(--scroll))),
+        url('/assets/images/smartphone_background.jpeg');
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -61,7 +60,7 @@ background fades to black as you scroll down and one can first scroll through my
 @media screen and (min-device-width: 480px) {
 
     body.landing-page {
-        background-image: linear-gradient(to bottom, rgba(245, 246, 252, var(--scroll)), rgba(117, 19, 93, var(--scroll))),
+        background-image: linear-gradient(to bottom, rgba(000, 000, 000, var(--scroll)), rgba(000, 000, 000, var(--scroll))),
             url('/assets/images/website_backround.jpg');
         background-size: cover;
         background-attachment: fixed;
@@ -325,6 +324,11 @@ Blogpost specific design elements
     font-family: 'Montserrat';
     font-weight: 300;
     background-image: none;
+}
+
+.projects * {
+    font-family: 'Montserrat';
+    font-weight: 300;
 }
 
 main.project-post {
@@ -604,46 +608,14 @@ about me page
     background-color: pink;
 }
 
-/*
-.line-1 {
-    position: relative;
-    top: 50%;
-    width: 24em;
-    margin: 0 auto;
-    border-right: 2px solid rgba(255, 255, 255, .75);
-    font-size: 180%;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    transform: translateY(-50%);
+.recent-projects * {
+    display: inline-block;
+    width: 30%;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    height: 40%;
 }
 
-/* Animation */
-
-/*
-.anim-typewriter {
-    animation: typewriter 4s steps(44) 1s 1 normal both,
-        blinkTextCursor 500ms steps(44) infinite normal;
+.landing-page * {
+    color: white;
 }
-
-@keyframes typewriter {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 24em;
-    }
-}
-
-@keyframes blinkTextCursor {
-    from {
-        border-right-color: rgba(255, 255, 255, .75);
-    }
-
-    to {
-        border-right-color: transparent;
-    }
-}
-
-*/

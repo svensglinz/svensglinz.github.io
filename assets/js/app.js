@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entries.forEach(entry => {
             const intersecting = entry.isIntersecting;
             entry.target.style.opacity = intersecting ? "1" : "0";
-            entry.target.style.transform = intersecting ? "scale(1)" : "scale(.95)";
+            entry.target.style.transform = intersecting ? "scale(1)" : "scale(.8)";
         });
     },
         { threshold: .15, rootMargin: "0px" }
@@ -78,12 +78,6 @@ document.addEventListener("scroll", function () {
     const opac = yScroll / windowHeight;
     document.body.style.setProperty('--scroll', opac)
 })
-
-
-
-
-console.log(document.getElementById("about-page"))
-console.log(100 + 100)
 
 /* --> all elements shold fade out on the screen -> If the bottom of the elemnt is at the very top, opacity shoudl be at X). 
 Same for images etc.. But they shoudl aso fadein when they coome into the viewport!
