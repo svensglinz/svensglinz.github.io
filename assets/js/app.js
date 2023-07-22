@@ -12,7 +12,7 @@ function includeFile(fileName, idName) {
 }
 
 // Call the function to include the header on each page
-includeFile(fileName = '/footer.html', idName = 'footer');
+/*includeFile(fileName = '/footer.html', idName = 'footer'); */
 includeFile(fileName = '/header.html', idName = 'header');
 includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
 
@@ -23,11 +23,57 @@ to fade background !!!
 
 also need something to fade elements and pictures
 */
-var nystories = document.querySelector("p").offsetTop;
-window.onscroll = function () {
-    if (window.pageYOffset > 0) {
-        var opac = (window.pageYOffset / nystories);
-        console.log(opac);
-        document.body.style.background = "linear-gradient(rgba(255, 255, 255, " + opac + "), rgba(255, 255, 255, " + opac + ")), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/times-square-perspective.jpg) no-repeat";
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const intersecting = entry.isIntersecting;
+            entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
+        });
+    },
+        { threshold: 0, rootMargin: "0px" }
+    );
+
+    /*get all elements*/
+    const elements = document.querySelectorAll(".fade-in");
+
+    for (let i = 0; i < elements.length; i++) {
+        const aboutPageElement = elements[i];
+
+        if (aboutPageElement) {
+            observer.observe(aboutPageElement);
+        } else {
+            console.warn("Element with id 'about-page' not found.");
+        }
     }
+
+});
+
+// Separate the function declaration
+function setBackgroundOpacity(opacity) {
+    document.querySelector(".landing-page").style.backgroundImage = `linear-gradient(to bottom, rgba(000, 000, 000, ${opacity}), rgba(000, 000, 000, ${opacity})),
+    url('/assets/images/website_backround.jpg')`;
 }
+
+document.addEventListener("scroll", function () {
+    const yScroll = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const opac = yScroll / windowHeight;
+
+    // Call the setBackgroundOpacity() function with the calculated opacity
+    setBackgroundOpacity(opac);
+});
+
+/*fade out background picture*/
+
+/*with classList.add() and classList.remove() we can add or remove a class based on the apparance of the*/
+
+console.log(document.getElementById("about-page"))
+console.log(100 + 100)
+
+/* --> all elements shold fade out on the screen -> If the bottom of the elemnt is at the very top, opacity shoudl be at X). 
+Same for images etc.. But they shoudl aso fadein when they coome into the viewport!
+
+also fade out intro image!
+/*may also want window.innterHeight --> To calculate the offset to the top of the window*/

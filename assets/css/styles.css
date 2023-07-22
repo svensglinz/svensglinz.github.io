@@ -20,6 +20,13 @@
     --blog-font-weight: 500;
 }
 
+.fade-in {
+    color: pink;
+    transform: translateY(100px);
+    transition: all 0.2s ease-out;
+    transition-delay: 0s;
+}
+
 /*reset default CSS stylings*/
 * {
     margin: 0;
@@ -53,7 +60,8 @@ background fades to black as you scroll down and one can first scroll through my
 @media screen and (min-device-width: 480px) {
 
     body.landing-page {
-        background-image: url('/assets/images/website_backround.jpg');
+        background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(117, 19, 93, 0)),
+            url('/assets/images/website_backround.jpg');
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
@@ -71,6 +79,7 @@ div {
     clear: both;
     border: red solid 1px;
 }
+
 
 div.welcome-text {
     position: absolute;
