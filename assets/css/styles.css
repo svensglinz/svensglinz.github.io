@@ -21,9 +21,10 @@
 }
 
 .fade-in {
+    transform: scale(.8);
+    overflow: hidden;
     color: pink;
-    transform: translateY(100px);
-    transition: all 0.2s ease-out;
+    transition: opacity 0.9s ease-out;
     transition-delay: 0s;
 }
 
@@ -60,7 +61,7 @@ background fades to black as you scroll down and one can first scroll through my
 @media screen and (min-device-width: 480px) {
 
     body.landing-page {
-        background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(117, 19, 93, 0)),
+        background-image: linear-gradient(to bottom, rgba(245, 246, 252, var(--scroll)), rgba(117, 19, 93, var(--scroll))),
             url('/assets/images/website_backround.jpg');
         background-size: cover;
         background-attachment: fixed;
@@ -74,12 +75,35 @@ background fades to black as you scroll down and one can first scroll through my
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.welcome-text p {
+    color: #999999;
+    font-weight: 300;
+}
 
 div {
     clear: both;
     border: red solid 1px;
 }
 
+#scroll-down-link a {
+    text-decoration: none;
+}
+
+#scroll-down-link p {
+    border-bottom: 2px navy solid;
+    text-decoration: none;
+    color: white;
+    overflow: hidden;
+}
+
+#scroll-down-link p:hover {
+    background-color: rgba(100, 100, 100, .1);
+}
+
+#scroll-down-link p:hover {
+    transition: transform .6s ease;
+    transform: translateX(20px);
+}
 
 div.welcome-text {
     position: absolute;
@@ -501,12 +525,12 @@ button {
         object-fit: cover;
     }
 
-    .project-thumbnail img[class="left"] {
+    .project-thumbnail img[class*="left"] {
         float: left;
         margin-right: 10px;
     }
 
-    .project-thumbnail img[class="right"] {
+    .project-thumbnail img[class*="right"] {
         float: right;
         margin-left: 10px;
     }

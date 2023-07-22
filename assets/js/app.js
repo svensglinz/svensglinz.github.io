@@ -29,10 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             const intersecting = entry.isIntersecting;
-            entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
+            entry.target.style.opacity = intersecting ? "1" : "0";
+            entry.target.style.transform = intersecting ? "scale(1)" : "scale(.95)";
         });
     },
-        { threshold: 0, rootMargin: "0px" }
+        { threshold: .15, rootMargin: "0px" }
     );
 
     /*get all elements*/
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+/*
 // Separate the function declaration
 function setBackgroundOpacity(opacity) {
     document.querySelector(".landing-page").style.backgroundImage = `linear-gradient(to bottom, rgba(000, 000, 000, ${opacity}), rgba(000, 000, 000, ${opacity})),
@@ -68,6 +70,17 @@ document.addEventListener("scroll", function () {
 /*fade out background picture*/
 
 /*with classList.add() and classList.remove() we can add or remove a class based on the apparance of the*/
+
+/*gets the current scroll position*/
+document.addEventListener("scroll", function () {
+    const yScroll = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const opac = yScroll / windowHeight;
+    document.body.style.setProperty('--scroll', opac)
+})
+
+
+
 
 console.log(document.getElementById("about-page"))
 console.log(100 + 100)
