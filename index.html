@@ -28,48 +28,69 @@
     <!--insert navbar / header-->
     <div id="header"></div>
     <div id="social-media-bar"></div>
-
-    <!--layout for fullpage.js framework-->
-    <div id="welcome-page">
-        <div class="welcome-text">
-            <h2>Sven Glinz</h2>
-            <br>
-            <p>Her you will find a short description about the website and other stuff. Her you will find
-                a short
-                description about the website and other stuff. </p>
-            <br>
-            <div id="scroll-down-link">
-                <a href=#about-page>
-                    <p>scroll down to explore some of my projects and check out my CV</p>
-                </a>
+    <main>
+        <div id="welcome-page">
+            <div class="welcome-text move-in-on-load">
+                <h2>Sven Glinz</h2>
+                <br>
+                <p class="description delayed-2sec">Her you will find a short description about the website and other
+                    stuff. Her you
+                    will
+                    find
+                    a short
+                    description about the website and other stuff. </p>
+                <br>
+                <div id="scroll-down-link">
+                    <a href=#>
+                        <p>Explore More</p>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    <div id="about-page">
-        <h1>No wraps, no extra markup</h1>
+        <div id="about-page">
+            <h1>About Me <inline style="color: royalblue; font-weight: bold; font-size: 60px;">.</inline>
+            </h1>
+            <div class="introduction text">
+                <p>more text about me? centered to the right should also do a section with slills etc ? </p>
+            </div>
+            <ul class="timeline">
+                <li data-year="2017" data-text="Lorem ipsum dolor sit amet, consectetur."></li>
+                <li data-year="2018" data-text="Lorem ipsum dolor sit amet, consectetur."></li>
+                <li data-year="2019" data-text="Lorem ipsum dolor sit amet, consectetur."></li>
+                <li data-year="2020" data-text="Lorem ipsum dolor sit amet, consectetur."></li>
+                <li data-year="2021" data-text="Lorem ipsum dolor sit amet, consectetur."></li>
+            </ul>
+
+            <!-- Add more timeline items as needed -->
+        </div>
+        <hr style="height: 6px; width: 100%; background-color: white; position: relative; left: 10%;">
+
         <a href="about.html"><button>Find out More</button></a>
+        https://dev.to/samthor/divert-vertical-scroll-to-the-side-3id0
+        how to scroll left on the timeline!
+        /*https://www.w3schools.com/howto/howto_css_timeline.asp
 
-    </div>
-    <div id="projects-page">
-
-        <h1>Some recent projects</h1>
-
-        <div class="recent-projects">
-            <div id=#project1>
-                <h2>project-title</h2>
-            </div>
-            <div id=#project2>
-                <h2>project-title</h2>
-            </div>
-            <div id=#project3>
-                <h2>project-title</h2>
-            </div>
-            <div id=#project4>
-                <h2>project-title</h2>
-            </div>
         </div>
+        <div id="projects-page">
 
-        <a href="projects.html"><button>See all Projects</button></a>
-    </div>
+            <h1 style="margin-bottom: 150px;">Some recent projects</h1>
+            <div class="recent-projects fade-in">
+                <div id=#project1>
+                    <h2>project-title</h2>
+                </div>
+                <div id=#project2>
+                    <h2>project-title</h2>
+                </div>
+                <div id=#project3>
+                    <h2>project-title</h2>
+                </div>
+                <div id=#project4>
+                    <h2>project-title</h2>
+                </div>
+            </div>
+
+            <a href="projects.html"><button>See all Projects</button></a>
+        </div>
+    </main>
 
 </html>
