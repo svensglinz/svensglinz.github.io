@@ -30,10 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
         entries.forEach(entry => {
             const intersecting = entry.isIntersecting;
             entry.target.style.opacity = intersecting ? "1" : "0";
-            entry.target.style.transform = intersecting ? "scale(1)" : "scale(.8)";
+            entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
+            /*entry.target.style.transform = intersecting ? "scale(1)" : "scale(.8)";*/
+            /*should add a classs on fade-in --> Makes it more costomizable*/
         });
     },
-        { threshold: .15, rootMargin: "0px" }
+        { threshold: 0, rootMargin: "-50px" }
     );
 
     /*get all elements*/
@@ -84,3 +86,13 @@ Same for images etc.. But they shoudl aso fadein when they coome into the viewpo
 
 also fade out intro image!
 /*may also want window.innterHeight --> To calculate the offset to the top of the window*/
+
+onLoadFunction = function () {
+    document.body.style.opacity = '1';
+    document.querySelectorAll('.move-in-on-load').forEach(element => {
+        element.style.transform = 'translateY(0)';
+    })
+
+}
+window.onload = onLoadFunction;
+
