@@ -8,6 +8,7 @@
     /* relative font size adapts to browser settings --> 1em = 10px per default*/
     font-size: 62.5%;
     /*static variables*/
+    --scroll: 0;
     --font-family: Arial, sans-serf;
     --normal-font: 400;
     --bold-font: 700;
@@ -59,6 +60,7 @@ CV timeline formatting
 .timeline {
     white-space: nowrap;
     overflow-x: scroll;
+    overflow-y: hidden;
     display: block;
     height: 600px;
     margin: 0 5%;
