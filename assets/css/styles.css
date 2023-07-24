@@ -55,25 +55,25 @@ html {
 CV timeline formatting
 ----------------------------------------------------------*/
 
+/*timeline container*/
 .timeline {
     white-space: nowrap;
     overflow-x: scroll;
     display: block;
-    margin-left: 5%;
-    margin-right: 5%;
-    height: 50em;
+    height: 600px;
+    margin: 0 5%;
     position: relative;
-    border: 2px orange solid;
 }
 
 /*add timeline element*/
 .timeline::after {
     box-sizing: inherit;
-    display: inline-block;
-    position: absolute;
-    width: 100%;
-    top: 50%;
+    display: block;
     left: 0;
+    position: sticky;
+    width: 100%;
+    white-space: pre;
+    top: 50%;
     border-radius: 10px;
     content: "";
     border: solid white 3px;
@@ -82,37 +82,67 @@ CV timeline formatting
 
 /*text-containers*/
 .timeline-item {
-    height: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    height: 40%;
     width: 30%;
     position: relative;
-    margin-right: 80px;
     display: inline-block;
-    border: 1px coral dashed;
+    background-color: white;
+}
+
+/*move first container on the left by ~50% of the circle diameter inward*/
+.timeline-item:nth-child(1) {
+    margin-left: 23px;
 }
 
 .timeline-item:nth-child(even) {
-    border: yellow 10px dotted;
-    bottom: 100px;
-
+    top: 60%;
 }
 
+.timeline-text h2,
+.timeline-text p {
+    color: black;
+}
+
+/* add connection lines between dot and text */
+.timeline-item::before {
+    position: absolute;
+    content: "";
+    height: 30%;
+    border: white 2px solid;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: -1px;
+    top: -25%;
+}
+
+.timeline-item:nth-child(odd)::before {
+    left: -1px;
+    bottom: -25%;
+}
+
+/*add circles onto timeline*/
 .timeline-item::after {
-    box-sizing: inherit;
     content: "";
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    background-color: red;
-    left: 30%;
+    background-color: white;
+    border: 10px solid royalblue;
     z-index: 2;
 }
 
+.timeline-item:nth-child(even)::after {
+    top: calc(-25% - 25px);
+    left: -25px;
+}
+
 .timeline-item:nth-child(odd)::after {
-    text-align: center;
-    background-color: pink;
-    top: -100%;
-    left: calc(50%-50px);
+    bottom: calc(-25% - 25px);
+    left: -25px;
 }
 
 /*----------------------------------------------------------

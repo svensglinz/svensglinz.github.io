@@ -96,4 +96,15 @@ onLoadFunction = function () {
 }
 window.onload = onLoadFunction;
 
+/*horizontal scrolling on the timeline div*/
+const div = document.getElementById('timeline-div');
 
+div.addEventListener('wheel', (e) => {
+    // Check if the user is scrolling vertically
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        // Adjust the scrollLeft property based on the vertical scroll direction
+        div.scrollLeft += e.deltaY;
+        // Prevent the default vertical scrolling behavior
+        e.preventDefault();
+    }
+});
