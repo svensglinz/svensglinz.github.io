@@ -176,7 +176,7 @@ main {
 
 body.landing-page {
     background-image: linear-gradient(to bottom, rgba(000, 000, 000, var(--scroll)), rgba(000, 000, 000, var(--scroll))),
-        url('/assets/images/smartphone_background.jpeg');
+        url('assets/images/smartphone_background.jpeg');
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -209,7 +209,7 @@ background fades to black as you scroll down and one can first scroll through my
 
 /*dodge navbar*/
 main {
-    margin: 0 20%;
+    margin: 0 10%;
     border: red 2px solid;
 }
 
@@ -229,23 +229,22 @@ div {
 }
 
 
-#scroll-down-link {
-    display: inline-block;
-    justify-content: center;
-    border-bottom: 1px royalblue solid;
-    padding-right: 6px;
-    color: white;
-    transition: all .5s cubic-bezier(.77, 0, .175, 1);
-
+.scroll-down-link {
+    display: inline-block !important;
+    justify-content: center !important;
+    border-bottom: 1.5px royalblue solid !important;
+    padding-right: 6px !important;
+    color: white !important;
+    transition: all .5s cubic-bezier(.77, 0, .175, 1) !important;
 }
 
-#scroll-down-link:hover {
-    padding-left: 6px;
-    background-color: rgba(155, 151, 151, 0.1);
+.scroll-down-link:hover {
+    padding-left: 6px !important;
+    background-color: rgba(155, 151, 151, 0.1) !important;
 }
 
-#scroll-down-link a {
-    text-decoration: none;
+.scroll-down-link a {
+    text-decoration: none !important;
 }
 
 div.welcome-text {
@@ -753,14 +752,6 @@ about me page
     background-color: pink;
 }
 
-.recent-projects * {
-    display: inline-block;
-    width: 30%;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    height: 40%;
-}
-
 .landing-page * {
     color: white;
 }
@@ -779,16 +770,45 @@ Recent Projects
 }
 
 .project-tile {
+    display: inline-block;
+    margin: 5px;
     border-radius: 10px;
     border: 2px red solid;
-    background-color: pink;
+    background-color: white;
     position: relative;
-    width: 40%;
+    width: calc(50% - 15px);
     height: 40%;
 }
 
+.project-tile::after {
+    opacity: 0;
+}
+
+.project-tile::after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(.77, 0, .175, 1);
+}
+
+.project-tile:hover::after {
+    opacity: 1;
+    cursor: pointer;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.65) 15%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0) 100%);
+}
+
+.project-tile:nth-child(3) {
+    transform: translateY(50%);
+}
+
 #project1 {
-    background-image: url("/assets/images/election_funding_image.jpg");
+    background-image: url("assets/images/election_funding_image.jpg");
     background-size: cover;
 }
 
@@ -801,15 +821,73 @@ Recent Projects
 }
 
 #projects-title {
+    color: white;
+    font-size: 5em;
     height: auto;
     width: auto;
     display: block;
     border: red 1px solid;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 4%;
+    top: 7%;
 }
 
-.project-tile:nth-child(3) {
-    transform: translateY(50%);
+.recent-projects .scroll-down-link a {
+    position: absolute;
+    bottom: 25%;
+    right: 20%;
+    z-index: 1;
 }
+
+.page {
+    position: relative;
+    width: 100%;
+    margin-bottom: 300px;
+}
+
+/* left one --> Fly in from the left, right one fly in from the right, bottom one fly in from the bottom!*/
+
+.get-in-touch {
+    text-align: center;
+}
+
+.get-in-touch {
+    position: relative;
+    border: orange dotted 3px;
+}
+
+/* GET IN TOUCH SECTION*/
+.get-in-touch h2 {
+    border: red 5px dashed;
+    color: white;
+    font-size: 40px;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.plane-fly {
+    animation-duration: 5s;
+    animation-name: fly-loop;
+    width: calc(244px*1.5);
+    height: calc(152px*1.5);
+    position: absolute;
+    left: 40px;
+    top: -20px;
+    z-index: -1;
+}
+
+
+@keyframes fly-loop {
+
+    from {
+        transform: scale(.5) translateX(-200px) translateY(200px);
+    }
+
+    to {
+        transform: scale(1) translateX(0px) translateY(0px);
+    }
+}
+
+/* free transformation effects 
+https://animista.net/play/entrances/tilt-in-fwd
+*/

@@ -29,7 +29,7 @@
     <div id="header"></div>
     <div id="social-media-bar"></div>
     <main>
-        <div id="welcome-page">
+        <div id="welcome-page" class="page">
             <div class="welcome-text move-in-on-load">
                 <h2>Sven Glinz</h2>
                 <br>
@@ -40,14 +40,14 @@
                     a short
                     description about the website and other stuff. </p>
                 <br>
-                <div id="scroll-down-link">
+                <div class="scroll-down-link">
                     <a href=#>
                         <p>Explore More</p>
                     </a>
                 </div>
             </div>
         </div>
-        <div id="about-page">
+        <div id="about-page" class="page">
             <h1>About Me <inline style="color: royalblue; font-weight: bold; font-size: 60px;">.</inline>
             </h1>
             <div class="introduction text">
@@ -91,12 +91,16 @@
             </div>
 
         </div>
-        <a href="about.html"><button>Find out More</button></a>
+        <div class="scroll-down-link">
+            <a href=#>
+                <p>Explore More</p>
+            </a>
+        </div>
         https://dev.to/samthor/divert-vertical-scroll-to-the-side-3id0
         how to scroll left on the timeline!
 
         </div>
-        <div id="projects-page">
+        <div id="projects-page" class="page">
             <div class="recent-projects fade-in">
                 <h1 id="projects-title">Recent Projects</h1>
                 <div class="project-tile" id=#project1>
@@ -108,16 +112,29 @@
                 <div class="project-tile" id=#project3>
                     <h2>project-title</h2>
                 </div>
+                <div class="scroll-down-link">
+                    <a href=#>
+                        <p>Explore More</p>
+                    </a>
+                </div>
             </div>
             <div class="video-container" style="height: 300px;">
-                <video muted loop src="/assets/images/bg_video.mp4"
-                    style="width: 100%; height:100%; object-fit: cover;">
+                <video muted loop src="assets/images/bg_video.mp4" style="width: 100%; height:100%; object-fit: cover;">
                 </video>
                 <div class="shadow"></div>
             </div>
-
-            <a href="projects.html"><button>See all Projects</button></a>
         </div>
+        <div class="get-in-touch page">
+            <img class="plane-fly" src="assets/images/paper_plane_nobg.png">
+            <div>
+                <h2>
+                    Let's get in touch
+                </h2>
+                <p>Thank you for visiting my website (:smiley:). Feel free to reach out any time with
+                    inputs or questions via any of my socials or my email.</p>
+            </div>
+        </div>
+
     </main>
 
 </body>
