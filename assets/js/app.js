@@ -26,13 +26,37 @@ also need something to fade elements and pictures
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    /*
+    const div = document.getElementById('myDiv');
+
+    div.addEventListener('wheel', (e) => {
+        // Check if the user is scrolling vertically
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            // Adjust the scrollLeft property based on the vertical scroll direction
+            div.scrollLeft += e.deltaY;
+            // Prevent the default vertical scrolling behavior
+            e.preventDefault();
+        }
+    });
+*/
+    /* prevent default scrolling when the div comes into view! */
+    /*
+        const div = document.getElementById('myDiv');
+        div.addEventListener('wheel', (e) => {
+            // Check if the user is scrolling vertically
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                // Adjust the scrollLeft property based on the vertical scroll direction
+                div.scrollLeft += e.deltaY;
+                // Prevent the default vertical scrolling behavior
+                e.preventDefault();
+            }
+        });
+    */
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             const intersecting = entry.isIntersecting;
             entry.target.style.opacity = intersecting ? "1" : "0";
             entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
-            /*entry.target.style.transform = intersecting ? "scale(1)" : "scale(.8)";*/
-            /*should add a classs on fade-in --> Makes it more costomizable*/
         });
     },
         { threshold: 0, rootMargin: "-50px" }
@@ -51,35 +75,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+
+    document.addEventListener("scroll", function () {
+        /*for background opacity*/
+        const yScroll = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const opac = yScroll / windowHeight;
+        document.body.style.setProperty('--scroll', opac)
+    })
+
 });
 
-/*
-// Separate the function declaration
-function setBackgroundOpacity(opacity) {
-    document.querySelector(".landing-page").style.backgroundImage = `linear-gradient(to bottom, rgba(000, 000, 000, ${opacity}), rgba(000, 000, 000, ${opacity})),
-    url('/assets/images/website_backround.jpg')`;
-}
 
-document.addEventListener("scroll", function () {
-    const yScroll = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const opac = yScroll / windowHeight;
-
-    // Call the setBackgroundOpacity() function with the calculated opacity
-    setBackgroundOpacity(opac);
-});
-
-/*fade out background picture*/
-
-/*with classList.add() and classList.remove() we can add or remove a class based on the apparance of the*/
-
-/*gets the current scroll position*/
-document.addEventListener("scroll", function () {
-    const yScroll = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const opac = yScroll / windowHeight;
-    document.body.style.setProperty('--scroll', opac)
-})
 
 /* --> all elements shold fade out on the screen -> If the bottom of the elemnt is at the very top, opacity shoudl be at X). 
 Same for images etc.. But they shoudl aso fadein when they coome into the viewport!
@@ -94,17 +101,6 @@ onLoadFunction = function () {
     })
 
 }
+
 window.onload = onLoadFunction;
 
-/*horizontal scrolling on the timeline div*/
-const div = document.getElementById('timeline-div');
-
-div.addEventListener('wheel', (e) => {
-    // Check if the user is scrolling vertically
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        // Adjust the scrollLeft property based on the vertical scroll direction
-        div.scrollLeft += e.deltaY;
-        // Prevent the default vertical scrolling behavior
-        e.preventDefault();
-    }
-});
