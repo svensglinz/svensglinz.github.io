@@ -26,6 +26,55 @@ also need something to fade elements and pictures
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    /*scrollable timeline with buttons*/
+    timeline_container = document.querySelector(".timeline");
+    timeline_container_width = timeline_container.clientWidth;
+    timeline_button_right = document.querySelector(".right");
+    timeline_button_left = document.querySelector(".left");
+    timeline_element = document.querySelectorAll(".timeline-text");
+
+    /* checks if item is visible from the right*/
+    is_visible_in_parent = function (element) {
+        is_visible = element.offsetLeft + element.clientWidth - timeline_container.scrollLeft <= timeline_container_width;
+        return is_visible;
+    }
+
+    const start_index = Array.from(timeline_element).findIndex(item => !is_visible_in_parent(item));
+    timeline_button_left.style.visibility = "hidden";
+    let index = start_index;
+
+    console.log("first_index_determined: " + index);
+    /*get index of first item that is not visible from the right anymore*/
+
+    timeline_button_right.addEventListener("click", function () {
+        if (index < timeline_element.length) {
+            timeline_button_left.style.visibility = "visible";
+            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" })
+            console.log(index);
+            index += 1;
+        } else {
+            timeline_button_right.style.visibility = "hidden";
+            console.log("finished scrolling right");
+            console.log(index);
+        }
+    });
+    console.log(index);
+
+    timeline_button_left.addEventListener("click", function () {
+        if (index <= timeline_element.length && index >= start_index + 1) {
+            timeline_button_right.style.visibility = "visible";
+            timeline_element[index - 2].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" })
+            console.log(index);
+            index -= 1;
+        } else {
+            timeline_button_left.style.visibility = "hidden";
+            console.log("finished scrolling left");
+            console.log(index);
+        }
+    });
+
+    console.log(index);
+
     /* observer for rectangles*/
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -75,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const windowHeight = window.innerHeight;
         const opac = yScroll / windowHeight;
         document.body.style.setProperty('--scroll', 1 - opac)
-        console.log(opac)
     })
 
 });
