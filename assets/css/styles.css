@@ -299,18 +299,22 @@ My Skills
     width: 100%;
 }
 
+.my-skills h1 {
+    align-self: flex-start;
+}
+
 .skills-container {
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .languages,
 .other-skills {
     display: flex;
     flex-direction: column;
-    width: 45%;
+    width: 47%;
     position: relative;
 }
 
@@ -362,18 +366,89 @@ My Skills
     z-index: 0;
 }
 
+/*----------------------------------------------------------------------------------
+Recent Projects
+----------------------------------------------------------------------------------*/
 
-/*expansion of blue bars*/
-@keyframes expand-bars {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: var(--item-width);
-    }
+.projects {
+    border: red 10px solid;
 }
 
+.recent-projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
+    height: 500px;
+    border: green dashed 10px;
+    gap: 1em;
+}
+
+.project-tile {
+    position: relative;
+    border-radius: 15px;
+    background-color: white;
+}
+
+#project1 {
+    grid-column: 1;
+    grid-row: 1/ span 2;
+    background-image: url("assets/images/election_funding_image.jpg");
+    background-size: cover;
+}
+
+#project2 {
+    grid-column: 1;
+    grid-row: 3/ span 2;
+    background-image: url("assets/images/election_funding_image.jpg");
+    background-size: cover;
+}
+
+#project3 {
+    grid-column: 2;
+    grid-row: 2/ span 2;
+    background-image: url("assets/images/election_funding_image.jpg");
+    background-size: cover;
+}
+
+#projects-title {
+    align-self: center;
+    justify-self: center;
+    grid-column: 2;
+    grid-row: 1;
+    color: white;
+}
+
+#explore-projects {
+    grid-column: 2;
+    grid-row: 4;
+    align-self: center;
+    justify-self: center;
+}
+
+
+.project-tile::after {
+    opacity: 0;
+}
+
+.project-tile::after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(.77, 0, .175, 1);
+}
+
+.project-tile:hover::after {
+    opacity: 1;
+    cursor: pointer;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.65) 15%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0) 100%);
+}
 
 /*----------------------------------------------------------------------------------
 navBar
@@ -560,10 +635,7 @@ Blogpost specific design elements
     background-image: none;
 }
 
-.projects * {
-    font-family: 'Montserrat';
-    font-weight: 300;
-}
+
 
 main.project-post {
     display: block;
@@ -671,15 +743,6 @@ projects landing page styling
     left: 2.5%;
 }
 
-.projects p {
-    line-height: 1.3em;
-    font-size: 1.5em;
-    margin-bottom: 1em;
-}
-
-a:hover {
-    cursor: pointer;
-}
 
 hr.solid {
     border-top: .1em solid grey;
@@ -757,101 +820,6 @@ button {
     }
 }
 
-/*-------------------------------------------
-CV styling
--------------------------------------------*/
-
-/*--------------------------------------------------
-Recent Projects
---------------------------------------------------*/
-
-.recent-projects {
-    margin: 0 auto;
-    position: relative;
-    display: block;
-    width: 100%;
-    border: green dashed 3px;
-    height: 600px;
-}
-
-.project-tile {
-    display: inline-block;
-    margin: 5px;
-    border-radius: 10px;
-    border: 2px red solid;
-    background-color: white;
-    position: relative;
-    width: calc(50% - 15px);
-    height: 40%;
-}
-
-.project-tile::after {
-    opacity: 0;
-}
-
-.project-tile::after {
-    box-sizing: border-box;
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 1.2s cubic-bezier(.77, 0, .175, 1);
-}
-
-.project-tile:hover::after {
-    opacity: 1;
-    cursor: pointer;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.65) 15%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0) 100%);
-}
-
-.project-tile:nth-child(3) {
-    transform: translateY(50%);
-}
-
-.prject-tile img {
-    width: 10% !important;
-    height: auto !important;
-}
-
-#project1 {
-    background-image: url("assets/images/election_funding_image.jpg");
-    background-size: cover;
-}
-
-#project2 {
-    background-image: url();
-}
-
-#project3 {
-    background-image: url();
-}
-
-#projects-title {
-    color: white;
-    font-size: 5em;
-    height: auto;
-    width: auto;
-    display: block;
-    border: red 1px solid;
-    position: absolute;
-    right: 4%;
-    top: 7%;
-}
-
-.recent-projects .scroll-down-link a {
-    position: absolute;
-    bottom: 25%;
-    right: 20%;
-    z-index: 1;
-}
-
-
-/* left one --> Fly in from the left, right one fly in from the right, bottom one fly in from the bottom!*/
-
 
 .plane-fly {
     opacity: .5;
@@ -888,7 +856,8 @@ Recent Projects
 /**********************************************
 Keyframe Animations
 **********************************************/
-/* on load animations */
+
+/*description: in Section: */
 @keyframes fadeInOnLoad {
     from {
         transform: translateY(100px);
@@ -903,6 +872,7 @@ Keyframe Animations
     }
 }
 
+/*description: in Section: */
 @keyframes zoomInOnLoad {
     from {
         transform: scale(.5);
@@ -914,5 +884,16 @@ Keyframe Animations
         opacity: .6;
         transform: scale(1);
         visibility: visible;
+    }
+}
+
+/*expansion of blue bars in Section: */
+@keyframes expand-bars {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: var(--item-width);
     }
 }
