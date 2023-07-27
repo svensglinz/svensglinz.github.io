@@ -77,7 +77,6 @@ main {
     position: relative;
     /*dodge navbar and social media bar*/
     margin: calc(var(--nav-bar-height)) var(--main-margin-width);
-    border: pink 10px solid;
 }
 
 body {
@@ -370,17 +369,12 @@ My Skills
 Recent Projects
 ----------------------------------------------------------------------------------*/
 
-.projects {
-    border: red 10px solid;
-}
-
 .recent-projects {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, 1fr);
     width: 100%;
     height: 500px;
-    border: green dashed 10px;
     gap: 1em;
 }
 
@@ -509,6 +503,7 @@ socialMediaBar
     border-radius: 20px;
     background-color: grey;
     height: 15vh;
+    z-index: 100;
 }
 
 .social-media-bar .icon-list {
@@ -518,7 +513,6 @@ socialMediaBar
     justify-items: center;
     position: relative;
     height: 40vh;
-    border: pink 5px solid;
 }
 
 .social-media-bar .icon-list li {
@@ -527,7 +521,6 @@ socialMediaBar
     display: flex;
     flex: 1;
     position: relative;
-    border: blueviolet 2px dotted;
 }
 
 .social-media-bar svg {
