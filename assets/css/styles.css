@@ -122,23 +122,41 @@ body {
 welcomePage
 ----------------------------------------------------------------------------------*/
 
+/*Implement media queries here! */
 .start-page {
-    align-items: center;
-    display: grid;
-    grid: 1fr / repeat(2, 1fr);
+    grid: 1fr / 1fr;
 }
 
 .welcome-text {
-    text-align: justify;
     grid-column: 1;
     grid-row: 1;
-    animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
 }
 
 .start-picture {
-    text-align: right;
-    grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+@media screen and (min-width: 800px) {
+    .start-page {
+        align-items: center;
+        display: grid;
+        grid: 1fr / repeat(2, 1fr);
+    }
+
+    .welcome-text {
+        text-align: justify;
+        grid-column: 1;
+        grid-row: 1;
+        animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
+    }
+
+    .start-picture {
+        text-align: right;
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
+
 }
 
 .start-picture img {
@@ -542,9 +560,9 @@ socialMediaBar
     display: grid;
     height: 100%;
     width: 100px;
-    grid-template-rows: auto-fill 1fr 4fr 1fr;
+    grid-template-rows: auto-fill 1fr 2.5fr 1fr;
+    gap: 3rem;
 }
-
 
 .social-media-bar .vertical-line {
     justify-self: center;
