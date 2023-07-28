@@ -190,28 +190,41 @@ Section: My Education and Career
 ----------------------------------------------------------------------------------*/
 .my-education-and-career {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: repeat(3, auto);
+    grid: repeat(3, auto) / 1fr;
 }
 
 .my-education {
     grid-row: 2;
-    grid-column: 1/ span 2;
+    grid-column: 1;
 }
 
-.my-career {
-    grid-row: 3;
-    grid-column: 1 / span 2;
-}
+@media screen and (min-width: 10000px) {
+    .my-education-and-career {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(3, auto);
+    }
 
-.my-education-and-career .section-title {
-    width: max-content;
+    .my-education {
+        grid-row: 2;
+        grid-column: 1/ span 2;
+    }
 
-}
+    .my-career {
+        grid-row: 3;
+        grid-column: 1 / span 2;
+    }
 
-.my-education-and-career .download-cv {
-    align-self: end;
-    margin-bottom: var(--section-title-margin);
+    .my-education-and-career .section-title {
+        width: max-content;
+
+    }
+
+    .my-education-and-career .download-cv {
+        align-self: end;
+        margin-bottom: var(--section-title-margin);
+    }
+
 }
 
 /*----------------------------------------------------------------------------------
@@ -219,23 +232,22 @@ Subsection: My Ecducation
 ----------------------------------------------------------------------------------*/
 .univerities {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 2%;
-}
-
-.university {
-    display: grid;
-    grid-template-rows: 1fr auto auto;
-    padding: 1em;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, .5);
-    justify-items: center;
 }
 
 .university img {
     align-self: center;
     width: 70%;
     height: auto;
+}
+
+.university {
+    display: grid;
+    padding: 1em;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, .5);
+    justify-items: center;
 }
 
 .university>* {
@@ -245,6 +257,38 @@ Subsection: My Ecducation
 .university .year {
     margin-top: .5em;
     font-weight: 700;
+}
+
+@media screen and (min-width: 10000px) {
+    .univerities {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2%;
+    }
+
+    .university {
+        display: grid;
+        grid-template-rows: 1fr auto auto;
+        padding: 1em;
+        border-radius: 20px;
+        background-color: rgba(255, 255, 255, .5);
+        justify-items: center;
+    }
+
+    .university img {
+        align-self: center;
+        width: 70%;
+        height: auto;
+    }
+
+    .university>* {
+        color: black;
+    }
+
+    .university .year {
+        margin-top: .5em;
+        font-weight: 700;
+    }
 }
 
 /*----------------------------------------------------------------------------------
