@@ -121,23 +121,41 @@ body {
 /*----------------------------------------------------------------------------------
 welcomePage
 ----------------------------------------------------------------------------------*/
+.nav-bar {
+    visibility: hidden;
+}
+
+.social-media-bar {
+    visibility: hidden;
+}
 
 /*Implement media queries here! */
 .start-page {
-    grid: 1fr / 1fr;
+    display: grid;
+    grid: 5fr / 1fr;
 }
 
 .welcome-text {
     grid-column: 1;
-    grid-row: 1;
+    text-align: justify;
+    grid-row: 3/ span 2;
+    animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
+
 }
 
 .start-picture {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 1 / span 5;
 }
 
-@media screen and (min-width: 800px) {
+.start-picture img {
+    animation: zoomInOnLoad 2s both;
+    width: 80%;
+    height: auto;
+
+}
+
+@media screen and (min-width: 10000px) {
     .start-page {
         align-items: center;
         display: grid;
@@ -157,13 +175,15 @@ welcomePage
         grid-row: 1 / span 2;
     }
 
+    .start-picture img {
+        animation: zoomInOnLoad 2s both;
+        width: 80%;
+        height: auto;
+    }
+
 }
 
-.start-picture img {
-    animation: zoomInOnLoad 2s both;
-    width: 80%;
-    height: auto;
-}
+
 
 /*----------------------------------------------------------------------------------
 Section: My Education and Career
@@ -559,7 +579,7 @@ socialMediaBar
     top: 0;
     display: grid;
     height: 100%;
-    width: 100px;
+    width: 6%;
     grid-template-rows: auto-fill 1fr 2fr 1fr;
     padding: 3rem 0;
 }
