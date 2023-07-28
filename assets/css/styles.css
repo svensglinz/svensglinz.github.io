@@ -361,6 +361,7 @@ My Skills
     opacity: .8;
 }
 
+
 .my-skills ul li::before {
     content: '';
     grid-row: 2;
@@ -463,7 +464,7 @@ get in touch
 ----------------------------------------------------------------------------------*/
 
 .get-in-touch {
-    padding-bottom: 10em;
+    padding-bottom: 7rem;
     width: 80%;
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -551,20 +552,24 @@ socialMediaBar
     background-color: rgb(44, 43, 43);
 }
 
-.social-media-bar .social-media-icons {
+.social-media-bar .icons {
+    grid-row: 2;
+    border: 2px solid red;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    place-items: center;
+    align-items: center;
+    justify-items: center;
 }
 
-
-.social-media-bar svg {
+.icons svg {
     fill: white;
-    transform: scale(.6);
+    width: 100%;
+    transform: scale(.5);
+    height: auto;
 }
 
 .social-media-bar svg:hover {
-    transform: scale(.7);
+    transform: scale(.6);
     transition: .3s ease-in-out;
     fill: rgb(22, 45, 115);
 }

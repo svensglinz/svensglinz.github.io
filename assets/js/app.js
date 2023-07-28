@@ -129,21 +129,28 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* --> all elements shold fade out on the screen -> If the bottom of the elemnt is at the very top, opacity shoudl be at X). 
-Same for images etc.. But they shoudl aso fadein when they coome into the viewport!
+/* 
+ONE FUNCTION FOR THE INTERSECTION OBSERVER WHICH ADDS A CLASS TO AN ELEMENT WHICH CAN THEN TRIGGER AN ANIMATION
+function observeRectangles(className, addClass) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const intersecting = entry.isIntersecting;
+            entry.target.style.opacity = intersecting ? "1" : "0";
+            entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
+            
+            if (addClass && intersecting) {
+                entry.target.classList.add(addClass);
+            } else if (addClass && !intersecting) {
+                entry.target.classList.remove(addClass);
+            }
+        });
+    },
+    { threshold: 0, rootMargin: "-50px" });
 
-also fade out intro image!
-/*may also want window.innterHeight --> To calculate the offset to the top of the window*/
-
-/*
-onLoadFunction = function () {
-    document.body.style.opacity = '1';
-    document.querySelectorAll('.fade-in-on-load').forEach(element => {
-        element.style.transform = 'translateY(0)';
-        element.style.opacity = '1';
-    })
-
+    const elements = document.querySelectorAll(`.${className}`);
+    elements.forEach(element => observer.observe(element));
 }
 
-window.onload = onLoadFunction;
+// Example usage:
+observeRectangles("rectangle", "fade-in");
 */
