@@ -155,7 +155,7 @@ welcomePage
 
 }
 
-@media screen and (min-width: 10000px) {
+@media screen and (min-width: 800px) {
     .start-page {
         align-items: center;
         display: grid;
@@ -198,7 +198,7 @@ Section: My Education and Career
     grid-column: 1;
 }
 
-@media screen and (min-width: 10000px) {
+@media screen and (min-width: 800px) {
     .my-education-and-career {
         display: grid;
         grid-template-columns: repeat(2, auto);
@@ -259,7 +259,7 @@ Subsection: My Ecducation
     font-weight: 700;
 }
 
-@media screen and (min-width: 10000px) {
+@media screen and (min-width: 800px) {
     .univerities {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
