@@ -455,8 +455,8 @@ get in touch
 .get-in-touch {
     width: 80%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeate(2, 1fr);
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto;
     margin: 0 auto;
     text-align: center;
 }
@@ -464,13 +464,13 @@ get in touch
 .get-in-touch .title {
     justify-self: center;
     grid-row: 1;
-    grid-column: 2 / span 2;
+    grid-column: 2;
 }
 
 .get-in-touch .text {
     color: white;
     grid-row: 2;
-    grid-column: 2 / span 2;
+    grid-column: 2;
 }
 
 .plane-fly {
@@ -524,49 +524,38 @@ socialMediaBar
 ----------------------------------------------------------------------------------*/
 .social-media-bar {
     position: fixed;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100px;
     left: 0;
     top: 0;
+    display: grid;
+    height: 100%;
+    width: 100px;
+    grid-template-rows: auto-fill 1fr 4fr 1fr;
     /* top: var(--nav-bar-height); */
     border: green dashed 5px;
-    align-items: center;
-    justify-content: space-around;
 }
+
 
 .social-media-bar .vertical-line {
+    justify-self: center;
     width: 2px;
     border-radius: 20px;
-    background-color: grey;
-    height: 15vh;
-    z-index: 100;
+    background-color: rgb(44, 43, 43);
 }
 
-.social-media-bar .icon-list {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-items: center;
-    position: relative;
-    height: 40vh;
+.social-media-bar .social-media-icons {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
 }
 
-.social-media-bar .icon-list li {
-    align-items: center;
-    min-height: 0;
-    display: flex;
-    flex: 1;
-    position: relative;
-}
 
 .social-media-bar svg {
     fill: white;
+    transform: scale(.6);
 }
 
 .social-media-bar svg:hover {
-    transform: scale(.8);
+    transform: scale(.7);
     transition: .3s ease-in-out;
     fill: rgb(22, 45, 115);
 }
