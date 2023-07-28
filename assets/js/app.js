@@ -129,28 +129,43 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* 
-ONE FUNCTION FOR THE INTERSECTION OBSERVER WHICH ADDS A CLASS TO AN ELEMENT WHICH CAN THEN TRIGGER AN ANIMATION
-function observeRectangles(className, addClass) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function observeRectangles(className, addClass, rootMargin) {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             const intersecting = entry.isIntersecting;
-            entry.target.style.opacity = intersecting ? "1" : "0";
-            entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
-            
-            if (addClass && intersecting) {
+
+            if (ntersecting) {
                 entry.target.classList.add(addClass);
-            } else if (addClass && !intersecting) {
+            } else if (!intersecting) {
                 entry.target.classList.remove(addClass);
             }
         });
     },
-    { threshold: 0, rootMargin: "-50px" });
+        { threshold: 0, rootMargin: rootMargin });
 
     const elements = document.querySelectorAll(`.${className}`);
     elements.forEach(element => observer.observe(element));
 }
 
 // Example usage:
-observeRectangles("rectangle", "fade-in");
-*/
+observeRectangles("start-picture", "zoomInOnLoad", "50px");

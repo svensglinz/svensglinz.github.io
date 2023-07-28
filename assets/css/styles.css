@@ -560,8 +560,8 @@ socialMediaBar
     display: grid;
     height: 100%;
     width: 100px;
-    grid-template-rows: auto-fill 1fr 2.5fr 1fr;
-    gap: 3rem;
+    grid-template-rows: auto-fill 1fr 2fr 1fr;
+    padding: 3rem 0;
 }
 
 .social-media-bar .vertical-line {
