@@ -63,6 +63,9 @@ html {
     box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden;
+}
 
 h1,
 h2,
@@ -129,7 +132,6 @@ welcomePage
     visibility: hidden;
 }
 
-/*Implement media queries here! */
 .start-page {
     display: grid;
     grid: 5fr / 1fr;
@@ -140,19 +142,18 @@ welcomePage
     text-align: justify;
     grid-row: 3/ span 2;
     animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
-
 }
 
 .start-picture {
     grid-column: 1;
     grid-row: 1 / span 5;
+    text-align: center;
 }
 
 .start-picture img {
     animation: zoomInOnLoad 2s both;
     width: 80%;
     height: auto;
-
 }
 
 @media screen and (min-width: 800px) {
@@ -163,10 +164,7 @@ welcomePage
     }
 
     .welcome-text {
-        text-align: justify;
-        grid-column: 1;
         grid-row: 1;
-        animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
     }
 
     .start-picture {
@@ -174,29 +172,38 @@ welcomePage
         grid-column: 2;
         grid-row: 1 / span 2;
     }
-
-    .start-picture img {
-        animation: zoomInOnLoad 2s both;
-        width: 80%;
-        height: auto;
-    }
-
 }
-
-
 
 /*----------------------------------------------------------------------------------
 Section: My Education and Career
 ----------------------------------------------------------------------------------*/
 .my-education-and-career {
     display: grid;
-    grid: repeat(3, auto) / 1fr;
+    grid: repeat(3, auto) / 100%;
 }
 
 .my-education {
     grid-row: 2;
     grid-column: 1;
 }
+
+.my-career {
+    grid-row: 3;
+    grid-column: 1 / span 2;
+}
+
+.my-education-and-career .section-title {
+    width: fit-content;
+    text-align: center;
+
+}
+
+.my-education-and-career .download-cv {
+    align-self: end;
+    grid-row: 4;
+    margin-bottom: var(--section-title-margin);
+}
+
 
 @media screen and (min-width: 800px) {
     .my-education-and-career {
@@ -230,6 +237,8 @@ Section: My Education and Career
 /*----------------------------------------------------------------------------------
 Subsection: My Ecducation
 ----------------------------------------------------------------------------------*/
+
+
 .univerities {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
@@ -244,6 +253,7 @@ Subsection: My Ecducation
 
 .university {
     display: grid;
+    grid-template-rows: 1fr auto auto;
     padding: 1em;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, .5);
@@ -302,9 +312,9 @@ Subsection: My Career
 
 .timeline {
     display: grid;
-    column-gap: 2%;
+    gap: 2%;
     scroll-snap-type: x mandatory;
-    grid-auto-columns: 33.33%;
+    grid-auto-columns: 100%;
     grid-auto-flow: column;
     justify-content: center;
     overflow-x: scroll;
@@ -318,6 +328,12 @@ Subsection: My Career
     position: relative;
     scroll-snap-align: start;
     color: white;
+}
+
+/*hide scrollbar from timeline container*/
+.timeline::-webkit-scrollbar {
+    display: none;
+    /*none */
 }
 
 /* blue circle below entries*/
@@ -357,26 +373,100 @@ Subsection: My Career
 }
 
 .timeline-button[class*="right"] {
-    right: -60px;
+    right: -0px;
 }
 
 .timeline-button[class*="left"] {
-    left: -60px;
+    left: -0px;
 }
 
-/*hide scrollbar from timeline container*/
-.timeline::-webkit-scrollbar {
-    display: none;
-    /*none */
-}
 
-.career-title {
-    display: flex;
-    justify-content: space-between;
-}
+@media screen and (min-width: 800px) {
 
-.timeline-text .year {
-    font-weight: 800;
+    /*needed for absolute positioning of left/right clicking elements*/
+    .timeline-container {
+        position: relative;
+    }
+
+    .timeline {
+        display: grid;
+        column-gap: 2%;
+        scroll-snap-type: x mandatory;
+        grid-auto-columns: 33.33%;
+        grid-auto-flow: column;
+        justify-content: center;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+
+    .timeline-text {
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        text-align: center;
+        position: relative;
+        scroll-snap-align: start;
+        color: white;
+    }
+
+    /* blue circle below entries*/
+    .timeline-text::after {
+        content: "";
+        width: 9em;
+        height: 9em;
+        opacity: 0.3;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -3em;
+        background-color: royalblue;
+        z-index: -1;
+    }
+
+    /*buttons to scroll left and right*/
+    .timeline-button {
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4em;
+        background-color: transparent;
+        position: absolute;
+        border-radius: 6em;
+        width: 60px;
+        height: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .timeline-button:hover {
+        /*animation: border .4s ease 1 forwards;*/
+        border: 1.5px solid royalblue;
+    }
+
+    .timeline-button[class*="right"] {
+        right: -60px;
+    }
+
+    .timeline-button[class*="left"] {
+        left: -60px;
+    }
+
+    /*hide scrollbar from timeline container*/
+    .timeline::-webkit-scrollbar {
+        display: none;
+        /*none */
+    }
+
+    .career-title {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .timeline-text .year {
+        font-weight: 800;
+    }
+
 }
 
 /*----------------------------------------------------------------------------------
@@ -461,12 +551,9 @@ My Skills
 /*----------------------------------------------------------------------------------
 Recent Projects
 ----------------------------------------------------------------------------------*/
-
 .recent-projects {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    height: 500px;
+    grid: repeat(4, 40vh) / 1fr;
     gap: 1rem;
 }
 
@@ -483,41 +570,19 @@ Recent Projects
 }
 
 #project1 {
-    grid-column: 1;
-    grid-row: 1/ span 2;
     background-image: url("/assets/images/election_funding_image.jpg");
     background-size: cover;
 }
 
 #project2 {
-    grid-column: 1;
-    grid-row: 3/ span 2;
     background-image: url("/assets/images/election_funding_image.jpg");
     background-size: cover;
 }
 
 #project3 {
-    grid-column: 2;
-    grid-row: 2/ span 2;
     background-image: url("/assets/images/election_funding_image.jpg");
     background-size: cover;
 }
-
-#projects-title {
-    align-self: center;
-    justify-self: center;
-    grid-column: 2;
-    grid-row: 1;
-    color: white;
-}
-
-#explore-projects {
-    grid-column: 2;
-    grid-row: 4;
-    align-self: center;
-    justify-self: center;
-}
-
 
 .project-tile::after {
     opacity: 0;
@@ -542,39 +607,94 @@ Recent Projects
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.65) 15%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0) 100%);
 }
 
+@media screen and (min-width: 800px) {
+
+    .recent-projects {
+        display: grid;
+        grid: repeat(4, 1fr) / repeat(2, 1fr);
+        height: 500px;
+        gap: 1rem;
+    }
+
+    .recent-projects .section-title {
+        place-self: center;
+        margin: 0;
+    }
+
+    .recent-projects .project-tile {
+        /* relative for the shadow overlay*/
+        position: relative;
+        border-radius: 15px;
+        background-color: white;
+    }
+
+    #project1 {
+        grid-column: 1;
+        grid-row: 1/ span 2;
+    }
+
+    #project2 {
+        grid-column: 1;
+        grid-row: 3/ span 2;
+    }
+
+    #project3 {
+        grid-column: 2;
+        grid-row: 2/ span 2;
+    }
+
+    #projects-title {
+        align-self: center;
+        justify-self: center;
+        grid-column: 2;
+        grid-row: 1;
+        color: white;
+    }
+
+    #explore-projects {
+        grid-column: 2;
+        grid-row: 4;
+        align-self: center;
+        justify-self: center;
+    }
+}
+
 /*----------------------------------------------------------------------------------
 get in touch
 ----------------------------------------------------------------------------------*/
 
-.get-in-touch {
-    padding-bottom: 7rem;
-    width: 80%;
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    grid-template-rows: auto;
-    margin: 0 auto;
-    text-align: center;
-}
+@media only screen and (min-width: 800px) {
+    .get-in-touch {
+        padding-bottom: 7rem;
+        width: 80%;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        grid-template-rows: auto;
+        margin: 0 auto;
+        text-align: center;
+    }
 
-.get-in-touch .title {
-    justify-self: center;
-    grid-row: 1;
-    grid-column: 2;
-}
+    .get-in-touch .title {
+        justify-self: center;
+        grid-row: 1;
+        grid-column: 2;
+    }
 
-.get-in-touch .text {
-    color: white;
-    grid-row: 2;
-    grid-column: 2;
-}
+    .get-in-touch .text {
+        color: white;
+        grid-row: 2;
+        grid-column: 2;
+    }
 
-.plane-fly {
-    opacity: .6;
-    width: 100%;
-    height: auto;
-    grid-row: 1 / span 2;
-    grid-column: 1;
-    z-index: -1;
+    .plane-fly {
+        opacity: .6;
+        width: 100%;
+        height: auto;
+        grid-row: 1 / span 2;
+        grid-column: 1;
+        z-index: -1;
+    }
+
 }
 
 /*----------------------------------------------------------------------------------
@@ -683,11 +803,6 @@ Other
 
 /* default spec (smartphone) */
 
-
-a:hover,
-button {
-    cursor: pointer;
-}
 
 /* code block styling */
 .code-block {
