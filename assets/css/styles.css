@@ -86,7 +86,8 @@ html {
     box-sizing: border-box;
 }
 
-body {
+body,
+html {
     overflow-x: hidden;
 }
 
