@@ -239,8 +239,9 @@ Section: My Education and Career
 
 @media screen and (min-width: 800px) {
     .my-education-and-career {
-        height: 100vh;
-        grid: repeat(2, auto) / repeat(3, auto);
+        height: 50vh;
+        /* dont know why 10px is not accepted here!*/
+        grid: 10px repeat(2, auto) / repeat(2, auto);
     }
 
     .my-education {
@@ -253,6 +254,7 @@ Section: My Education and Career
         grid-column: 1 / span 2;
     }
 
+    /*maybe do not have this as part of the grid layout? */
     .my-education-and-career .section-title {
         width: max-content;
         justify-self: start;
