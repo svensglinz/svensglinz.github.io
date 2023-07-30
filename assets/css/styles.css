@@ -128,17 +128,19 @@ main {
 
 body {
     position: relative;
-    /*background-image: linear-gradient(to bottom, rgba(000, 000, 000, var(--scroll)), rgba(000, 000, 000, var(--scroll))),
-    url('assets/images/smartphone_background.jpeg');*/
+    background-image: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
+        url('assets/images/smartphone_background.jpeg');
     background-color: black;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
 
-@media screen and (min-device-width: 480px) {
+@media screen and (min-device-width: 800px) {
     body {
         background-color: black;
+        background-image: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
+            url('/assets/images/website_backround_1.jpg');
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
