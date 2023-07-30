@@ -13,9 +13,21 @@
     /*project variables*/
     --blog-font: 'Montserrat';
     --blog-font-weight: 500;
-    --main-margin-width: 15%;
+    --main-margin-width: 10%;
     --nav-bar-height: 60px;
     --section-title-margin: 3.5rem;
+}
+
+@media screen and (min-width: 800px) {
+    :root {
+        --main-margin-width: 15%;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    :root {
+        --main-margin-width: 20%;
+    }
 }
 
 /*----------------------------------------------------------------------------------
@@ -23,7 +35,18 @@ general formatting
 ----------------------------------------------------------------------------------*/
 
 .section-title {
+    text-align: center;
+    justify-self: center;
     margin-bottom: var(--section-title-margin);
+    /*allows wrapping of section titles on smartphones*/
+    width: fit-content;
+}
+
+@media screen and (min-width: 800px) {
+    .section-title {
+        text-align: left;
+        justify-self: left;
+    }
 }
 
 .section {
@@ -35,6 +58,7 @@ general formatting
 }
 
 .explore-more {
+    text-transform: uppercase;
     width: fit-content;
     height: fit-content;
     animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .6s both;
@@ -48,7 +72,6 @@ general formatting
     padding-left: 6px;
     background-color: rgba(91, 86, 86, 0.3);
 }
-
 
 a {
     text-decoration: none;
@@ -71,11 +94,11 @@ h1,
 h2,
 h3,
 p,
-a {
+a,
+li {
     color: white;
     font-family: var(--font-family);
 }
-
 
 h1 {
     font-size: 7em;
@@ -100,13 +123,14 @@ p {
 main {
     position: relative;
     /*dodge navbar and social media bar*/
-    margin: calc(var(--nav-bar-height)) var(--main-margin-width);
+    margin: var(--nav-bar-height) var(--main-margin-width);
 }
 
 body {
     position: relative;
-    background-image: linear-gradient(to bottom, rgba(000, 000, 000, var(--scroll)), rgba(000, 000, 000, var(--scroll))),
-        url('assets/images/smartphone_background.jpeg');
+    /*background-image: linear-gradient(to bottom, rgba(000, 000, 000, var(--scroll)), rgba(000, 000, 000, var(--scroll))),
+    url('assets/images/smartphone_background.jpeg');*/
+    background-color: black;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -121,9 +145,6 @@ body {
     }
 }
 
-/*----------------------------------------------------------------------------------
-welcomePage
-----------------------------------------------------------------------------------*/
 .nav-bar {
     visibility: hidden;
 }
@@ -132,43 +153,65 @@ welcomePage
     visibility: hidden;
 }
 
+
+/*----------------------------------------------------------------------------------
+Start Page
+----------------------------------------------------------------------------------*/
+
+/*Smartphone layout*/
+
 .start-page {
+    align-items: center;
     display: grid;
-    grid: 5fr / 1fr;
-}
-
-.welcome-text {
-    grid-column: 1;
     text-align: justify;
-    grid-row: 3/ span 2;
-    animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
+    grid: 2fr 1fr / 1fr;
+    height: 100vh;
 }
 
-.start-picture {
-    grid-column: 1;
-    grid-row: 1 / span 5;
+.welcome-text h1 {
     text-align: center;
 }
 
-.start-picture img {
+.start-page .welcome-text {
+    grid-column: 1;
+    grid-row: 2;
+    animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
+}
+
+.start-page .start-picture {
     animation: zoomInOnLoad 2s both;
-    width: 80%;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    z-index: -1;
+}
+
+.start-page .explore-more {
+    visibility: hidden;
+}
+
+.start-page .start-picture img {
+    width: 100%;
     height: auto;
 }
 
+/*Design for XX upward*/
 @media screen and (min-width: 800px) {
+
     .start-page {
-        align-items: center;
-        display: grid;
         grid: 1fr / repeat(2, 1fr);
     }
 
-    .welcome-text {
+    .start-page .welcome-text {
         grid-row: 1;
     }
 
-    .start-picture {
-        text-align: right;
+    .welcome-text h1 {
+        text-align: left;
+    }
+
+    .start-page .start-picture {
+        width: 90%;
+        justify-self: right;
         grid-column: 2;
         grid-row: 1 / span 2;
     }
@@ -178,38 +221,24 @@ welcomePage
 Section: My Education and Career
 ----------------------------------------------------------------------------------*/
 .my-education-and-career {
+    place-items: center;
     display: grid;
-    grid: repeat(3, auto) / 100%;
-}
-
-.my-education {
-    grid-row: 2;
-    grid-column: 1;
-}
-
-.my-career {
-    grid-row: 3;
-    grid-column: 1 / span 2;
+    grid: repeat(4, auto) / 100%;
 }
 
 .my-education-and-career .section-title {
     width: fit-content;
     text-align: center;
-
 }
 
 .my-education-and-career .download-cv {
-    align-self: end;
-    grid-row: 4;
     margin-bottom: var(--section-title-margin);
 }
 
-
 @media screen and (min-width: 800px) {
     .my-education-and-career {
-        display: grid;
-        grid-template-columns: repeat(2, auto);
-        grid-template-rows: repeat(3, auto);
+        height: 100vh;
+        grid: repeat(2, auto) / repeat(3, auto);
     }
 
     .my-education {
@@ -224,38 +253,37 @@ Section: My Education and Career
 
     .my-education-and-career .section-title {
         width: max-content;
-
+        justify-self: start;
+        align-self: end;
     }
 
     .my-education-and-career .download-cv {
-        align-self: end;
+        place-self: end;
         margin-bottom: var(--section-title-margin);
     }
-
 }
 
 /*----------------------------------------------------------------------------------
 Subsection: My Ecducation
 ----------------------------------------------------------------------------------*/
 
-
 .univerities {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid: repeat(3, 1fr)/ 1fr;
     gap: 2%;
 }
 
 .university img {
     align-self: center;
-    width: 70%;
+    width: 50%;
     height: auto;
 }
 
 .university {
     display: grid;
-    grid-template-rows: 1fr auto auto;
-    padding: 1em;
-    border-radius: 20px;
+    grid: 1fr repeat(2, auto)/ 1fr;
+    padding: 1.5rem;
+    border-radius: 2rem;
     background-color: rgba(255, 255, 255, .5);
     justify-items: center;
 }
@@ -265,39 +293,21 @@ Subsection: My Ecducation
 }
 
 .university .year {
-    margin-top: .5em;
+    margin-top: 1.5rem;
     font-weight: 700;
 }
 
+/*for XXX and above*/
 @media screen and (min-width: 800px) {
-    .univerities {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2%;
-    }
 
-    .university {
-        display: grid;
-        grid-template-rows: 1fr auto auto;
-        padding: 1em;
-        border-radius: 20px;
-        background-color: rgba(255, 255, 255, .5);
-        justify-items: center;
+    .univerities {
+        grid: 1fr/ repeat(3, 1fr);
     }
 
     .university img {
         align-self: center;
-        width: 70%;
+        width: 75%;
         height: auto;
-    }
-
-    .university>* {
-        color: black;
-    }
-
-    .university .year {
-        margin-top: .5em;
-        font-weight: 700;
     }
 }
 
@@ -474,49 +484,43 @@ My Skills
 ----------------------------------------------------------------------------------*/
 
 .my-skills {
+    display: grid;
+    grid: repeat(2, auto) / 1fr;
     position: relative;
+}
+
+.skills {
+    display: grid;
+    grid: repeat(2, 1fr) / 1fr;
+    column-gap: 5%;
 }
 
 .my-skills .rotating-wheel {
-    animation: rotation 40s linear infinite;
-    filter: drop-shadow(4px 6px 10px royalblue);
-    width: 300px;
+    width: 70vw;
     height: auto;
     position: absolute;
-    top: 0;
-    right: -90px;
+    top: 30%;
+    right: -50%;
+    z-index: -1;
 }
 
-.skills-container {
-    display: flex;
-    flex-direction: row;
+.rotating-wheel svg {
+    animation: rotation 40s linear infinite;
+    filter: drop-shadow(4px 6px 10px royalblue);
     width: 100%;
-    justify-content: space-between;
-}
-
-.languages,
-.other-skills {
-    display: flex;
-    flex-direction: column;
-    width: 47%;
-    position: relative;
 }
 
 .skill-title {
     text-transform: uppercase;
-    color: white;
-    margin-bottom: 20px;
+    margin-bottom: 2.5rem;
     border-left: 2px solid royalblue;
-    padding-left: 10px;
+    padding-left: 1rem;
 }
-
 
 .my-skills ul li {
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: auto;
-    color: white;
-    font-size: 2em;
+    grid: repeat(2, 1fr) / 1fr;
+    font-size: 2rem;
 }
 
 /*add bars*/
@@ -526,7 +530,7 @@ My Skills
     grid-row: 2;
     grid-column: 1;
     background-color: royalblue;
-    height: 15px;
+    height: 1.5rem;
     width: 0;
     animation: expand-bars forwards 2s cubic-bezier(.77, 0, .175, 1);
     margin-bottom: 5px;
@@ -534,18 +538,34 @@ My Skills
     opacity: .8;
 }
 
-
 .my-skills ul li::before {
     content: '';
     grid-row: 2;
     grid-column: 1;
     border-radius: 10px;
     background-color: darkgrey;
-    height: 15px;
+    height: 1.5rem;
     opacity: .8;
     width: 100%;
     margin-bottom: 5px;
     z-index: 0;
+}
+
+@media screen and (min-width: 800px) {
+
+    .my-skills .rotating-wheel {
+        width: 450px;
+        height: auto;
+        position: absolute;
+        top: -30px;
+        right: -100px;
+        z-index: -1;
+    }
+
+    .skills {
+        display: grid;
+        grid: 1fr / repeat(2, 1fr);
+    }
 }
 
 /*----------------------------------------------------------------------------------
@@ -553,13 +573,8 @@ Recent Projects
 ----------------------------------------------------------------------------------*/
 .recent-projects {
     display: grid;
-    grid: repeat(4, 40vh) / 1fr;
-    gap: 1rem;
-}
-
-.recent-projects .section-title {
-    place-self: center;
-    margin: 0;
+    grid: auto repeat(3, 35vh) auto / 100%;
+    gap: 2rem;
 }
 
 .recent-projects .project-tile {
@@ -584,8 +599,10 @@ Recent Projects
     background-size: cover;
 }
 
-.project-tile::after {
-    opacity: 0;
+#explore-projects {
+    grid-row: 5;
+    align-self: center;
+    justify-self: center;
 }
 
 .project-tile::after {
@@ -617,7 +634,7 @@ Recent Projects
     }
 
     .recent-projects .section-title {
-        place-self: center;
+        align-self: center;
         margin: 0;
     }
 
@@ -643,14 +660,6 @@ Recent Projects
         grid-row: 2/ span 2;
     }
 
-    #projects-title {
-        align-self: center;
-        justify-self: center;
-        grid-column: 2;
-        grid-row: 1;
-        color: white;
-    }
-
     #explore-projects {
         grid-column: 2;
         grid-row: 4;
@@ -662,6 +671,38 @@ Recent Projects
 /*----------------------------------------------------------------------------------
 get in touch
 ----------------------------------------------------------------------------------*/
+
+.get-in-touch {
+    padding-bottom: 7rem;
+    width: 80%;
+    display: grid;
+    grid: 3 / 1fr;
+    grid-template-rows: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.get-in-touch .title {
+    justify-self: center;
+    grid-row: 1;
+    width: max-content;
+    grid-column: 1;
+}
+
+.get-in-touch .text {
+    color: white;
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.plane-fly {
+    opacity: .6;
+    width: 100%;
+    height: auto;
+    grid-row: 2 / span 3;
+    grid-column: 1;
+    z-index: -1;
+}
 
 @media only screen and (min-width: 800px) {
     .get-in-touch {
@@ -712,7 +753,7 @@ navBar
 }
 
 .nav-buttons {
-    font-size: 2em;
+    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: right;
@@ -849,7 +890,7 @@ Blogpost specific design elements
 #report-title {
     margin-top: 10px;
     margin-bottom: 20px;
-    font-size: 3.3em;
+    font-size: 3.3rem;
 }
 
 #report-subtitle {
@@ -943,7 +984,7 @@ projects landing page styling
 
 /* project thumbnails layout*/
 .project-thumbnail {
-    margin: 1em auto;
+    margin: 1rem auto;
     width: 95%;
     height: auto;
     position: relative;
@@ -952,8 +993,8 @@ projects landing page styling
 .project-thumbnail img {
     display: block;
     width: 100%;
-    height: 15em;
-    margin: 0 auto 2em auto;
+    height: 15rem;
+    margin: 0 auto 2rem auto;
     object-fit: cover;
 }
 
@@ -964,18 +1005,18 @@ projects landing page styling
 }
 
 .project-thumbnail h2 {
-    margin-bottom: .2em;
+    margin-bottom: .2rem;
 }
 
 #title {
     position: relative;
-    font-size: 3em;
+    font-size: 3rem;
     left: 2.5%;
 }
 
 
 hr.solid {
-    border-top: .1em solid grey;
+    border-top: .1rem solid grey;
     width: 100%;
     height: 0;
     margin: 0 auto;
@@ -998,7 +1039,7 @@ button {
     .project-thumbnail img {
         display: flex;
         width: 40%;
-        height: 20em;
+        height: 20rem;
         object-fit: cover;
     }
 
@@ -1029,7 +1070,7 @@ button {
     .project-thumbnail img {
         display: flex;
         width: 40%;
-        height: 20em;
+        height: 20rem;
         object-fit: cover;
     }
 
@@ -1049,8 +1090,6 @@ button {
         float: auto;
     }
 }
-
-
 
 /* adjust appearance of scrollbar*/
 /* width */
