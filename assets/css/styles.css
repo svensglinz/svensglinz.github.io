@@ -790,7 +790,6 @@ get in touch
     color: white;
     grid-row: 3;
     grid-column: 1;
-    border-bottom: 1.5px solid royalblue;
 }
 
 .plane-fly {
@@ -820,6 +819,7 @@ get in touch
     .get-in-touch .text {
         grid-row: 2;
         grid-column: 2;
+        border-bottom: 1.5px solid royalblue;
     }
 
     .plane-fly {
@@ -873,7 +873,7 @@ socialMediaBar
 .social-media-bar {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -100px;
     place-content: center;
     width: 100%;
     margin: auto;
@@ -916,24 +916,26 @@ socialMediaBar
         top: 0;
         height: 100%;
         width: 6%;
+        grid-auto-flow: row;
         grid: 1fr 2fr 1fr / 1fr;
         padding: 3rem 0;
+        place-items: center;
     }
 
     .social-media-bar .vertical-line {
         visibility: visible;
         place-self: center;
-        width: 2px;
-        border-radius: 20px;
+        width: 1.5px;
+        height: 100%;
         background-color: rgb(44, 43, 43);
+        z-index: 200;
     }
 
     .social-media-bar .icons {
         grid-row: 2;
         display: grid;
         grid: repeat(3, 1fr) / 1fr;
-        align-items: center;
-        justify-items: center;
+        place-items: center;
         border-bottom: none;
     }
 
