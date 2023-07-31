@@ -114,27 +114,3 @@ document.addEventListener("DOMContentLoaded", function () {
     observeIntersection("section", "fadeIn", "0px");
 });
 
-
-/* observer for rectangles*/
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        const intersecting = entry.isIntersecting;
-        entry.target.style.opacity = intersecting ? "1" : "0";
-        entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
-    });
-},
-    { threshold: 0, rootMargin: "-50px" }
-);
-
-/*get all elements*/
-const elements = document.querySelectorAll(".fade-in");
-
-for (let i = 0; i < elements.length; i++) {
-    const aboutPageElement = elements[i];
-
-    if (aboutPageElement) {
-        observer.observe(aboutPageElement);
-    } else {
-        console.warn("Element with id 'about-page' not found.");
-    }
-}
