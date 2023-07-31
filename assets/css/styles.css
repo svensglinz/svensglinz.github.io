@@ -514,7 +514,7 @@ My Skills
 ----------------------------------------------------------------------------------*/
 
 .my-skills {
-    height: 80vh;
+    height: minmax(80vh, auto);
     align-content: center;
     display: grid;
     grid: repeat(2, auto) / 1fr;
@@ -726,7 +726,7 @@ Recent Projects
     .recent-projects {
         display: grid;
         grid: repeat(4, 1fr) / repeat(2, 1fr);
-        height: 80vh;
+        height: minmax(80vh, auto);
         gap: 1.5rem;
     }
 
@@ -739,6 +739,7 @@ Recent Projects
         /* relative for the shadow overlay*/
         position: relative;
         border-radius: 15px;
+        height: 35vh;
         background-color: white;
     }
 
@@ -769,7 +770,7 @@ get in touch
 ----------------------------------------------------------------------------------*/
 
 .get-in-touch {
-    height: 80vh;
+    height: minmax(80vh, auto);
     place-content: center;
     width: 80%;
     display: grid;
@@ -1301,12 +1302,18 @@ Keyframe Animations
     }
 }
 
-.section {
+@keyframes flyIn {}
+
+.fade-in {
     transform: translateY(100px);
     opacity: 1;
 }
 
 .fadeIn {
     animation: fadeIn both 1.2s cubic-bezier(0.3, 0.42, 0.18, 1);
-    animation-fill-mode: forwards;
+    animation-fill-mode: both;
+}
+
+.flyIn {
+    animation: flyIn 1.2s cubic-bezier(0.3, 0.42, 0.18, 1);
 }

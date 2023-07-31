@@ -82,7 +82,7 @@ document.body.style.setProperty('--scroll', 1 - opac)
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    function observeIntersection(className, addClass, rootMargin) {
+    function observeIntersection(className, addClass, rootMargin, onlyOnce = false) {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 const intersecting = entry.isIntersecting;
@@ -95,18 +95,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     /*animation class is only removed if element leaves screen to the bottom (ie. user scrolls up)*/
                 } else if (!intersecting && topOffset > 0) {
                     entry.target.classList.remove(addClass);
-
                 }
             });
         }, { threshold: 0, rootMargin: rootMargin });
 
         const elements = document.querySelectorAll(`.${className}`);
-        elements.forEach(element => observer.observe(element)); // Start observing each element
+        elements.forEach(element => observer.observe(element));
+
+        if (onlyOnce) {
+            observer.unobserve(element);
+        }
+        // Start observing each element
     }
 
     // Example usage:
     observeIntersection("download-cv", "test", "0px");
     observeIntersection("expand", "expandBars", "0px");
-    observeIntersection("section", "fadeIn", "0px");
+    observeIntersection("fade-in", "fadeIn", "0px");
 });
 
