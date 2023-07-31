@@ -158,8 +158,6 @@ body {
     }
 }
 
-
-
 /*----------------------------------------------------------------------------------
 Start Page
 ----------------------------------------------------------------------------------*/
@@ -794,6 +792,8 @@ socialMediaBar
     left: 0;
     top: 0;
     display: grid;
+    place-content: center;
+    margin-top: var(--nav-bar-height);
     height: 100%;
     width: 6%;
     grid-template-rows: auto-fill 1fr 2fr 1fr;
