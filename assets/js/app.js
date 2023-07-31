@@ -16,6 +16,8 @@ includeFile(fileName = 'header.html', idName = 'header');
 includeFile(fileName = 'social-media.html', idName = 'social-media-bar');
 
 
+
+
 /*perform functions only once DOM Content has fully loaded*/
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -68,48 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log(index);
 
-    /* observer for rectangles*/
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            const intersecting = entry.isIntersecting;
-            entry.target.style.opacity = intersecting ? "1" : "0";
-            entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
-        });
-    },
-        { threshold: 0, rootMargin: "-50px" }
-    );
-
-    /*
-    /* problems: effect only once ? at least only if scrolling takes place from the top, not from the bottom!!! (eg. see the fade-in boxes!)*/
-    const observer_plane = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const intersecting = entry.isIntersecting;
-            if (intersecting) {
-                entry.target.style.visibility = "visible";
-                entry.target.style.opacity = "0.3";
-                entry.target.style.transform = "scale(1) translateX(0px) translateY(0px)";
-            } else {
-                entry.target.style.visibility = "hidden";
-                entry.target.style.opacity = "0";
-                entry.target.style.transform = "scale(1.5) translateX(-500px) translateY(500px)";
-            }
-        });
-    }, { threshold: 1, rootMargin: "500px" });
-
-    /*get all elements*/
-    const elements = document.querySelectorAll(".fade-in");
-
-    for (let i = 0; i < elements.length; i++) {
-        const aboutPageElement = elements[i];
-
-        if (aboutPageElement) {
-            observer.observe(aboutPageElement);
-        } else {
-            console.warn("Element with id 'about-page' not found.");
-        }
-    }
-
-
 
     document.addEventListener("scroll", function () {
         /*for background opacity*/
@@ -123,25 +83,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
 
 
-function observeIntersection(className, addClass, rootMargin) {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            const intersecting = entry.isIntersecting;
+    function observeIntersection(className, addClass, rootMargin) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const intersecting = entry.isIntersecting;
+                const topOffset = entry.boundingClientRect.top;
 
-            if (intersecting) {
-                entry.target.classList.add(addClass);
-            } else if (!intersecting) {
-                entry.target.classList.remove(addClass);
-            }
-        });
-    },
-        { threshold: 0, rootMargin: rootMargin });
+                /*animation is only added if element enters the screen from the bottom (ie. user scrolls up)*/
+                if (intersecting && topOffset > 0) {
+                    entry.target.classList.add(addClass);
 
-    const elements = document.querySelectorAll(`.${className}`);
-    elements.forEach(element => observer.observe(element));
+                    /*animation class is only removed if element leaves screen to the bottom (ie. user scrolls up)*/
+                } else if (!intersecting && topOffset > 0) {
+                    entry.target.classList.remove(addClass);
+
+                }
+            });
+        }, { threshold: 0, rootMargin: rootMargin });
+
+        const elements = document.querySelectorAll(`.${className}`);
+        elements.forEach(element => observer.observe(element)); // Start observing each element
+    }
+
+    // Example usage:
+    observeIntersection("download-cv", "test", "0px");
+    observeIntersection("expand", "expandBars", "0px");
+    observeIntersection("section", "fadeIn", "0px");
+});
+
+
+/* observer for rectangles*/
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        const intersecting = entry.isIntersecting;
+        entry.target.style.opacity = intersecting ? "1" : "0";
+        entry.target.style.transform = intersecting ? "translateY(0px)" : "translateY(100px)";
+    });
+},
+    { threshold: 0, rootMargin: "-50px" }
+);
+
+/*get all elements*/
+const elements = document.querySelectorAll(".fade-in");
+
+for (let i = 0; i < elements.length; i++) {
+    const aboutPageElement = elements[i];
+
+    if (aboutPageElement) {
+        observer.observe(aboutPageElement);
+    } else {
+        console.warn("Element with id 'about-page' not found.");
+    }
 }
-
-// Example usage:
-observeIntersection("start-picture", "test", "50px");

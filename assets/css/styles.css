@@ -55,8 +55,15 @@ general formatting
     margin-bottom: 20em;
 }
 
+
 .subsection {
-    margin-bottom: 3em;
+    margin-bottom: 5em;
+}
+
+@media screen and (min-width: 1600px) {
+    .subsection {
+        margin-bottom: 10em;
+    }
 }
 
 .explore-more {
@@ -66,8 +73,7 @@ general formatting
     animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .6s both;
     animation-delay: 1.3s;
     transition-duration: .6s;
-    border-bottom: 2px royalblue solid;
-    padding-right: 15px;
+    border-bottom: 1px royalblue solid;
 }
 
 .explore-more:hover {
@@ -88,6 +94,7 @@ html {
     box-sizing: border-box;
 }
 
+/*to hide overflow on smartphones, overflow-x must be set to hidden in html & body*/
 body,
 html {
     overflow-x: hidden;
@@ -148,14 +155,15 @@ body {
     }
 }
 
+/*hide navbar and social media bar below 800px*/
 @media screen and (max-width: 800px) {
     .nav-bar {
         visibility: hidden;
     }
 
-    .social-media-bar {
+    /*.social-media-bar {
         visibility: hidden;
-    }
+    }*/
 }
 
 /*----------------------------------------------------------------------------------
@@ -233,6 +241,7 @@ Section: My Education and Career
 .my-education-and-career .section-title {
     width: fit-content;
     text-align: center;
+    text-justify: center;
 }
 
 .my-education-and-career .download-cv {
@@ -241,7 +250,7 @@ Section: My Education and Career
 
 @media screen and (min-width: 800px) {
     .my-education-and-career {
-        height: 80vh;
+        height: 100vh;
         align-content: center;
         /* dont know why 10px is not accepted here!*/
         grid: repeat(3, auto) / repeat(2, auto);
@@ -277,7 +286,6 @@ Subsection: My Ecducation
 .univerities {
     display: grid;
     grid: repeat(3, 1fr)/ 1fr;
-    gap: 2%;
 }
 
 .university img {
@@ -288,20 +296,30 @@ Subsection: My Ecducation
 
 .university {
     display: grid;
-    grid: 1fr repeat(2, auto)/ 1fr;
+    grid: repeat(3, auto) 1fr / 1fr;
     padding: 1.5rem;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, .5);
+    /* border-radius: 2rem; */
+    /* background-color: rgba(255, 255, 255, .5); */
     justify-items: center;
+    text-justify: center;
+    text-align: center;
+}
+
+.university:last-child {
+    border-right: none;
 }
 
 .university>* {
-    color: black;
+    color: white;
 }
 
 .university .year {
-    margin-top: 1.5rem;
+    margin-bottom: 1rem;
     font-weight: 700;
+}
+
+.university .description {
+    margin-bottom: 1rem;
 }
 
 /*for XXX and above*/
@@ -312,8 +330,9 @@ Subsection: My Ecducation
     }
 
     .university img {
+        grid-row: 4;
         align-self: center;
-        width: 75%;
+        width: 60%;
         height: auto;
     }
 }
@@ -329,18 +348,16 @@ Subsection: My Career
 
 .timeline {
     display: grid;
-    gap: 2%;
     scroll-snap-type: x mandatory;
     grid-auto-columns: 100%;
     grid-auto-flow: column;
-    justify-content: center;
     overflow-x: scroll;
     overflow-y: hidden;
 }
 
 .timeline-text {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid: repeat(3, 1fr) / auto;
     text-align: center;
     position: relative;
     scroll-snap-align: start;
@@ -397,7 +414,6 @@ Subsection: My Career
     left: -0px;
 }
 
-
 @media screen and (min-width: 800px) {
 
     /*needed for absolute positioning of left/right clicking elements*/
@@ -407,9 +423,8 @@ Subsection: My Career
 
     .timeline {
         display: grid;
-        column-gap: 2%;
         scroll-snap-type: x mandatory;
-        grid-auto-columns: 33.33%;
+        grid-auto-columns: calc(100%/3);
         grid-auto-flow: column;
         justify-content: center;
         overflow-x: scroll;
@@ -418,18 +433,19 @@ Subsection: My Career
 
     .timeline-text {
         display: grid;
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: auto auto repeat(1, 1fr);
         text-align: center;
+        place-items: center;
         position: relative;
         scroll-snap-align: start;
-        color: white;
     }
+
 
     /* blue circle below entries*/
     .timeline-text::after {
         content: "";
-        width: 9em;
-        height: 9em;
+        width: 12em;
+        height: 12em;
         opacity: 0.3;
         border-radius: 50%;
         position: absolute;
@@ -475,13 +491,8 @@ Subsection: My Career
         /*none */
     }
 
-    .career-title {
-        display: flex;
-        justify-content: space-between;
-    }
-
     .timeline-text .year {
-        font-weight: 800;
+        font-weight: 700;
     }
 
 }
@@ -495,6 +506,7 @@ My Skills
     align-content: center;
     display: grid;
     grid: repeat(2, auto) / 1fr;
+    /*for positioning of the wheel*/
     position: relative;
 }
 
@@ -526,54 +538,118 @@ My Skills
     padding-left: 1rem;
 }
 
-.my-skills ul li {
+.skills .coding ul li,
+.skills .languages ul li {
     display: grid;
     grid: repeat(2, 1fr) / 1fr;
+    gap: .8rem;
     font-size: 2rem;
 }
 
 /*add bars*/
-.my-skills ul li::after {
+.skills .expandBars li::after {
+    animation: expandBars forwards 2s cubic-bezier(.77, 0, .175, 1);
+}
+
+.skills .expand li::after {
     content: '';
     border-radius: 10px;
     grid-row: 2;
     grid-column: 1;
     background-color: royalblue;
-    height: 1.5rem;
-    width: 0;
-    animation: expand-bars forwards 2s cubic-bezier(.77, 0, .175, 1);
+    width: var(--item-width);
+    height: 1rem;
     margin-bottom: 5px;
     z-index: 1;
     opacity: .8;
 }
 
-.my-skills ul li::before {
+.skills .expand li::before {
     content: '';
     grid-row: 2;
     grid-column: 1;
     border-radius: 10px;
     background-color: darkgrey;
-    height: 1.5rem;
+    height: 1rem;
     opacity: .8;
     width: 100%;
     margin-bottom: 5px;
     z-index: 0;
 }
 
-@media screen and (min-width: 800px) {
+.skills .further ul li {
+    font-size: 2rem;
+    margin-bottom: 1.8rem;
+}
 
-    .my-skills .rotating-wheel {
-        width: 450px;
-        height: auto;
-        position: absolute;
-        top: -30px;
-        right: -100px;
-        z-index: -1;
-    }
+.skill-title {
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    border-left: 2px solid royalblue;
+    padding-left: 1rem;
+}
+
+@media screen and (min-width: 800px) {
 
     .skills {
         display: grid;
-        grid: 1fr / repeat(2, 1fr);
+        grid: 1fr / repeat(3, 1fr);
+    }
+
+    .my-skills .rotating-wheel {
+        width: 300px;
+        height: auto;
+        position: absolute;
+        top: 3rem;
+        right: -5rem;
+        z-index: -1;
+    }
+
+    .skills .coding ul li,
+    .skills .languages ul li {
+        display: grid;
+        grid: repeat(2, 1fr) / 1fr;
+        gap: .8rem;
+        font-size: 2rem;
+    }
+
+    .rotating-wheel svg {
+        animation: rotation 40s linear infinite;
+        filter: drop-shadow(4px 6px 10px royalblue);
+        width: 100%;
+    }
+
+
+    /*add bars*/
+    .skills ul li::after {
+        content: '';
+        border-radius: 10px;
+        grid-row: 2;
+        grid-column: 1;
+        background-color: royalblue;
+        height: 1rem;
+        width: 0;
+        margin-bottom: 5px;
+        z-index: 1;
+        opacity: .8;
+    }
+
+    .skills ul li::before {
+        content: '';
+        grid-row: 2;
+        grid-column: 1;
+        border-radius: 10px;
+        background-color: darkgrey;
+        height: 1rem;
+        opacity: .8;
+        width: 100%;
+        margin-bottom: 5px;
+        z-index: 0;
+    }
+
+    .skills .further ul li {
+        font-size: 2rem;
+        margin-bottom: 1.8rem;
     }
 }
 
@@ -787,30 +863,26 @@ navBar
 /*----------------------------------------------------------------------------------
 socialMediaBar
 ----------------------------------------------------------------------------------*/
+
 .social-media-bar {
-    position: fixed;
+    position: absolute;
     left: 0;
-    top: 0;
-    display: grid;
+    bottom: 0;
     place-content: center;
-    margin-top: var(--nav-bar-height);
-    height: 100%;
-    width: 6%;
-    grid-template-rows: auto-fill 1fr 2fr 1fr;
+    width: 100%;
+    display: grid;
     padding: 3rem 0;
+    grid: auto / repeat(3, 1fr);
 }
 
 .social-media-bar .vertical-line {
-    justify-self: center;
-    width: 2px;
-    border-radius: 20px;
-    background-color: rgb(44, 43, 43);
+    visibility: hidden;
 }
 
 .social-media-bar .icons {
-    grid-row: 2;
+    border-bottom: royalblue solid 2px;
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid: auto/ repeat(3, 1fr);
     align-items: center;
     justify-items: center;
 }
@@ -823,10 +895,56 @@ socialMediaBar
 }
 
 .social-media-bar svg:hover {
+    cursor: pointer;
     transform: scale(.6);
     transition: .3s ease-in-out;
     fill: rgb(22, 45, 115);
 }
+
+@media screen and (min-width: 800px) {
+    .social-media-bar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: grid;
+        place-content: center;
+        margin-top: var(--nav-bar-height);
+        height: 100%;
+        width: 6%;
+        grid-template-rows: auto-fill 1fr 2fr 1fr;
+        padding: 3rem 0;
+    }
+
+    .social-media-bar .vertical-line {
+        visibility: visible;
+        justify-self: center;
+        width: 2px;
+        border-radius: 20px;
+        background-color: rgb(44, 43, 43);
+    }
+
+    .social-media-bar .icons {
+        grid-row: 2;
+        display: grid;
+        grid: repeat(3, 1fr) / 1fr;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .icons svg {
+        fill: white;
+        width: 100%;
+        transform: scale(.5);
+        height: auto;
+    }
+
+    .social-media-bar svg:hover {
+        transform: scale(.6);
+        transition: .3s ease-in-out;
+        fill: rgb(22, 45, 115);
+    }
+}
+
 
 /*----------------------------------------------------------------------------------
 Timeline Page
@@ -835,15 +953,6 @@ Timeline Page
 /*----------------------------------------------------------
 Other
 ----------------------------------------------------------*/
-
-/*should maybe do fade in only on smartphone! (just once after load or always*/
-.fade-in {
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(100px);
-    transition: transform .5s cubic-bezier(0.3, 0.42, 0.18, 1),
-        opacity 1.5s cubic-bezier(0.42, 0.46, 1, 1);
-}
 
 
 /*reset default CSS stylings*/
@@ -1158,7 +1267,7 @@ Keyframe Animations
 }
 
 /*expansion of blue bars in Section: */
-@keyframes expand-bars {
+@keyframes expandBars {
     from {
         width: 0;
     }
@@ -1177,4 +1286,22 @@ Keyframe Animations
     to {
         transform: rotate(359deg);
     }
+}
+
+@keyframes fadeIn {
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.section {
+    transform: translateY(100px);
+    opacity: 1;
+}
+
+.fadeIn {
+    animation: fadeIn both .8s cubic-bezier(0.3, 0.42, 0.18, 1);
+    animation-fill-mode: forwards;
 }
