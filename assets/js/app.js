@@ -12,18 +12,11 @@ function includeFile(fileName, idName) {
 }
 
 // Call the function to include the header on each page
-/*includeFile(fileName = '/footer.html', idName = 'footer'); */
 includeFile(fileName = 'header.html', idName = 'header');
 includeFile(fileName = 'social-media.html', idName = 'social-media-bar');
 
 
-/* script from here: 
-https://codepen.io/dudleystorey/pen/RRwryd
-to fade background !!!
-
-also need something to fade elements and pictures
-*/
-
+/*perform functions only once DOM Content has fully loaded*/
 document.addEventListener("DOMContentLoaded", function () {
 
     /*scrollable timeline with buttons*/
@@ -132,29 +125,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function observeRectangles(className, addClass, rootMargin) {
+function observeIntersection(className, addClass, rootMargin) {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             const intersecting = entry.isIntersecting;
 
-            if (ntersecting) {
+            if (intersecting) {
                 entry.target.classList.add(addClass);
             } else if (!intersecting) {
                 entry.target.classList.remove(addClass);
@@ -168,4 +144,4 @@ function observeRectangles(className, addClass, rootMargin) {
 }
 
 // Example usage:
-observeRectangles("start-picture", "zoomInOnLoad", "50px");
+observeIntersection("start-picture", "test", "50px");
