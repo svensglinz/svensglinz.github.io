@@ -924,11 +924,20 @@ socialMediaBar
 
     .social-media-bar .vertical-line {
         visibility: visible;
+        grid-row: 1;
         place-self: center;
         width: 1.5px;
         height: 100%;
         background-color: rgb(44, 43, 43);
         z-index: 200;
+    }
+
+    .social-media-bar .vertical-line[class*="one"] {
+        grid-row: 1;
+    }
+
+    .social-media-bar .vertical-line[class*="two"] {
+        grid-row: 3;
     }
 
     .social-media-bar .icons {
