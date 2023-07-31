@@ -189,7 +189,7 @@ Start Page
     place-items: center;
     display: grid;
     text-align: justify;
-    grid: repeat(2, 1fr) / 1fr;
+    grid: repeat(2, 50%) / 1fr;
 }
 
 .welcome-text h1 {
@@ -222,7 +222,7 @@ Start Page
 @media screen and (min-width: 800px) {
 
     .start-page {
-        grid: 1fr / repeat(2, 1fr);
+        grid: 1fr / repeat(2, 50%);
     }
 
     .start-page .welcome-text {
@@ -264,29 +264,31 @@ Section: My Education and Career
     .my-education-and-career {
         height: minmax(100vh, auto);
         align-content: center;
-        /* dont know why 10px is not accepted here!*/
-        grid: repeat(3, auto) / repeat(2, auto);
+        grid: repeat(3, auto) / repeat(2, 1fr) auto;
     }
 
     .my-education {
         grid-row: 2;
-        grid-column: 1/ span 2;
+        grid-column: 1/ span 3;
     }
 
     .my-career {
         grid-row: 3;
-        grid-column: 1 / span 2;
+        grid-column: 1 / span 3;
     }
 
     /*maybe do not have this as part of the grid layout? */
     .my-education-and-career .section-title {
-        width: max-content;
+        grid-row: 1;
+        grid-column: 1 / span 2;
         justify-self: start;
         align-self: end;
     }
 
     .my-education-and-career .download-cv {
         place-self: end;
+        grid-row: 1;
+        grid-column: 3;
         margin-bottom: var(--section-title-margin);
     }
 }
@@ -317,10 +319,6 @@ Subsection: My Ecducation
     text-align: center;
 }
 
-.university:last-child {
-    border-right: none;
-}
-
 .university>* {
     color: white;
 }
@@ -338,7 +336,7 @@ Subsection: My Ecducation
 @media screen and (min-width: 800px) {
 
     .univerities {
-        grid: 1fr/ repeat(3, 1fr);
+        grid: 1fr/ repeat(3, minmax(0, 1fr));
     }
 
     .university img {
@@ -1311,7 +1309,6 @@ Keyframe Animations
 
 .fadeIn {
     animation: fadeIn both 1.2s cubic-bezier(0.3, 0.42, 0.18, 1);
-    animation-fill-mode: both;
 }
 
 .flyIn {
