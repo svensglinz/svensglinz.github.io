@@ -80,7 +80,76 @@ document.body.style.setProperty('--scroll', 1 - opac)
 */
 /** */
 
+function createAndAddCircles() {
+
+    /*add box below for dot elements*/
+    document.querySelector(".career").insertAdjacentHTML('afterend', '<div class="scroll-box"></div>');
+    const scroll_element = document.querySelectorAll(".timeline-text");
+
+    /*creates a circle element*/
+    function createScrollDot(targetIndex) {
+        const scroll_dot = document.createElement('div');
+        scroll_dot.classList.add('scroll-dot');
+        scroll_dot.setAttribute('data-target', targetIndex);
+        return scroll_dot;
+    }
+
+    /*adds the required number of circles to the document*/
+    for (let i = 0; i < scroll_element.length; i++) {
+        const scroll_box = document.querySelector(".scroll-box")
+        const scroll_dot = createScrollDot(i);
+        scroll_box.appendChild(scroll_dot);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+
+    createAndAddCircles();
+
+    let scroll_dot = document.querySelectorAll(".scroll-dot");
+    const scroll_element = document.querySelectorAll(".timeline-text");
+    /*check which element is fully visible on the screen
+    if left and right are both between 0 and window.inner-width!*/
+    function isVisible(element) {
+        const elemPos = element.getBoundingClientRect();
+        const windowWidth = window.innerWidth;
+        const offsetLeft = elemPos.left;
+        const offsetRight = elemPos.right;
+
+        return (offsetLeft > 0 && offsetRight < windowWidth);
+    }
+
+    scroll_dot[0].classList.add('active');
+
+    window.addEventListener("keydown", function () {
+        console.log("key-pressed");
+        this.setTimeout(function () {
+            let index = Array.from(scroll_element).findIndex(element => isVisible(element));
+
+            if (index !== -1 && index < scroll_element.length) {
+                scroll_dot.forEach(dot => dot.classList.remove('active'));
+                scroll_dot[index].classList.add('active');
+                console.log(index);
+            }
+        }, 300)
+
+    });
+
+    const scroll_dots = document.querySelectorAll(".scroll-dot");
+    const scroll_elements = document.querySelectorAll(".timeline-text");
+
+    scroll_dots.forEach((dot) => {
+        dot.addEventListener("click", function () {
+            const targetIndex = parseInt(dot.getAttribute("data-target"));
+            if (targetIndex >= 0 && targetIndex < scroll_elements.length) {
+                scroll_elements[targetIndex].scrollIntoView({ behavior: "smooth", block: "nearest" });
+                scroll_dot.forEach(dot => dot.classList.remove('active'));
+                scroll_dot[targetIndex].classList.add('active');
+                console.log(targetIndex);
+            }
+        });
+    });
+
 
     function observeIntersection(className, addClass, rootMargin, onlyOnce = false) {
         const observer = new IntersectionObserver(entries => {
