@@ -1,17 +1,21 @@
-/* import fonts */
+/*----------------------------------------------------------------------------------
+Import Fonts
+----------------------------------------------------------------------------------*/
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* root depending on the screen size!*/
+/*----------------------------------------------------------------------------------
+Root Variables
+----------------------------------------------------------------------------------*/
+
 :root {
     scroll-behavior: smooth;
     /* relative font size adapts to browser settings --> 1em = 10px per default*/
     font-size: 62.5%;
-    /*static variables*/
     --font-family: Raleway;
     --scroll: 1;
-    /*project variables*/
     --blog-font: 'Montserrat';
     --blog-font-weight: 500;
     --main-margin-width: 10%;
@@ -19,14 +23,7 @@
     --section-title-margin: 3.5rem;
 }
 
-
-/*reset default CSS stylings*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/*side margin depending on viewport*/
 @media screen and (min-width: 800px) {
     :root {
         --main-margin-width: 15%;
@@ -43,66 +40,12 @@
 general formatting
 ----------------------------------------------------------------------------------*/
 
-.section-title {
-    font-family: Arial;
-    text-align: center;
-    justify-self: center;
-    margin-bottom: var(--section-title-margin);
-    /*allows wrapping of section titles on smartphones*/
-    width: fit-content;
+/*reset default CSS stylings*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-@media screen and (min-width: 800px) {
-    .section-title {
-        text-align: left;
-        justify-self: left;
-    }
-}
-
-.section {
-    margin-bottom: 20em;
-}
-
-
-.subsection {
-    margin-bottom: 5em;
-}
-
-@media screen and (min-width: 1600px) {
-    .subsection {
-        margin-bottom: 10em;
-    }
-}
-
-.explore-more {
-    text-transform: uppercase;
-    width: fit-content;
-    height: fit-content;
-    animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .6s both;
-    animation-delay: 1.3s;
-    transition-duration: .6s;
-    border-bottom: 1px royalblue solid;
-}
-
-.explore-more:hover {
-    padding-left: 6px;
-    background-color: rgba(91, 86, 86, 0.3);
-}
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    cursor: pointer;
-}
-
-/*to hide overflow on smartphones, overflow-x must be set to hidden in html & body*/
-/*body,
-html {
-    overflow-x: hidden;
-}
-*/
 
 h1,
 h2,
@@ -115,34 +58,28 @@ li {
 }
 
 h1 {
-    font-size: 7em;
+    font-size: 5rem;
 }
 
 h2 {
-    font-size: 5em;
+    font-size: 3.5rem;
 }
 
 h3 {
-    font-size: 2em;
-    margin-top: 1em;
+    font-size: 2rem;
+    margin-top: 1rem;
 }
 
 p {
-    font-size: 1.8em;
+    font-size: 1.8rem;
     font-weight: lighter;
-    line-height: 1.4;
 }
 
-/*all children of main on the page are positioned relative to it*/
 main {
-    position: relative;
-    /*dodge navbar and social media bar*/
     margin: 0 var(--main-margin-width);
 }
 
-
 body {
-    position: relative;
     background: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
         url('/assets/images/smartphone_background.jpeg');
     background-size: cover;
@@ -150,15 +87,63 @@ body {
     background-repeat: no-repeat;
 }
 
-@media screen and (min-width: 800px) {
-    main {
-        position: relative;
-        /*dodge navbar and social media bar*/
-        margin: var(--nav-bar-height) var(--main-margin-width);
-    }
+.section-title {
+    font-family: Arial;
+    text-align: center;
+    justify-self: center;
+    margin-bottom: var(--section-title-margin);
 }
 
-@media screen and (min-device-width: 800px) {
+.section {
+    margin-bottom: 150px;
+}
+
+.subsection {
+    margin-bottom: 50px;
+}
+
+.click-element {
+    text-transform: uppercase;
+    width: fit-content;
+    height: fit-content;
+    border-bottom: 1.5px royalblue solid;
+    transition-duration: .6s;
+}
+
+.click-element:hover {
+    padding-left: 6px;
+    background-color: rgba(91, 86, 86, 0.3);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+/*Small Desktop Screen*/
+@media screen and (min-width: 800px) {
+    .section-title {
+        text-align: left;
+        justify-self: left;
+    }
+
+    /*larger titles for desktop screens*/
+    h1 {
+        font-size: 7rem;
+    }
+
+    h2 {
+        font-size: 5rem;
+    }
+
+    /*dodge navar and social media bar*/
+    main {
+        margin: var(--nav-bar-height) var(--main-margin-width);
+    }
+
     body {
         background-image: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
             url('/assets/images/website_backround_1.jpg');
@@ -168,6 +153,17 @@ body {
     }
 }
 
+/*Large Monitor*/
+@media screen and (min-width: 1600px) {
+    .subsection {
+        margin-bottom: 100px;
+    }
+}
+
+/*****************************************************
+*******************************************************
+*****************************************************
+still resolve this */
 /*hide navbar and social media bar below 800px*/
 @media screen and (max-width: 800px) {
     #header {
@@ -183,16 +179,14 @@ body {
 Start Page
 ----------------------------------------------------------------------------------*/
 
-/*Smartphone layout*/
-
 .start-page {
     place-items: center;
     display: grid;
     text-align: justify;
-    grid: repeat(2, 50%) / 1fr;
+    grid: repeat(2, minmax(0, 1fr)) / 100%;
 }
 
-.welcome-text h1 {
+.start-page .welcome-text h1 {
     text-align: center;
 }
 
@@ -203,38 +197,42 @@ Start Page
 }
 
 .start-page .start-picture {
+    max-width: 100%;
+    height: auto;
     animation: zoomInOnLoad 2s both;
     grid-column: 1;
     grid-row: 1 / span 2;
     z-index: -1;
 }
 
-.start-page .explore-more {
-    visibility: hidden;
+#explore-more {
+    display: none;
+    animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .6s both;
+    animation-delay: 1.3s;
+    transition-duration: .6s;
 }
 
-.start-page .start-picture img {
-    width: 100%;
-    height: auto;
-}
-
-/*Design for XX upward*/
+/*Small Desktop Screen*/
 @media screen and (min-width: 800px) {
 
+    #explore-more {
+        display: inline-block;
+    }
+
     .start-page {
-        grid: 1fr / repeat(2, 50%);
+        grid: 1fr / repeat(2, minmax(0, 1fr));
     }
 
     .start-page .welcome-text {
         grid-row: 1;
     }
 
-    .welcome-text h1 {
+    .start-page .welcome-text h1 {
         text-align: left;
     }
 
     .start-page .start-picture {
-        width: 90%;
+        max-width: 85%;
         justify-self: right;
         grid-column: 2;
         grid-row: 1 / span 2;
@@ -242,113 +240,97 @@ Start Page
 }
 
 /*----------------------------------------------------------------------------------
-Section: My Education and Career
+Section: Education and Career
 ----------------------------------------------------------------------------------*/
-.my-education-and-career {
+.education-and-career {
     place-items: center;
     display: grid;
     grid: repeat(4, auto) / 100%;
 }
 
-.my-education-and-career .section-title {
-    width: fit-content;
-    text-align: center;
-    text-justify: center;
-}
-
-.my-education-and-career .download-cv {
+.education-and-career .download-cv {
     margin-bottom: var(--section-title-margin);
 }
 
+/*small desktop screens*/
 @media screen and (min-width: 800px) {
-    .my-education-and-career {
+    .education-and-career {
         height: minmax(100vh, auto);
         align-content: center;
-        grid: repeat(3, auto) / repeat(2, 1fr) auto;
+        grid: repeat(3, auto) / 100%;
     }
 
-    .my-education {
-        grid-row: 2;
-        grid-column: 1/ span 3;
-    }
-
-    .my-career {
-        grid-row: 3;
-        grid-column: 1 / span 3;
-    }
-
-    /*maybe do not have this as part of the grid layout? */
-    .my-education-and-career .section-title {
+    .education-and-career .section-title {
         grid-row: 1;
-        grid-column: 1 / span 2;
+        grid-column: 1;
         justify-self: start;
         align-self: end;
     }
 
-    .my-education-and-career .download-cv {
+    .education-and-career .download-cv {
         place-self: end;
         grid-row: 1;
-        grid-column: 3;
-        margin-bottom: var(--section-title-margin);
+        grid-column: 1;
+
     }
 }
 
 /*----------------------------------------------------------------------------------
-Subsection: My Ecducation
+Subsection: Ecducation
 ----------------------------------------------------------------------------------*/
 
 .univerities {
     display: grid;
-    grid: repeat(3, 1fr)/ 1fr;
+    grid: repeat(3, minmax(0, 1fr))/ 100%;
+    gap: 20px;
 }
 
-.university img {
-    align-self: center;
-    width: 70%;
+.univerities .university {
+    display: grid;
+    grid: auto repeat(3, min-content) / 100%;
+    padding: 15px;
+    place-items: center;
+}
+
+.univerities .university img {
+    max-width: 50%;
     height: auto;
 }
 
-.university {
-    display: grid;
-    grid: repeat(3, auto) 1fr / 1fr;
-    padding: 1.5rem;
-    /* border-radius: 2rem; */
-    /* background-color: rgba(255, 255, 255, .5); */
-    justify-items: center;
-    text-justify: center;
-    text-align: center;
-}
-
-.university>* {
-    color: white;
-}
-
-.university .year {
-    margin-top: 1.5rem;
+.univerities .university .year {
+    margin-top: 15px;
     font-weight: 700;
 }
 
-.university .description {
-    margin-bottom: 1rem;
-}
-
-/*for XXX and above*/
+/*small desktop screens and up*/
 @media screen and (min-width: 800px) {
 
     .univerities {
         grid: 1fr/ repeat(3, minmax(0, 1fr));
     }
 
-    .university img {
+    .univerities .university {
+        grid: repeat(3, max-content) auto / 100%;
+    }
+
+    .univerities .university .year {
+        margin-top: 0;
+    }
+
+    .univerities .university .description {
+        margin-bottom: 15px;
+    }
+
+    .univerities .university img {
         grid-row: 4;
+        max-width: 65%;
         align-self: center;
-        width: 60%;
         height: auto;
     }
 }
 
 /*----------------------------------------------------------------------------------
-Subsection: My Career
+Subsection: Career
 ----------------------------------------------------------------------------------*/
 
 /*needed for absolute positioning of left/right clicking elements*/
@@ -363,6 +345,7 @@ Subsection: My Career
     grid-auto-flow: column;
     overflow-x: scroll;
     overflow-y: hidden;
+    gap: 20px;
 }
 
 .timeline-text {
@@ -426,19 +409,9 @@ Subsection: My Career
 
 @media screen and (min-width: 800px) {
 
-    /*needed for absolute positioning of left/right clicking elements*/
-    .timeline-container {
-        position: relative;
-    }
-
     .timeline {
-        display: grid;
-        scroll-snap-type: x mandatory;
-        grid-auto-columns: calc(100%/3);
+        grid-auto-columns: calc((100% - 40px) / 3);
         grid-auto-flow: column;
-        justify-content: center;
-        overflow-x: scroll;
-        overflow-y: hidden;
     }
 
     .timeline-text {
@@ -494,24 +467,13 @@ Subsection: My Career
     .timeline-button[class*="left"] {
         left: -60px;
     }
-
-    /*hide scrollbar from timeline container*/
-    .timeline::-webkit-scrollbar {
-        display: none;
-        /*none */
-    }
-
-    .timeline-text .year {
-        font-weight: 700;
-    }
-
 }
 
 /*----------------------------------------------------------------------------------
 My Skills
 ----------------------------------------------------------------------------------*/
 
-.my-skills {
+.skills {
     height: minmax(80vh, auto);
     align-content: center;
     display: grid;
@@ -526,7 +488,7 @@ My Skills
     column-gap: 5%;
 }
 
-.my-skills .rotating-wheel {
+.skills .rotating-wheel {
     width: 70vw;
     height: auto;
     position: absolute;
@@ -606,7 +568,7 @@ My Skills
         grid: 1fr / repeat(3, 1fr);
     }
 
-    .my-skills .rotating-wheel {
+    .skills .rotating-wheel {
         width: 300px;
         height: auto;
         position: absolute;
