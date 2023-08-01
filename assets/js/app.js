@@ -102,6 +102,20 @@ function createAndAddCircles() {
     }
 }
 
+function visibleArea(element, threshold) {
+    const elemPos = element.getBoundingClientRect();
+    const windowWidth = window.innerWidth;
+    console.log("window width: " + windowWidth);
+    const offsetLeft = elemPos.left;
+    console.log("offset left: " + offsetLeft);
+    const offsetRight = elemPos.right;
+    console.log("offset right: " + offsetRight);
+
+    const visibleArea = Math.min(offsetRight, windowWidth) - Math.min(Math.max(0, offsetLeft), windowWidth);
+    console.log("visible area: " + visibleArea);
+    return ((visibleArea / windowWidth) >= threshold);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
     createAndAddCircles();
@@ -110,21 +124,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const scroll_element = document.querySelectorAll(".timeline-text");
     /*check which element is fully visible on the screen
     if left and right are both between 0 and window.inner-width!*/
-    function isVisible(element) {
-        const elemPos = element.getBoundingClientRect();
-        const windowWidth = window.innerWidth;
-        const offsetLeft = elemPos.left;
-        const offsetRight = elemPos.right;
 
-        return (offsetLeft > 0 && offsetRight < windowWidth);
-    }
 
     scroll_dot[0].classList.add('active');
 
     window.addEventListener("keydown", function () {
         console.log("key-pressed");
         this.setTimeout(function () {
-            let index = Array.from(scroll_element).findIndex(element => isVisible(element));
+            let index = Array.from(scroll_element).findIndex(element => visibleArea(element, .5));
 
             if (index !== -1 && index < scroll_element.length) {
                 scroll_dot.forEach(dot => dot.classList.remove('active'));
@@ -149,7 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
 
     function observeIntersection(className, addClass, rootMargin, onlyOnce = false) {
         const observer = new IntersectionObserver(entries => {
