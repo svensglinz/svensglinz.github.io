@@ -47,6 +47,11 @@ general formatting
     box-sizing: border-box;
 }
 
+::after,
+::before {
+    box-sizing: border-box;
+}
+
 h1,
 h2,
 h3,
@@ -77,6 +82,10 @@ p {
 
 main {
     margin: 0 var(--main-margin-width);
+}
+
+.bold {
+    font-weight: 700;
 }
 
 body {
@@ -170,10 +179,6 @@ still resolve this */
     #header {
         display: none;
     }
-
-    /*.social-media-bar {
-        visibility: hidden;
-    }*/
 }
 
 /*----------------------------------------------------------------------------------
@@ -301,7 +306,6 @@ Subsection: Ecducation
 
 .univerities .university .year {
     margin-top: 15px;
-    font-weight: 700;
 }
 
 /*small desktop screens and up*/
@@ -349,6 +353,7 @@ Subsection: Career
     overflow-y: hidden;
     gap: 20px;
 }
+
 
 .timeline::-webkit-scrollbar {
     display: none;
@@ -522,6 +527,7 @@ My Skills
 /*----------------------------------------------------------------------------------
 Recent Projects
 ----------------------------------------------------------------------------------*/
+
 .recent-projects {
     display: grid;
     grid: auto repeat(3, 40vh) auto / 100%;
@@ -565,7 +571,17 @@ Recent Projects
     height: 100%;
     z-index: 1;
     opacity: 0;
-    transition: opacity 1.2s cubic-bezier(.77, 0, .175, 1);
+    transition: all .6s cubic-bezier(.77, 0, .175, 1);
+}
+
+.project-tile {
+    transition: all .3s ease-in-out;
+
+}
+
+.project-tile:hover {
+    transform: scale(1.015);
+    transition: all .3s ease-in-out;
 }
 
 .project-tile:hover::after {
@@ -573,6 +589,7 @@ Recent Projects
     cursor: pointer;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.65) 15%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0) 100%);
 }
+
 
 @media screen and (min-width: 800px) {
 
@@ -713,9 +730,20 @@ navBar
     margin-left: 0;
 }
 
+/*
+.project-tile {
+    transition: .2s ease-in-out;
+}
+
+.project-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 15px rgba(93, 57, 151, 0.3), 0 3px 15px rgba(93, 57, 151, 0.5) !important;
+}
+*/
+
 .nav-buttons a:hover {
     color: royalblue;
-    transition: color .3s ease-in;
+    transition: all .3s ease-in;
 }
 
 /*----------------------------------------------------------------------------------
@@ -823,16 +851,16 @@ end of landing page*/
 .scroll-box {
     display: flex;
     justify-content: space-around;
-    width: 25%;
+    width: 30%;
     margin: 0 auto;
 }
 
 /*on screen, its dots, on mobile phone its bars?*/
 .scroll-dot {
     border-radius: 50%;
-    height: 20px;
+    height: 15px;
     border: grey solid 1px;
-    width: 20px;
+    width: 15px;
     opacity: .8;
     transition: all .2s ease-in;
 }

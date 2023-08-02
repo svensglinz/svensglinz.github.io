@@ -16,69 +16,64 @@ includeFile(fileName = 'header.html', idName = 'header');
 includeFile(fileName = 'social-media.html', idName = 'social-media-bar');
 
 
+// detects the index of the closest non visible child in a scrollable parent container from left or right
+function closestNonVisible(child_class, parent_class, side) {
+    // define variables
+    const parent_elem = document.querySelector(`.${parent_class}`);
+    const children_elem = document.querySelectorAll(`.${child_class}`);
+    const children_array = Array.from(children_elem);
+    let index;
 
-/*
+    if (side == "right") {
+        index = children_array.findIndex(elem => elem.offsetLeft - parent_elem.scrollLeft > parent_elem.clientWidth);
+    } else if (side == "left") {
+        index = children_array.findIndex(elem => elem.offsetLeft + elem.clientWidth >= parent_elem.scrollLeft) - 1;
+    } else {
+        console.error("non-recognized value in `side`");
+    }
+
+    return index;
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 
-timeline_container = document.querySelector(".timeline");
-timeline_container_width = timeline_container.clientWidth;
-timeline_button_right = document.querySelector(".right");
-timeline_button_left = document.querySelector(".left");
-timeline_element = document.querySelectorAll(".timeline-text");
+    // event listeners for button left and right
+    const timeline_element = document.querySelectorAll(".timeline-text");
+    const button_left = document.querySelector(".left");
+    const button_right = document.querySelector(".right");
+    button_left.style.visibility = "hidden";
 
-
-is_visible_in_parent = function (element) {
-    is_visible = element.offsetLeft + element.clientWidth - timeline_container.scrollLeft <= timeline_container_width;
-    return is_visible;
-}
-
-const start_index = Array.from(timeline_element).findIndex(item => !is_visible_in_parent(item));
-timeline_button_left.style.visibility = "hidden";
-let index = start_index;
-
-console.log("first_index_determined: " + index);
-
-timeline_button_right.addEventListener("click", function () {
-    if (index < timeline_element.length) {
-        timeline_button_left.style.visibility = "visible";
-        timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" })
+    button_right.addEventListener("click", () => {
+        const index = closestNonVisible("timeline-text", "timeline", "right");
         console.log(index);
-        index += 1;
-    } else {
-        timeline_button_right.style.visibility = "hidden";
-        console.log("finished scrolling right");
-        console.log(index);
-    }
-});
-console.log(index);
 
-timeline_button_left.addEventListener("click", function () {
-    if (index <= timeline_element.length && index >= start_index + 1) {
-        timeline_button_right.style.visibility = "visible";
-        timeline_element[index - 2].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" })
+        // left button appears as soon as content is clicked to the right
+        if (index < timeline_element.length - 1 && index >= 0) {
+            button_left.style.visibility = "visible";
+            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" });
+            // end of scrollable content to the right --> Right click button disappears 
+        } else if (index === timeline_element.length - 1) {
+            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" });
+            button_right.style.visibility = "hidden";
+        }
+    });
+
+    button_left.addEventListener("click", () => {
+        const index = closestNonVisible("timeline-text", "timeline", "left");
         console.log(index);
-        index -= 1;
-    } else {
-        timeline_button_left.style.visibility = "hidden";
-        console.log("finished scrolling left");
-        console.log(index);
-    }
+        // right button appears as soon as content is clicked to the left
+        if (index > 0) {
+            button_right.style.visibility = "visible";
+            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+            // end of scrollable content to the left --> left click button disappears
+        } else if (index == 0) {
+            button_left.style.visibility = "hidden";
+            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+        }
+    });
 });
 
-console.log(index);
 
-
-document.addEventListener("scroll", function () {
-const yScroll = window.scrollY;
-const windowHeight = window.innerHeight;
-const opac = yScroll / windowHeight;
-document.body.style.setProperty('--scroll', 1 - opac)
-})
-
-});
-*/
-/** */
 
 function createAndAddCircles() {
 
@@ -113,7 +108,13 @@ function visibleArea(element, threshold) {
 
     const visibleArea = Math.min(offsetRight, windowWidth) - Math.min(Math.max(0, offsetLeft), windowWidth);
     console.log("visible area: " + visibleArea);
-    return ((visibleArea / windowWidth) >= threshold);
+
+    // 100% of area visible on the screen
+    if (offsetLeft > 0 && offsetRight <= windowWidth) {
+        return true;
+    } else {
+        return ((visibleArea / windowWidth) >= threshold);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -124,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const scroll_element = document.querySelectorAll(".timeline-text");
     /*check which element is fully visible on the screen
     if left and right are both between 0 and window.inner-width!*/
-
 
     scroll_dot[0].classList.add('active');
 
