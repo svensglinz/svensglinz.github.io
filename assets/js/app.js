@@ -1,4 +1,4 @@
-// Function to include the footer.html content into the specified element
+// Function to include a file with the name FileName content into an element with id idName
 function includeFile(fileName, idName) {
     fetch(fileName)
         .then(response => response.text())
@@ -16,72 +16,60 @@ includeFile(fileName = 'header.html', idName = 'header');
 includeFile(fileName = 'social-media.html', idName = 'social-media-bar');
 
 
-// detects the index of the closest non visible child in a scrollable parent container from left or right
+// detects the closest non-visible child in a scrollable parent container from left or right
 function closestNonVisible(child_class, parent_class, side) {
     // define variables
     const parent_elem = document.querySelector(`.${parent_class}`);
     const children_elem = document.querySelectorAll(`.${child_class}`);
     const children_array = Array.from(children_elem);
-    let index;
-
+    let closestElement;
     if (side == "right") {
-        index = children_array.findIndex(elem => elem.offsetLeft - parent_elem.scrollLeft > parent_elem.clientWidth);
+        const index = children_array.findIndex(elem => elem.offsetLeft - parent_elem.scrollLeft > parent_elem.clientWidth);
+        closestElement = children_array[index];
     } else if (side == "left") {
-        index = children_array.findIndex(elem => elem.offsetLeft + elem.clientWidth >= parent_elem.scrollLeft) - 1;
+        const index = children_array.findIndex(elem => elem.offsetLeft + elem.clientWidth >= parent_elem.scrollLeft) - 1;
+        closestElement = children_array[index];
     } else {
         console.error("non-recognized value in `side`");
     }
 
-    return index;
+    return (closestElement);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+// function which observes an element of a specific class and adds a class addClass to it (used for fade-in animations)
+function observeIntersection(className, addClass, rootMargin) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const intersecting = entry.isIntersecting;
+            const topOffset = entry.boundingClientRect.top;
 
-    // event listeners for button left and right
-    const timeline_element = document.querySelectorAll(".timeline-text");
-    const button_left = document.querySelector(".left");
-    const button_right = document.querySelector(".right");
-    button_left.style.visibility = "hidden";
+            //animation is only added if element enters the screen from the bottom (ie. user scrolls up)
+            if (intersecting && topOffset > 0) {
+                entry.target.classList.add(addClass);
 
-    button_right.addEventListener("click", () => {
-        const index = closestNonVisible("timeline-text", "timeline", "right");
-        console.log(index);
+                //animation class is only removed if element leaves screen to the bottom (ie. user scrolls up)
+            } else if (!intersecting && topOffset > 0) {
+                entry.target.classList.remove(addClass);
+            }
+        });
+    }, { threshold: 0, rootMargin: rootMargin });
 
-        // left button appears as soon as content is clicked to the right
-        if (index < timeline_element.length - 1 && index >= 0) {
-            button_left.style.visibility = "visible";
-            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" });
-            // end of scrollable content to the right --> Right click button disappears 
-        } else if (index === timeline_element.length - 1) {
-            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" });
-            button_right.style.visibility = "hidden";
-        }
-    });
-
-    button_left.addEventListener("click", () => {
-        const index = closestNonVisible("timeline-text", "timeline", "left");
-        console.log(index);
-        // right button appears as soon as content is clicked to the left
-        if (index > 0) {
-            button_right.style.visibility = "visible";
-            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
-            // end of scrollable content to the left --> left click button disappears
-        } else if (index == 0) {
-            button_left.style.visibility = "hidden";
-            timeline_element[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
-        }
-    });
-});
+    // Start observing each element
+    const elements = document.querySelectorAll(`.${className}`);
+    elements.forEach(element => observer.observe(element));
 
 
+}
 
+/*function to create n circles below the career element (where n = # career entries)
+circle styling & positioning is done in classes .scroll-box & .scroll-dot*/
 function createAndAddCircles() {
 
-    /*add box below for dot elements*/
+    //add box below for dot elements
     document.querySelector(".career").insertAdjacentHTML('afterend', '<div class="scroll-box"></div>');
     const scroll_element = document.querySelectorAll(".timeline-text");
 
-    /*creates a circle element*/
+    // creates a circle element
     function createScrollDot(targetIndex) {
         const scroll_dot = document.createElement('div');
         scroll_dot.classList.add('scroll-dot');
@@ -89,7 +77,7 @@ function createAndAddCircles() {
         return scroll_dot;
     }
 
-    /*adds the required number of circles to the document*/
+    //adds the required number of circles to the document
     for (let i = 0; i < scroll_element.length; i++) {
         const scroll_box = document.querySelector(".scroll-box")
         const scroll_dot = createScrollDot(i);
@@ -100,14 +88,10 @@ function createAndAddCircles() {
 function visibleArea(element, threshold) {
     const elemPos = element.getBoundingClientRect();
     const windowWidth = window.innerWidth;
-    console.log("window width: " + windowWidth);
     const offsetLeft = elemPos.left;
-    console.log("offset left: " + offsetLeft);
     const offsetRight = elemPos.right;
-    console.log("offset right: " + offsetRight);
 
     const visibleArea = Math.min(offsetRight, windowWidth) - Math.min(Math.max(0, offsetLeft), windowWidth);
-    console.log("visible area: " + visibleArea);
 
     // 100% of area visible on the screen
     if (offsetLeft > 0 && offsetRight <= windowWidth) {
@@ -119,28 +103,125 @@ function visibleArea(element, threshold) {
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    // event listeners for scrolling the Jobs timeline
+    const timeline = document.querySelector(".timeline");
+    const button_left = document.querySelector(".left");
+    const button_right = document.querySelector(".right");
+    button_left.style.visibility = "hidden";
+
+    // control visibility of click buttons
+    let scrollPosition = timeline.scrollLeft;
+    timeline.addEventListener("scroll", () => {
+
+        if (timeline.scrollLeft > scrollPosition) {
+
+            let closestElement = closestNonVisible("timeline-text", "timeline", "right");
+            button_left.style.visibility = "visible";
+
+            // no non-visible element to the right --> button is removed
+            if (!closestElement) {
+                button_right.style.visibility = "hidden";
+            }
+
+        } else {
+
+            let closestElement = closestNonVisible("timeline-text", "timeline", "left");
+            button_right.style.visibility = "visible";
+
+            // no non-visible element to the left --> button is removed
+            if (!closestElement) {
+                button_left.style.visibility = "hidden";
+            }
+        }
+
+        // update scroll position
+        scrollPosition = timeline.scrollLeft;
+    });
+
+
+    // add event listeners for the buttons (visibility is controlled by the more general scroll listener)
+    button_right.addEventListener("click", () => {
+
+        const closestElement = closestNonVisible("timeline-text", "timeline", "right");
+
+        if (closestElement) {
+            closestElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" });
+        }
+    });
+
+
+    button_left.addEventListener("click", () => {
+
+        const closestElement = closestNonVisible("timeline-text", "timeline", "left");
+
+        if (closestElement) {
+            closestElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+        }
+    });
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // add circles to the page
     createAndAddCircles();
 
     let scroll_dot = document.querySelectorAll(".scroll-dot");
     const scroll_element = document.querySelectorAll(".timeline-text");
-    /*check which element is fully visible on the screen
-    if left and right are both between 0 and window.inner-width!*/
 
+    // first active element
     scroll_dot[0].classList.add('active');
+    const timeline = document.querySelector(".timeline");
 
-    window.addEventListener("keydown", function () {
-        console.log("key-pressed");
-        this.setTimeout(function () {
-            let index = Array.from(scroll_element).findIndex(element => visibleArea(element, .5));
+    let scrollPos = timeline.scrollLeft;
+    let visibleElementIndex = 0;
 
-            if (index !== -1 && index < scroll_element.length) {
-                scroll_dot.forEach(dot => dot.classList.remove('active'));
-                scroll_dot[index].classList.add('active');
-                console.log(index);
+    timefunction = function () {
+        console.log("start-function-now");
+        if (scrollPos < timeline.scrollLeft) {
+
+            let nextNonVisible = closestNonVisible("timeline-text", "timeline", "right")
+            scroll_dot[visibleElementIndex].classList.remove("active");
+
+            if (!nextNonVisible) {
+                visibleElementIndex = timeline.childElementCount - 1;
+                scroll_dot[visibleElementIndex].classList.add("active");
+            } else {
+                let visibleElement = nextNonVisible.previousElementSibling;
+                visibleElementIndex = Array.from(scroll_element).indexOf(visibleElement);
+                scroll_dot[visibleElementIndex].classList.add("active");
             }
-        }, 300)
 
-    });
+        } else {
+
+            let nextNonVisible = closestNonVisible("timeline-text", "timeline", "left")
+            scroll_dot[visibleElementIndex].classList.remove("active");
+
+            if (!nextNonVisible) {
+                visibleElementIndex = 0;
+                scroll_dot[visibleElementIndex].classList.add("active");
+            } else {
+                let visibleElement = nextNonVisible.nextElementSibling;
+                visibleElementIndex = Array.from(scroll_element).indexOf(visibleElement);
+                scroll_dot[visibleElementIndex].classList.add("active");
+            }
+        }
+
+        scrollPos = timeline.scrollLeft;
+    }
+
+    function throttle(fn, wait) {
+        var time = Date.now();
+        return function () {
+            if ((time + wait - Date.now()) < 0) {
+                fn();
+                time = Date.now();
+            }
+        }
+    }
+
+    timeline.addEventListener("scroll", throttle(timefunction, 100));
 
     const scroll_dots = document.querySelectorAll(".scroll-dot");
     const scroll_elements = document.querySelectorAll(".timeline-text");
@@ -157,33 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    function observeIntersection(className, addClass, rootMargin, onlyOnce = false) {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const intersecting = entry.isIntersecting;
-                const topOffset = entry.boundingClientRect.top;
-
-                /*animation is only added if element enters the screen from the bottom (ie. user scrolls up)*/
-                if (intersecting && topOffset > 0) {
-                    entry.target.classList.add(addClass);
-
-                    /*animation class is only removed if element leaves screen to the bottom (ie. user scrolls up)*/
-                } else if (!intersecting && topOffset > 0) {
-                    entry.target.classList.remove(addClass);
-                }
-            });
-        }, { threshold: 0, rootMargin: rootMargin });
-
-        const elements = document.querySelectorAll(`.${className}`);
-        elements.forEach(element => observer.observe(element));
-
-        if (onlyOnce) {
-            observer.unobserve(element);
-        }
-        // Start observing each element
-    }
-
-    // Example usage:
+    // observe elements for fade-in
     observeIntersection("download-cv", "test", "0px");
     observeIntersection("expand", "expandBars", "0px");
     observeIntersection("fade-in", "fadeIn", "0px");
