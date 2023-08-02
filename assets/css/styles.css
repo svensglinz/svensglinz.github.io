@@ -88,7 +88,17 @@ main {
     font-weight: 700;
 }
 
-body {
+.scale-in {
+    transition: all .3s ease-in-out;
+
+}
+
+.scale-in:hover {
+    transform: scale(1.015);
+    transition: all .3s ease-in-out;
+}
+
+body[class="index"] {
     background: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
         url('/assets/images/smartphone_background.jpeg');
     background-size: cover;
@@ -154,7 +164,7 @@ a:hover {
         margin: var(--nav-bar-height) var(--main-margin-width);
     }
 
-    body {
+    body[class="index"] {
         background-image: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
             url('/assets/images/website_backround_1.jpg');
         background-size: cover;
@@ -574,16 +584,6 @@ Recent Projects
     transition: all .6s cubic-bezier(.77, 0, .175, 1);
 }
 
-.project-tile {
-    transition: all .3s ease-in-out;
-
-}
-
-.project-tile:hover {
-    transform: scale(1.015);
-    transition: all .3s ease-in-out;
-}
-
 .project-tile:hover::after {
     opacity: 1;
     cursor: pointer;
@@ -980,138 +980,86 @@ main.project-post {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*---------------------------------------
 projects landing page styling
 ---------------------------------------*/
 
-/* project thumbnails layout*/
-.project-thumbnail {
-    margin: 1rem auto;
-    width: 95%;
-    height: auto;
-    position: relative;
+.thumbnails {
+    display: grid;
+    grid-auto-rows: auto;
+    /*can also insert post height here if .project-thumbnail is the only child of .thubnails*/
+    grid-auto-flow: row;
+    place-items: center;
+    row-gap: 5%;
+    --border-radius: 9px;
 }
 
-.project-thumbnail img {
-    display: block;
-    width: 100%;
-    height: 15rem;
-    margin: 0 auto 2rem auto;
-    object-fit: cover;
+.projects * {
+    color: black;
+}
+
+.project-thumbnail {
+    border-radius: 9px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.10);
+    height: 250px;
+    display: grid;
+    grid: 1fr / 6fr 4fr;
+}
+
+.project-thumbnail:nth-of-type(even) {
+    grid: 1fr / 4fr 6fr;
+}
+
+.project-thumbnail:nth-of-type(odd) img {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    justify-self: end;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.project-thumbnail:nth-of-type(odd) .description {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
 }
 
 .project-thumbnail .description {
-    display: block;
+    justify-self: end;
+    display: grid;
+    grid: repeat(3, auto) / 1fr;
+    align-items: center;
+    padding: 10px;
+}
+
+.project-thumbnail img {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
     width: 100%;
-    margin: 0 auto;
-}
-
-.project-thumbnail h2 {
-    margin-bottom: .2rem;
-}
-
-#title {
-    position: relative;
-    font-size: 3rem;
-    left: 2.5%;
-}
-
-
-hr.solid {
-    border-top: .1rem solid grey;
-    width: 100%;
-    height: 0;
-    margin: 0 auto;
-}
-
-button {
-    background-color: black;
-    color: white;
-    padding: 2px 2px;
+    height: 100%;
+    object-fit: cover;
+    align-self: center;
 
 }
 
-/*tablet* (480 - 768 px) and up*/
-@media only screen and (min-width: 480px) {
-    .project-thumbnail {
-        min-width: calc(0.95*480px);
-        max-width: 75%;
-    }
-
-    .project-thumbnail img {
-        display: flex;
-        width: 40%;
-        height: 20rem;
-        object-fit: cover;
-    }
-
-    .project-thumbnail img[class*="left"] {
-        float: left;
-        margin-right: 10px;
-    }
-
-    .project-thumbnail img[class*="right"] {
-        float: right;
-        margin-left: 10px;
-    }
-
-    .project-thumbnail.description {
-        display: flex;
-        width: 50%;
-        float: auto;
-    }
-}
-
-/*small computer (768 - 1024 px) and up*/
-@media only screen and (min-width: 768px) {
-    .project-thumbnail {
-        min-width: calc(0.75*768)px;
-        max-width: 60%;
-    }
-
-    .project-thumbnail img {
-        display: flex;
-        width: 40%;
-        height: 20rem;
-        object-fit: cover;
-    }
-
-    .project-thumbnail img[class="left"] {
-        float: left;
-        margin-right: 10px;
-    }
-
-    .project-thumbnail img[class="right"] {
-        float: right;
-        margin-left: 10px;
-    }
-
-    .project-thumbnail.description {
-        display: flex;
-        width: 50%;
-        float: auto;
-    }
-}
-
-/* adjust appearance of scrollbar*/
-/* width */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: rgba(38, 38, 144, .5);
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+.project-thumbnail .description .title {
+    font-size: 30px;
 }
 
 /**********************************************
