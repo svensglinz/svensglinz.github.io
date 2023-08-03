@@ -971,7 +971,6 @@ main.project-post {
 
 }
 
-
 /*larger computer (1024 - ... px) and up*/
 @media screen and (min-width: 1024px) {
 
@@ -1002,65 +1001,78 @@ main.project-post {
 /*---------------------------------------
 projects landing page styling
 ---------------------------------------*/
-
-.thumbnails {
-    display: grid;
-    grid-auto-rows: auto;
-    /*can also insert post height here if .project-thumbnail is the only child of .thubnails*/
-    grid-auto-flow: row;
-    place-items: center;
-    row-gap: 5%;
-    --border-radius: 9px;
+.projects .nav-bar {
+    background: none;
+    background-color: white;
+    border-bottom: 1px solid grey;
 }
 
 .projects * {
     color: black;
 }
 
-.project-thumbnail {
-    border-radius: 9px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.10);
-    height: 250px;
+.projects .section-title {
+    align-self: baseline;
+}
+
+.projects main {
+    margin: var(--nav-bar-height) 5%;
+}
+
+@media screen and (min-width: 1300px) {
+    .project main {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+.image-container {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.thumbnails {
+    border-bottom: 1px solid grey;
     display: grid;
-    grid: 1fr / 6fr 4fr;
+    place-content: space-between;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    --border-radius: 9px;
+    column-gap: 3%;
 }
 
-.project-thumbnail:nth-of-type(even) {
-    grid: 1fr / 4fr 6fr;
+.projects .title a:hover {
+    text-decoration: underline;
+    color: royalblue;
 }
 
-.project-thumbnail:nth-of-type(odd) img {
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
-    justify-self: end;
-    grid-column: 2;
-    grid-row: 1;
+.projects img:hover {
+    transform: scale(1.01);
 }
 
-.project-thumbnail:nth-of-type(odd) .description {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: start;
+.project-thumbnail {
+    border-top: 1px solid grey;
+    padding: 15px 0;
+    display: grid;
+    grid: repeat(2, 1fr) / 1fr;
 }
+
+/*below all posts solid grey line*/
 
 .project-thumbnail .description {
-    justify-self: end;
     display: grid;
-    grid: repeat(3, auto) / 1fr;
-    align-items: center;
-    padding: 10px;
 }
 
 .project-thumbnail img {
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    transition: all .2s ease-in;
+    border-radius: var(--border-radius);
     width: 100%;
     height: 100%;
     object-fit: cover;
-    align-self: center;
-
+    place-self: center;
 }
 
 .project-thumbnail .description .title {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 /**********************************************
@@ -1140,4 +1152,42 @@ Keyframe Animations
 
 .flyIn {
     animation: flyIn 1.2s cubic-bezier(0.3, 0.42, 0.18, 1);
+}
+
+
+/*------------------------------------------------------------
+Individual Posts styling 
+-------------------------------------------------------------*/
+
+.blog-post .nav-bar {
+    background: none;
+    background-color: #22272e;
+    border-bottom: 1px solid grey;
+}
+
+.blog-post .post-header {
+    margin: var(--nav-bar-height) 0;
+    height: calc(100vh - var(--nav-bar-height));
+    background-color: #22272e;
+}
+
+.blog-post .title-picture-container {
+    display: grid;
+    grid: repeat(2, minmax(0, 1fr)) / 1fr;
+    width: 50%;
+    height: 110%;
+    margin: 0 auto;
+}
+
+.blog-post .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.blog-post .picture img {
+    border-radius: 9px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

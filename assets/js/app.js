@@ -12,8 +12,8 @@ function includeFile(fileName, idName) {
 }
 
 // Call the function to include the header on each page
-includeFile(fileName = 'header.html', idName = 'header');
-includeFile(fileName = 'social-media.html', idName = 'social-media-bar');
+includeFile(fileName = '/header.html', idName = 'header');
+includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
 
 
 // detects the closest non-visible child in a scrollable parent container from left or right

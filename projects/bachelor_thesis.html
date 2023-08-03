@@ -6,32 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--CSS Styles -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
 
     <!-- add mathjax support-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!--add code highlighting (prism)-->
-    <link href="assets/css/prism.css" rel="stylesheet" />
-    <script src="assets/js/prism.js"></script>
+    <link href="/assets/css/prism.css" rel="stylesheet" />
+    <script src="/assets/js/prism.js"></script>
 
+    <!--add prop js script-->
+    <script src="/assets/js/app.js"></script>
     <title>Thesis - Margin Procyclicality</title>
+
 </head>
 
-<body>
-    <nav>
-        <h1 id="name">SVEN GLINZ</h1>
-        <ul class="navigation">
-            <li><a href="index/about.html" class="nav-link">Home</a></li>
-            <li><a href="index/skills.html" class="nav-link">About</a></li>
-            <li><a href="projects.html" class="nav-link">Projects</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-    </nav>
+<body class="blog-post">
 
-    <pre><code class="language-r">mtcars |> pull(one) |> mutate(a = 100)</code></pre>
-    <code class="language-css">p { color: red }</code>
+
+
+    <!--include navbar / header-->
+    <div id="header"></div>
+    <!--include social media bar-->
+    <div id="social-media-bar"></div>
+    <div class="post-header">
+        <div class="title-picture-container">
+            <div class="title">
+                <h2>Margin Procyclicality during Covid 19</h2>
+                <p>Bachelor Thesis - Executive Summary</p>
+            </div>
+            <div class="picture"><img src="/assets/images/election_funding_image.jpg"></div>
+        </div>
+    </div>
+    <main>
+
+        <pre><code class="language-r">mtcars |> pull(one) |> mutate(a = 100)</code></pre>
+        <code class="language-css">p { color: red }</code>
+    </main>
 </body>
 
 </html>
