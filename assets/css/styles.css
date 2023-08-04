@@ -84,7 +84,7 @@ main {
     margin: 0 var(--main-margin-width);
 }
 
-.bold {
+.font-bold {
     font-weight: 700;
 }
 
@@ -161,7 +161,7 @@ a:hover {
 
     /*dodge navar and social media bar*/
     main {
-        margin: var(--nav-bar-height) var(--main-margin-width);
+        margin: 0 var(--main-margin-width);
     }
 
     body[class="index"] {
@@ -703,18 +703,20 @@ get in touch
 navBar
 ----------------------------------------------------------------------------------*/
 
-.nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+#header {
+    position: sticky;
     height: var(--nav-bar-height);
+    top: 0;
     background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.nav-bar {
+    height: var(--nav-bar-height);
     z-index: 1;
 }
 
 .nav-buttons {
-    font-size: 2rem;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: right;
@@ -726,25 +728,17 @@ navBar
     margin-left: 30px;
 }
 
+.nav-buttons a {
+    transition: all .1s ease-in;
+}
+
 .nav-buttons #name {
     margin-right: auto;
     margin-left: 0;
 }
 
-/*
-.project-tile {
-    transition: .2s ease-in-out;
-}
-
-.project-tile:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 15px rgba(93, 57, 151, 0.3), 0 3px 15px rgba(93, 57, 151, 0.5) !important;
-}
-*/
-
 .nav-buttons a:hover {
     color: royalblue;
-    transition: all .3s ease-in;
 }
 
 /*----------------------------------------------------------------------------------
@@ -752,9 +746,6 @@ socialMediaBar
 ----------------------------------------------------------------------------------*/
 
 .social-media-bar {
-    position: absolute;
-    left: 0;
-    bottom: -100px;
     place-content: center;
     width: 100%;
     margin: auto;
@@ -805,23 +796,14 @@ socialMediaBar
 
     .social-media-bar .vertical-line {
         visibility: visible;
-        grid-row: 1;
-        place-self: center;
-        width: 1.5px;
+        grid-column: 1;
+        width: 1px;
         height: 100%;
         background-color: rgb(44, 43, 43);
-        z-index: 200;
-    }
-
-    .social-media-bar .vertical-line[class*="one"] {
-        grid-row: 1;
-    }
-
-    .social-media-bar .vertical-line[class*="two"] {
-        grid-row: 3;
     }
 
     .social-media-bar .icons {
+        grid-column: 1;
         grid-row: 2;
         display: grid;
         grid: repeat(3, 1fr) / 1fr;
@@ -843,8 +825,6 @@ socialMediaBar
     }
 }
 
-/*
-end of landing page*/
 
 /*********************************************************************************************
 
@@ -1159,23 +1139,27 @@ Keyframe Animations
 Individual Posts styling 
 -------------------------------------------------------------*/
 
+.blog-post #header {
+    position: sticky;
+    top: 0;
+}
+
+/*move this bit to the #header as well!*/
 .blog-post .nav-bar {
     background: none;
     background-color: #22272e;
     border-bottom: 1px solid grey;
 }
 
-.blog-post .post-header {
-    margin: var(--nav-bar-height) 0;
-    height: calc(100vh - var(--nav-bar-height));
-    background-color: #22272e;
-}
-
 .blog-post .title-picture-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     display: grid;
     grid: repeat(2, minmax(0, 1fr)) / 1fr;
-    width: 50%;
-    height: 110%;
+    width: 70%;
+    height: calc(115vh - var(--nav-bar-height));
     margin: 0 auto;
 }
 
@@ -1185,9 +1169,52 @@ Individual Posts styling
     justify-content: center;
 }
 
+.blog-post .title-picture-container p {
+    margin-top: 10px;
+    color: #adbac7;
+}
+
 .blog-post .picture img {
     border-radius: 9px;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.blog-post .title-picture-container::after {
+    display: block;
+    content: "";
+
+    margin-top: 20px;
+    width: 100%;
+}
+
+.blog-post main p {
+    color: black;
+}
+
+.post-header {
+    position: relative;
+    height: calc(115vh - var(--nav-bar-height));
+    margin-bottom: 0;
+}
+
+.blog-post .background {
+    height: calc(100vh - var(--nav-bar-height));
+    background-color: #22272e;
+}
+
+.date-container {
+    margin: 20px auto;
+    width: 70%;
+    border-bottom: 2px solid royalblue;
+}
+
+.font-black {
+    color: black !important;
+}
+
+section .section-title {
+    color: black;
+    border-bottom: 1px rgb(162, 161, 161) solid;
 }
