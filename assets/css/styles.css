@@ -551,18 +551,34 @@ Recent Projects
     background-color: white;
 }
 
+.project-tile {
+    display: grid;
+    grid: 1fr / 1fr;
+    align-items: end;
+    justify-items: left;
+}
+
+.project-title {
+    background-color: black;
+    display: inline-block;
+    color: white !important;
+    margin: 20px;
+    z-index: 2;
+}
+
+/*Change this to html img tags*/
 #project1 {
     background-image: url("/assets/images/election_funding_image.jpg");
     background-size: cover;
 }
 
 #project2 {
-    background-image: url("/assets/images/election_funding_image.jpg");
+    background-image: url("/assets/images/option_post_picture.jpg");
     background-size: cover;
 }
 
 #project3 {
-    background-image: url("/assets/images/election_funding_image.jpg");
+    background-image: url("/assets/images/title_image_margin_procyclicality.jpg");
     background-size: cover;
 }
 
@@ -708,6 +724,7 @@ navBar
     height: var(--nav-bar-height);
     top: 0;
     background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1;
 }
 
 .nav-bar {
@@ -1020,6 +1037,7 @@ projects landing page styling
     column-gap: 3%;
 }
 
+
 .projects .title a:hover {
     text-decoration: underline;
     color: royalblue;
@@ -1033,7 +1051,7 @@ projects landing page styling
     border-top: 1px solid grey;
     padding: 15px 0;
     display: grid;
-    grid: repeat(2, 1fr) / 1fr;
+    grid: minmax(auto, 200px) auto / 1fr;
 }
 
 /*below all posts solid grey line*/
@@ -1043,7 +1061,6 @@ projects landing page styling
 }
 
 .project-thumbnail img {
-    transition: all .2s ease-in;
     border-radius: var(--border-radius);
     width: 100%;
     height: 100%;
@@ -1051,9 +1068,16 @@ projects landing page styling
     place-self: center;
 }
 
-.project-thumbnail .description .title {
-    font-size: 25px;
+.project-thumbnail .image-container {
+    margin-bottom: 20px;
 }
+
+.project-thumbnail .description .title {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+
 
 /**********************************************
 Keyframe Animations
@@ -1139,18 +1163,25 @@ Keyframe Animations
 Individual Posts styling 
 -------------------------------------------------------------*/
 
+/*change color of blogpost header once we get there --> Make body background variable ? */
 .blog-post #header {
-    position: sticky;
-    top: 0;
-}
-
-/*move this bit to the #header as well!*/
-.blog-post .nav-bar {
     background: none;
     background-color: #22272e;
     border-bottom: 1px solid grey;
 }
 
+/*fix this*/
+
+.inverted {
+    background-color: white !important;
+    color: black !important;
+}
+
+.inverted * {
+    color: black !important;
+}
+
+/*move this bit to the #header as well!*/
 .blog-post .title-picture-container {
     position: absolute;
     top: 0;

@@ -15,7 +15,6 @@ function includeFile(fileName, idName) {
 includeFile(fileName = '/header.html', idName = 'header');
 includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
 
-
 // detects the closest non-visible child in a scrollable parent container from left or right
 function closestNonVisible(child_class, parent_class, side) {
     // define variables
@@ -242,5 +241,19 @@ document.addEventListener("DOMContentLoaded", function () {
     observeIntersection("download-cv", "test", "0px");
     observeIntersection("expand", "expandBars", "0px");
     observeIntersection("fade-in", "fadeIn", "0px");
+
+    // change header background color 
+    const header = document.getElementById("header");
+    const background = document.querySelector(".background");
+    const trigger = background.clientHeight;
+
+    window.onscroll = function () {
+        if (window.scrollY > trigger) {
+            header.classList.add("inverted");
+            console.log("CLASS added");
+        } else {
+            header.classList.remove("inverted");
+        }
+    }
 });
 

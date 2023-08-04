@@ -20,13 +20,10 @@
     <script src="/assets/js/app.js"></script>
     <title>Thesis - Margin Procyclicality</title>
 
-</head>
-
 <body class="blog-post">
+
     <!--include navbar / header-->
     <div id="header"></div>
-    <!--include social media bar-->
-    <div id="social-media-bar"></div>
 
     <div class="post-header">
         <div class="background"></div>
@@ -48,7 +45,13 @@
         </section>
         <section>
             <h3 class="section-title font-black font-bold">Methodology</h3>
-            <p>section text here</p>
+            <p>$$\hat{\sigma}(t) = \sqrt{1-\lambda*r(t) - \hat{t}^2 + \lambda * \hat{\sigma}^2(t-1)}$$
+                $$\hat{\mu}(t) = (1-\lambda)*r(t) + \lambda * \hat{\mu}(t-1)$$
+                $$IM(\tau) = VAR_{\rho}(\rightarrow{PnL_i})$$
+                $$\tilde{r_i}(t) = exp\big(\tilde{z_i}(t)\big)-1$$
+                $$\tilde{z_i}(t) = \frac{z_i(t) - \hat{\mu_i(t-1)}}{\hat{\sigma_i}(t-1)} * \hat{\sigma_i}(\tau)$$
+                $$\hat{\mu_i}(t) = \frac{1-\lambda}{1-\lambda^{\sigma}}\sum_{x = 0}^{\sigma -1}\lambda^x * z_i(t-x)$$
+            </p>
         </section>
         <section>
             <h3 class="section-title font-black font-bold">Background on Margin Procyclicality</h3>
