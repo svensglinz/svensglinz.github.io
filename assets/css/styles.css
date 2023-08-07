@@ -21,18 +21,63 @@ Root Variables
     --main-margin-width: 7.5%;
     --nav-bar-height: 60px;
     --section-title-margin: 30px;
+    /*width of main content on the page relative to the full screen*/
+    --main-width-smartphone: 90%;
+    --main-width-screen: 80%;
+    --main-width-largescreen: 1170px;
 }
 
-/*side margin depending on viewport*/
-@media screen and (min-width: 800px) {
-    :root {
-        --main-margin-width: 15%;
+/*implement basic grid design of webpage (header, body and social media bar)*/
+/*remove overwrites in these elements and properly change names!*/
+body {
+    display: grid;
+    grid-template-areas:
+        "nav"
+        "main"
+        "social-media";
+}
+
+body>#header {
+    grid-area: nav;
+}
+
+body>main {
+    grid-area: main;
+}
+
+body>#social-media-bar {
+    grid-area: social-media;
+}
+
+#header,
+main {
+    max-width: 1170px;
+    overflow: hidden;
+    width: 85%;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+
+    #header,
+    main {
+        width: 80%;
     }
 }
 
-@media screen and (min-width: 1600px) {
-    :root {
-        --main-margin-width: 20%;
+@media screen and (min-width: 1200px) {
+
+    #header,
+    main {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+
+    #header,
+    main {
+        width: 70%;
     }
 }
 
@@ -51,6 +96,7 @@ general formatting
 ::before {
     box-sizing: border-box;
 }
+
 
 h1,
 h2,
@@ -72,17 +118,16 @@ h2 {
 
 h3 {
     font-size: 2rem;
-    margin-top: 1rem;
+    margin-top: 10px;
 }
 
 p {
     font-size: 1.8rem;
-    font-weight: lighter;
+    line-height: 2.4rem;
+    font-weight: 300;
 }
 
-main {
-    margin: 0 var(--main-margin-width);
-}
+
 
 .font-bold {
     font-weight: 700;
@@ -143,6 +188,13 @@ a:hover {
     cursor: pointer;
 }
 
+.full-size {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 /*Small Desktop Screen*/
 @media screen and (min-width: 800px) {
     .section-title {
@@ -159,10 +211,7 @@ a:hover {
         font-size: 5rem;
     }
 
-    /*dodge navar and social media bar*/
-    main {
-        margin: 0 var(--main-margin-width);
-    }
+
 
     body[class="index"] {
         background-image: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
@@ -196,7 +245,7 @@ Start Page
 ----------------------------------------------------------------------------------*/
 
 .start-page {
-    height: minmax(100vh, auto);
+    min-height: 90vh;
     place-items: center;
     display: grid;
     text-align: justify;
@@ -439,7 +488,7 @@ My Skills
 ----------------------------------------------------------------------------------*/
 
 .my-skills {
-    height: minmax(80vh, auto);
+    min-height: 90vh;
     align-content: center;
     display: grid;
     grid: repeat(2, auto) / 100%;
@@ -539,47 +588,41 @@ Recent Projects
 ----------------------------------------------------------------------------------*/
 
 .recent-projects {
+    min-height: 90vh;
     display: grid;
     grid: auto repeat(3, 40vh) auto / 100%;
-    gap: 5%;
+    gap: 10px;
+    place-content: center;
 }
 
 .recent-projects .project-tile {
     /* relative for the shadow overlay*/
     position: relative;
     border-radius: 15px;
-    background-color: white;
 }
 
 .project-tile {
     display: grid;
-    grid: 1fr / 1fr;
-    align-items: end;
-    justify-items: left;
+    grid: 1fr auto / 1fr;
+}
+
+
+.project-tile .background-image {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    border-radius: 15px;
 }
 
 .project-title {
-    background-color: black;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 5px;
+    box-shadow: 12px 5px 12px rgba(65, 105, 225, .5);
     display: inline-block;
-    color: white !important;
-    margin: 20px;
-    z-index: 2;
-}
-
-/*Change this to html img tags*/
-#project1 {
-    background-image: url("/assets/images/election_funding_image.jpg");
-    background-size: cover;
-}
-
-#project2 {
-    background-image: url("/assets/images/option_post_picture.jpg");
-    background-size: cover;
-}
-
-#project3 {
-    background-image: url("/assets/images/title_image_margin_procyclicality.jpg");
-    background-size: cover;
+    grid-row: 2;
+    grid-column: 1;
+    color: black;
+    margin: 15px;
+    padding: 0 5px;
 }
 
 #explore-projects {
@@ -607,26 +650,18 @@ Recent Projects
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.65) 15%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0) 100%);
 }
 
-
 @media screen and (min-width: 800px) {
 
     .recent-projects {
-        grid: repeat(4, 1fr) / repeat(2, minmax(0, 1fr));
-        height: minmax(80vh, auto);
-        gap: 15px;
+        height: 90vh;
+        grid: repeat(4, 120px) / repeat(2, minmax(0, 1fr));
+        gap: 12px;
     }
 
     .recent-projects .section-title {
+        color: white;
         place-self: center;
         margin: 0;
-    }
-
-    .recent-projects .project-tile {
-        /* relative for the shadow overlay*/
-        position: relative;
-        border-radius: 15px;
-        height: 220px;
-        background-color: white;
     }
 
     #project1 {
@@ -655,12 +690,12 @@ get in touch
 ----------------------------------------------------------------------------------*/
 
 .get-in-touch {
-    height: minmax(80vh, auto);
+    grid-area: nav;
+    min-height: 80vh;
     place-content: center;
     width: 80%;
     display: grid;
-    grid: 3 / 1fr;
-    grid-template-rows: auto;
+    grid: repeat(3, auto) / 1fr;
     margin: 0 auto;
     text-align: center;
 }
@@ -689,12 +724,10 @@ get in touch
 
 @media only screen and (min-width: 800px) {
     .get-in-touch {
-        padding-bottom: 7rem;
         width: 80%;
+        min-height: 90vh;
         display: grid;
-        grid-template-columns: 1fr 1.5fr;
-        grid-template-rows: auto;
-        margin: 0 auto;
+        grid: auto / 1fr 1.5fr;
         text-align: center;
     }
 
@@ -737,7 +770,6 @@ navBar
     display: flex;
     align-items: center;
     justify-content: right;
-    margin: 0 var(--main-margin-width);
     height: 100%;
 }
 
@@ -751,7 +783,6 @@ navBar
 
 .nav-buttons #name {
     margin-right: auto;
-    margin-left: 0;
 }
 
 .nav-buttons a:hover {
@@ -841,7 +872,6 @@ socialMediaBar
         fill: rgb(22, 45, 115);
     }
 }
-
 
 /*********************************************************************************************
 
@@ -968,6 +998,7 @@ main.project-post {
 
 }
 
+
 /*larger computer (1024 - ... px) and up*/
 @media screen and (min-width: 1024px) {
 
@@ -1062,9 +1093,6 @@ projects landing page styling
 
 .project-thumbnail img {
     border-radius: var(--border-radius);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     place-self: center;
 }
 
@@ -1136,7 +1164,6 @@ Keyframe Animations
 }
 
 @keyframes fadeIn {
-
     to {
         opacity: 1;
         transform: translateY(0px);
@@ -1147,7 +1174,7 @@ Keyframe Animations
 
 .fade-in {
     transform: translateY(100px);
-    opacity: 1;
+    opacity: .5;
 }
 
 .fadeIn {
@@ -1207,9 +1234,6 @@ Individual Posts styling
 
 .blog-post .picture img {
     border-radius: 9px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .blog-post .title-picture-container::after {

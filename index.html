@@ -25,25 +25,15 @@
     <!--CSS Styles -->
     <link rel="stylesheet" href="assets/css/styles.css" />
 
-    <!-- add mathjax support-->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-
-    <!--add code highlighting (prism)-->
-    <link href="assets/css/prism.css" rel="stylesheet" />
-    <script src="assets/js/prism.js"></script>
-
-    <!--add prop js script-->
-    <script src="assets/js/app.js"></script>
 </head>
 
 <body class="index">
     <!--insert navbar / header-->
-    <div id="header"></div>
     <div id="social-media-bar"></div>
+    <div id="header"></div>
+
     <main>
-        <div class=" section start-page">
+        <div class="section start-page">
             <div class="welcome-text">
                 <h1>Sven Glinz</h1>
                 <br>
@@ -151,7 +141,7 @@
                 </div>
                 <div class="skill coding">
                     <h3 class="skill-title">Coding:</h3>
-                    <ul class="expand ">
+                    <ul class="expand">
                         <li style="--item-width: 80%">R (Tidyverse)</li>
                         <li style="--item-width: 30%">Python</li>
                         <li style="--item-width: 40%">CSS & HTML</li>
@@ -170,28 +160,24 @@
                 </div>
             </div>
         </div>
-        <div id="projects" class="fade-in section projects">
+        <div id="projects" class="fade-in section">
             <div class="recent-projects">
                 <h2 class="section-title">Recent Projects</h2>
-                <a href="/projects/us_election_financing.html" id=project1 class="project-tile scale-in">
-                    <div>
-                        <h3 class="project-title">US Election Analysis in R</h3>
-                        <p>An analysis of FEC donation data to US Presidential Candidates
-                            from XXXX to XXXX using R.
-                        </p>
-                    </div>
-                </a>
-                <a href="/projects/bachelor_thesis.html" id=project2 class="project-tile scale-in">
-                    <div>
-                        <h3 class="project-title">An analysis of Margin Procyclicality</h3>
-                        <p> (Bachelor Thesis)</p>
-                    </div>
-                </a>
-                <a href="/projects/options_project.html" id=project3 class="project-tile scale-in">
-                    <div>
-                        <h3 class="project-title">Option Calculator in Python</h3>
-                    </div>
-                </a>
+                <div onclick="location.href = '/projects/us_election_financing.html'" id="project1"
+                    class="project-tile scale-in">
+                    <img src="/assets/images/election_funding_image.jpg" class="background-image full-size">
+                    <h3 class="project-title">US Election Analysis in R</h3>
+                </div>
+                <div onclick="location.href = '/projects/us_election_financing.html'" id="project2"
+                    class="project-tile scale-in">
+                    <img src="/assets/images/option_post_picture.jpg" class="background-image full-size">
+                    <h3 class="project-title">An analysis of Margin Procyclicality</h3>
+                </div>
+                <div onclick="location.href = '/projects/us_election_financing.html'" id="project3"
+                    class="project-tile scale-in">
+                    <img src="/assets/images/title_image_margin_procyclicality.jpg" class="background-image full-size">
+                    <h3 class="project-title">Option Calculator in Python</h3>
+                </div>
                 <div id="explore-projects" class="click-element">
                     <a href="/projects.html">
                         <p>View all projects</p>
@@ -199,15 +185,18 @@
                 </div>
             </div>
         </div>
-        <div id="contact" class="fade-in section get-in-touch">
+        <div id="contact" class="section fade-in get-in-touch">
             <img id="paper-plane" class="plane-fly" src="assets/images/paper_plane_nobg.png">
             <h2 class="title">
                 Let's get in touch
             </h2>
-            <p class="text">Thank you for visiting my website. If you are interested in collaborating feel free to reach
+            <p class="text">Thank you for visiting my website. If you are interested in collaborating feel free to
+                reach
                 out via any of my socials or my email.</p>
         </div>
     </main>
+    <!--add prop js script-->
+    <script src="assets/js/app.js"></script>
 </body>
 
 </html>
