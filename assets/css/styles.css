@@ -4,7 +4,6 @@ Import Fonts
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /*----------------------------------------------------------------------------------
 Root Variables
@@ -12,23 +11,22 @@ Root Variables
 
 :root {
     scroll-behavior: smooth;
-    /* relative font size adapts to browser settings --> 1em = 10px per default*/
     font-size: 62.5%;
     --font-family: Raleway;
-    --scroll: 1;
     --blog-font: 'Montserrat';
-    --blog-font-weight: 500;
-    --main-margin-width: 7.5%;
     --nav-bar-height: 60px;
-    --section-title-margin: 30px;
+    --section-title-margin: 70px;
     /*width of main content on the page relative to the full screen*/
     --main-width-smartphone: 90%;
     --main-width-screen: 80%;
     --main-width-largescreen: 1170px;
 }
 
-/*implement basic grid design of webpage (header, body and social media bar)*/
-/*remove overwrites in these elements and properly change names!*/
+
+/*----------------------------------------------------------------------------------
+general formatting
+----------------------------------------------------------------------------------*/
+
 body {
     display: grid;
     grid-template-areas:
@@ -51,17 +49,62 @@ body>#social-media-bar {
 
 #header,
 main {
-    max-width: 1170px;
-    overflow: hidden;
     width: 85%;
     margin: 0 auto;
 }
 
+section {
+    align-content: center;
+    min-height: 100vh;
+    height: max-content;
+    margin-bottom: 80px;
+}
+
+/*prevent the min-height from becoming larger than 1000px*/
+@media screen and (min-height: 1111px) {
+    section {
+        min-height: auto !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #header {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 576px) {
+
+    main {
+        min-width: calc(0.85*576px);
+        width: 70%;
+    }
+}
+
 @media screen and (min-width: 768px) {
+
+    section {
+        min-height: calc(100vh - var(--nav-bar-height));
+    }
 
     #header,
     main {
+        overflow: hidden;
         width: 80%;
+    }
+
+    .section-title {
+        text-align: left;
+        justify-self: left;
+    }
+
+    /*larger titles for desktop screens*/
+    h1 {
+        font-size: 7rem !important;
+    }
+
+    h2 {
+        font-size: 5rem !important;
     }
 }
 
@@ -69,7 +112,8 @@ main {
 
     #header,
     main {
-        width: 75%;
+        min-width: calc(1200*0.8px);
+        width: 70%;
     }
 }
 
@@ -77,13 +121,21 @@ main {
 
     #header,
     main {
+        min-width: calc(.75*1200px);
         width: 70%;
+        max-width: 1170px;
+
     }
 }
 
-/*----------------------------------------------------------------------------------
-general formatting
-----------------------------------------------------------------------------------*/
+@media screen and (min-device-width: 768px) {
+    body[class="index"] {
+        background-image: linear-gradient(rgba(0, 0, 0, .85), rgba(0, 0, 0, .85)), url('/assets/images/website_backround_1.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+}
 
 /*reset default CSS stylings*/
 * {
@@ -96,7 +148,6 @@ general formatting
 ::before {
     box-sizing: border-box;
 }
-
 
 h1,
 h2,
@@ -118,7 +169,6 @@ h2 {
 
 h3 {
     font-size: 2rem;
-    margin-top: 10px;
 }
 
 p {
@@ -126,8 +176,6 @@ p {
     line-height: 2.4rem;
     font-weight: 300;
 }
-
-
 
 .font-bold {
     font-weight: 700;
@@ -144,12 +192,10 @@ p {
 }
 
 body[class="index"] {
-    background: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
+    background: linear-gradient(rgba(0, 0, 0, .85), rgba(0, 0, 0, .85)),
         url('/assets/images/smartphone_background.jpeg');
     background-size: cover;
     background-attachment: fixed;
-    background-repeat: no-repeat;
-    overflow-x: hidden;
 }
 
 .section-title {
@@ -157,10 +203,6 @@ body[class="index"] {
     text-align: center;
     justify-self: center;
     margin-bottom: var(--section-title-margin);
-}
-
-.section {
-    margin-bottom: 150px;
 }
 
 .subsection {
@@ -194,77 +236,35 @@ a:hover {
     object-fit: cover;
 }
 
-
-/*Small Desktop Screen*/
-@media screen and (min-width: 800px) {
-    .section-title {
-        text-align: left;
-        justify-self: left;
-    }
-
-    /*larger titles for desktop screens*/
-    h1 {
-        font-size: 7rem;
-    }
-
-    h2 {
-        font-size: 5rem;
-    }
-
-
-
-    body[class="index"] {
-        background-image: linear-gradient(to bottom, rgba(000, 000, 000, .85), rgba(000, 000, 000, .85)),
-            url('/assets/images/website_backround_1.jpg');
-        background-size: cover;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-    }
-}
-
-/*Large Monitor*/
-@media screen and (min-width: 1600px) {
-    .subsection {
-        margin-bottom: 100px;
-    }
-}
-
-/*****************************************************
-*******************************************************
-*****************************************************
-still resolve this */
-/*hide navbar and social media bar below 800px*/
-@media screen and (max-width: 800px) {
-    #header {
-        display: none;
-    }
+section>.title {
+    margin-bottom: var(--section-title-margin);
 }
 
 /*----------------------------------------------------------------------------------
 Start Page
 ----------------------------------------------------------------------------------*/
-
 .start-page {
-    min-height: 90vh;
-    place-items: center;
     display: grid;
+    place-items: center;
     text-align: justify;
     grid: repeat(2, minmax(0, 1fr)) / 100%;
 }
 
-.start-page .welcome-text h1 {
+.start-page .start-text h1 {
     text-align: center;
 }
 
-.start-page .welcome-text {
+.start-page .start-text {
     grid-column: 1;
     grid-row: 2;
     animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
 }
 
+
 .start-page .start-picture {
-    max-width: 100%;
-    height: auto;
+    max-width: 90%;
+    /*start picture must fully fit on first page!*/
+    max-height: 90vh;
     animation: zoomInOnLoad 2s both;
     grid-column: 1;
     grid-row: 1 / span 2;
@@ -278,8 +278,7 @@ Start Page
     transition-duration: .6s;
 }
 
-/*Small Desktop Screen*/
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
 
     #explore-more {
         display: inline-block;
@@ -289,16 +288,16 @@ Start Page
         grid: 1fr / repeat(2, minmax(0, 1fr));
     }
 
-    .start-page .welcome-text {
+    .start-page .start-text {
         grid-row: 1;
     }
 
-    .start-page .welcome-text h1 {
+    .start-page .start-text h1 {
         text-align: left;
     }
 
     .start-page .start-picture {
-        max-width: 85%;
+        max-width: 80%;
         justify-self: right;
         grid-column: 2;
         grid-row: 1 / span 2;
@@ -309,45 +308,47 @@ Start Page
 Section: Education and Career
 ----------------------------------------------------------------------------------*/
 .education-and-career {
-    place-items: center;
     display: grid;
+    place-items: center;
     grid: repeat(4, auto) / 100%;
+}
+
+.education-and-career .title {
+    margin-bottom: 20px;
 }
 
 .education-and-career .download-cv {
     margin-bottom: var(--section-title-margin);
 }
 
-/*small desktop screens*/
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
     .education-and-career {
-        height: minmax(100vh, auto);
         align-content: center;
         grid: repeat(3, auto) / 100%;
     }
 
-    .education-and-career .section-title {
+    .education-and-career .title {
         grid-row: 1;
         grid-column: 1;
         justify-self: start;
         align-self: end;
+        margin-bottom: var(--section-title-margin);
     }
 
     .education-and-career .download-cv {
         place-self: end;
+        margin-bottom: var(--section-title-margin);
         grid-row: 1;
         grid-column: 1;
-
     }
 }
 
 /*----------------------------------------------------------------------------------
 Subsection: Ecducation
 ----------------------------------------------------------------------------------*/
-
 .univerities {
     display: grid;
-    grid: repeat(3, minmax(0, 1fr))/ 100%;
+    grid: repeat(3, minmax(0, min-content))/ 100%;
     gap: 20px;
 }
 
@@ -356,10 +357,12 @@ Subsection: Ecducation
     grid: auto repeat(3, min-content) / 100%;
     padding: 15px;
     place-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 .univerities .university img {
-    max-width: 50%;
+    max-width: 55%;
     height: auto;
 }
 
@@ -367,15 +370,14 @@ Subsection: Ecducation
     margin-top: 15px;
 }
 
-/*small desktop screens and up*/
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
 
     .univerities {
         grid: 1fr/ repeat(3, minmax(0, 1fr));
     }
 
     .univerities .university {
-        grid: repeat(3, max-content) auto / 100%;
+        grid: repeat(3, min-content) auto / 100%;
     }
 
     .univerities .university .year {
@@ -383,7 +385,7 @@ Subsection: Ecducation
     }
 
     .univerities .university .description {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
     .univerities .university img {
@@ -399,6 +401,10 @@ Subsection: Career
 ----------------------------------------------------------------------------------*/
 
 /*needed for absolute positioning of left/right clicking elements*/
+.career {
+    width: 100%;
+}
+
 .timeline-container {
     position: relative;
 }
@@ -407,12 +413,12 @@ Subsection: Career
     display: grid;
     scroll-snap-type: x mandatory;
     grid-auto-columns: 100%;
+    place-content: center;
     grid-auto-flow: column;
     overflow-x: scroll;
     overflow-y: hidden;
     gap: 20px;
 }
-
 
 .timeline::-webkit-scrollbar {
     display: none;
@@ -420,29 +426,30 @@ Subsection: Career
 
 .timeline-text {
     display: grid;
-    grid: 1fr min-content 1fr / 100%;
+    grid: min-content 1fr min-content / 100%;
     place-items: center;
     text-align: center;
     position: relative;
     scroll-snap-align: start;
-    color: white;
 }
 
 .timeline-text .title {
-    margin-bottom: 10px;
+    margin: 20px auto;
+    font-size: 3rem;
 }
 
 /* blue circle below entries*/
 .timeline-text::after {
     content: "";
-    width: 9em;
-    height: 9em;
+    width: 150px;
+    height: 170px;
     opacity: 0.3;
     border-radius: 50%;
+    box-shadow: 0px 0px 20px 20px royalblue;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: -3em;
+    bottom: -100px;
     background-color: royalblue;
     z-index: -1;
 }
@@ -472,7 +479,7 @@ Subsection: Career
     left: -60px;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
 
     .timeline {
         grid-auto-columns: calc((100% - 40px) / 3);
@@ -481,6 +488,11 @@ Subsection: Career
     .timeline-button {
         display: flex;
     }
+
+    .timeline-text .title {
+        margin: 10px auto;
+        font-size: 2rem;
+    }
 }
 
 /*----------------------------------------------------------------------------------
@@ -488,7 +500,6 @@ My Skills
 ----------------------------------------------------------------------------------*/
 
 .my-skills {
-    min-height: 90vh;
     align-content: center;
     display: grid;
     grid: repeat(2, auto) / 100%;
@@ -569,7 +580,7 @@ My Skills
 }
 
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
 
     .skills {
         display: grid;
@@ -588,7 +599,6 @@ Recent Projects
 ----------------------------------------------------------------------------------*/
 
 .recent-projects {
-    min-height: 90vh;
     display: grid;
     grid: auto repeat(3, 40vh) auto / 100%;
     gap: 10px;
@@ -650,10 +660,9 @@ Recent Projects
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.65) 15%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0) 100%);
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
 
     .recent-projects {
-        height: 90vh;
         grid: repeat(4, 120px) / repeat(2, minmax(0, 1fr));
         gap: 12px;
     }
@@ -691,7 +700,6 @@ get in touch
 
 .get-in-touch {
     grid-area: nav;
-    min-height: 80vh;
     place-content: center;
     width: 80%;
     display: grid;
@@ -722,10 +730,9 @@ get in touch
     z-index: -1;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 768px) {
     .get-in-touch {
         width: 80%;
-        min-height: 90vh;
         display: grid;
         grid: auto / 1fr 1.5fr;
         text-align: center;
@@ -829,7 +836,7 @@ socialMediaBar
     fill: rgb(22, 45, 115);
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
     .social-media-bar {
         position: fixed;
         left: 0;
@@ -1174,7 +1181,6 @@ Keyframe Animations
 
 .fade-in {
     transform: translateY(100px);
-    opacity: .5;
 }
 
 .fadeIn {
