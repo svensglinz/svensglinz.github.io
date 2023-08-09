@@ -189,7 +189,7 @@ class ScrollDot {
 
     observeClick() {
         this.dotElement.addEventListener("click", () => {
-            this.childElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+            this.childElement.scrollIntoView({ behavior: "smooth", block: "nearest" });
         })
     }
 
