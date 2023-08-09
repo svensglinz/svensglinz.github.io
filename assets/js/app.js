@@ -2,6 +2,16 @@
 Define Functions
 *****************************************************************************************/
 
+Array.prototype.findAllOccurences = function (find) {
+    const indexArray = [];
+    this.forEach((element, index) => {
+        if (element == find) {
+            indexArray.push(index);
+        }
+        return indexArray;
+    })
+}
+
 // Function to include a file with the name FileName content into an element with id idName
 function includeFile(fileName, idName) {
     fetch(fileName)
@@ -51,20 +61,31 @@ class scrollArrows {
         this.arrowLeft = this.createArrow("left");
         this.arrowRight = this.createArrow("right");
         this.observeClick();
-        this.visibleChildIndex = undefined;
+        this.lastInView = undefined;
+        this.lastOutView = undefined; // hard coded for first click
     }
 
-    // checks if first or last child is visible --> Arrow disappears
-
     #createObserver() {
+
+        let options = {
+            root: this.parentElement,
+            rootMargin: "0px",
+            threshold: .8,
+        };
+
         const observer = new IntersectionObserver(entries => {
+            const index = [];
             for (const entry of entries) {
 
+                // get the element that left the screen
+                if (!entry.isIntersecting) {
+                    this.lastOutView = Array.from(this.parentElement.children).indexOf(entry.target);
+                    index.push(this.lastOutView);
+                }
+
                 if (entry.isIntersecting) {
-                    // add option to function how many elements are always visible ! --> This prevents searching for all visible elements ? ??? 
-                    // We must find the smallest and the largest Visible ITEM HERE ! (smallest for scroll Back, largest for Scroll Forward!)
-                    this.visibleChildIndex = Array.from(this.parentElement.children).indexOf(entry.target); //determine from array find here//; 
-                    console.log(this.visibleChildIndex);
+                    this.lastInView = Array.from(this.parentElement.children).indexOf(entry.target);
+                    index.push(this.lastInView);
                 }
 
                 if (entry.target == this.firstChild) {
@@ -82,8 +103,11 @@ class scrollArrows {
                         this.arrowRight.style.visibility = "visible";
                     }
                 }
+                console.log("lastOutView = " + index);
+                console.log("lastInView = " + index);
             }
-        });
+
+        }, options);
 
         return observer;
     }
@@ -112,28 +136,37 @@ class scrollArrows {
     }
 
     clickNext() {
-        if (this.visibleChildIndex !== -1) {
-            this.parentElement.children[this.visibleChildIndex + 1].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" })
+        let scrollTo;
+        if (this.lastInView > this.lastOutView) {
+            scrollTo = this.lastInView + 1;
+        } else {
+            scrollTo = this.lastOutView;
         }
+
+        this.parentElement.children[scrollTo].scrollIntoView({ behavior: "smooth", block: "nearest" })
+
     }
 
     clickPrevious() {
-        if (this.visibleChildIndex !== -1) {
-            this.parentElement.children[this.visibleChildIndex - 1].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
+        let scrollTo;
+        if (this.lastInView > this.lastOutView) {
+            scrollTo = this.lastOutView;
+        } else {
+            scrollTo = this.lastInView - 1;
         }
+        this.parentElement.children[scrollTo].scrollIntoView({ behavior: "smooth", block: "nearest" })
+
 
     }
 
     observeClick() {
         this.arrowRight.addEventListener("click", () => {
             // add direction left and right!
-            console.log("rightarrow clicked");
             this.clickNext();
         });
 
         this.arrowLeft.addEventListener("click", () => {
             this.clickPrevious();
-            console.log("leftarrow clicked");
 
         })
     }
@@ -207,9 +240,8 @@ class ScrollContainer {
     }
 
     appendArrows() {
-        this.gridElement.appendChild(this.arrows[0]);
-        this.gridElement.appendChild(this.arrows[1]);
-
+        this.gridElement.parentNode.appendChild(this.arrows[0]);
+        this.gridElement.parentNode.appendChild(this.arrows[1]);
     }
 
     createScrollBox() {
