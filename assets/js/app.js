@@ -1,3 +1,7 @@
+/*****************************************************************************************
+Define Functions
+*****************************************************************************************/
+
 // Function to include a file with the name FileName content into an element with id idName
 function includeFile(fileName, idName) {
     fetch(fileName)
@@ -11,29 +15,6 @@ function includeFile(fileName, idName) {
         });
 }
 
-// Call the function to include the header on each page
-includeFile(fileName = '/header.html', idName = 'header');
-includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
-
-// detects the closest non-visible child in a scrollable parent container from left or right
-function closestNonVisible(child_class, parent_class, side) {
-    // define variables
-    const parent_elem = document.querySelector(`.${parent_class}`);
-    const children_elem = document.querySelectorAll(`.${child_class}`);
-    const children_array = Array.from(children_elem);
-    let closestElement;
-    if (side == "right") {
-        const index = children_array.findIndex(elem => elem.offsetLeft - parent_elem.scrollLeft > parent_elem.clientWidth);
-        closestElement = children_array[index];
-    } else if (side == "left") {
-        const index = children_array.findIndex(elem => elem.offsetLeft + elem.clientWidth >= parent_elem.scrollLeft) - 1;
-        closestElement = children_array[index];
-    } else {
-        console.error("non-recognized value in `side`");
-    }
-
-    return (closestElement);
-}
 
 // function which observes an element of a specific class and adds a class addClass to it (used for fade-in animations)
 function observeIntersection(className, addClass, rootMargin) {
@@ -57,190 +38,231 @@ function observeIntersection(className, addClass, rootMargin) {
     const elements = document.querySelectorAll(`.${className}`);
     elements.forEach(element => observer.observe(element));
 
-
 }
 
-/*function to create n circles below the career element (where n = # career entries)
-circle styling & positioning is done in classes .scroll-box & .scroll-dot*/
-function createAndAddCircles() {
-
-    //add box below for dot elements
-    document.querySelector(".career").insertAdjacentHTML('afterend', '<div class="scroll-box"></div>');
-    const scroll_element = document.querySelectorAll(".timeline-text");
-
-    // creates a circle element
-    function createScrollDot(targetIndex) {
-        const scroll_dot = document.createElement('div');
-        scroll_dot.classList.add('scroll-dot');
-        scroll_dot.setAttribute('data-target', targetIndex);
-        return scroll_dot;
+// creates a scrolldot that is connected to one child element --> If this comes into view, the scroll-dot will change class (scroll-dot, child combo)
+class scrollArrows {
+    constructor(parentElement) {
+        this.parentElement = parentElement;
+        this.observer = this.#createObserver();
+        this.observePosition();
+        this.firstChild = parentElement.firstElementChild;
+        this.lastChild = parentElement.lastElementChild;
+        this.arrowLeft = this.createArrow("left");
+        this.arrowRight = this.createArrow("right");
+        this.observeClick();
+        this.visibleChildIndex = undefined;
     }
 
-    //adds the required number of circles to the document
-    for (let i = 0; i < scroll_element.length; i++) {
-        const scroll_box = document.querySelector(".scroll-box")
-        const scroll_dot = createScrollDot(i);
-        scroll_box.appendChild(scroll_dot);
-    }
-}
+    // checks if first or last child is visible --> Arrow disappears
 
-function visibleArea(element, threshold) {
-    const elemPos = element.getBoundingClientRect();
-    const windowWidth = window.innerWidth;
-    const offsetLeft = elemPos.left;
-    const offsetRight = elemPos.right;
+    #createObserver() {
+        const observer = new IntersectionObserver(entries => {
+            for (const entry of entries) {
 
-    const visibleArea = Math.min(offsetRight, windowWidth) - Math.min(Math.max(0, offsetLeft), windowWidth);
+                if (entry.isIntersecting) {
+                    // add option to function how many elements are always visible ! --> This prevents searching for all visible elements ? ??? 
+                    // We must find the smallest and the largest Visible ITEM HERE ! (smallest for scroll Back, largest for Scroll Forward!)
+                    this.visibleChildIndex = Array.from(this.parentElement.children).indexOf(entry.target); //determine from array find here//; 
+                    console.log(this.visibleChildIndex);
+                }
 
-    // 100% of area visible on the screen
-    if (offsetLeft > 0 && offsetRight <= windowWidth) {
-        return true;
-    } else {
-        return ((visibleArea / windowWidth) >= threshold);
-    }
-}
+                if (entry.target == this.firstChild) {
+                    if (entry.isIntersecting) {
+                        this.arrowLeft.style.visibility = "hidden";
+                    } else {
+                        this.arrowLeft.style.visibility = "visible";
+                    }
+                }
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    // event listeners for scrolling the Jobs timeline
-    const timeline = document.querySelector(".timeline");
-    const button_left = document.querySelector(".left");
-    const button_right = document.querySelector(".right");
-    button_left.style.visibility = "hidden";
-
-    // control visibility of click buttons
-    let scrollPosition = timeline.scrollLeft;
-    timeline.addEventListener("scroll", () => {
-
-        if (timeline.scrollLeft > scrollPosition) {
-
-            let closestElement = closestNonVisible("timeline-text", "timeline", "right");
-            button_left.style.visibility = "visible";
-
-            // no non-visible element to the right --> button is removed
-            if (!closestElement) {
-                button_right.style.visibility = "hidden";
-            }
-
-        } else {
-
-            let closestElement = closestNonVisible("timeline-text", "timeline", "left");
-            button_right.style.visibility = "visible";
-
-            // no non-visible element to the left --> button is removed
-            if (!closestElement) {
-                button_left.style.visibility = "hidden";
-            }
-        }
-
-        // update scroll position
-        scrollPosition = timeline.scrollLeft;
-    });
-
-
-    // add event listeners for the buttons (visibility is controlled by the more general scroll listener)
-    button_right.addEventListener("click", () => {
-
-        const closestElement = closestNonVisible("timeline-text", "timeline", "right");
-
-        if (closestElement) {
-            closestElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" });
-        }
-    });
-
-
-    button_left.addEventListener("click", () => {
-
-        const closestElement = closestNonVisible("timeline-text", "timeline", "left");
-
-        if (closestElement) {
-            closestElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
-        }
-    });
-
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    // add circles to the page
-    createAndAddCircles();
-
-    let scroll_dot = document.querySelectorAll(".scroll-dot");
-    const scroll_element = document.querySelectorAll(".timeline-text");
-
-    // first active element
-    scroll_dot[0].classList.add('active');
-    const timeline = document.querySelector(".timeline");
-
-    let scrollPos = timeline.scrollLeft;
-    let visibleElementIndex = 0;
-
-    timefunction = function () {
-        console.log("start-function-now");
-        if (scrollPos < timeline.scrollLeft) {
-
-            let nextNonVisible = closestNonVisible("timeline-text", "timeline", "right")
-            scroll_dot[visibleElementIndex].classList.remove("active");
-
-            if (!nextNonVisible) {
-                visibleElementIndex = timeline.childElementCount - 1;
-                scroll_dot[visibleElementIndex].classList.add("active");
-            } else {
-                let visibleElement = nextNonVisible.previousElementSibling;
-                visibleElementIndex = Array.from(scroll_element).indexOf(visibleElement);
-                scroll_dot[visibleElementIndex].classList.add("active");
-            }
-
-        } else {
-
-            let nextNonVisible = closestNonVisible("timeline-text", "timeline", "left")
-            scroll_dot[visibleElementIndex].classList.remove("active");
-
-            if (!nextNonVisible) {
-                visibleElementIndex = 0;
-                scroll_dot[visibleElementIndex].classList.add("active");
-            } else {
-                let visibleElement = nextNonVisible.nextElementSibling;
-                visibleElementIndex = Array.from(scroll_element).indexOf(visibleElement);
-                scroll_dot[visibleElementIndex].classList.add("active");
-            }
-        }
-
-        scrollPos = timeline.scrollLeft;
-    }
-
-    function throttle(fn, wait) {
-        var time = Date.now();
-        return function () {
-            if ((time + wait - Date.now()) < 0) {
-                fn();
-                time = Date.now();
-            }
-        }
-    }
-
-    timeline.addEventListener("scroll", throttle(timefunction, 100));
-
-    const scroll_dots = document.querySelectorAll(".scroll-dot");
-    const scroll_elements = document.querySelectorAll(".timeline-text");
-
-    scroll_dots.forEach((dot) => {
-        dot.addEventListener("click", function () {
-            const targetIndex = parseInt(dot.getAttribute("data-target"));
-            if (targetIndex >= 0 && targetIndex < scroll_elements.length) {
-                scroll_elements[targetIndex].scrollIntoView({ behavior: "smooth", block: "nearest" });
-                scroll_dot.forEach(dot => dot.classList.remove('active'));
-                scroll_dot[targetIndex].classList.add('active');
-                console.log(targetIndex);
+                if (entry.target == this.lastChild) {
+                    if (entry.isIntersecting) {
+                        this.arrowRight.style.visibility = "hidden";
+                    } else {
+                        this.arrowRight.style.visibility = "visible";
+                    }
+                }
             }
         });
-    });
 
-    // observe elements for fade-in
-    observeIntersection("download-cv", "test", "0px");
-    observeIntersection("expand", "expandBars", "0px");
-    observeIntersection("fade-in", "fadeIn", "0px");
+        return observer;
+    }
 
-});
+    observePosition() {
+        Array.from(this.parentElement.children).forEach(child => {
+            this.observer.observe(child);
+        });
+    }
+
+    unobservePosition() {
+        this.observer.unobserve(children);
+    }
+
+    createArrow(direction) {
+        const arrow = document.createElement("div");
+        arrow.classList.add("timeline-button");
+        if (direction == "left") {
+            arrow.classList.add("left");
+            arrow.innerHTML += "<span>&#8592</span>";
+        } else if (direction == "right") {
+            arrow.classList.add("right");
+            arrow.innerHTML += "<span>&#8594</span>";
+        }
+        return arrow;
+    }
+
+    clickNext() {
+        if (this.visibleChildIndex !== -1) {
+            this.parentElement.children[this.visibleChildIndex + 1].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" })
+        }
+    }
+
+    clickPrevious() {
+        if (this.visibleChildIndex !== -1) {
+            this.parentElement.children[this.visibleChildIndex - 1].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
+        }
+
+    }
+
+    observeClick() {
+        this.arrowRight.addEventListener("click", () => {
+            // add direction left and right!
+            console.log("rightarrow clicked");
+            this.clickNext();
+        });
+
+        this.arrowLeft.addEventListener("click", () => {
+            this.clickPrevious();
+            console.log("leftarrow clicked");
+
+        })
+    }
+}
+
+class ScrollDot {
+    constructor(childElement) {
+        this.childElement = childElement;
+        this.dotElement = this.createDot();
+        this.observeClick();
+        this.observer = this.#createObserver();
+        this.observeElement();
+    }
+
+    createDot() {
+        const dotElement = document.createElement("div");
+        dotElement.classList.add("scroll-dot");
+        return dotElement;
+    }
+
+    observeClick() {
+        this.dotElement.addEventListener("click", () => {
+            this.childElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+        })
+    }
+
+    #createObserver() {
+
+        let options = {
+            root: this.childElement.parentElement,
+            rootMargin: "0px",
+            threshold: .5,
+        };
+
+        const observer = new IntersectionObserver(entry => {
+            if (entry[0].isIntersecting) {
+                this.dotElement.classList.add("active");
+            } else {
+                this.dotElement.classList.remove("active");
+            }
+        }, options);
+
+        return observer;
+    }
+
+    observeElement() {
+        this.observer.observe(this.childElement);
+    }
+
+    unobserveElement() {
+        this.observer.unobserve(this.ChildElement);
+    }
+}
+
+class ScrollContainer {
+    constructor(gridElement) {
+        this.gridElement = gridElement;
+        this.scrollItems = this.gridElement.children;
+        this.arrows = this.createArrows();
+        this.scrollBox = this.createScrollBox();
+        this.dots = this.createDots();
+        this.appendArrows();
+        this.appendScrollBox();
+        // this.observeDots();
+    }
+
+    // creates arrows for traversing through the scrollBox; 
+    createArrows() {
+        const arrows = new scrollArrows(this.gridElement);
+        return [arrows.arrowLeft, arrows.arrowRight];
+    }
+
+    appendArrows() {
+        this.gridElement.appendChild(this.arrows[0]);
+        this.gridElement.appendChild(this.arrows[1]);
+
+    }
+
+    createScrollBox() {
+        const scrollBox = document.createElement("div");
+        scrollBox.classList.add("scroll-box");
+        return scrollBox;
+    }
+
+    // creates dots to append to scrollBox 
+    createDots() {
+        const dots = [];
+        for (let i = 0; i < this.scrollItems.length; i++) {
+            const dot = new ScrollDot(this.scrollItems[i]);
+            dots.push(dot);
+        }
+
+        // first dot is active;
+        return dots;
+    }
+
+    // fill scrollBox with scrollDots
+    appendScrollBox() {
+        this.scrollBox.innerHTML = "";
+        for (const dot of this.dots) {
+            this.scrollBox.appendChild(dot.dotElement);
+        }
+
+        // add scrollbox below container
+        this.gridElement.insertAdjacentElement("afterend", this.scrollBox);
+    }
+}
+
+const test = document.querySelector(".career-grid");
+const testcontainer = new ScrollContainer(test);
+const testarows = new scrollArrows(test);
+
+const smartphone_screen = window.matchMedia("(min-width: 768px)");
+smartphone_screen.addEventListener("change", (event) => {
+    if (event.matches) {
+        scroll_box.style.display = "none";
+    } else {
+        scroll_box.style.display = "inline-block";
+    }
+})
+
+
+// observe elements for fade-in
+observeIntersection("download-cv", "test", "0px");
+observeIntersection("expand", "expandBars", "0px");
+observeIntersection("fade-in", "fadeIn", "0px");
+
+
+// Call the function to include the header on each page
+includeFile(fileName = '/header.html', idName = 'header');
+includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
 

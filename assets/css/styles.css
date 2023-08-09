@@ -89,7 +89,7 @@ section {
 
     #header,
     main {
-        overflow: hidden;
+        overflow: visible;
         width: 80%;
     }
 
@@ -97,6 +97,9 @@ section {
         text-align: left;
         justify-self: left;
     }
+}
+
+@media screen and (min-width: 992px) {
 
     /*larger titles for desktop screens*/
     h1 {
@@ -128,12 +131,17 @@ section {
     }
 }
 
+body[class="index"] {
+    background-image: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)),
+        url('/assets/images/smartphone_background.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 @media screen and (min-device-width: 768px) {
     body[class="index"] {
-        background-image: linear-gradient(rgba(0, 0, 0, .85), rgba(0, 0, 0, .85)), url('/assets/images/website_backround_1.jpg');
+        background-image: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url('/assets/images/website_backround_1.jpg');
         background-size: cover;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
     }
 }
 
@@ -141,9 +149,9 @@ section {
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
+*,
 ::after,
 ::before {
     box-sizing: border-box;
@@ -177,8 +185,21 @@ p {
     font-weight: 300;
 }
 
+/*categorical classes*/
 .font-bold {
     font-weight: 700;
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.col-white {
+    color: white;
+}
+
+.col-black {
+    color: black;
 }
 
 .scale-in {
@@ -191,12 +212,6 @@ p {
     transition: all .3s ease-in-out;
 }
 
-body[class="index"] {
-    background: linear-gradient(rgba(0, 0, 0, .85), rgba(0, 0, 0, .85)),
-        url('/assets/images/smartphone_background.jpeg');
-    background-size: cover;
-    background-attachment: fixed;
-}
 
 .section-title {
     font-family: Arial;
@@ -240,6 +255,7 @@ section>.title {
     margin-bottom: var(--section-title-margin);
 }
 
+
 /*----------------------------------------------------------------------------------
 Start Page
 ----------------------------------------------------------------------------------*/
@@ -258,17 +274,16 @@ Start Page
     grid-column: 1;
     grid-row: 2;
     animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
+    z-index: 2;
 }
-
 
 .start-page .start-picture {
     max-width: 90%;
-    /*start picture must fully fit on first page!*/
     max-height: 90vh;
     animation: zoomInOnLoad 2s both;
     grid-column: 1;
     grid-row: 1 / span 2;
-    z-index: -1;
+    opacity: .85 !important;
 }
 
 #explore-more {
@@ -301,6 +316,7 @@ Start Page
         justify-self: right;
         grid-column: 2;
         grid-row: 1 / span 2;
+        opacity: .7 !important;
     }
 }
 
@@ -346,49 +362,46 @@ Section: Education and Career
 /*----------------------------------------------------------------------------------
 Subsection: Ecducation
 ----------------------------------------------------------------------------------*/
-.univerities {
+.university-grid {
     display: grid;
-    grid: repeat(3, minmax(0, min-content))/ 100%;
-    gap: 20px;
+    gap: 40px;
 }
 
-.univerities .university {
+.university {
     display: grid;
-    grid: auto repeat(3, min-content) / 100%;
-    padding: 15px;
     place-items: center;
     text-align: center;
-    justify-content: center;
 }
 
-.univerities .university img {
+.university img {
     max-width: 55%;
-    height: auto;
+    max-height: 90%;
 }
 
-.univerities .university .year {
+.university .year {
     margin-top: 15px;
 }
 
 @media screen and (min-width: 768px) {
 
-    .univerities {
+    .university-grid {
+        width: 100%;
         grid: 1fr/ repeat(3, minmax(0, 1fr));
     }
 
-    .univerities .university {
+    .university {
         grid: repeat(3, min-content) auto / 100%;
     }
 
-    .univerities .university .year {
+    .university .year {
         margin-top: 0;
     }
 
-    .univerities .university .description {
+    .university .description {
         margin-bottom: 20px;
     }
 
-    .univerities .university img {
+    .university img {
         grid-row: 4;
         max-width: 65%;
         align-self: center;
@@ -400,46 +413,44 @@ Subsection: Ecducation
 Subsection: Career
 ----------------------------------------------------------------------------------*/
 
-/*needed for absolute positioning of left/right clicking elements*/
 .career {
     width: 100%;
 }
 
-.timeline-container {
+.arrow-container {
     position: relative;
 }
 
-.timeline {
+.career-grid {
     display: grid;
+    overflow-y: hidden;
+    overflow-x: scroll;
     scroll-snap-type: x mandatory;
     grid-auto-columns: 100%;
-    place-content: center;
     grid-auto-flow: column;
-    overflow-x: scroll;
-    overflow-y: hidden;
     gap: 20px;
 }
 
-.timeline::-webkit-scrollbar {
+.career-grid::-webkit-scrollbar {
     display: none;
 }
 
-.timeline-text {
+.career-item {
+    --horiz-margin: 20px;
     display: grid;
     grid: min-content 1fr min-content / 100%;
-    place-items: center;
     text-align: center;
     position: relative;
     scroll-snap-align: start;
 }
 
-.timeline-text .title {
-    margin: 20px auto;
+.career-item .title {
+    margin: var(--horiz-margin) auto;
     font-size: 3rem;
 }
 
 /* blue circle below entries*/
-.timeline-text::after {
+.career-item::after {
     content: "";
     width: 150px;
     height: 170px;
@@ -459,10 +470,9 @@ Subsection: Career
     display: none;
     border: 1.5px solid royalblue;
     color: white;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    background-color: transparent;
+    font-size: 4rem;
+    place-content: center;
+    place-items: center;
     position: absolute;
     border-radius: 60px;
     width: 60px;
@@ -481,7 +491,11 @@ Subsection: Career
 
 @media screen and (min-width: 768px) {
 
-    .timeline {
+    .timeline-button {
+        display: flex;
+    }
+
+    .career-grid {
         grid-auto-columns: calc((100% - 40px) / 3);
     }
 
@@ -489,17 +503,17 @@ Subsection: Career
         display: flex;
     }
 
-    .timeline-text .title {
+    .career-item .title {
         margin: 10px auto;
         font-size: 2rem;
     }
 }
 
 /*----------------------------------------------------------------------------------
-My Skills
+Skills
 ----------------------------------------------------------------------------------*/
 
-.my-skills {
+.skills {
     align-content: center;
     display: grid;
     grid: repeat(2, auto) / 100%;
@@ -507,7 +521,7 @@ My Skills
     position: relative;
 }
 
-.my-skills .rotating-wheel {
+.skills .rotating-wheel {
     width: 40vw;
     height: auto;
     position: absolute;
@@ -516,27 +530,27 @@ My Skills
     z-index: -1;
 }
 
-.skills {
+.skills-container {
+    width: 100%;
     display: grid;
-    grid: repeat(2, 1fr) / 100%;
-    column-gap: 5%;
+    column-gap: 3%;
 }
 
-.rotating-wheel svg {
+.rotating-wheel {
     animation: rotation 40s linear infinite;
     filter: drop-shadow(4px 6px 10px royalblue);
     width: 100%;
 }
 
-.skill-title {
+.skill>.title {
     text-transform: uppercase;
     margin-bottom: 25px;
     border-left: 1.5px solid royalblue;
     padding-left: 10px;
 }
 
-.skills .coding ul li,
-.skills .languages ul li {
+.skills-container .languages ul li,
+.skills-container .coding ul li {
     display: grid;
     grid: repeat(2, 1fr) / 100%;
     gap: 8px;
@@ -544,11 +558,11 @@ My Skills
 }
 
 /*add bars*/
-.skills .expandBars li::after {
+.skills-container .expandBars li::after {
     animation: expandBars forwards 2s cubic-bezier(.77, 0, .175, 1);
 }
 
-.skills .expand li::after {
+.skills-container .expand li::after {
     content: '';
     border-radius: 10px;
     grid-row: 2;
@@ -561,7 +575,7 @@ My Skills
     opacity: .8;
 }
 
-.skills .expand li::before {
+.skills-container .expand li::before {
     content: '';
     grid-row: 2;
     grid-column: 1;
@@ -574,20 +588,24 @@ My Skills
     z-index: 0;
 }
 
-.skills .further ul li {
+.skills-container .further ul li {
     font-size: 20px;
     margin-bottom: 15px;
 }
 
+.skills-container .further ul {
+    padding-left: 15px;
+    list-style-position: outside;
+}
 
 @media screen and (min-width: 768px) {
 
-    .skills {
+    .skills-container {
         display: grid;
         grid: 1fr / repeat(3, minmax(0, 1fr));
     }
 
-    .my-skills .rotating-wheel {
+    .skills .rotating-wheel {
         width: 300px;
         top: 30px;
         right: -50px;
@@ -836,7 +854,7 @@ socialMediaBar
     fill: rgb(22, 45, 115);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
     .social-media-bar {
         position: fixed;
         left: 0;
@@ -887,7 +905,7 @@ socialMediaBar
     display: flex;
     justify-content: space-around;
     width: 30%;
-    margin: 0 auto;
+    margin: 40px auto;
 }
 
 /*on screen, its dots, on mobile phone its bars?*/
