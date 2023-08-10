@@ -148,6 +148,10 @@ section {
 
 }
 
+section .title {
+    text-align: center;
+}
+
 /*reset default CSS stylings*/
 * {
     margin: 0;
@@ -263,11 +267,12 @@ section>.title {
 Start Page
 ----------------------------------------------------------------------------------*/
 .start-page {
-    border: red solid 2px;
     display: grid;
     place-items: center;
     text-align: justify;
     max-height: 90vh;
+    height: 90vh;
+    min-height: 0;
     grid: repeat(2, minmax(0, 1fr)) / 100%;
 }
 
@@ -276,7 +281,6 @@ Start Page
 }
 
 .start-page .start-text {
-    border: 2px solid blue;
     grid-column: 1;
     grid-row: 2;
     animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
@@ -284,7 +288,6 @@ Start Page
 }
 
 .start-page .start-picture {
-    border: 2px solid green;
     max-width: 90%;
     animation: zoomInOnLoad 2s both;
     grid-column: 1;
@@ -335,13 +338,19 @@ Section: Education and Career
     grid: repeat(4, auto) / 100%;
 }
 
+.education-and-career .subsection-title {
+    width: 70%;
+    margin: 20px auto;
+    border-bottom: 1px solid royalblue;
+    text-align: center;
+}
+
 .education-and-career .title {
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .education-and-career .download-cv {
-    margin-bottom: var(--section-title-margin);
+    display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -456,24 +465,6 @@ Subsection: Career
     font-size: 3rem;
 }
 
-.career-container::before {
-    content: "Career";
-    display: block;
-    border-bottom: 1.5px solid royalblue;
-    color: white;
-    font-size: 30px;
-    text-align: center;
-}
-
-.university-grid::before {
-    content: "Education";
-    display: block;
-    border-bottom: 1.5px solid royalblue;
-    color: white;
-    font-size: 30px;
-    text-align: center;
-}
-
 /* blue circle below entries*/
 .career-item::after {
     content: "";
@@ -545,6 +536,8 @@ Skills
     /*for positioning of the wheel*/
     position: relative;
 }
+
+
 
 .skills .rotating-wheel {
     width: 40vw;
@@ -742,29 +735,23 @@ get in touch
 ----------------------------------------------------------------------------------*/
 
 .get-in-touch {
-    grid-area: nav;
-    place-content: center;
-    width: 80%;
     display: grid;
-    grid: repeat(3, auto) / 1fr;
-    margin: 0 auto;
+    place-content: center;
+    height: 80vh;
+    min-height: auto;
+    margin: 0;
     text-align: center;
 }
 
-.get-in-touch .title {
-    justify-self: center;
-    grid-row: 1;
-    width: max-content;
-    grid-column: 1;
-}
-
 .get-in-touch .text {
-    color: white;
+    margin: auto auto;
+    text-align: center;
     grid-row: 3;
     grid-column: 1;
 }
 
 .plane-fly {
+    display: none;
     opacity: .6;
     width: 100%;
     height: auto;
@@ -792,6 +779,7 @@ get in touch
     }
 
     .plane-fly {
+        display: inline-block;
         grid-row: 1 / span 2;
         grid-column: 1;
         z-index: -1;
@@ -844,46 +832,47 @@ socialMediaBar
 ----------------------------------------------------------------------------------*/
 
 .social-media-bar {
-    place-content: center;
-    width: 100%;
-    margin: auto;
-    background-color: white;
+    background: linear-gradient(rgba(255, 255, 255, .4), white);
     opacity: .5;
-    padding: 3rem 0;
-}
-
-.social-media-bar .vertical-line {
-    display: none;
+    padding: 30px 0;
 }
 
 .social-media-bar .icons {
-    border: 2px solid red;
-    width: 70%;
+    width: 65%;
     margin: 0 auto;
     display: grid;
     grid: auto/ repeat(3, 1fr);
     place-items: center;
 }
 
-.social-media-bar::before {
-    border: red solid 2px;
-    display: block;
-    content: "Download My CV";
+.social-media-bar .download-cv {
+    border-bottom: 2px solid royalblue;
+    max-width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    place-content: center;
+    place-items: center;
+}
+
+.social-media-bar .download-cv img {
+    width: auto;
+    height: 4rem;
+}
+
+.social-media-bar .download-cv p {
+    font-size: 2.5rem;
     font-family: Permanent Marker;
-    rotate: -20deg;
-    font-size: 40px;
 }
 
 .icons svg {
-    fill: white;
-    width: 100%;
-    transform: scale(.5);
-    height: auto;
+    margin-top: 15px;
+    width: auto;
+    height: 4rem;
 }
 
 .social-media-bar svg:hover {
     cursor: pointer;
-    transform: scale(.6);
+    transform: scale(1.1);
     transition: .3s ease-in-out;
     fill: rgb(22, 45, 115);
 }
