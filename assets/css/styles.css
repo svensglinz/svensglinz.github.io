@@ -538,7 +538,6 @@ Skills
 }
 
 
-
 .skills .rotating-wheel {
     width: 40vw;
     height: auto;
@@ -549,18 +548,22 @@ Skills
 }
 
 .skills-container {
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
     display: grid;
-    column-gap: 3%;
+    gap: 40px;
 }
 
 .rotating-wheel {
+    display: none;
     animation: rotation 40s linear infinite;
     filter: drop-shadow(4px 6px 10px royalblue);
     width: 100%;
 }
 
 .skill>.title {
+    text-align: left;
     text-transform: uppercase;
     margin-bottom: 25px;
     border-left: 1.5px solid royalblue;
@@ -635,9 +638,12 @@ Recent Projects
 ----------------------------------------------------------------------------------*/
 
 .recent-projects {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     display: grid;
-    grid: auto repeat(3, 40vh) auto / 100%;
-    gap: 10px;
+    grid: auto repeat(3, 200px) auto / 100%;
+    gap: 3%;
     place-content: center;
 }
 
@@ -736,14 +742,14 @@ get in touch
 
 .get-in-touch {
     display: grid;
-    place-content: center;
-    height: 80vh;
+    height: 70vh;
     min-height: auto;
     margin: 0;
     text-align: center;
 }
 
 .get-in-touch .text {
+    font-size: 2rem;
     margin: auto auto;
     text-align: center;
     grid-row: 3;
