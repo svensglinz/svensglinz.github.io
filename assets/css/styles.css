@@ -4,7 +4,7 @@ Import Fonts
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Bitter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Permanent+Marker&display=swap');
 /*----------------------------------------------------------------------------------
 Root Variables
 ----------------------------------------------------------------------------------*/
@@ -131,18 +131,21 @@ section {
     }
 }
 
-body[class="index"] {
-    background-image: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)),
+#background {
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),
         url('/assets/images/smartphone_background.jpeg');
     background-size: cover;
-    background-attachment: fixed;
+    position: fixed;
+    z-index: -1;
 }
 
 @media screen and (min-device-width: 768px) {
-    body[class="index"] {
+    #background {
         background-image: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url('/assets/images/website_backround_1.jpg');
-        background-size: cover;
     }
+
 }
 
 /*reset default CSS stylings*/
@@ -333,6 +336,7 @@ Section: Education and Career
 }
 
 .education-and-career .title {
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -450,6 +454,24 @@ Subsection: Career
 .career-item .title {
     margin: var(--horiz-margin) auto;
     font-size: 3rem;
+}
+
+.career-container::before {
+    content: "Career";
+    display: block;
+    border-bottom: 1.5px solid royalblue;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.university-grid::before {
+    content: "Education";
+    display: block;
+    border-bottom: 1.5px solid royalblue;
+    color: white;
+    font-size: 30px;
+    text-align: center;
 }
 
 /* blue circle below entries*/
@@ -825,22 +847,31 @@ socialMediaBar
     place-content: center;
     width: 100%;
     margin: auto;
+    background-color: white;
+    opacity: .5;
     padding: 3rem 0;
-    display: grid;
-    grid: auto / 1fr 2fr 1fr;
-    place-content: center;
 }
 
 .social-media-bar .vertical-line {
-    visibility: hidden;
+    display: none;
 }
 
 .social-media-bar .icons {
-    grid-column: 2;
-    border-bottom: royalblue solid 1.5px;
+    border: 2px solid red;
+    width: 70%;
+    margin: 0 auto;
     display: grid;
     grid: auto/ repeat(3, 1fr);
     place-items: center;
+}
+
+.social-media-bar::before {
+    border: red solid 2px;
+    display: block;
+    content: "Download My CV";
+    font-family: Permanent Marker;
+    rotate: -20deg;
+    font-size: 40px;
 }
 
 .icons svg {
