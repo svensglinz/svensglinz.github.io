@@ -260,9 +260,11 @@ section>.title {
 Start Page
 ----------------------------------------------------------------------------------*/
 .start-page {
+    border: red solid 2px;
     display: grid;
     place-items: center;
     text-align: justify;
+    max-height: 90vh;
     grid: repeat(2, minmax(0, 1fr)) / 100%;
 }
 
@@ -271,6 +273,7 @@ Start Page
 }
 
 .start-page .start-text {
+    border: 2px solid blue;
     grid-column: 1;
     grid-row: 2;
     animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
@@ -278,8 +281,8 @@ Start Page
 }
 
 .start-page .start-picture {
+    border: 2px solid green;
     max-width: 90%;
-    max-height: 90vh;
     animation: zoomInOnLoad 2s both;
     grid-column: 1;
     grid-row: 1 / span 2;

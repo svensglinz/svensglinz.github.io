@@ -47,7 +47,6 @@ function observeIntersection(className, addClass, rootMargin) {
     // Start observing each element
     const elements = document.querySelectorAll(`.${className}`);
     elements.forEach(element => observer.observe(element));
-
 }
 
 // creates a scrolldot that is connected to one child element --> If this comes into view, the scroll-dot will change class (scroll-dot, child combo)
