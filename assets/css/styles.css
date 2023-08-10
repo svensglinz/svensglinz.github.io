@@ -814,6 +814,10 @@ navBar
     align-self: center;
 }
 
+.nav-bar-name p {
+    font-size: 2.2rem;
+}
+
 .hamb-button {
     cursor: pointer;
     display: flex;
@@ -825,7 +829,7 @@ navBar
     height: 2px;
     width: 40px;
     background-color: white;
-    transition: transform .3s ease-in;
+    transition: transform .3s linear;
 }
 
 .hamb[class*="active"] .hamb-line:nth-child(2) {
@@ -868,13 +872,19 @@ navBar
 }
 
 .nav-buttons li {
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 2.2rem;
 
 }
 
-.nav-buttons li:hover a {
-    font-weight: bold;
+@media (hover: hover) {
+    .nav-buttons li:hover {
+        border: 1px solid grey;
+    }
+
 }
 
 .hamb[class*="active"]~.nav-buttons {

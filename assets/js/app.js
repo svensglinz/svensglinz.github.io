@@ -306,3 +306,12 @@ hambMenuClick = function () {
         hambMenu.classList.add("active");
     }
 }
+
+// problem ££> Body has margins !!! (so should maybe add paddings???)
+document.querySelector("main").addEventListener("click", function (event) {
+    const hambMenu = document.querySelector(".hamb");
+
+    if (hambMenu.classList.contains("active")) {
+        hambMenu.classList.remove("active");
+    }
+});
