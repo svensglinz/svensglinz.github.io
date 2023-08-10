@@ -47,7 +47,6 @@ body>#social-media-bar {
     grid-area: social-media;
 }
 
-#header,
 main {
     width: 85%;
     margin: 0 auto;
@@ -69,7 +68,7 @@ section {
 
 @media screen and (max-width: 767px) {
     #header {
-        display: none;
+        display: block;
     }
 }
 
@@ -194,19 +193,19 @@ p {
 
 /*categorical classes*/
 .font-bold {
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 
 .font-light {
-    font-weight: 300;
+    font-weight: 300 !important;
 }
 
 .col-white {
-    color: white;
+    color: white !important;
 }
 
 .col-black {
-    color: black;
+    color: black !important;
 }
 
 .scale-in {
@@ -284,7 +283,6 @@ Start Page
     grid-column: 1;
     grid-row: 2;
     animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .8s;
-    z-index: 2;
 }
 
 .start-page .start-picture {
@@ -293,6 +291,7 @@ Start Page
     grid-column: 1;
     grid-row: 1 / span 2;
     opacity: .85 !important;
+    z-index: -1;
 }
 
 #explore-more {
@@ -795,43 +794,133 @@ get in touch
 /*----------------------------------------------------------------------------------
 navBar
 ----------------------------------------------------------------------------------*/
-
 #header {
+    background-color: black;
+    display: block;
     position: sticky;
-    height: var(--nav-bar-height);
     top: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
     z-index: 1;
 }
 
-.nav-bar {
-    height: var(--nav-bar-height);
-    z-index: 1;
+.hamb {
+    display: flex;
+    padding: 0 10px;
+    flex-direction: row;
+    place-content: space-between;
+    height: 50px;
+}
+
+.nav-bar-name {
+    align-self: center;
+}
+
+.hamb-button {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    place-content: space-around;
+}
+
+.hamb .hamb-line {
+    height: 2px;
+    width: 40px;
+    background-color: white;
+    transition: transform .3s ease-in;
+}
+
+.hamb[class*="active"] .hamb-line:nth-child(2) {
+    background: transparent;
+}
+
+.hamb[class*="active"] .hamb-line:nth-child(1) {
+    transform: rotate(-45deg);
+    position: absolute;
+}
+
+.hamb[class*="active"] .hamb-line:nth-child(3) {
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.hamb[class*="active"] .hamb-line::after {
+    transform: rotate(45deg);
+    top: 0;
 }
 
 .nav-buttons {
-    font-size: 20px;
-    display: flex;
+    background-color: black;
+    max-height: 380px;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+    transition: all .5s linear;
+    position: fixed;
+}
+
+.nav-buttons {
+    display: grid;
+}
+
+.nav-buttons li {
+    padding-left: 20px;
+    display: grid;
     align-items: center;
-    justify-content: right;
-    height: 100%;
 }
 
-.nav-button {
-    margin-left: 30px;
+.nav-buttons li {
+    cursor: pointer;
+    font-size: 1.5rem;
+
 }
 
-.nav-buttons a {
-    transition: all .1s ease-in;
+.nav-buttons li:hover a {
+    font-weight: bold;
 }
 
-.nav-buttons #name {
-    margin-right: auto;
+.hamb[class*="active"]~.nav-buttons {
+    height: 100vh;
 }
 
-.nav-buttons a:hover {
-    color: royalblue;
+
+.nav-buttons @media screen and (min-width:1200px) {
+    #header {
+        position: sticky;
+        height: var(--nav-bar-height);
+        top: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: 1;
+    }
+
+    .nav-bar {
+        height: var(--nav-bar-height);
+        z-index: 1;
+    }
+
+    .nav-buttons {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        height: 100%;
+    }
+
+    .nav-button {
+        margin-left: 30px;
+    }
+
+    .nav-buttons a {
+        transition: all .1s ease-in;
+    }
+
+    .nav-buttons #name {
+        margin-right: auto;
+    }
+
+    .nav-buttons a:hover {
+        color: royalblue;
+    }
 }
+
 
 /*----------------------------------------------------------------------------------
 socialMediaBar

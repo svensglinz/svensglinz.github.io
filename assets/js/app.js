@@ -297,3 +297,12 @@ observeIntersection("fade-in", "fadeIn", "0px");
 includeFile(fileName = '/header.html', idName = 'header');
 includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
 
+
+hambMenuClick = function () {
+    const hambMenu = document.querySelector(".hamb");
+    if (hambMenu.classList.contains("active")) {
+        hambMenu.classList.remove("active");
+    } else {
+        hambMenu.classList.add("active");
+    }
+}
