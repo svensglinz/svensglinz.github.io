@@ -28,6 +28,7 @@ general formatting
 ----------------------------------------------------------------------------------*/
 
 body {
+    background-color: black;
     display: grid;
     grid-template-areas:
         "nav"
@@ -48,7 +49,7 @@ body>#social-media-bar {
 }
 
 main {
-    width: 85%;
+    padding: 0 7.5%;
     margin: 0 auto;
 }
 
@@ -126,10 +127,10 @@ section {
         min-width: calc(.75*1200px);
         width: 70%;
         max-width: 1170px;
-
     }
 }
 
+/*
 #background {
     height: 100vh;
     width: 100vw;
@@ -139,12 +140,13 @@ section {
     position: fixed;
     z-index: -1;
 }
-
+*/
 @media screen and (min-device-width: 768px) {
+    /*
     #background {
         background-image: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url('/assets/images/website_backround_1.jpg');
     }
-
+*/
 }
 
 section .title {
@@ -218,7 +220,6 @@ p {
     transition: all .3s ease-in-out;
 }
 
-
 .section-title {
     font-family: Arial;
     text-align: center;
@@ -261,17 +262,42 @@ section>.title {
     margin-bottom: var(--section-title-margin);
 }
 
+section {
+    z-index: 1;
+}
 
 /*----------------------------------------------------------------------------------
 Start Page
 ----------------------------------------------------------------------------------*/
+
+.start-bg {
+    background-image: url("/assets/images/website_backround_1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    position: absolute;
+    width: 100vw;
+    height: 120%;
+    z-index: -1;
+}
+
+.start-bg::before {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
 .start-page {
+    position: relative;
     display: grid;
     place-items: center;
     text-align: justify;
     max-height: 90vh;
     height: 90vh;
     min-height: 0;
+    z-index: 0;
     grid: repeat(2, minmax(0, 1fr)) / 100%;
 }
 
@@ -290,7 +316,7 @@ Start Page
     animation: zoomInOnLoad 2s both;
     grid-column: 1;
     grid-row: 1 / span 2;
-    opacity: .85 !important;
+    opacity: 1 !important;
     z-index: -1;
 }
 
@@ -799,12 +825,12 @@ navBar
     display: block;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 10;
 }
 
 .hamb {
     display: flex;
-    padding: 0 10px;
+    padding: 25px;
     flex-direction: row;
     place-content: space-between;
     height: 50px;
@@ -819,115 +845,140 @@ navBar
 }
 
 .hamb-button {
-    cursor: pointer;
     display: flex;
+    place-self: center;
+    width: 45px;
+    height: 30px;
+    cursor: pointer;
     flex-direction: column;
-    place-content: space-around;
+    justify-content: space-between;
+    place-items: center;
 }
 
 .hamb .hamb-line {
-    height: 2px;
-    width: 40px;
-    background-color: white;
-    transition: transform .3s linear;
+    border-radius: 10px;
+    border: 2px solid white;
+    width: 100%;
+    background: white;
+    transition: all .2s linear;
 }
 
 .hamb[class*="active"] .hamb-line:nth-child(2) {
-    background: transparent;
+    opacity: 0;
+    width: 0;
+}
+
+.hamb-line:nth-child(1) {
+    transform-origin: right;
+}
+
+.hamb-line:nth-child(3) {
+    transform-origin: right;
 }
 
 .hamb[class*="active"] .hamb-line:nth-child(1) {
-    transform: rotate(-45deg);
-    position: absolute;
+    transform: translateX(-4px) rotate(-45deg);
+    width: 78%;
 }
 
 .hamb[class*="active"] .hamb-line:nth-child(3) {
-    transform: rotate(45deg);
-    position: absolute;
-}
+    transform: translateX(-4px) rotate(45deg);
+    width: 78%;
 
-.hamb[class*="active"] .hamb-line::after {
-    transform: rotate(45deg);
-    top: 0;
 }
 
 .nav-buttons {
+    padding-top: 30px;
     background-color: black;
     max-height: 380px;
     height: 0;
     width: 100%;
     overflow: hidden;
-    transition: all .5s linear;
+    transition: all .3s linear;
     position: fixed;
 }
 
-.nav-buttons {
-    display: grid;
-}
-
-.nav-buttons li {
+.nav-buttons li a {
     padding-left: 20px;
-    display: grid;
-    align-items: center;
+    text-transform: uppercase;
 }
 
 .nav-buttons li {
-    margin: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
+    list-style: none;
+    opacity: 0;
+    transform: translateX(-50px);
+    margin: 20px 10px;
     cursor: pointer;
     font-size: 2.2rem;
-
 }
 
 @media (hover: hover) {
-    .nav-buttons li:hover {
-        border: 1px solid grey;
+    .nav-buttons li:hover a {
+        font-weight: bold;
     }
-
 }
 
 .hamb[class*="active"]~.nav-buttons {
     height: 100vh;
 }
 
+.hamb[class*="active"]~.nav-buttons li {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform .5s linear, opacity .5s ease-in-out;
+    transition-delay: .3s;
+}
 
-.nav-buttons @media screen and (min-width:1200px) {
-    #header {
-        position: sticky;
-        height: var(--nav-bar-height);
-        top: 0;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
-        z-index: 1;
-    }
+@media screen and (min-width:900px) {
 
     .nav-bar {
-        height: var(--nav-bar-height);
-        z-index: 1;
+        width: 100vw;
+        /*fix this!*/
+    }
+
+    .hamb {
+        display: none;
     }
 
     .nav-buttons {
-        font-size: 20px;
+        margin: 0 auto;
         display: flex;
+        border-bottom: grey 1px solid;
+        padding-top: 0;
+        justify-content: flex-end;
         align-items: center;
-        justify-content: right;
-        height: 100%;
+        max-height: 100px;
+        height: 50px;
+        width: 50%;
+        position: sticky;
+        top: 0;
+        z-index: 1;
     }
 
-    .nav-button {
-        margin-left: 30px;
+    .nav-bar-name-wide {
+        margin-right: auto !important;
     }
 
-    .nav-buttons a {
-        transition: all .1s ease-in;
+    .nav-buttons li a {
+        padding-left: 0;
+        text-transform: uppercase;
     }
 
-    .nav-buttons #name {
-        margin-right: auto;
+    .nav-buttons li {
+        list-style: none;
+        opacity: 1;
     }
 
-    .nav-buttons a:hover {
-        color: royalblue;
+    .nav-buttons li a {
+        padding-left: 20px;
+        text-transform: initial;
+    }
+
+    .nav-buttons li {
+        opacity: 1;
+        transform: translateX(0);
+        margin: 20px 10px;
+        font-size: 2.2rem;
     }
 }
 
@@ -966,7 +1017,6 @@ socialMediaBar
 
 .social-media-bar .download-cv p {
     font-size: 2.5rem;
-    font-family: Permanent Marker;
 }
 
 .icons svg {
