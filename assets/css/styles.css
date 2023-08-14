@@ -762,34 +762,34 @@ Recent Projects
 /*----------------------------------------------------------------------------------
 get in touch
 ----------------------------------------------------------------------------------*/
-
 .get-in-touch h2 {
+    text-align: center;
     margin: 0;
-    grid-row: 1;
-    grid-column: 2;
 }
 
 .phone-picture {
-    max-width: 100%;
+    position: relative;
+    height: 80vh;
+    max-height: 800px;
+    float: right;
+    right: -60%;
+    width: auto;
     z-index: -1;
-    grid-row: 1/ span 2;
-    grid-column: 1;
+    /*shift shape by 40% towards the right*/
+    shape-outside: polygon(62.03% 20.33%, 84.69% 10.44%, 84.56% 95.66%, 65.18% 70.92%, 57.60% 47.11%);
 }
 
 .get-in-touch {
-    place-items: center;
-    width: 90%;
-    margin: 0 auto;
-    display: grid;
-    grid: repeat(2, 1fr) / 1fr 1fr;
+    display: flow-root;
+    position: relative;
     min-height: auto;
+    height: calc(100vh - 150px);
+    margin-bottom: 0;
 }
 
-.get-in-touch .text {
+.get-in-touch .text p {
     font-size: 1.8rem;
-    text-align: center;
-    grid-row: 2;
-    grid-column: 1 / span 2;
+    padding-top: 30%;
 }
 
 @media only screen and (min-width: 768px) {
@@ -983,7 +983,7 @@ socialMediaBar
 ----------------------------------------------------------------------------------*/
 
 .social-media-bar {
-    margin-top: 15px;
+    margin-top: 0px;
     margin-bottom: 30px;
 }
 
@@ -999,7 +999,7 @@ socialMediaBar
 .icons svg {
     fill: white;
     width: auto;
-    height: 4rem;
+    height: 40px;
 }
 
 .social-media-bar svg:hover {

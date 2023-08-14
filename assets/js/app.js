@@ -34,7 +34,7 @@ function observeIntersection(className, addClass, rootMargin) {
             const topOffset = entry.boundingClientRect.top;
 
             //animation is only added if element enters the screen from the bottom (ie. user scrolls up)
-            if (intersecting && topOffset > 0) {
+            if (intersecting) {
                 entry.target.classList.add(addClass);
 
                 //animation class is only removed if element leaves screen to the bottom (ie. user scrolls up)
@@ -291,7 +291,6 @@ smartphone_screen.addEventListener("change", (event) => {
 observeIntersection("download-cv", "test", "0px");
 observeIntersection("expand", "expandBars", "0px");
 observeIntersection("fade-in", "fadeIn", "0px");
-
 
 // Call the function to include the header on each page
 includeFile(fileName = '/header.html', idName = 'header');
