@@ -297,20 +297,28 @@ includeFile(fileName = '/header.html', idName = 'header');
 includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
 
 
-hambMenuClick = function () {
-    const hambMenu = document.querySelector(".hamb");
-    if (hambMenu.classList.contains("active")) {
-        hambMenu.classList.remove("active");
+expandDropDown = function (idName) {
+    const elem = document.getElementById(idName);
+    if (elem.classList.contains("active")) {
+        elem.classList.remove("active");
     } else {
-        hambMenu.classList.add("active");
+        elem.classList.add("active");
     }
 }
 
-// problem ££> Body has margins !!! (so should maybe add paddings???)
-document.querySelector("main").addEventListener("click", function (event) {
-    const hambMenu = document.querySelector(".hamb");
-
-    if (hambMenu.classList.contains("active")) {
-        hambMenu.classList.remove("active");
+expandNav = function () {
+    const elem = document.querySelector(".hamb");
+    if (elem.classList.contains("active")) {
+        elem.classList.remove("active");
+    } else {
+        elem.classList.add("active");
     }
-});
+}
+
+expandSubNav = function (containingElem) {
+    if (containingElem.classList.contains("active")) {
+        containingElem.classList.remove("active");
+    } else {
+        containingElem.classList.add("active");
+    }
+}

@@ -889,6 +889,11 @@ navBar
     width: 80%;
 }
 
+/*for main and sub-dropdown lists*/
+.nav-bar ul {
+    padding: 0 20px;
+}
+
 .nav-buttons {
     background-color: black;
     max-height: 380px;
@@ -899,9 +904,12 @@ navBar
     position: fixed;
 }
 
-.nav-buttons li a {
-    padding-left: 20px;
+.nav-buttons .text {
     text-transform: uppercase;
+}
+
+.nav-buttons .text {
+    font-size: 2.2rem;
 }
 
 .nav-buttons li {
@@ -910,7 +918,40 @@ navBar
     transform: translateX(-50px);
     margin: 20px 10px;
     cursor: pointer;
-    font-size: 2.2rem;
+}
+
+.nav-buttons .dropdown ul li {
+    font-size: 1.6rem;
+}
+
+/*fix this with JS */
+.nav-buttons li[class="dropdown"] .text::after {
+    float: right;
+    color: white;
+    font-size: 30px;
+    content: "+";
+}
+
+.nav-buttons li[class*="active"] .text::after {
+    float: right;
+    color: white;
+    font-size: 30px;
+    content: "-";
+}
+
+.dropdown ul {
+    padding-left: 10px;
+    height: 0;
+    /*fix for transitioning to auto dimension*/
+    max-height: 0px;
+    transition: all .3s linear;
+    overflow: hidden;
+}
+
+.nav-buttons .dropdown[class*="active"] ul {
+    height: auto;
+    /*fix for transitioning to auto dimension*/
+    max-height: 100vh;
 }
 
 @media (hover: hover) {
@@ -920,6 +961,7 @@ navBar
 }
 
 .hamb[class*="active"]~.nav-buttons {
+    overflow: scroll;
     height: 100vh;
 }
 
@@ -988,6 +1030,14 @@ navBar
 socialMediaBar
 ----------------------------------------------------------------------------------*/
 
+.social-media-bar .copy p {
+    z-index: 10;
+    border: 2px solid red;
+    height: 12px;
+    color: white !important;
+    font-size: 1.2rem;
+}
+
 .social-media-bar {
     margin-top: 0px;
     margin-bottom: 30px;
@@ -998,17 +1048,16 @@ socialMediaBar
     width: 65%;
     margin: 0 auto;
     display: grid;
+    place-content: center;
     grid: auto/ repeat(4, 1fr);
-    place-items: center;
 }
 
 .icons svg {
-    fill: white;
     width: auto;
-    height: 40px;
+    height: 25px;
 }
 
-.social-media-bar svg:hover {
+.icons svg:hover {
     cursor: pointer;
     transform: scale(1.1);
     transition: .3s ease-in-out;
