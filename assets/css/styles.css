@@ -62,7 +62,7 @@ section {
     align-content: center;
     min-height: 100vh;
     height: max-content;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
 }
 
 /*prevent the min-height from becoming larger than 1000px*/
@@ -143,7 +143,7 @@ section {
 */
 }
 
-section .title {
+.section-title {
     text-align: center;
 }
 
@@ -174,14 +174,15 @@ h1 {
 }
 
 h2 {
-    font-size: 3.5rem;
+    font-size: 3rem;
 }
 
 h3 {
-    font-size: 2rem;
+    font-size: 1.9rem;
 }
 
-p {
+p,
+li {
     font-size: 1.6rem;
     line-height: 2.2rem;
     font-weight: 300;
@@ -218,7 +219,7 @@ p {
     font-family: Arial;
     text-align: center;
     justify-self: center;
-    margin-bottom: var(--section-title-margin);
+    margin-bottom: 40px;
 }
 
 .subsection {
@@ -252,8 +253,9 @@ a:hover {
     object-fit: cover;
 }
 
-section>.title {
-    margin-bottom: var(--section-title-margin);
+.section-title {
+    margin-bottom: 50px;
+    font-family: 'Abhaya Libre' !important;
 }
 
 /*----------------------------------------------------------------------------------
@@ -367,7 +369,7 @@ Section: Education and Career
     text-align: center;
 }
 
-.education-and-career .title {
+.education-and-career .section-title {
     text-align: center;
 }
 
@@ -381,7 +383,7 @@ Section: Education and Career
         grid: repeat(3, auto) / 100%;
     }
 
-    .education-and-career .title {
+    .education-and-career .section-title {
         grid-row: 1;
         grid-column: 1;
         justify-self: start;
@@ -484,7 +486,7 @@ Subsection: Career
 
 .career-item .title {
     margin: var(--horiz-margin) auto;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 /* blue circle below entries*/
@@ -597,7 +599,6 @@ Skills
     display: grid;
     grid: repeat(2, 1fr) / 100%;
     gap: 8px;
-    font-size: 18px;
 }
 
 /*add bars*/
@@ -632,8 +633,7 @@ Skills
 }
 
 .skills-container .further ul li {
-    font-size: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .skills-container .further ul {
@@ -662,12 +662,17 @@ Recent Projects
 .recent-projects {
     --tile-border-radius: 8px;
     width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     display: grid;
     grid: auto repeat(3, 200px) auto / 100%;
     gap: 3%;
-    place-content: center;
+}
+
+.recent-projects .section-title {
+    color: white;
+    place-self: center;
+    margin: 0;
+    grid-row: 1;
 }
 
 .recent-projects .project-tile {
@@ -680,7 +685,6 @@ Recent Projects
     display: grid;
     grid: 1fr auto / 1fr;
 }
-
 
 .project-tile .background-image {
     grid-row: 1 / span 2;
@@ -725,6 +729,7 @@ Recent Projects
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.65) 15%, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0) 100%);
 }
 
+
 @media screen and (min-width: 768px) {
 
     .recent-projects {
@@ -766,7 +771,7 @@ get in touch
 .get-in-touch {
     position: relative;
     min-height: auto;
-    height: calc(90vh - 150px);
+    height: calc(95vh - 150px);
     margin-bottom: 0;
 }
 
@@ -780,6 +785,7 @@ get in touch
 }
 
 .phone-picture {
+    opacity: .6;
     width: 50%;
     position: relative;
     padding-left: 10px;
@@ -788,7 +794,6 @@ get in touch
     max-height: 800px;
     float: right;
     z-index: -1;
-    /*shift shape by 40% towards the right*/
     shape-outside: polygon(4.21% 21.81%, 46.57% 0.9%, 37.53% 101.46%, 9.27% 71.25%, 0.41% 45.97%);
 }
 
@@ -804,7 +809,7 @@ get in touch
         text-align: center;
     }
 
-    .get-in-touch .title {
+    .get-in-touch .section-title {
         grid-column: 2;
     }
 
@@ -829,7 +834,7 @@ navBar
 
 .hamb {
     display: flex;
-    padding: 25px;
+    padding: 30px;
     flex-direction: row;
     place-content: space-between;
     height: 50px;
@@ -839,11 +844,6 @@ navBar
     align-self: center;
 }
 
-.nav-bar-name p {
-    line-height: 40px;
-    font-size: 2.2rem;
-}
-
 .nav-bar-name-wide {
     display: none;
 }
@@ -851,8 +851,8 @@ navBar
 .hamb-button {
     display: flex;
     place-self: center;
-    width: 45px;
-    height: 30px;
+    width: 40px;
+    height: 25px;
     cursor: pointer;
     flex-direction: column;
     justify-content: space-between;
@@ -860,32 +860,33 @@ navBar
 }
 
 .hamb .hamb-line {
-    border-radius: 10px;
-    border: 2px solid white;
+    border: 1px solid white;
     width: 100%;
     background: white;
     transition: all .2s linear;
 }
 
 .hamb[class*="active"] .hamb-line:nth-child(2) {
+    transform: scale(2);
     opacity: 0;
-    width: 0;
 }
 
 .hamb-line:nth-child(1) {
-    transform-origin: center;
+    transform-origin: center center;
 }
 
 .hamb-line:nth-child(3) {
-    transform-origin: center;
+    transform-origin: center center;
 }
 
 .hamb[class*="active"] .hamb-line:nth-child(1) {
-    transform: translateY(12px) rotate(-45deg);
+    transform: translateY(10px) rotate(-45deg);
+    width: 80%;
 }
 
 .hamb[class*="active"] .hamb-line:nth-child(3) {
-    transform: translateY(-13px) rotate(45deg);
+    transform: translateY(-12px) rotate(45deg);
+    width: 80%;
 }
 
 .nav-buttons {
@@ -1453,7 +1454,7 @@ Individual Posts styling
     color: black !important;
 }
 
-section .section-title {
+sectionTHERE .section-title {
     color: black;
     border-bottom: 1px rgb(162, 161, 161) solid;
 }
