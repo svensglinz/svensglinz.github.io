@@ -764,10 +764,9 @@ get in touch
 ----------------------------------------------------------------------------------*/
 
 .get-in-touch {
-    display: flow-root;
     position: relative;
     min-height: auto;
-    height: calc(100vh - 150px);
+    height: calc(90vh - 150px);
     margin-bottom: 0;
 }
 
@@ -776,23 +775,25 @@ get in touch
     margin: 0;
 }
 
+.get-in-touch div {
+    margin-top: 20%;
+}
+
 .phone-picture {
     width: 50%;
     position: relative;
-    right: -10%;
+    padding-left: 10px;
     top: 10%;
     height: auto;
     max-height: 800px;
     float: right;
     z-index: -1;
     /*shift shape by 40% towards the right*/
-    shape-outside: polygon(25.01% 24.06%, 52.12% 10.74%, 44.36% 107.09%, 17.36% 73.22%, 11.05% 44%);
-
+    shape-outside: polygon(4.21% 21.81%, 46.57% 0.9%, 37.53% 101.46%, 9.27% 71.25%, 0.41% 45.97%);
 }
 
-.get-in-touch .text p {
-    font-size: 1.8rem;
-    padding-top: 30%;
+.get-in-touch div p {
+    padding-top: 0px;
 }
 
 @media only screen and (min-width: 768px) {
