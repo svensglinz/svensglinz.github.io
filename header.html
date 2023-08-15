@@ -4,7 +4,7 @@
         <div class="nav-bar-name">
             <p class="font-bold">Sven Glinz</p>
         </div>
-        <div onclick="hambMenuClick()" class="hamb-button">
+        <div onclick="expandNav()" class="hamb-button">
             <span class="hamb-line"></span>
             <span class="hamb-line"></span>
             <span class="hamb-line"></span>
@@ -12,10 +12,27 @@
     </div>
     <ul class="nav-buttons">
         <li class="nav-bar-name-wide"><a>Sven Glinz</a></li>
-        <li><a href="#my-education-and-career">Education & Career</a></li>
-        <li><a href="#my-skills">Skills</a></li>
-        <li> <a href="#projects">Projects</a></li>
-        <li> <a href="#contact">Contact</a></li>
-        <li><a href="#">Download CV</a></li>
+        <li><a class="text" href="#my-education-and-career">Education & Career</a></li>
+        <li><a class="text" href="#my-skills">Skills</a></li>
+        <li> <a class="text" href="#projects">Projects</a></li>
+        <li class="dropdown" onclick="expandSubNav(this)">
+            <p class="text">Contact</p>
+            <!--sub-drop-down-menu-->
+            <ul>
+                <li>Linkedin</li>
+                <li>E-Mail</li>
+                <li>GitHub</li>
+            </ul>
+        </li>
+        <li class="dropdown" onclick="expandSubNav(this)">
+            <a class="text" href="#">Download CV</a>
+            <ul>
+                <li>Test 2</li>
+                <li>Test 3</li>
+            </ul>
+        </li>
+
+    </ul>
+    </li>
     </ul>
 </div>
