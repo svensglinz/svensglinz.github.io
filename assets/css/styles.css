@@ -762,22 +762,6 @@ Recent Projects
 /*----------------------------------------------------------------------------------
 get in touch
 ----------------------------------------------------------------------------------*/
-.get-in-touch h2 {
-    text-align: center;
-    margin: 0;
-}
-
-.phone-picture {
-    position: relative;
-    height: 80vh;
-    max-height: 800px;
-    float: right;
-    right: -60%;
-    width: auto;
-    z-index: -1;
-    /*shift shape by 40% towards the right*/
-    shape-outside: polygon(62.03% 20.33%, 84.69% 10.44%, 84.56% 95.66%, 65.18% 70.92%, 57.60% 47.11%);
-}
 
 .get-in-touch {
     display: flow-root;
@@ -785,6 +769,25 @@ get in touch
     min-height: auto;
     height: calc(100vh - 150px);
     margin-bottom: 0;
+}
+
+.get-in-touch h2 {
+    text-align: center;
+    margin: 0;
+}
+
+.phone-picture {
+    width: 50%;
+    position: relative;
+    right: -10%;
+    top: 10%;
+    height: auto;
+    max-height: 800px;
+    float: right;
+    z-index: -1;
+    /*shift shape by 40% towards the right*/
+    shape-outside: polygon(25.01% 24.06%, 52.12% 10.74%, 44.36% 107.09%, 17.36% 73.22%, 11.05% 44%);
+
 }
 
 .get-in-touch .text p {
@@ -836,6 +839,7 @@ navBar
 }
 
 .nav-bar-name p {
+    line-height: 40px;
     font-size: 2.2rem;
 }
 
