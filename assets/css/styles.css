@@ -771,7 +771,7 @@ get in touch
 .get-in-touch {
     position: relative;
     min-height: auto;
-    height: calc(95vh - 150px);
+    height: calc(90vh - 150px);
     margin-bottom: 0;
 }
 
@@ -1031,30 +1031,31 @@ socialMediaBar
 ----------------------------------------------------------------------------------*/
 
 .social-media-bar .copy p {
-    z-index: 10;
-    border: 2px solid red;
-    height: 12px;
-    color: white !important;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+}
+
+.social-media-bar .copy {
+    margin-top: 15px;
 }
 
 .social-media-bar {
     margin-top: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
 .social-media-bar .icons {
     border-bottom: 1.5px solid royalblue;
-    width: 65%;
+    width: 70%;
     margin: 0 auto;
     display: grid;
     place-content: center;
+    place-items: center;
     grid: auto/ repeat(4, 1fr);
 }
 
 .icons svg {
     width: auto;
-    height: 25px;
+    height: 30px;
 }
 
 .icons svg:hover {

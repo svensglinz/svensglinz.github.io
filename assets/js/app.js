@@ -297,16 +297,16 @@ includeFile(fileName = '/header.html', idName = 'header');
 includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
 
 
-expandDropDown = function (idName) {
-    const elem = document.getElementById(idName);
-    if (elem.classList.contains("active")) {
-        elem.classList.remove("active");
-    } else {
-        elem.classList.add("active");
-    }
-}
-
+// Functions to control expansion of Navigation Bar
 expandNav = function () {
+
+    // remove clas active from all sub dropdown menus
+    const dropdownElems = document.querySelector(".nav-bar").querySelectorAll(".dropdown");
+
+    for (let i = 0; i < dropdownElems.length; i++) {
+        dropdownElems[i].classList.remove("active");
+    }
+
     const elem = document.querySelector(".hamb");
     if (elem.classList.contains("active")) {
         elem.classList.remove("active");
@@ -316,9 +316,9 @@ expandNav = function () {
 }
 
 expandSubNav = function (containingElem) {
-    if (containingElem.classList.contains("active")) {
-        containingElem.classList.remove("active");
+    if (containingElem.parentElement.classList.contains("active")) {
+        containingElem.parentElement.classList.remove("active");
     } else {
-        containingElem.classList.add("active");
+        containingElem.parentElement.classList.add("active");
     }
 }
