@@ -315,10 +315,28 @@ expandNav = function () {
     }
 }
 
-expandSubNav = function (containingElem) {
-    if (containingElem.parentElement.classList.contains("active")) {
-        containingElem.parentElement.classList.remove("active");
-    } else {
-        containingElem.parentElement.classList.add("active");
+
+headerFun = function () {
+    const dropDownElem = document.querySelector(".nav-bar").querySelectorAll(".dropdown");
+
+    expandSubNav = function () {
+        console.log("clicked" + this);
+        if (this.parentElement.classList.contains("active")) {
+            this.parentElement.classList.remove("active");
+        } else {
+            this.parentElement.classList.add("active");
+        }
     }
+
+    // add click event listener to dropdown buttons
+    for (let i = 0; i < dropDownElem.length; i++) {
+        dropDownElem[i].children.item("a").addEventListener("click", expandSubNav);
+    }
+
 }
+
+// NAVBAR MENU
+setTimeout(
+    headerFun,
+    500
+);

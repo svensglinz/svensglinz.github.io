@@ -866,7 +866,7 @@ navBar
     transition: all .2s linear;
 }
 
-.hamb[class*="active"] .hamb-line:nth-child(2) {
+.hamb.active .hamb-line:nth-child(2) {
     transform: scale(2);
     opacity: 0;
 }
@@ -879,19 +879,19 @@ navBar
     transform-origin: center center;
 }
 
-.hamb[class*="active"] .hamb-line:nth-child(1) {
+.hamb.active .hamb-line:nth-child(1) {
     transform: translateY(10px) rotate(-45deg);
     width: 80%;
 }
 
-.hamb[class*="active"] .hamb-line:nth-child(3) {
+.hamb.active .hamb-line:nth-child(3) {
     transform: translateY(-12px) rotate(45deg);
     width: 80%;
 }
 
 /*for main and sub-dropdown lists*/
 .nav-bar ul {
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .nav-buttons {
@@ -904,14 +904,6 @@ navBar
     position: fixed;
 }
 
-.nav-buttons .text {
-    text-transform: uppercase;
-}
-
-.nav-buttons .text {
-    font-size: 2.2rem;
-}
-
 .nav-buttons li {
     list-style: none;
     opacity: 0;
@@ -920,35 +912,33 @@ navBar
     cursor: pointer;
 }
 
-.nav-buttons .dropdown ul li {
-    font-size: 1.6rem;
+.nav-buttons>li a {
+    text-transform: uppercase;
 }
 
-/*fix this with JS */
-.nav-buttons li[class="dropdown"] .text::after {
+.nav-buttons .dropdown>a::after {
     float: right;
     color: white;
     font-size: 30px;
     content: "+";
 }
 
-.nav-buttons li[class*="active"] .text::after {
+.nav-buttons .dropdown.active>a::after {
     float: right;
     color: white;
     font-size: 30px;
     content: "-";
 }
 
-.dropdown ul {
-    padding-left: 10px;
+.nav-buttons .dropdown>ul {
     height: 0;
     /*fix for transitioning to auto dimension*/
     max-height: 0px;
-    transition: all .3s linear;
+    transition: max-height 1s linear;
     overflow: hidden;
 }
 
-.nav-buttons .dropdown[class*="active"] ul {
+.nav-buttons .dropdown.active>ul {
     height: auto;
     /*fix for transitioning to auto dimension*/
     max-height: 100vh;
@@ -960,12 +950,12 @@ navBar
     }
 }
 
-.hamb[class*="active"]~.nav-buttons {
+.hamb.active~.nav-buttons {
     overflow: scroll;
     height: 100vh;
 }
 
-.hamb[class*="active"]~.nav-buttons li {
+.hamb.active~.nav-buttons li {
     transform: translateX(0);
     opacity: 1;
     transition: transform .5s linear, opacity .5s ease-in-out;
@@ -1030,20 +1020,14 @@ navBar
 socialMediaBar
 ----------------------------------------------------------------------------------*/
 
-.social-media-bar .copy p {
-    font-size: 1.4rem;
-}
-
-.social-media-bar .copy {
-    margin-top: 15px;
-}
-
 .social-media-bar {
+    background-color: white;
     margin-top: 0px;
-    margin-bottom: 60px;
+    padding-bottom: 10px;
 }
 
 .social-media-bar .icons {
+    padding: 10px 0;
     border-bottom: 1.5px solid royalblue;
     width: 70%;
     margin: 0 auto;
@@ -1054,8 +1038,9 @@ socialMediaBar
 }
 
 .icons svg {
+    fill: black;
     width: auto;
-    height: 30px;
+    height: 25px;
 }
 
 .icons svg:hover {
@@ -1129,7 +1114,7 @@ socialMediaBar
     transition: all .2s ease-in;
 }
 
-.scroll-dot[class*="active"] {
+.scroll-dot.active {
     background-color: royalblue;
     opacity: 1;
 }
