@@ -364,17 +364,18 @@ const body = document.getElementsByTagName("body");
 const text1 = document.getElementById("text-1");
 const text2 = document.getElementById("text-2");
 const text3 = document.getElementById("text-3");
-startText = document.querySelector(".start-picture");
+startText = document.querySelector(".test-picture");
 
 document.addEventListener('scroll', function () {
     scrollPos = window.scrollY;
-    startText.style.top = `${scrollPos / 1.4}px`;
+    startText.style.transform = `translateY(${-scrollPos / 5}px)`;
+    startText.style.opacity = 1 - scrollPos / 1000;
     offset_text1 = window.innerHeight - text1.getBoundingClientRect().top;
     offset_text2 = window.innerHeight - text2.getBoundingClientRect().top;
 
-    a = Math.max(0 - window.scrollY / 3.5, 0) + "px";
-    b = Math.max(offset_text1 - window.scrollY / 3.5, 0) + "px";
-    c = Math.max(offset_text1 + Math.max(offset_text2, 0) - window.scrollY / 3.5, 0) + "px";
+    a = Math.max(0 - window.scrollY / 2, 0) + "px";
+    b = Math.max(offset_text1 - window.scrollY / 2, 0) + "px";
+    c = Math.max(offset_text1 + Math.max(offset_text2, 0) - window.scrollY / 2, 0) + "px";
     text1.style.top = a;
     text2.style.top = b;
     text3.style.top = c;
