@@ -320,10 +320,15 @@ headerFun = function () {
     const dropDownElem = document.querySelector(".nav-bar").querySelectorAll(".dropdown");
 
     expandSubNav = function () {
-        console.log("clicked" + this);
         if (this.parentElement.classList.contains("active")) {
+            // close all subsequent active lists
             this.parentElement.classList.remove("active");
+            const allLists = this.parentElement.querySelectorAll(".dropdown");
+            for (let i = 0; i < allLists.length; i++) {
+                allLists[i].classList.remove("active");
+            }
         } else {
+            // add active only to clicked list
             this.parentElement.classList.add("active");
         }
     }
@@ -332,11 +337,45 @@ headerFun = function () {
     for (let i = 0; i < dropDownElem.length; i++) {
         dropDownElem[i].children.item("a").addEventListener("click", expandSubNav);
     }
-
 }
 
 // NAVBAR MENU
 setTimeout(
     headerFun,
-    500
+    1000
 );
+
+// send scroll position to css for background overlay // get intersection ratio and set
+// opacity like this!
+const startImage = document.querySelector(".start-image");
+const startSection = document.querySelector(".start-page");
+
+sendPosition = function () {
+    const windowScoll = window.scrollY;
+    const elemHeight = startSection.clientHeight;
+    const ratio = windowScoll / elemHeight;
+    console.log(ratio);
+    startImage.style.setProperty('--scroll', ratio);
+}
+
+const startPage = document.querySelector(".start-page");
+const body = document.getElementsByTagName("body");
+
+const text1 = document.getElementById("text-1");
+const text2 = document.getElementById("text-2");
+const text3 = document.getElementById("text-3");
+startText = document.querySelector(".start-picture");
+
+document.addEventListener('scroll', function () {
+    scrollPos = window.scrollY;
+    startText.style.top = `${scrollPos / 1.4}px`;
+    offset_text1 = window.innerHeight - text1.getBoundingClientRect().top;
+    offset_text2 = window.innerHeight - text2.getBoundingClientRect().top;
+
+    a = Math.max(0 - window.scrollY / 3.5, 0) + "px";
+    b = Math.max(offset_text1 - window.scrollY / 3.5, 0) + "px";
+    c = Math.max(offset_text1 + Math.max(offset_text2, 0) - window.scrollY / 3.5, 0) + "px";
+    text1.style.top = a;
+    text2.style.top = b;
+    text3.style.top = c;
+});
