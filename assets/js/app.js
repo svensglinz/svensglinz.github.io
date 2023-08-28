@@ -450,7 +450,7 @@ startPage.addEventListener('scroll', scrollHandler);
 startPage.addEventListener('touchmove', scrollHandler);
 startPage.addEventListener("scroll", setBgOpacity);
 
-document.documentElement.style.overflow = "hidden";
+// document.documentElement.style.overflow = "hidden";
 
 // set this at the beginning --> makes it possible to scroll ! only once the full scroll is done, make element responsive
 // set overflow to 0 in the main element!

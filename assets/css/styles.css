@@ -767,14 +767,20 @@ socialMediaBar
     padding: 0 5%;
 }
 
-.social-media-bar .blue-bg {
+.social-media-bar {
+    position: relative;
+    height: 45vh;
+}
+
+.blue-bg {
+    margin-top: 100px;
     content: "";
     position: absolute;
     bottom: 0;
-    clip-path: polygon(0% 80%, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0% 55%, 100% 0, 100% 100%, 0 100%);
     background: royalblue;
     width: 100%;
-    height: 100%;
+    height: 35vh;
     z-index: -1;
 }
 
@@ -785,21 +791,16 @@ socialMediaBar
 
 .text p {
     padding-left: 20px;
-    line-height: 1.2;
 }
 
 .shape {
     float: right;
     width: 100%;
     height: 100%;
-    clip-path: polygon(0% 80%, 100% 0, 100% 100%, 0 100%);
-    shape-outside: polygon(0% 80%, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0% 55%, 100% 0, 100% 100%, 0 100%);
+    shape-outside: polygon(0% 55%, 100% 0, 100% 100%, 0 100%);
 }
 
-.social-media-bar {
-    position: relative;
-    height: 50vh;
-}
 
 .social-media-bar .icons {
     position: absolute;
@@ -1499,7 +1500,7 @@ screen and (min-width: 768px) {
 
 @media screen and (min-width: 992px) {
     .social-media-bar {
-        position: fixed;
+        position: absolute;
         left: 0;
         top: 0;
         height: 100%;
