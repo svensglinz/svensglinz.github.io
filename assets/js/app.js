@@ -474,3 +474,43 @@ startPage.addEventListener("scroll", setBgOpacity);
 // set height of main element to 100vh! and overflow to visible in the beginning!
 
 // the back container cannot be scrolled BUT the container in front will be scrollable!!!
+
+
+function smoothScrollTo(targetElement) {
+    const startPosition = window.scrollY;
+    const targetPosition = targetElement.offsetTop;
+    const distance = targetPosition - startPosition;
+    const duration = 300; // Duration in milliseconds
+
+    let startTime = null;
+
+    function animationStep(timestamp) {
+        if (!startTime) startTime = timestamp;
+
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const interpolatedPosition = startPosition + distance * progress;
+
+        window.scrollTo(0, interpolatedPosition);
+
+        if (progress < 1) {
+            requestAnimationFrame(animationStep);
+        }
+    }
+
+    requestAnimationFrame(animationStep);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const links = document.querySelectorAll('.smooth-scroll');
+
+    links.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            smoothScrollTo(targetElement);
+        });
+    });
+});
