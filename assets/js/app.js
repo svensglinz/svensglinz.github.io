@@ -418,6 +418,8 @@ const scrollHandler = function () {
 
         // also make scrollbar invisible!
         document.removeEventListener("scroll", scrollHandler);
+        document.removeEventListener("touchmove", scrollHandler);
+
     }
 }
 
@@ -445,6 +447,7 @@ let startPageObserver = new IntersectionObserver((entries) => {
 
 startPageObserver.observe(startPage);
 startPage.addEventListener('scroll', scrollHandler);
+startPage.addEventListener('touchmove', scrollHandler);
 startPage.addEventListener("scroll", setBgOpacity);
 
 document.documentElement.style.overflow = "hidden";

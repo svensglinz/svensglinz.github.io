@@ -198,6 +198,8 @@ section {
 
 /*as soon as buffer section hits the top, remove sticky position and guide to regular flow!*/
 .start-page {
+    padding: 0 5%;
+    margin: 0;
     width: 100vw;
     min-height: 100vh;
     overflow: scroll;
@@ -761,8 +763,9 @@ navBar
 /*----------------------------------------------------------------------------------
 socialMediaBar
 ----------------------------------------------------------------------------------*/
-
-
+#social-media-bar h2 {
+    padding: 0 5%;
+}
 
 .social-media-bar .blue-bg {
     content: "";
