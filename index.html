@@ -27,50 +27,44 @@
 </head>
 
 <body class="index">
-    <div id="social-media-bar"></div>
     <!--insert header-->
     <div id="header"></div>
-    <!--wrapper to prevent overflow on mobile devices-->
-    <div> <!--removed overflow hidden for sticky positioning!!!-->
+    <div>
+        <div class="start-image"></div>
         <main>
-            <div id="social-media-bar"></div>
             <section class="start-page">
-                <div class="start-image"></div>
-                <div class="start-text">
-                    <h1>Hi, I'm Sven</h1>
-                    <br>
-                    <div id="text-1">
-                        <p>
-                            A former Economics Student, who decided to follow his
-                            fascination for technology and is now studying towards a Computer Science Degree.
-                        </p>
-                    </div>
-                    <div id="text-2">
-                        <p>
-                            I have previous experience in Banking, Finance and Risk Management and am currently
-                            working as a Data Analyst where I mostly use R to analyze large datasets and generate
-                            insightful plots.
-                        </p>
-                    </div>
-                    <div id="text-3">
-                        <p>
-                            Below, you will find
-                        </p>
-                    </div>
-                    <br>
-                    <br>
-                    <div id="explore-more" class="click-element">
-                        <a href=#education-and-career>
-                            <p>Explore More</p>
-                        </a>
-                    </div>
-                </div>
                 <div class="start-picture">
                     <img class="test-picture" src="assets/images/blur_edges_2.png">
                 </div>
+                <div id="text-0">
+                    <h1 class="section-title">Hi, I'm Sven</h1>
+                    <p>
+                        A former Economics Student, who decided to follow his
+                        fascination for technology and is now studying towards a Computer Science Degree.
+                    </p>
+                </div>
+                <div id="text-1">
+                    <p>
+                        I have previous experience in Banking, Finance and Risk Management and am currently
+                        working as a Data Analyst where I mostly use R to analyze large datasets and generate
+                        insightful plots.
+                    </p>
+                </div>
+                <div id="text-2">
+                    <p>
+                        Below, you will find
+                    </p>
+                </div>
+                <br>
+                <br>
+                <div id="explore-more" class="click-element">
+                    <a href=#education-and-career>
+                        <p>Explore More</p>
+                    </a>
+                </div>
             </section>
             <section id="education-and-career" class="fade-in education-and-career">
-                <h2 class="section-title">Education and Career</h2>
+                <h2 class="section-title">About Me</h2>
                 <div class="click-element download-cv">
                     <a href="/docs/cv_sven.pdf" target="_blank">
                         <p>Download CV</p>
@@ -78,63 +72,65 @@
                 </div>
                 <div class="subsection education">
                     <h3 class="subsection-title">Education</h3>
-                    <div class="university-grid">
+                    <div class="university-grid fade-in">
                         <div class="university">
-                            <img alt="Logo University of St. Gallen" src="/assets/images/hsg_logo_white.png">
+                            <h3 class="description">B.A. HSG in Economics</h3>
+                            <p class="university-name">HSG, Switzerland</p>
                             <p class="year font-bold">2019-2023</p>
-                            <p class="univerity-name">HSG, Switzerland</p>
-                            <p class="description">B.A. HSG in Economics</p>
+                            <img alt="Logo University of St. Gallen" src="/assets/images/hsg_logo_white.png">
                         </div>
                         <div class="university">
-                            <img alt="Logo National Chengchi University" src="/assets/images/nccu_logo_white.png">
+                            <h3 class="description">Exchange Semester</h3>
+                            <p class="university-name">NCCU, Taiwan</p>
                             <p class="year font-bold">2022</p>
-                            <p class="univerity-name">NCCU, Taiwan</p>
-                            <p class="description">Exchange Semester</p>
+
+                            <img alt="Logo National Chengchi University" src="/assets/images/nccu_logo_white.png">
                         </div>
                         <div class="university">
-                            <img alt="Logo ETH Zurich" src="/assets/images/eth_logo_white.png">
+                            <h3 class="description">BSc Computer Scince</h3>
+                            <p class="university-name">ETH Zurich, Switzerland</p>
                             <p class="year font-bold">2023-2026</p>
-                            <p class="univerity-name">ETH Zurich, Switzerland</p>
-                            <p class="description">BSc Science</p>
+
+                            <img alt="Logo ETH Zurich" src="/assets/images/eth_logo_white.png">
                         </div>
                     </div>
                 </div>
                 <div class="subsection career">
-                    <h3 class="subsection-title">Career</h3>
-                    <div class="career-container">
+                    <h3 class="subsection-title">Experience</h3>
+                    <div class="career-container fade-in">
                         <div class="career-grid">
                             <div class="career-item">
                                 <h3 class="title font-bold">SGEPT</h3>
+                                <p class="location_time">St. Gallen, CH | Jan. 2023 - current </p>
                                 <p class="description">Junior Data Analyst</p>
-                                <p class="year">Jan 2023 -</p>
                             </div>
                             <div class="career-item">
                                 <h3 class="title font-bold">Mizuho Securities</h3>
+                                <p class="location_time">Frankfurt, DE & London, UK | Jul. 2022 - Aug. 2022</p>
                                 <p class="description">Summer Intern - FI Sales & Trading</p>
                                 </p>
-                                <p class="year">Jul 2022 - Aug 2022</p>
                             </div>
                             <div class="career-item">
                                 <h3 class="title font-bold">Eurex Clearing AG</h3>
+                                <p class="location_time">Frankfurt, DE | Aug. 2021 - Jan. 2022 </p>
                                 <p class="description">Intern - Risk Exposure Management</p>
-                                <p class="year">Aug 2021 - Jan 2022 </p>
                             </div>
                             <div class="career-item">
                                 <h3 class="title font-bold">Raiffeisen Switzerland</h3>
+                                <p class="location_time">St. Gallen, CH | Jul. 2020 - Jul. 2021 </p>
                                 <p class="description">Customer Support</p>
-                                <p class="year">Jul 2020-Jul 2021 </p>
                             </div>
                             <div class="career-item">
                                 <h3 class="title font-bold">UBS Switzerland AG</h3>
+                                <p class="location_time">St. Gallen, CH | Mar. 2018 - Sept. 2019</p>
                                 <p class="description">Junior Talent Trainee (BEM)</p>
-                                <p class="year">Mar 2018 - Sep 2019</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="skills" class="fade-in skills">
-                <h2 class="section-title">Skills</h2>
+                <h2 class="subsection-title">Skills</h2>
                 <img class="rotating-wheel" src="/assets/images/rotating_wheel.svg">
                 <div class="grid-container skills-container">
                     <div class="skill languages">
@@ -173,12 +169,14 @@
                     <div onclick="location.href = '/projects/us_election_financing.html'" id="project1"
                         class="project-tile scale-in">
                         <img src="/assets/images/election_funding_image.jpg" class="background-image full-size">
-                        <h3 class="project-title">US Election Analysis in R</h3>
+                        <div class="project-title"></div>
                     </div>
                     <div onclick="location.href = '/projects/us_election_financing.html'" id="project2"
                         class="project-tile scale-in">
                         <img src="/assets/images/option_post_picture.jpg" class="background-image full-size">
-                        <h3 class="project-title">An analysis of Margin Procyclicality</h3>
+                        <div class="project-title">
+                            <h3>An analysis of Margin Procyclicality</h3>
+                        </div>
                     </div>
                     <div onclick="location.href = '/projects/us_election_financing.html'" id="project3"
                         class="project-tile scale-in">
@@ -194,17 +192,9 @@
                 </div>
             </section>
             <section class="fade-in get-in-touch">
-                <h2 class="section-title">
-                    Let's get in touch
-                </h2>
-                <div>
-                    <img class="phone-picture" src="/assets/images/vingage_telephone_cut.png">
-                    <p>Thank you for visiting my website. If you are interested in collaborating feel free
-                        to
-                        reach
-                        out via any of my socials or my email.</p>
-                </div>
             </section>
+            <div id="social-media-bar"></div>
+
         </main>
     </div>
     <!--add js-->

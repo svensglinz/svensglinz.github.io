@@ -343,40 +343,114 @@ headerFun = function () {
 setTimeout(
     headerFun,
     1000
-);
+)
 
-// send scroll position to css for background overlay // get intersection ratio and set
-// opacity like this!
-const startImage = document.querySelector(".start-image");
-const startSection = document.querySelector(".start-page");
 
-sendPosition = function () {
-    const windowScoll = window.scrollY;
-    const elemHeight = startSection.clientHeight;
-    const ratio = windowScoll / elemHeight;
-    console.log(ratio);
-    startImage.style.setProperty('--scroll', ratio);
-}
 
+
+
+
+
+// select needed DOM elements
+const startImage = document.querySelector(".test-picture");
+const bgImage = document.querySelector(".start-image");
 const startPage = document.querySelector(".start-page");
-const body = document.getElementsByTagName("body");
+const startText = document.querySelector(".start-text");
+var scrollSpeedImg = .5;
 
+/*initialize opacity value for the background*/
+var scrollPos = startPage.scrollTop;
+var bgOpacity = .4;
+startImage.style.setProperty('--opac', Math.max(bgOpacity, .4));
+
+
+// get text elements
+const text0 = document.getElementById("text-0");
 const text1 = document.getElementById("text-1");
 const text2 = document.getElementById("text-2");
-const text3 = document.getElementById("text-3");
-startText = document.querySelector(".test-picture");
+textArray = Array.from([text0, text1, text2])
 
-document.addEventListener('scroll', function () {
+// set top property for sticky position
+text0.style.top = "20vh";
+text1.style.top = `calc(20vh + ${text0.clientHeight + 20 + "px"})`
+text2.style.top = `calc(20vh + ${text0.clientHeight + text1.clientHeight + 40 + "px"})`
+
+// set bottom margin for non-overlapping sticky position
+text0.style.marginBottom = text1.clientHeight + text2.clientHeight + 40 + "px";
+text1.style.marginBottom = text2.clientHeight + 20 + "px";
+
+// set height of start container after effect 
+startPage.style.height = `calc(${text2.style.top} + ${text2.clientHeight + "px"})`
+
+text1.style.marginTop = `calc(100vh - ${text0.style.top} - ${text0.style.marginBottom})`;
+text2.style.marginTop = `calc(100vh - ${text1.style.top} - ${text1.style.marginBottom})`;
+text2.style.marginBottom = `calc(${text2.style.marginTop} - ${text1.clientHeight + "px"})`;
+
+// set opacity of fixed background while scorlling within start section
+const setBgOpacity = function () {
+    scrollPos = startPage.scrollTop;
+    bgOpacity = startPage.scrollTop / window.innerHeight;
+    bgImage.style.setProperty('--opac', Math.max(bgOpacity, .3));
+}
+
+// set opacity of fixed background while scrolling main window
+const setBgOpacity2 = function () {
     scrollPos = window.scrollY;
-    startText.style.transform = `translateY(${-scrollPos / 5}px)`;
-    startText.style.opacity = 1 - scrollPos / 1000;
-    offset_text1 = window.innerHeight - text1.getBoundingClientRect().top;
-    offset_text2 = window.innerHeight - text2.getBoundingClientRect().top;
+    bgOpacity = window.scrollY / window.innerHeight;
 
-    a = Math.max(0 - window.scrollY / 2, 0) + "px";
-    b = Math.max(offset_text1 - window.scrollY / 2, 0) + "px";
-    c = Math.max(offset_text1 + Math.max(offset_text2, 0) - window.scrollY / 2, 0) + "px";
-    text1.style.top = a;
-    text2.style.top = b;
-    text3.style.top = c;
-});
+    bgImage.style.setProperty('--opac', Math.max(bgOpacity, .3));
+}
+
+// control fade-in of texts and fade-out of start-picture
+const scrollHandler = function () {
+
+    scrollPos = startPage.scrollTop;
+    // slowly fade out Start Image
+
+    startImage.style.transform = `translateY(${-scrollPos * scrollSpeedImg}px)`;
+    startImage.style.opacity = 1 - (scrollPos / (startImage.clientHeight / scrollSpeedImg));
+
+    if (startPage.scrollTop == Math.round((startPage.scrollHeight - startPage.clientHeight))) {
+
+        startPage.style.overflow = "hidden";
+
+        document.documentElement.style.overflow = "visible";
+
+        // also make scrollbar invisible!
+        document.removeEventListener("scroll", scrollHandler);
+    }
+}
+
+// check how to initiatel class element
+let startPageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+
+        if (!entry.isIntersecting) {
+            document.documentElement.style.overflow = "visible";
+            startPage.style.overflow = "hidden";
+            startImage.style.transform = "translateY(0px)";
+            startImage.style.opacity = 1;
+            textArray.forEach((text) => {
+                text.style.position = "static";
+                text.style.marginTop = "0";
+                text.style.marginBottom = "20px";
+
+            })
+            startPageObserver.unobserve(entry.target);
+            window.addEventListener("scroll", setBgOpacity2);
+
+        }
+    })
+})
+
+startPageObserver.observe(startPage);
+startPage.addEventListener('scroll', scrollHandler);
+startPage.addEventListener("scroll", setBgOpacity);
+
+document.documentElement.style.overflow = "hidden";
+
+// set this at the beginning --> makes it possible to scroll ! only once the full scroll is done, make element responsive
+// set overflow to 0 in the main element!
+// set height of main element to 100vh! and overflow to visible in the beginning!
+
+// the back container cannot be scrolled BUT the container in front will be scrollable!!!
