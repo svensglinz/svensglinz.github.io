@@ -21,6 +21,18 @@ Root Variables
     --scroll: 0;
 }
 
+.light-theme {
+    --font-color: rgb(20, 20, 20);
+    --bg-color: rgb(225, 225, 225);
+    --bg-color-inverse: rgb(20, 20, 20);
+}
+
+.dark-theme {
+    --font-color: white;
+    --bg-color: rgb(20, 20, 20);
+    --bg-color-inverse: rgb(225, 225, 225);
+}
+
 /*----------------------------------------------------------------------------------
 general formatting
 ----------------------------------------------------------------------------------*/
@@ -74,7 +86,7 @@ h6,
 p,
 a,
 li {
-    color: white;
+    color: var(--font-color);
     font-family: var(--font-family);
 }
 
@@ -232,13 +244,26 @@ section:last-child {
     margin-bottom: 0 !important;
 }
 
-.start-image {
+.dark-theme .start-image {
     --opac: .3;
     height: 100%;
     width: 100%;
     /*same max-height as section*/
     max-height: 1000px;
     background: linear-gradient(rgba(20, 20, 20, var(--opac, .4)), rgba(20, 20, 20, calc(var(--opac, .4) + .3))), url("/assets/images/start_bg_smartphone.jpg");
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+}
+
+.light-theme .start-image {
+    --opac: .3;
+    height: 100%;
+    width: 100%;
+    /*same max-height as section*/
+    max-height: 1000px;
+    background: linear-gradient(rgba(225, 225, 225, var(--opac)), rgba(225, 225, 225, calc(var(--opac, .4)))), url("/assets/images/start_bg_smartphone.jpg");
     background-size: cover;
     position: fixed;
     top: 0;
@@ -522,9 +547,9 @@ Skills
     grid-row: 2;
     grid-column: 1;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, .3);
+    background-color: var(--bg-color-inverse);
+    opacity: 0.3;
     height: 10px;
-    opacity: .8;
     width: 100%;
     margin-bottom: 5px;
     z-index: 0;
@@ -544,13 +569,13 @@ Recent Projects
 ----------------------------------------------------------------------------------*/
 
 .recent-projects .section-title {
-    color: white;
+    color: var(--font-color);
     grid-row: 1;
 }
 
 .recent-projects .project-tile {
     display: grid;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
     grid: 1fr auto / 80%;
     position: relative;
     height: 25vh;
@@ -567,7 +592,7 @@ Recent Projects
 .project-title {
     padding: 3%;
     box-shadow: 0 0 12px rgba(120, 120, 120, .4);
-    background: rgb(10, 10, 10);
+    background: var(--bg-color);
     position: absolute;
     bottom: -20px;
     width: 102.5%;
@@ -626,7 +651,7 @@ get in touch
 navBar
 ----------------------------------------------------------------------------------*/
 #header {
-    background-color: rgb(20, 20, 20);
+    background-color: var(--bg-color);
     position: sticky;
     top: 0;
     z-index: 200;
@@ -665,7 +690,7 @@ navBar
 }
 
 .hamb .hamb-line {
-    border: 1px solid white;
+    border: 1px solid var(--font-color);
     width: 100%;
     transition: all .2s linear;
 }
@@ -701,7 +726,7 @@ navBar
 .nav-buttons {
     padding-left: 7.5% !important;
     padding-right: 7.5% !important;
-    background-color: rgb(20, 20, 20);
+    background-color: var(--bg-color);
     height: 0;
     max-height: 90vh;
     width: 100%;
@@ -733,14 +758,15 @@ navBar
 
 .nav-buttons .dropdown>a::after {
     float: right;
-    color: white;
+    color: var(--font-color);
     font-size: 3rem;
+    font-weight: 600;
     content: "+";
 }
 
 .nav-buttons .dropdown.active>a::after {
     float: right;
-    color: white;
+    color: var(--font-color);
     font-size: 3rem;
     content: "-";
 }
@@ -781,7 +807,7 @@ socialMediaBar
 }
 
 #download_cv {
-    font-size: 2rem;
+    font-size: 2.1rem;
     display: inline-block;
     animation: shaking both 2s infinite;
 }
@@ -1154,7 +1180,6 @@ Keyframe Animations
     }
 }
 
-@keyframes flyIn {}
 
 .fade-in {
     transform: translateY(100px);

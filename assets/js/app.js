@@ -451,9 +451,11 @@ const moonToggle = document.getElementById("moon");
 
 var toggleHandler = function () {
     if (sunToggle.classList.contains("active")) {
+        document.documentElement.className = "dark-theme";
         moonToggle.classList.add("active");
         sunToggle.classList.remove("active");
     } else {
+        document.documentElement.className = "light-theme";
         moonToggle.classList.remove("active");
         sunToggle.classList.add("active");
     }
@@ -480,7 +482,7 @@ function smoothScrollTo(targetElement) {
     const startPosition = window.scrollY;
     const targetPosition = targetElement.offsetTop;
     const distance = targetPosition - startPosition;
-    const duration = 300; // Duration in milliseconds
+    const duration = 500; // Duration in milliseconds
 
     let startTime = null;
 
