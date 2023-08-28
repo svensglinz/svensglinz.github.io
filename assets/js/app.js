@@ -445,6 +445,23 @@ let startPageObserver = new IntersectionObserver((entries) => {
     })
 })
 
+const themeToggle = document.querySelector(".theme-toggle");
+const sunToggle = document.getElementById("sun");
+const moonToggle = document.getElementById("moon");
+
+var toggleHandler = function () {
+    if (sunToggle.classList.contains("active")) {
+        moonToggle.classList.add("active");
+        sunToggle.classList.remove("active");
+    } else {
+        moonToggle.classList.remove("active");
+        sunToggle.classList.add("active");
+    }
+}
+
+sunToggle.addEventListener("click", toggleHandler);
+moonToggle.addEventListener("click", toggleHandler);
+
 startPageObserver.observe(startPage);
 startPage.addEventListener('scroll', scrollHandler);
 startPage.addEventListener('touchmove', scrollHandler);

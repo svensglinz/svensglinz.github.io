@@ -27,6 +27,10 @@
 </head>
 
 <body class="index">
+    <div class="theme-toggle">
+        <img id="moon" src="/assets/images/moon_icon.svg">
+        <img id="sun" src="/assets/images/sun_icon.svg">
+    </div>
     <!--insert header-->
     <div id="header"></div>
     <div>
@@ -63,16 +67,16 @@
                     </a>
                 </div>
             </section>
-            <section id="education-and-career" class="fade-in education-and-career">
+            <section id="education-and-career" class="education-and-career">
                 <h2 class="section-title">About Me</h2>
                 <div class="click-element download-cv">
                     <a href="/docs/cv_sven.pdf" target="_blank">
                         <p>Download CV</p>
                     </a>
                 </div>
-                <div class="subsection education">
+                <div class="subsection education fade-in">
                     <h3 class="subsection-title">Education</h3>
-                    <div class="university-grid fade-in">
+                    <div class="university-grid">
                         <div class="university">
                             <h3 class="description">B.A. HSG in Economics</h3>
                             <p class="university-name">HSG, Switzerland</p>
@@ -95,9 +99,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="subsection career">
+                <div class="subsection career fade-in">
                     <h3 class="subsection-title">Experience</h3>
-                    <div class="career-container fade-in">
+                    <div class="career-container">
                         <div class="career-grid">
                             <div class="career-item">
                                 <h3 class="title font-bold">SGEPT</h3>
@@ -128,38 +132,37 @@
                         </div>
                     </div>
                 </div>
-            </section>
-            <section id="skills" class="fade-in skills">
-                <h2 class="subsection-title">Skills</h2>
-                <img class="rotating-wheel" src="/assets/images/rotating_wheel.svg">
-                <div class="grid-container skills-container">
-                    <div class="skill languages">
-                        <h3 class="title">Languages:</h3>
-                        <ul class="expand">
-                            <li style="--item-width: 100%">German (Mother Tongue)</li>
-                            <li style="--item-width: 100%">English (Fluent)</li>
-                            <li style="--item-width: 50%">French (Intermediate)</li>
-                            <li style="--item-width: 35%">Spanish (Conversational)</li>
-                        </ul>
-                    </div>
-                    <div class="skill coding">
-                        <h3 class="title">Coding:</h3>
-                        <ul class="expand">
-                            <li style="--item-width: 85%">R [Base, Tidyverse] (Advanced)</li>
-                            <li style="--item-width: 50%">Python (Intermediate)</li>
-                            <li style="--item-width: 20%">HTML (Beginner)</li>
-                            <li style="--item-width: 20%">CSS (Beginner)</li>
-                        </ul>
-                    </div>
-                    <div class="skill further">
-                        <h3 class="title">Further:</h3>
-                        <ul>
-                            <li>Git / GitHub</li>
-                            <li>Bloomberg</li>
-                            <li>Capital Markets (Bonds/Equities/Derivatives)</li>
-                            <li>Retail & Commercial Banking</li>
-                            <li>Risk Management</li>
-                        </ul>
+                <div class="subsection fade-in skills">
+                    <h2 class="subsection-title">Skills</h2>
+                    <div class="grid-container skills-container">
+                        <div class="skill languages">
+                            <h3 class="title">Languages:</h3>
+                            <ul class="expand">
+                                <li style="--item-width: 100%">German (Mother Tongue)</li>
+                                <li style="--item-width: 100%">English (Fluent)</li>
+                                <li style="--item-width: 50%">French (Intermediate)</li>
+                                <li style="--item-width: 35%">Spanish (Conversational)</li>
+                            </ul>
+                        </div>
+                        <div class="skill coding">
+                            <h3 class="title">Coding:</h3>
+                            <ul class="expand">
+                                <li style="--item-width: 85%">R [Base, Tidyverse] (Advanced)</li>
+                                <li style="--item-width: 50%">Python (Intermediate)</li>
+                                <li style="--item-width: 20%">HTML (Beginner)</li>
+                                <li style="--item-width: 20%">CSS (Beginner)</li>
+                            </ul>
+                        </div>
+                        <div class="skill further">
+                            <h3 class="title">Further:</h3>
+                            <ul>
+                                <li>Git / GitHub</li>
+                                <li>Bloomberg</li>
+                                <li>Capital Markets (Bonds/Equities/Derivatives)</li>
+                                <li>Retail & Commercial Banking</li>
+                                <li>Risk Management</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -167,22 +170,30 @@
                 <div class="recent-projects">
                     <h2 class="section-title">Recent Projects</h2>
                     <div onclick="location.href = '/projects/us_election_financing.html'" id="project1"
-                        class="project-tile scale-in">
-                        <img src="/assets/images/election_funding_image.jpg" class="background-image full-size">
-                        <div class="project-title"></div>
+                        class="project-tile">
+                        <img src="/assets/images/election_funding_image.jpg"
+                            class="background-image full-size scale-in">
+                        <div class="project-title">
+                            <h2>US Election Funding</h2>
+                            <p>Data Analysis Project in R (Tidyverse)</p>
+                        </div>
                     </div>
                     <div onclick="location.href = '/projects/us_election_financing.html'" id="project2"
-                        class="project-tile scale-in">
-                        <img src="/assets/images/option_post_picture.jpg" class="background-image full-size">
+                        class="project-tile">
+                        <img src="/assets/images/option_post_picture.jpg" class="background-image full-size scale-in">
                         <div class="project-title">
-                            <h3>An analysis of Margin Procyclicality</h3>
+                            <h2>Margin Procyclicality</h2>
+                            <p>Bachelor Thesis in Economics</p>
                         </div>
                     </div>
                     <div onclick="location.href = '/projects/us_election_financing.html'" id="project3"
-                        class="project-tile scale-in">
+                        class="project-tile">
                         <img src="/assets/images/title_image_margin_procyclicality.jpg"
-                            class="background-image full-size">
-                        <h3 class="project-title">Option Calculator in Python</h3>
+                            class="background-image full-size scale-in">
+                        <div class="project-title">
+                            <h2>Option Calculator</h2>
+                            <p>Simple project in Python</p>
+                        </div>
                     </div>
                     <div id="explore-projects" class="click-element">
                         <a href="/projects.html">
@@ -191,10 +202,13 @@
                     </div>
                 </div>
             </section>
+            <!--
             <section class="fade-in get-in-touch">
             </section>
-            <div id="social-media-bar"></div>
-
+        -->
+            <section class="social-media-section">
+                <div id="social-media-bar"></div>
+            </section>
         </main>
     </div>
     <!--add js-->
