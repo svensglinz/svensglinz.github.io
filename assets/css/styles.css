@@ -29,7 +29,7 @@ Root Variables
 
 .dark-theme {
     --font-color: white;
-    --bg-color: rgb(20, 20, 20);
+    --bg-color: rgb(25, 25, 25);
     --bg-color-inverse: rgb(225, 225, 225);
 }
 
@@ -257,7 +257,7 @@ section:last-child {
     width: 100%;
     /*same max-height as section*/
     max-height: 1000px;
-    background: linear-gradient(rgba(20, 20, 20, var(--opac, .4)), rgba(20, 20, 20, calc(var(--opac, .4) + .3))), url("/assets/images/start_bg_smartphone.jpg");
+    background: linear-gradient(rgba(25, 25, 25, var(--opac, .4)), rgba(25, 25, 25, calc(var(--opac, .4) + .3))), url("/assets/images/start_bg_smartphone.jpg");
     background-size: cover;
     position: fixed;
     top: 0;
