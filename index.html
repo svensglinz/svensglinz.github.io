@@ -27,9 +27,51 @@
 
     <!--CSS Styles -->
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #444444;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+
+        .center {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 
 <body class="index">
+    <!--controls visibility during loading state-->
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState != "complete") {
+                document.documentElement.style.visibility = "hidden";
+                document.querySelector("#loader").style.visibility = "visible";
+            } else {
+                setTimeout(function () {
+                    document.querySelector("#loader").style.display = "none";
+                    document.documentElement.style.visibility = "visible";
+
+                }, 300); // Display loader for at least 1 second
+            }
+        };
+    </script>
+    <div id="loader" class="center"></div>
+
     <div id="test" class="test"></div>
     <!--insert header-->
     <div id="header"></div>
