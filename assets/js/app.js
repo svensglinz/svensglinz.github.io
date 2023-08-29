@@ -525,3 +525,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+popUp = document.querySelector(".popup");
+closeBtn = document.querySelector(".close_btn");
+popUp.style.display = "none";
+var open_popup = function () {
+    popUp.style.display = "block";
+    popUp.classList.add("grow");
+}
+
+setTimeout(
+    open_popup,
+    5000
+)
+
+var closeWindow = function () {
+    popUp.style.display = "none";
+    closeBtn.removeEventListener("click", closeWindow);
+}
+closeBtn.addEventListener("click", closeWindow); 
