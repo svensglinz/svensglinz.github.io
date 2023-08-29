@@ -28,16 +28,14 @@
     <!--CSS Styles -->
     <link rel="stylesheet" href="assets/css/styles.css" />
     <style>
-        #loader {
+        #loader::after {
+            content: "";
             border: 12px solid #f3f3f3;
             border-radius: 50%;
             border-top: 12px solid #444444;
             width: 70px;
             height: 70px;
             animation: spin 1s linear infinite;
-        }
-
-        .center {
             position: fixed;
             top: 0;
             bottom: 0;
@@ -55,23 +53,26 @@
 </head>
 
 <body class="index">
+    <div id="loader" style="width: 100vw; height: 100vh; z-index: 100000"></div>
     <!--controls visibility during loading state-->
     <script>
-        document.onreadystatechange = function () {
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        document.onreadystatechange = async function () {
+            // do nothing if the DOM content is loaed within 150ms
             if (document.readyState != "complete") {
                 document.documentElement.style.visibility = "hidden";
                 document.querySelector("#loader").style.visibility = "visible";
             } else {
-                setTimeout(function () {
-                    document.querySelector("#loader").style.display = "none";
-                    document.documentElement.style.visibility = "visible";
+                await sleep(100);
+                document.querySelector("#loader").style.display = "none";
+                document.documentElement.style.visibility = "visible";
 
-                }, 300); // Display loader for at least 1 second
-            }
-        };
+            }; // Display loader for at least 1 second
+        }
+
     </script>
-    <div id="loader" class="center"></div>
-
     <div id="test" class="test"></div>
     <!--insert header-->
     <div id="header"></div>
