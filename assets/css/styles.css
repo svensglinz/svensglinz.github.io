@@ -200,7 +200,9 @@ Theme (Dark / Light) toggler
 
 .test {
     position: fixed;
+    display: inline-block;
     width: 70px;
+    height: 70px;
     bottom: 0;
     right: 0;
 }

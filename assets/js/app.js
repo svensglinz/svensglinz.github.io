@@ -530,29 +530,6 @@ Array.from(typeWriterElem).forEach(elem => {
     typeObserver.observe(elem);
 });
 
-const eduObserver = new IntersectionObserver(entries => {
-    entries.forEach(elem => {
-        if (elem.isIntersecting) {
-            console.log("REGISTERED");
-            elem.target.setAttribute("autoplay", '');
-        }
-    })
-});
-
-const edu = document.querySelector(".edu_pic");
-eduObserver.observe(edu);
-
-const dayNightSwitch = document.getElementById("day-night-switch");
-
-var dayNightToggle = function () {
-    if (document.documentElement.classList.contains("light-theme")) {
-        document.documentElement.classList.remove("light-theme");
-        document.documentElement.classList.add("dark-theme");
-    } else {
-        document.documentElement.classList.add("light-theme");
-        document.documentElement.classList.remove("dark-theme");
-    }
-}
 
 const params = {
     container: document.getElementById('test'),
