@@ -530,7 +530,7 @@ Array.from(typeWriterElem).forEach(elem => {
     typeObserver.observe(elem);
 });
 
-
+// initiate light-theme at beginning
 const params = {
     container: document.getElementById('test'),
     renderer: 'svg',
@@ -539,7 +539,7 @@ const params = {
     path: "https://lottie.host/41e5cfc4-48d4-46b2-9bc7-f371670bb97b/wIGpgIMrmX.json",
 }
 
-const anim = bodymovin.loadAnimation(params)
+const anim = bodymovin.loadAnimation(params);
 anim.setSpeed(5);
 const animContainer = document.getElementById('test');
 
@@ -558,7 +558,7 @@ function toDay() {
 let clickCount = 0;
 var handleDayNight = function () {
     clickCount = (clickCount + 1) % 2;
-    if (clickCount == 0) {
+    if (clickCount == 1) {
         toDay();
     } else {
         toNight();
@@ -566,3 +566,6 @@ var handleDayNight = function () {
 }
 
 animContainer.addEventListener("click", handleDayNight);
+
+// solve via promise to make bullet proof! 
+setTimeout(toNight, 500); 
