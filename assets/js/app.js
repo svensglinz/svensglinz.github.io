@@ -526,21 +526,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-popUp = document.querySelector(".popup");
-closeBtn = document.querySelector(".close_btn");
-popUp.style.display = "none";
-var open_popup = function () {
-    popUp.style.display = "block";
-    popUp.classList.add("grow");
+const typeWriterElem = document.querySelectorAll(".section-title");
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-setTimeout(
-    open_popup,
-    5000
-)
+var typeWriter = async function (elem) {
+    const text = elem.textContent; // Use textContent instead of innerHTML
+    elem.textContent = ''; // Clear the element's content
+    let i = 0;
 
-var closeWindow = function () {
-    popUp.style.display = "none";
-    closeBtn.removeEventListener("click", closeWindow);
+    while (i < text.length) {
+        await sleep(80);
+        elem.innerHTML = text.substring(0, i + 1) + '<span class="blink">|</span>'; // Use textContent here too
+        i++;
+    }
 }
-closeBtn.addEventListener("click", closeWindow); 
+
+const typeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            typeWriter(entry.target);
+            typeObserver.unobserve(entry.target);
+        }
+    })
+});
+
+Array.from(typeWriterElem).forEach(elem => {
+    typeObserver.observe(elem);
+});
