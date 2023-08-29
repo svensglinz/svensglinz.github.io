@@ -188,38 +188,6 @@ section {
 Theme (Dark / Light) toggler
 ----------------------------------------------------------------------------------*/
 
-.theme-toggle {
-    display: flex;
-    flex-direction: column;
-    transition: all .2s ease-in;
-    position: relative;
-    text-align: center;
-    border-radius: 20%;
-    width: 40px;
-    height: 40px;
-    background-color: var(--bg-color-inverse);
-    border-radius: 50%;
-    padding: 2.5px;
-    z-index: 1000;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-}
-
-#sun.active,
-#moon.active {
-    animation: zoomInOut .5s ease-in;
-    opacity: 1;
-}
-
-#moon.active {
-    filter: invert(84%) sepia(15%) saturate(5201%) hue-rotate(359deg) brightness(106%) contrast(103%);
-}
-
-#sun.active {
-    filter: invert(75%) sepia(85%) saturate(421%) hue-rotate(342deg) brightness(105%) contrast(98%);
-}
-
 .edu_pic {
     position: absolute;
     bottom: 35px;
@@ -228,6 +196,13 @@ Theme (Dark / Light) toggler
     width: auto;
     z-index: 100;
     transform: rotate(-20deg);
+}
+
+.test {
+    position: fixed;
+    width: 70px;
+    bottom: 0;
+    right: 0;
 }
 
 @keyframes zoomInOut {
@@ -247,12 +222,6 @@ Theme (Dark / Light) toggler
         transform: scale(1);
     }
 }
-
-#sun,
-#moon {
-    transition: display 1s ease-in;
-}
-
 
 /*----------------------------------------------------------------------------------
 Start Page

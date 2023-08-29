@@ -446,33 +446,6 @@ let startPageObserver = new IntersectionObserver((entries) => {
     })
 })
 
-const themeToggle = document.querySelector(".theme-toggle");
-const sunToggle = document.getElementById("sun");
-const moonToggle = document.getElementById("moon");
-
-sunToggle.classList.add("active");
-sunToggle.style.display = "inline-block";
-moonToggle.style.display = "none";
-document.documentElement.className = "light-theme";
-
-var toggleHandler = function () {
-    if (sunToggle.classList.contains("active")) {
-        document.documentElement.className = "dark-theme";
-        moonToggle.classList.add("active");
-        moonToggle.style.display = "inline-block";
-        sunToggle.style.display = "none";
-        sunToggle.classList.remove("active");
-    } else {
-        moonToggle.style.display = "none";
-        sunToggle.style.display = "inline-block";
-        document.documentElement.className = "light-theme";
-        moonToggle.classList.remove("active");
-        sunToggle.classList.add("active");
-    }
-}
-
-themeToggle.addEventListener("click", toggleHandler);
-
 startPageObserver.observe(startPage);
 startPage.addEventListener('scroll', scrollHandler);
 startPage.addEventListener('touchmove', scrollHandler);
@@ -556,3 +529,63 @@ const typeObserver = new IntersectionObserver(entries => {
 Array.from(typeWriterElem).forEach(elem => {
     typeObserver.observe(elem);
 });
+
+const eduObserver = new IntersectionObserver(entries => {
+    entries.forEach(elem => {
+        if (elem.isIntersecting) {
+            console.log("REGISTERED");
+            elem.target.setAttribute("autoplay", '');
+        }
+    })
+});
+
+const edu = document.querySelector(".edu_pic");
+eduObserver.observe(edu);
+
+const dayNightSwitch = document.getElementById("day-night-switch");
+
+var dayNightToggle = function () {
+    if (document.documentElement.classList.contains("light-theme")) {
+        document.documentElement.classList.remove("light-theme");
+        document.documentElement.classList.add("dark-theme");
+    } else {
+        document.documentElement.classList.add("light-theme");
+        document.documentElement.classList.remove("dark-theme");
+    }
+}
+
+const params = {
+    container: document.getElementById('test'),
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: "https://lottie.host/41e5cfc4-48d4-46b2-9bc7-f371670bb97b/wIGpgIMrmX.json",
+}
+
+const anim = bodymovin.loadAnimation(params)
+anim.setSpeed(5);
+const animContainer = document.getElementById('test');
+
+function toNight() {
+    document.documentElement.classList.add("light-theme");
+    document.documentElement.classList.remove("dark-theme");
+    anim.playSegments([0, 60], true)
+}
+
+function toDay() {
+    document.documentElement.classList.remove("light-theme");
+    document.documentElement.classList.add("dark-theme");
+    anim.playSegments([60, 120], true)
+}
+
+let clickCount = 0;
+var handleDayNight = function () {
+    clickCount = (clickCount + 1) % 2;
+    if (clickCount == 0) {
+        toDay();
+    } else {
+        toNight();
+    }
+}
+
+animContainer.addEventListener("click", handleDayNight);
