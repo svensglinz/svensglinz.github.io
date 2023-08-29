@@ -311,7 +311,6 @@ section:last-child {
     height: 60vh;
     object-fit: cover;
     animation: zoomInOnLoad 2s both;
-    opacity: 1 !important;
     z-index: -1;
 }
 
@@ -1170,13 +1169,10 @@ Keyframe Animations
     from {
         transform: scale(.5);
         opacity: 0;
-        visibility: hidden;
     }
 
     to {
-        opacity: .6;
         transform: scale(1);
-        visibility: visible;
     }
 }
 
