@@ -188,7 +188,7 @@ section {
 Theme (Dark / Light) toggler
 ----------------------------------------------------------------------------------*/
 
-.edu_pic {
+#edu_pic {
     position: absolute;
     bottom: 35px;
     left: -3px;
@@ -202,8 +202,8 @@ Theme (Dark / Light) toggler
     z-index: 10000;
     position: fixed;
     display: inline-block;
-    width: 75px;
-    height: 75px;
+    width: 80px;
+    height: 80px;
     bottom: -7px;
     right: -7px;
 }

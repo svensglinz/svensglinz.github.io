@@ -539,7 +539,28 @@ const params = {
     path: "https://lottie.host/41e5cfc4-48d4-46b2-9bc7-f371670bb97b/wIGpgIMrmX.json",
 }
 
+const paramsEdu = {
+    container: document.getElementById('edu_pic'),
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: "https://lottie.host/ce5e2854-4bab-4f34-ba4a-249711da8dc1/qT0jKeIlZc.json",
+}
+
+const EduObserver = new IntersectionObserver(elements => {
+    elements.forEach(elem => {
+        if (elem.isIntersecting) {
+            animEdu.play();
+        } else {
+            animEdu.stop();
+        }
+    })
+})
+
+const animEdu = bodymovin.loadAnimation(paramsEdu);
 const anim = bodymovin.loadAnimation(params);
+EduObserver.observe(document.getElementById('edu_pic'));
+
 anim.setSpeed(5);
 const animContainer = document.getElementById('test');
 
