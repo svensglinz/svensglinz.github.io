@@ -202,10 +202,10 @@ Theme (Dark / Light) toggler
     z-index: 10000;
     position: fixed;
     display: inline-block;
-    width: 70px;
-    height: 70px;
-    bottom: 0;
-    right: 0;
+    width: 75px;
+    height: 75px;
+    bottom: -7px;
+    right: -7px;
 }
 
 @keyframes zoomInOut {
