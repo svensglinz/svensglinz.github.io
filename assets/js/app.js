@@ -539,12 +539,20 @@ const params = {
     path: "https://lottie.host/41e5cfc4-48d4-46b2-9bc7-f371670bb97b/wIGpgIMrmX.json",
 }
 
-const paramsEdu = {
+const paramsEduDark = {
     container: document.getElementById('edu_pic'),
     renderer: 'svg',
     loop: false,
     autoplay: false,
     path: "https://lottie.host/ce5e2854-4bab-4f34-ba4a-249711da8dc1/qT0jKeIlZc.json",
+}
+
+const paramsEduBright = {
+    container: document.getElementById('edu_pic'),
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: "https://lottie.host/f8070cae-2182-423f-95ce-1c0155f8b014/pcV0jPNetL.json",
 }
 
 const EduObserver = new IntersectionObserver(elements => {
@@ -557,7 +565,7 @@ const EduObserver = new IntersectionObserver(elements => {
     })
 })
 
-const animEdu = bodymovin.loadAnimation(paramsEdu);
+var animEdu = bodymovin.loadAnimation(paramsEduDark);
 const anim = bodymovin.loadAnimation(params);
 EduObserver.observe(document.getElementById('edu_pic'));
 
@@ -567,13 +575,21 @@ const animContainer = document.getElementById('test');
 function toNight() {
     document.documentElement.classList.add("light-theme");
     document.documentElement.classList.remove("dark-theme");
-    anim.playSegments([0, 60], true)
+    anim.playSegments([0, 60], true);
+    animEdu.destroy();
+    animEdu = bodymovin.loadAnimation(paramsEduDark);
+    animEdu.play();
+
 }
 
 function toDay() {
     document.documentElement.classList.remove("light-theme");
     document.documentElement.classList.add("dark-theme");
-    anim.playSegments([60, 120], true)
+    anim.playSegments([60, 120], true);
+    animEdu.destroy();
+    animEdu = bodymovin.loadAnimation(paramsEduBright);
+    animEdu.play();
+
 }
 
 let clickCount = 0;
