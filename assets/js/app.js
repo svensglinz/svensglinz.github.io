@@ -286,11 +286,12 @@ smartphone_screen.addEventListener("change", (event) => {
     }
 })
 
-
 // observe elements for fade-in
 observeIntersection("download-cv", "test", "0px");
 observeIntersection("expand", "expandBars", "0px");
 observeIntersection("fade-in", "fadeIn", "0px");
+observeIntersection("fade-in-left", "fadeInLeft", "-100px");
+
 
 // Call the function to include the header on each page
 includeFile(fileName = '/header.html', idName = 'header');
@@ -449,20 +450,28 @@ const themeToggle = document.querySelector(".theme-toggle");
 const sunToggle = document.getElementById("sun");
 const moonToggle = document.getElementById("moon");
 
+sunToggle.classList.add("active");
+sunToggle.style.display = "inline-block";
+moonToggle.style.display = "none";
+document.documentElement.className = "light-theme";
+
 var toggleHandler = function () {
     if (sunToggle.classList.contains("active")) {
         document.documentElement.className = "dark-theme";
         moonToggle.classList.add("active");
+        moonToggle.style.display = "inline-block";
+        sunToggle.style.display = "none";
         sunToggle.classList.remove("active");
     } else {
+        moonToggle.style.display = "none";
+        sunToggle.style.display = "inline-block";
         document.documentElement.className = "light-theme";
         moonToggle.classList.remove("active");
         sunToggle.classList.add("active");
     }
 }
 
-sunToggle.addEventListener("click", toggleHandler);
-moonToggle.addEventListener("click", toggleHandler);
+themeToggle.addEventListener("click", toggleHandler);
 
 startPageObserver.observe(startPage);
 startPage.addEventListener('scroll', scrollHandler);

@@ -2,7 +2,7 @@
 Import Fonts
 ----------------------------------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Bitter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Permanent+Marker&display=swap');
 /*----------------------------------------------------------------------------------
 Root Variables
@@ -11,8 +11,8 @@ Root Variables
 :root {
     scroll-behavior: smooth;
     font-size: 62.5%;
-    --font-family: Helvetica;
-    --nav-bar-height: 60px;
+    --font-family: Roboto;
+    --nav-bar-height: 70px;
     --section-title-margin: 70px;
     /*width of main content on the page relative to the full screen*/
     --main-width-smartphone: 90%;
@@ -106,7 +106,6 @@ p,
 li {
     font-size: 1.8rem;
     line-height: 2.2rem;
-    font-weight: 300;
 }
 
 a {
@@ -170,7 +169,7 @@ section {
     text-transform: uppercase;
     width: fit-content;
     height: fit-content;
-    border-bottom: 1.5px royalblue solid;
+    border-bottom: 2px royalblue solid;
     transition-duration: .6s;
 }
 
@@ -199,34 +198,42 @@ Theme (Dark / Light) toggler
     width: 40px;
     height: 40px;
     background-color: transparent;
-    opacity: .5;
     z-index: 1000;
     position: fixed;
-    bottom: 50px;
+    bottom: 10px;
     right: 10px;
 }
 
 #sun.active,
 #moon.active {
-    border: 2px solid red;
+    animation: zoomInOut .5s ease-in;
+    opacity: 1;
+    filter: invert(84%) sepia(15%) saturate(5201%) hue-rotate(359deg) brightness(106%) contrast(103%);
 }
 
-#sun {
-    display: none;
+@keyframes zoomInOut {
+    0% {
+        opacity: .3;
+        transform: scale(1);
+    }
+
+    50% {
+        rotate: 359deg;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        rotate: 360deg;
+        transform: scale(1);
+    }
 }
 
-.theme-toggle img {
-    transform: translateY(50%);
+#sun,
+#moon {
+    transition: display 1s ease-in;
 }
 
-.theme-toggle:hover {
-    height: 80px;
-}
-
-/*change this!*/
-.theme-toggle:hover #sun {
-    display: block;
-}
 
 /*----------------------------------------------------------------------------------
 Start Page
@@ -246,7 +253,7 @@ section:last-child {
 
 .dark-theme .start-image {
     --opac: .3;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     /*same max-height as section*/
     max-height: 1000px;
@@ -259,7 +266,7 @@ section:last-child {
 
 .light-theme .start-image {
     --opac: .3;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     /*same max-height as section*/
     max-height: 1000px;
@@ -280,6 +287,7 @@ section:last-child {
 }
 
 .start-page p {
+    font-weight: 500;
     text-align: justify;
 }
 
@@ -662,10 +670,10 @@ navBar
     display: flex;
     padding: 30px 0;
     /*aligned with right edge of main*/
-    margin-right: 7.5%;
+    margin-right: 5%;
     flex-direction: row;
     place-content: space-between;
-    height: 50px;
+    height: var(--nav-bar-height);
 }
 
 .hamb .nav-bar-name {
@@ -867,8 +875,8 @@ socialMediaBar
 .social-media-bar .icons {
     position: absolute;
     bottom: 50px;
-    width: 70%;
-    right: 5%;
+    width: 50%;
+    right: 10%;
     place-content: center;
     place-items: center;
     display: grid;
@@ -878,7 +886,7 @@ socialMediaBar
 .social-media-bar .copy {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    right: 12.5%;
     font-size: 1.5rem;
     color: grey;
 }
@@ -1180,6 +1188,25 @@ Keyframe Animations
     }
 }
 
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+.fadeInLeft {
+    animation: fadeInLeft both 1.2s cubic-bezier(0.3, 0.42, 0.18, 1);
+}
 
 .fade-in {
     transform: translateY(100px);
