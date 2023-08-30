@@ -348,12 +348,9 @@ setTimeout(
 
 
 
-
-
-
-
 // select needed DOM elements
 const startImage = document.querySelector(".test-picture");
+const startImageMe = document.querySelector(".start-picture");
 const bgImage = document.querySelector(".start-image");
 const startPage = document.querySelector(".start-page");
 const startText = document.querySelector(".start-text");
@@ -364,101 +361,42 @@ var scrollPos = startPage.scrollTop;
 var bgOpacity = .4;
 startImage.style.setProperty('--opac', Math.max(bgOpacity, .4));
 
-
-// get text elements
 const text0 = document.getElementById("text-0");
 const text1 = document.getElementById("text-1");
 const text2 = document.getElementById("text-2");
+
 textArray = Array.from([text0, text1, text2])
 
-// set top property for sticky position
-text0.style.top = "20vh";
-text1.style.top = `calc(20vh + ${text0.clientHeight + 20 + "px"})`
-text2.style.top = `calc(20vh + ${text0.clientHeight + text1.clientHeight + 40 + "px"})`
-
-// set bottom margin for non-overlapping sticky position
-text0.style.marginBottom = text1.clientHeight + text2.clientHeight + 40 + "px";
-text1.style.marginBottom = text2.clientHeight + 20 + "px";
-
-// set height of start container after effect 
-startPage.style.height = `calc(${text2.style.top} + ${text2.clientHeight + "px"})`
-
-text1.style.marginTop = `calc(100vh - ${text0.style.top} - ${text0.style.marginBottom})`;
-text2.style.marginTop = `calc(100vh - ${text1.style.top} - ${text1.style.marginBottom})`;
-text2.style.marginBottom = `calc(${text2.style.marginTop} - ${text1.clientHeight + "px"})`;
-
-// set opacity of fixed background while scorlling within start section
-const setBgOpacity = function () {
-    scrollPos = startPage.scrollTop;
-    bgOpacity = startPage.scrollTop / window.innerHeight;
-    bgImage.style.setProperty('--opac', Math.max(bgOpacity, .3));
-}
-
-// set opacity of fixed background while scrolling main window
 const setBgOpacity2 = function () {
     scrollPos = window.scrollY;
     bgOpacity = window.scrollY / window.innerHeight;
-
     bgImage.style.setProperty('--opac', Math.max(bgOpacity, .3));
 }
 
-// control fade-in of texts and fade-out of start-picture
-const scrollHandler = function () {
+window.addEventListener("scroll", setBgOpacity2);
 
-    scrollPos = startPage.scrollTop;
-    // slowly fade out Start Image
+var textFadeIn = function () {
+    ratio = window.scrollY / window.innerHeight;
+    text1.style.opacity = 0;
+    text2.style.opacity = 0;
+    text1.style.transform = "scale(.5)";
+    text2.style.transform = "scale(.5)";
+    //startImageMe.style.position = "sticky";
 
-    startImage.style.transform = `translateY(${-scrollPos * scrollSpeedImg}px)`;
-    startImage.style.opacity = 1 - (scrollPos / (startImage.clientHeight / scrollSpeedImg));
+    console.log("test");
+    if (ratio >= .05) {
+        text1.style.opacity = 1;
+        text1.style.transform = "scale(1)";
 
-    if (startPage.scrollTop == Math.round((startPage.scrollHeight - startPage.clientHeight))) {
-
-        startPage.style.overflow = "hidden";
-
-        document.documentElement.style.overflow = "visible";
-
-        // also make scrollbar invisible!
-        document.removeEventListener("scroll", scrollHandler);
-        document.removeEventListener("touchmove", scrollHandler);
-
+    } if (ratio >= .10) {
+        text2.style.opacity = 1;
+        text2.style.transform = "scale(1)";
+        //startImageMe.style.position = "relative";
+        //startImageMe.style.top = "var(--nav-bar-height)";
     }
 }
 
-// check how to initiatel class element
-let startPageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-
-        if (!entry.isIntersecting) {
-            document.documentElement.style.overflow = "visible";
-            startPage.style.overflow = "hidden";
-            startImage.style.transform = "translateY(0px)";
-            startImage.style.opacity = 1;
-            textArray.forEach((text) => {
-                text.style.position = "static";
-                text.style.marginTop = "0";
-                text.style.marginBottom = "20px";
-
-            })
-            startPageObserver.unobserve(entry.target);
-            window.addEventListener("scroll", setBgOpacity2);
-
-        }
-    })
-})
-
-startPageObserver.observe(startPage);
-startPage.addEventListener('scroll', scrollHandler);
-startPage.addEventListener('touchmove', scrollHandler);
-startPage.addEventListener("scroll", setBgOpacity);
-
-// document.documentElement.style.overflow = "hidden";
-
-// set this at the beginning --> makes it possible to scroll ! only once the full scroll is done, make element responsive
-// set overflow to 0 in the main element!
-// set height of main element to 100vh! and overflow to visible in the beginning!
-
-// the back container cannot be scrolled BUT the container in front will be scrollable!!!
-
+window.addEventListener("scroll", textFadeIn);
 
 function smoothScrollTo(targetElement) {
     const startPosition = window.scrollY;
@@ -529,6 +467,7 @@ const typeObserver = new IntersectionObserver(entries => {
 Array.from(typeWriterElem).forEach(elem => {
     typeObserver.observe(elem);
 });
+
 
 // initiate light-theme at beginning
 const params = {
@@ -605,4 +544,5 @@ var handleDayNight = function () {
 animContainer.addEventListener("click", handleDayNight);
 
 // solve via promise to make bullet proof! 
-setTimeout(toNight, 500); 
+setTimeout(toNight, 500);
+
