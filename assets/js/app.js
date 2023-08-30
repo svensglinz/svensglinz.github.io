@@ -295,7 +295,6 @@ observeIntersection("fade-in-left", "fadeInLeft", "-100px");
 
 // Call the function to include the header on each page
 includeFile(fileName = '/header.html', idName = 'header');
-includeFile(fileName = '/social-media.html', idName = 'social-media-bar');
 
 
 // Functions to control expansion of Navigation Bar
@@ -375,29 +374,12 @@ const setBgOpacity2 = function () {
 
 window.addEventListener("scroll", setBgOpacity2);
 
-var textFadeIn = function () {
-    ratio = window.scrollY / window.innerHeight;
-    text1.style.opacity = 0;
-    text2.style.opacity = 0;
-    text1.style.transform = "scale(.5)";
-    text2.style.transform = "scale(.5)";
-    //startImageMe.style.position = "sticky";
-
-    console.log("test");
-    if (ratio >= .05) {
-        text1.style.opacity = 1;
-        text1.style.transform = "scale(1)";
-
-    } if (ratio >= .10) {
-        text2.style.opacity = 1;
-        text2.style.transform = "scale(1)";
-        //startImageMe.style.position = "relative";
-        //startImageMe.style.top = "var(--nav-bar-height)";
-    }
+var ImageScroll = function () {
+    startImage.style.transform = `translateY(-${window.scrollY / 2 + "px"})`
+    startImage.style.opacity = `${.8 - window.scrollY / window.innerHeight}`;
 }
 
-window.addEventListener("scroll", textFadeIn);
-
+window.addEventListener("scroll", ImageScroll);
 function smoothScrollTo(targetElement) {
     const startPosition = window.scrollY;
     const targetPosition = targetElement.offsetTop;
