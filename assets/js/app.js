@@ -1,30 +1,3 @@
-/*****************************************************************************************
-Define Functions
-*****************************************************************************************/
-
-Array.prototype.findAllOccurences = function (find) {
-    const indexArray = [];
-    this.forEach((element, index) => {
-        if (element == find) {
-            indexArray.push(index);
-        }
-        return indexArray;
-    })
-}
-
-// Function to include a file with the name FileName content into an element with id idName
-function includeFile(fileName, idName) {
-    fetch(fileName)
-        .then(response => response.text())
-        .then(data => {
-            // Replace the content of the placeholder with the content of footer.html
-            document.getElementById(idName).innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error fetching' + fileName, error);
-        });
-}
-
 
 // function which observes an element of a specific class and adds a class addClass to it (used for fade-in animations)
 function observeIntersection(className, addClass, rootMargin) {
@@ -293,64 +266,10 @@ observeIntersection("fade-in", "fadeIn", "0px");
 observeIntersection("fade-in-left", "fadeInLeft", "-100px");
 
 
-// Call the function to include the header on each page
-includeFile(fileName = '/header.html', idName = 'header');
-
-
-// Functions to control expansion of Navigation Bar
-expandNav = function () {
-
-    // remove clas active from all sub dropdown menus
-    const dropdownElems = document.querySelector(".nav-bar").querySelectorAll(".dropdown");
-
-    for (let i = 0; i < dropdownElems.length; i++) {
-        dropdownElems[i].classList.remove("active");
-    }
-
-    const elem = document.querySelector(".hamb");
-    if (elem.classList.contains("active")) {
-        elem.classList.remove("active");
-    } else {
-        elem.classList.add("active");
-    }
-}
-
-
-headerFun = function () {
-    const dropDownElem = document.querySelector(".nav-bar").querySelectorAll(".dropdown");
-
-    expandSubNav = function () {
-        if (this.parentElement.classList.contains("active")) {
-            // close all subsequent active lists
-            this.parentElement.classList.remove("active");
-            const allLists = this.parentElement.querySelectorAll(".dropdown");
-            for (let i = 0; i < allLists.length; i++) {
-                allLists[i].classList.remove("active");
-            }
-        } else {
-            // add active only to clicked list
-            this.parentElement.classList.add("active");
-        }
-    }
-
-    // add click event listener to dropdown buttons
-    for (let i = 0; i < dropDownElem.length; i++) {
-        dropDownElem[i].children.item("a").addEventListener("click", expandSubNav);
-    }
-}
-
-// NAVBAR MENU
-setTimeout(
-    headerFun,
-    1000
-)
-
-
-
 // select needed DOM elements
-const startImage = document.querySelector(".test-picture");
-const startImageMe = document.querySelector(".start-picture");
-const bgImage = document.querySelector(".start-image");
+const startImage = document.querySelector("#picture-me");
+const startImageMe = document.querySelector("#picture-me");
+const bgImage = document.querySelector("#start-bg");
 const startPage = document.querySelector(".start-page");
 const startText = document.querySelector(".start-text");
 var scrollSpeedImg = .5;
@@ -404,78 +323,147 @@ function smoothScrollTo(targetElement) {
     requestAnimationFrame(animationStep);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const links = document.querySelectorAll('.smooth-scroll');
+/*------------------------------------------------------------------------------------
+Controls smooth scroll
+------------------------------------------------------------------------------------*/
 
-    links.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
+const smoothScroll = document.querySelectorAll('.smooth-scroll');
 
-            const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+smoothScroll.forEach(elem => {
+    elem.addEventListener('click', function (e) {
+        e.preventDefault();
 
-            smoothScrollTo(targetElement);
-        });
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        smoothScrollTo(targetElement);
     });
 });
 
-const typeWriterElem = document.querySelectorAll(".section-title");
+/*------------------------------------------------------------------------------------
+Controls typewriter effect of section titles
+------------------------------------------------------------------------------------*/
+
+const typeWriterElem = document.querySelectorAll(".type-writer");
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 var typeWriter = async function (elem) {
-    const text = elem.textContent; // Use textContent instead of innerHTML
-    elem.textContent = ''; // Clear the element's content
-    let i = 0;
+    const text = elem.textContent;
+    elem.textContent = '';
+    var i = 1;
+    var blinkerElem;
 
-    while (i < text.length) {
-        await sleep(80);
-        elem.innerHTML = text.substring(0, i + 1) + '<span class="blink">|</span>'; // Use textContent here too
+    // whether blinking element appear at end of text
+    if (elem.classList.contains("type-writer-no-blink")) {
+        blinkerElem = '';
+    } else {
+        blinkerElem = '<span class=blink>|<span>';
+    }
+
+    while (i <= text.length) {
+        await sleep(100);
+        elem.innerHTML = text.substring(0, i) + blinkerElem;
         i++;
     }
+
+    return 0;
 }
 
-const typeObserver = new IntersectionObserver(entries => {
+// play animation upon intersection (only once)
+const observeTypeWriter = new IntersectionObserver(entries => {
     entries.forEach(entry => {
+
         if (entry.isIntersecting) {
             typeWriter(entry.target);
-            typeObserver.unobserve(entry.target);
+            observeTypeWriter.unobserve(entry.target);
         }
     })
 });
 
 Array.from(typeWriterElem).forEach(elem => {
-    typeObserver.observe(elem);
+    observeTypeWriter.observe(elem);
 });
 
 
-// initiate light-theme at beginning
-const params = {
-    container: document.getElementById('test'),
+/*------------------------------------------------------------------------------------
+Control Page Theme (Dark / Light) via theme toggler
+------------------------------------------------------------------------------------*/
+
+const togglerParams = {
+    container: document.getElementById("theme-toggler"),
     renderer: 'svg',
     loop: false,
     autoplay: false,
     path: "https://lottie.host/41e5cfc4-48d4-46b2-9bc7-f371670bb97b/wIGpgIMrmX.json",
 }
 
-const paramsEduDark = {
-    container: document.getElementById('edu_pic'),
+const togglerAnim = bodymovin.loadAnimation(togglerParams);
+togglerAnim.setSpeed(3);
+
+// turn light theme on
+function switchToLight() {
+    document.documentElement.classList.add("light-theme");
+    document.documentElement.classList.remove("dark-theme");
+    togglerAnim.playSegments([0, 60], true);
+
+    // load light bulb with black lines
+    animEdu.destroy();
+    animEdu = bodymovin.loadAnimation(paramsLight);
+    animEdu.play();
+}
+
+// turn dark theme on
+function switchToDark() {
+    document.documentElement.classList.remove("light-theme");
+    document.documentElement.classList.add("dark-theme");
+    togglerAnim.playSegments([60, 120], true);
+
+    // load light bulb with white lines
+    animEdu.destroy();
+    animEdu = bodymovin.loadAnimation(paramsDark);
+    animEdu.play();
+}
+
+// controls switch of appearance on click
+let clickCount = 0;
+var toggleTheme = function () {
+    clickCount = (clickCount + 1) % 2;
+    if (clickCount == 1) {
+        switchToDark();
+    } else {
+        switchToLight();
+    }
+}
+
+const animContainer = document.getElementById('theme-toggler');
+animContainer.addEventListener("click", toggleTheme);
+
+/*------------------------------------------------------------------------------------
+Controls appearance of Ligh Bulb Animation in Education Section
+------------------------------------------------------------------------------------*/
+
+// version for light-theme
+const paramsLight = {
+    container: document.getElementById('light-bulb-anim'),
     renderer: 'svg',
     loop: false,
     autoplay: false,
     path: "https://lottie.host/ce5e2854-4bab-4f34-ba4a-249711da8dc1/qT0jKeIlZc.json",
 }
 
-const paramsEduBright = {
-    container: document.getElementById('edu_pic'),
+// version for dark-theme
+const paramsDark = {
+    container: document.getElementById('light-bulb-anim'),
     renderer: 'svg',
     loop: false,
     autoplay: false,
     path: "https://lottie.host/f8070cae-2182-423f-95ce-1c0155f8b014/pcV0jPNetL.json",
 }
 
+// draw animation if visible
 const EduObserver = new IntersectionObserver(elements => {
     elements.forEach(elem => {
         if (elem.isIntersecting) {
@@ -486,45 +474,55 @@ const EduObserver = new IntersectionObserver(elements => {
     })
 })
 
-var animEdu = bodymovin.loadAnimation(paramsEduDark);
-const anim = bodymovin.loadAnimation(params);
-EduObserver.observe(document.getElementById('edu_pic'));
+// load light version of the animation at start
+var animEdu = bodymovin.loadAnimation(paramsLight);
+EduObserver.observe(document.getElementById('light-bulb-anim'));
 
-anim.setSpeed(5);
-const animContainer = document.getElementById('test');
 
-function toNight() {
-    document.documentElement.classList.add("light-theme");
-    document.documentElement.classList.remove("dark-theme");
-    anim.playSegments([0, 60], true);
-    animEdu.destroy();
-    animEdu = bodymovin.loadAnimation(paramsEduDark);
-    animEdu.play();
 
-}
+/*------------------------------------------------------------------------------------
+Controls behavior of NavBar
+------------------------------------------------------------------------------------*/
 
-function toDay() {
-    document.documentElement.classList.remove("light-theme");
-    document.documentElement.classList.add("dark-theme");
-    anim.playSegments([60, 120], true);
-    animEdu.destroy();
-    animEdu = bodymovin.loadAnimation(paramsEduBright);
-    animEdu.play();
+const dropDownElems = document.querySelectorAll(".dropdown");
+const hambButton = document.querySelector("#hamb-button");
+const mainDropDown = document.querySelector(".nav-buttons");
 
-}
+expandNav = function () {
+    // remove class active from all sub dropdown menus
+    for (let i = 0; i < dropDownElems.length; i++) {
+        dropDownElems[i].classList.remove('active');
+    }
 
-let clickCount = 0;
-var handleDayNight = function () {
-    clickCount = (clickCount + 1) % 2;
-    if (clickCount == 1) {
-        toDay();
+    if (hambButton.classList.contains('active')) {
+        hambButton.classList.remove('active');
+        mainDropDown.classList.remove('active');
     } else {
-        toNight();
+        hambButton.classList.add('active');
+        mainDropDown.classList.add('active');
     }
 }
 
-animContainer.addEventListener("click", handleDayNight);
+// expand Nav Bar on Mobile upon click on Hamb Button
+document.querySelector('#hamb-button').addEventListener('click', expandNav);
 
-// solve via promise to make bullet proof! 
-setTimeout(toNight, 500);
+
+expandSubNav = function () {
+    if (this.parentElement.classList.contains('active')) {
+        // close all subsequent active lists
+        this.parentElement.classList.remove('active');
+        const allLists = this.parentElement.querySelectorAll('.dropdown');
+        for (let i = 0; i < allLists.length; i++) {
+            allLists[i].classList.remove('active');
+        }
+    } else {
+        // add active only to clicked list
+        this.parentElement.classList.add('active');
+    }
+}
+
+// add click event listener to dropdown buttons
+for (let i = 0; i < dropDownElems.length; i++) {
+    dropDownElems[i].children.item("a").addEventListener('click', expandSubNav);
+}
 

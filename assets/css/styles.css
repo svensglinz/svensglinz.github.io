@@ -19,6 +19,7 @@ Root Variables
     --main-width-screen: 80%;
     --main-width-largescreen: 1170px;
     --scroll: 0;
+    --page-inner-margin: 5%;
 }
 
 .light-theme {
@@ -57,14 +58,22 @@ body {
     display: inline-block;
 }
 
+.subsection-title {
+    font-size: 4rem;
+    color: royalblue;
+    margin-bottom: 30px;
+}
+
 /*apply base margin to header & main content*/
 main {
     margin: 0 auto;
 }
 
 section {
-    align-content: center;
-    min-height: calc(100vh - var(--nav-bar-height));
+    display: flex;
+    flex-direction: column;
+    place-content: flex-end;
+    min-height: calc(100vh - var(--nav-bar-height)) !important;
     height: max-content;
     margin-bottom: 100px !important;
 }
@@ -99,13 +108,13 @@ h2 {
 }
 
 h3 {
-    font-size: 2rem;
+    font-size: 2.1rem;
 }
 
 p,
 li {
-    font-size: 1.8rem;
-    line-height: 2.2rem;
+    font-size: 1.7rem;
+    line-height: 1.1;
 }
 
 a {
@@ -188,9 +197,9 @@ section {
 Theme (Dark / Light) toggler
 ----------------------------------------------------------------------------------*/
 
-#edu_pic {
+#light-bulb-anim {
     position: absolute;
-    bottom: 35px;
+    bottom: 60px;
     left: -3px;
     height: 120px;
     width: auto;
@@ -198,14 +207,14 @@ Theme (Dark / Light) toggler
     transform: rotate(-20deg);
 }
 
-.test {
+#theme-toggler {
     z-index: 10000;
     position: fixed;
     display: inline-block;
-    width: 80px;
-    height: 80px;
-    bottom: -7px;
-    right: -7px;
+    width: 85px;
+    height: 85px;
+    bottom: -9px;
+    right: -9px;
 }
 
 @keyframes zoomInOut {
@@ -242,7 +251,7 @@ section:last-child {
     margin-bottom: 0 !important;
 }
 
-.dark-theme .start-image {
+.dark-theme #start-bg {
     --opac: .3;
     height: 110vh;
     width: 100%;
@@ -255,7 +264,7 @@ section:last-child {
     z-index: -1;
 }
 
-.light-theme .start-image {
+.light-theme #start-bg {
     --opac: .3;
     height: 110vh;
     width: 100%;
@@ -271,7 +280,7 @@ section:last-child {
 /*as soon as buffer section hits the top, remove sticky position and guide to regular flow!*/
 .start-page {
     display: grid;
-    grid: 85vh repeat(5, auto) / 100%;
+    grid: 50vh auto / 100%;
     padding: 0 5%;
     margin: 0;
     width: 100vw;
@@ -279,6 +288,8 @@ section:last-child {
 }
 
 .waving_hand {
+    height: 50px;
+    width: 50px;
     margin-left: 20px;
     float: right;
 }
@@ -288,24 +299,14 @@ section:last-child {
     text-align: justify;
 }
 
-#text-0 {
-    place-self: end;
-    grid-row: 1;
+.start-text {
+    grid-row: 2;
     grid-column: 1;
+}
+
+.start-text>div {
     transition: all .5s ease-in;
-    margin-bottom: 30px;
-}
-
-#text-1 {
-    transition: all .3s ease-in;
-    margin-bottom: 30px;
-
-}
-
-#text-2 {
-    transition: all .3s ease-in;
-    margin-bottom: 30px;
-
+    margin-bottom: 15px;
 }
 
 #text-2 a * {
@@ -317,49 +318,35 @@ section:last-child {
     animation: shaking both 1.8s infinite
 }
 
-.start-picture {
+#picture-me {
     grid-column: 1;
     grid-row: 1;
+    margin: auto;
     width: 85%;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    height: 60vh;
+    max-height: 60vh;
     object-fit: cover;
     animation: zoomInOnLoad 2s both;
     z-index: -1;
     position: fixed;
-
-}
-
-.start-picture img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#explore-more {
-    display: none;
-    animation: fadeInOnLoad cubic-bezier(.77, 0, .175, 1) .6s both;
-    animation-delay: 1.3s;
-    transition-duration: .6s;
+    left: 0;
+    right: 0;
 }
 
 /*----------------------------------------------------------------------------------
-Section: Education and Career
+Section: About Me
 ----------------------------------------------------------------------------------*/
 
-.education-and-career .download-cv {
+#about-me .download-cv {
     display: none;
 }
 
-/*----------------------------------------------------------------------------------
-Subsection: Ecducation
-----------------------------------------------------------------------------------*/
-.university-grid {
+.university-grid,
+.career-grid {
     padding-left: 35px;
 }
 
-.university {
+.university,
+.career-item {
     position: relative;
     padding-bottom: 35px;
     padding-left: 35px;
@@ -367,148 +354,37 @@ Subsection: Ecducation
 }
 
 .university .university-name,
-.university .year {
-    color: grey;
-}
-
-.university:last-child {
-    border-left: none;
-}
-
-.university::before {
-    content: "";
-    position: absolute;
-    background: white;
-    left: -10px;
-    border: 3px solid royalblue;
-    border-radius: 40px;
-    height: 20px;
-    width: 20px;
-}
-
-.university img {
-    display: none;
-    max-width: 100%;
-    max-height: 90%;
-}
-
-/*----------------------------------------------------------------------------------
-Subsection: Career
-----------------------------------------------------------------------------------*/
-
-.career {
-    width: 100%;
-}
-
-.career-grid {
-    padding-left: 35px;
-}
-
-.subsection-title {
-    font-size: 4rem;
-    color: royalblue;
-    margin-bottom: 30px;
-}
-
-/*differentiate in padding between title and text below! */
-.career-item {
-    padding-bottom: 35px;
-    padding-left: 35px;
-    border-left: 2px solid royalblue;
-}
-
+.university .year,
 .career-item .location_time {
-    line-height: 1;
     color: grey;
 }
 
+.university .title,
+.career-item .title {
+    margin-bottom: 2px
+}
+
+.university .year {
+    margin-bottom: 2px;
+}
+
+.university:last-child,
 .career-item:last-child {
     border-left: none;
 }
 
+.university::before,
 .career-item::before {
     content: "";
+    left: -10px;
     position: absolute;
     background: white;
     border: 3px solid royalblue;
-    left: 26px;
     border-radius: 40px;
     height: 20px;
     width: 20px;
 }
 
-/*
-.arrow-container {
-    position: relative;
-}
-
-.career-grid {
-    display: grid;
-    overflow-y: hidden;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    grid-auto-columns: 100%;
-    grid-auto-flow: column;
-    gap: 20px;
-}
-
-.career-grid::-webkit-scrollbar {
-    display: none;
-}
-
-.career-item {
-    --horiz-margin: 20px;
-    display: grid;
-    grid: min-content 1fr min-content / 100%;
-    text-align: center;
-    position: relative;
-    scroll-snap-align: start;
-}
-
-.career-item .title {
-    margin: var(--horiz-margin) auto;
-    font-size: 2.5rem;
-}
-
-.career-item::after {
-    content: "";
-    width: 150px;
-    height: 170px;
-    opacity: 0.3;
-    border-radius: 50%;
-    box-shadow: 0px 0px 20px 20px royalblue;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -100px;
-    background-color: royalblue;
-    z-index: -1;
-}
-
-.timeline-button {
-    display: none;
-    border: 1.5px solid royalblue;
-    color: white;
-    font-size: 4rem;
-    place-content: center;
-    place-items: center;
-    position: absolute;
-    border-radius: 60px;
-    width: 60px;
-    height: 60px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.timeline-button[class*="right"] {
-    right: -60px;
-}
-
-.timeline-button[class*="left"] {
-    left: -60px;
-}
-
-*/
 /*----------------------------------------------------------------------------------
 Skills
 ----------------------------------------------------------------------------------*/
@@ -656,71 +532,45 @@ get in touch
     margin-top: 20%;
 }
 
-.phone-picture {
-    opacity: .6;
-    width: 50%;
-    position: relative;
-    padding-left: 10px;
-    top: 10%;
-    height: auto;
-    max-height: 800px;
-    float: right;
-    z-index: -1;
-    shape-outside: polygon(4.21% 21.81%, 46.57% 0.9%, 37.53% 101.46%, 9.27% 71.25%, 0.41% 45.97%);
-}
 
 /*----------------------------------------------------------------------------------
 navBar
 ----------------------------------------------------------------------------------*/
-#header {
+nav {
     background-color: var(--bg-color);
     position: sticky;
     top: 0;
     z-index: 200;
-
 }
 
 .hamb {
     display: flex;
-    padding: 30px 0;
-    /*aligned with right edge of main*/
-    margin-right: 5%;
     flex-direction: row;
     place-content: space-between;
+    align-items: center;
     height: var(--nav-bar-height);
+    margin: 0 var(--page-inner-margin);
 }
 
-.hamb .nav-bar-name {
-    place-self: center;
-    /*aligned with left edge of main*/
-    margin-left: 5%;
+#hamb-button {
+    display: flex;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .nav-bar-name-wide {
     display: none;
 }
 
-.hamb-button {
-    display: flex;
-    place-self: center;
-    width: 40px;
-    height: 25px;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: space-between;
-    place-items: center;
-}
-
-.hamb .hamb-line {
+#hamb-button .hamb-line {
     border: 1px solid var(--font-color);
     width: 100%;
     transition: all .2s linear;
 }
 
-.hamb.active .hamb-line:nth-child(2) {
-    transform: scale(2);
-    opacity: 0;
-}
 
 .hamb-line:nth-child(1) {
     transform-origin: center center;
@@ -730,38 +580,58 @@ navBar
     transform-origin: center center;
 }
 
-.hamb.active .hamb-line:nth-child(1) {
+#hamb-button.active .hamb-line:nth-child(2) {
+    transform: scale(2);
+    opacity: 0;
+}
+
+#hamb-button.active .hamb-line:nth-child(1) {
     transform: translateY(10px) rotate(-45deg);
     width: 80%;
 }
 
-.hamb.active .hamb-line:nth-child(3) {
+#hamb-button.active .hamb-line:nth-child(3) {
     transform: translateY(-12px) rotate(45deg);
     width: 80%;
 }
 
 /*for main and sub-dropdown lists*/
-.nav-bar ul {
+nav ul {
     padding: 0 15px;
 }
 
 .nav-buttons {
-    padding-left: 7.5% !important;
-    padding-right: 7.5% !important;
+    padding: 0 var(--page-inner-margin);
     background-color: var(--bg-color);
     height: 0;
-    max-height: 90vh;
+    max-height: 100vh;
     width: 100%;
     overflow: hidden;
-    transition: all .3s linear;
+    transition: padding .3s linear;
     position: fixed;
 }
 
-.nav-buttons li {
+.nav-buttons.active {
+    padding: 25px var(--page-inner-margin);
+    overflow: scroll;
+    height: max-content;
+}
+
+nav li {
     list-style: none;
+    cursor: pointer;
+}
+
+.nav-buttons>li {
     opacity: 0;
     transform: translateX(-50px);
-    cursor: pointer;
+}
+
+.nav-buttons.active>li {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform .5s linear, opacity .5s ease-in-out;
+    transition-delay: .3s;
 }
 
 /*1st level dropdown*/
@@ -771,7 +641,13 @@ navBar
 
 /*2nd and ff level dropdown*/
 .dropdown li {
+    opacity: 0;
     padding-top: 10px;
+    transition: all 1s linear;
+}
+
+.dropdown.active li {
+    opacity: 1;
 }
 
 .nav-buttons>li>a {
@@ -779,46 +655,28 @@ navBar
 }
 
 .nav-buttons .dropdown>a::after {
+    content: "+";
     float: right;
     color: var(--font-color);
     font-size: 3rem;
-    font-weight: 600;
-    content: "+";
+    font-weight: 700;
 }
 
 .nav-buttons .dropdown.active>a::after {
-    float: right;
-    color: var(--font-color);
-    font-size: 3rem;
     content: "-";
 }
 
 .nav-buttons .dropdown>ul {
+    padding: 0 15px;
     height: 0;
-    /*fix for transitioning to auto dimension*/
-    max-height: 0px;
-    transition: max-height 1s linear;
+    transition: padding .3s linear;
     overflow: hidden;
 }
 
 .nav-buttons .dropdown.active>ul {
-    height: auto;
-    /*fix for transitioning to auto dimension*/
-    max-height: 100vh;
-}
-
-.hamb.active~.nav-buttons {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    overflow: scroll;
+    padding: 5px 15px;
     height: max-content;
-}
-
-.hamb.active~.nav-buttons li {
-    transform: translateX(0);
-    opacity: 1;
-    transition: transform .5s linear, opacity .5s ease-in-out;
-    transition-delay: .3s;
+    overflow: scroll;
 }
 
 /*----------------------------------------------------------------------------------
@@ -1437,12 +1295,12 @@ Individual Posts styling
 
 
 screen and (min-width: 768px) {
-    .education-and-career {
+    #about-me {
         align-content: center;
         grid: repeat(3, auto) / 100%;
     }
 
-    @media .education-and-career .section-title {
+    @media #about-me .section-title {
         grid-row: 1;
         grid-column: 1;
         justify-self: start;
@@ -1450,7 +1308,7 @@ screen and (min-width: 768px) {
         margin-bottom: var(--section-title-margin);
     }
 
-    .education-and-career .download-cv {
+    #about-me .download-cv {
         place-self: end;
         margin-bottom: var(--section-title-margin);
         grid-row: 1;
