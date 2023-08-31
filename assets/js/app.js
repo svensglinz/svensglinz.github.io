@@ -353,7 +353,6 @@ function sleep(ms) {
 var typeWriter = async function (elem) {
     const text = elem.textContent;
     elem.textContent = '';
-    var i = 1;
     var blinkerElem;
 
     // whether blinking element appear at end of text
@@ -363,13 +362,12 @@ var typeWriter = async function (elem) {
         blinkerElem = '<span class=blink>|<span>';
     }
 
-    while (i <= text.length) {
+    for (let i = 1; i < text.length; i++) {
         await sleep(100);
         elem.innerHTML = text.substring(0, i) + blinkerElem;
-        i++;
     }
-
     return 0;
+
 }
 
 // play animation upon intersection (only once)
@@ -483,21 +481,25 @@ EduObserver.observe(document.getElementById('light-bulb-anim'));
 /*------------------------------------------------------------------------------------
 Controls behavior of NavBar
 ------------------------------------------------------------------------------------*/
-
+// this could be solved via class instances! 
 const dropDownElems = document.querySelectorAll(".dropdown");
 const hambButton = document.querySelector("#hamb-button");
 const mainDropDown = document.querySelector(".nav-buttons");
 
 expandNav = function () {
+
     // remove class active from all sub dropdown menus
     for (let i = 0; i < dropDownElems.length; i++) {
         dropDownElems[i].classList.remove('active');
+        dropDownElems[i].children[1].style.setProperty("height", 0);
     }
 
     if (hambButton.classList.contains('active')) {
+        mainDropDown.style.setProperty("height", 0);
         hambButton.classList.remove('active');
         mainDropDown.classList.remove('active');
     } else {
+        mainDropDown.style.setProperty("height", mainDropDown.scrollHeight + "px");
         hambButton.classList.add('active');
         mainDropDown.classList.add('active');
     }
@@ -508,17 +510,27 @@ document.querySelector('#hamb-button').addEventListener('click', expandNav);
 
 
 expandSubNav = function () {
+
     if (this.parentElement.classList.contains('active')) {
         // close all subsequent active lists
+        this.parentElement.children[1].style.setProperty("height", 0);
         this.parentElement.classList.remove('active');
         const allLists = this.parentElement.querySelectorAll('.dropdown');
         for (let i = 0; i < allLists.length; i++) {
             allLists[i].classList.remove('active');
         }
+        // adjust height of main navbar as a result of expanding / collapsing sub-menus
+        mainDropDown.style.setProperty("height", mainDropDown.lastElementChild.offsetTop + mainDropDown.lastElementChild.clientHeight - this.parentElement.children[1].scrollHeight + "px");
+
     } else {
         // add active only to clicked list
         this.parentElement.classList.add('active');
+        this.parentElement.children[1].style.setProperty("height", this.parentElement.children[1].scrollHeight + "px");
+        // adjust height of main navbar as a result of expanding / collapsing sub-menus
+        mainDropDown.style.setProperty("height", mainDropDown.lastElementChild.offsetTop + mainDropDown.lastElementChild.clientHeight + this.parentElement.children[1].scrollHeight + "px");
+
     }
+
 }
 
 // add click event listener to dropdown buttons
@@ -526,3 +538,29 @@ for (let i = 0; i < dropDownElems.length; i++) {
     dropDownElems[i].children.item("a").addEventListener('click', expandSubNav);
 }
 
+createSpanLetters = function (elem) {
+    const text = elem.innerHTML.trim();
+    var letters = text.split("");
+    elem.innerHTML = "";
+    // replace space with space character for span to display
+    letters = letters.map(letter => letter == ' ' ? '&nbsp;' : letter);
+    letters.forEach((letter) => {
+        const span = document.createElement("span");
+        span.style.display = "inline-block";
+        // Delay each letter's animation
+        span.innerHTML = letter;
+        elem.appendChild(span);
+    });
+}
+
+wiggleLetter = function (elem) {
+    for (let i = 0; i < elem.textContent.length; i++) {
+        elem.children[i].style.animation = "wiggleLetter both 3s infinite";
+        elem.children[i].style.animationDelay = `${i * 30 + "ms"}`
+    }
+}
+
+const downloadCV = document.querySelector("#download_cv").querySelector("a")
+createSpanLetters(downloadCV);
+
+wiggleLetter(downloadCV); 
