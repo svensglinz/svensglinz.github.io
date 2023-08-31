@@ -351,7 +351,8 @@ function sleep(ms) {
 }
 
 var typeWriter = async function (elem) {
-    const text = elem.textContent;
+    var text = elem.textContent.trim();
+    text = text.split(/[\n\s]+/).join(' ');
     elem.textContent = '';
     var blinkerElem;
 
@@ -362,7 +363,7 @@ var typeWriter = async function (elem) {
         blinkerElem = '<span class=blink>|<span>';
     }
 
-    for (let i = 1; i < text.length; i++) {
+    for (let i = 1; i <= text.length; i++) {
         await sleep(100);
         elem.innerHTML = text.substring(0, i) + blinkerElem;
     }
@@ -373,8 +374,9 @@ var typeWriter = async function (elem) {
 // play animation upon intersection (only once)
 const observeTypeWriter = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-
+        entry.target.style.visibility = "hidden";
         if (entry.isIntersecting) {
+            entry.target.style.visibility = "visible";
             typeWriter(entry.target);
             observeTypeWriter.unobserve(entry.target);
         }
