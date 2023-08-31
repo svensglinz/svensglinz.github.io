@@ -25,6 +25,7 @@ Root Variables
 .light-theme {
     --font-color: rgb(20, 20, 20);
     --bg-color: rgb(225, 225, 225);
+    --nav-bar-color: rgb(200, 200, 200);
     --bg-color-inverse: rgb(20, 20, 20);
 }
 
@@ -32,6 +33,7 @@ Root Variables
     --font-color: white;
     --bg-color: rgb(25, 25, 25);
     --bg-color-inverse: rgb(225, 225, 225);
+    --nav-bar-color: rgb(0, 0, 0);
 }
 
 /*----------------------------------------------------------------------------------
@@ -549,7 +551,7 @@ get in touch
 navBar
 ----------------------------------------------------------------------------------*/
 nav {
-    background-color: var(--bg-color);
+    background-color: var(--nav-bar-color);
     position: sticky;
     top: 0;
     z-index: 200;
@@ -612,7 +614,7 @@ nav ul {
 }
 
 .nav-buttons {
-    background-color: var(--bg-color);
+    background-color: var(--nav-bar-color);
     width: 100%;
     height: 0;
     transition: all .3s linear;
@@ -677,11 +679,6 @@ nav li {
 .nav-buttons .dropdown>ul {
     height: 0;
     transition: height .3s linear;
-    overflow: hidden;
-}
-
-.nav-buttons .dropdown.active>ul {
-    overflow: scroll;
 }
 
 /*----------------------------------------------------------------------------------

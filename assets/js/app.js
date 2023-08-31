@@ -367,8 +367,6 @@ var typeWriter = async function (elem) {
         await sleep(100);
         elem.innerHTML = text.substring(0, i) + blinkerElem;
     }
-    return 0;
-
 }
 
 // play animation upon intersection (only once)
@@ -501,7 +499,7 @@ expandNav = function () {
         hambButton.classList.remove('active');
         mainDropDown.classList.remove('active');
     } else {
-        mainDropDown.style.setProperty("height", mainDropDown.scrollHeight + "px");
+        mainDropDown.style.setProperty("height", mainDropDown.scrollHeight + 25 + "px");
         hambButton.classList.add('active');
         mainDropDown.classList.add('active');
     }
