@@ -804,81 +804,6 @@ section {
 
 /*********************************************************************************************
 
-/*---------------------------------------
-projects landing page styling
----------------------------------------*/
-.projects .nav-bar {
-    background: none;
-    background-color: white;
-    border-bottom: 1px solid grey;
-}
-
-.projects * {
-    color: black;
-}
-
-.projects .section-title {
-    align-self: baseline;
-}
-
-.projects main {
-    margin: var(--nav-bar-height) 5%;
-}
-
-
-.image-container {
-    border-radius: var(--border-radius);
-    overflow: hidden;
-}
-
-.thumbnails {
-    border-bottom: 1px solid grey;
-    display: grid;
-    place-content: space-between;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    --border-radius: 9px;
-    column-gap: 3%;
-}
-
-
-.projects .title a:hover {
-    text-decoration: underline;
-    color: royalblue;
-}
-
-.projects img:hover {
-    transform: translateY(-10px);
-}
-
-.project-thumbnail {
-    border-top: 1px solid grey;
-    padding: 15px 0;
-    display: grid;
-    grid: minmax(auto, 200px) auto / 1fr;
-}
-
-/*below all posts solid grey line*/
-
-.project-thumbnail .description {
-    display: grid;
-}
-
-.project-thumbnail img {
-    border-radius: var(--border-radius);
-    place-self: center;
-}
-
-.project-thumbnail .image-container {
-    margin-bottom: 20px;
-}
-
-.project-thumbnail .description .title {
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-
-
-
 /**********************************************
 Keyframe Animations
 **********************************************/
@@ -1041,7 +966,7 @@ Individual Posts styling
 .post-header {
     --start-pic-height: 25vh;
     display: grid;
-    grid: minmax(30vh, auto) repeat(2, calc(var(--start-pic-height) / 2)) / 100%;
+    grid: minmax(33vh, auto) repeat(2, calc(var(--start-pic-height) / 2)) / 100%;
     width: 100%;
 }
 
@@ -1073,6 +998,7 @@ Individual Posts styling
 
 .background .title h2 {
     color: var(--font-color-inverse);
+    margin-bottom: 10px;
 }
 
 .post-header .title p {
@@ -1104,7 +1030,7 @@ Individual Posts styling
     padding: 0 8px;
 }
 
-.blog-post .nav-bar li {
+.blog-post .nav-bar li a {
     color: var(--font-color-inverse);
 }
 
@@ -1165,4 +1091,145 @@ Individual Posts styling
     border-radius: 5px;
     height: 100%;
     width: 100%;
+}
+
+.blog-post footer {
+    margin: 5px auto;
+    width: 90%;
+}
+
+.blog-post footer hr {
+    margin: 5px 0;
+}
+
+.blog-post footer p {
+    font-size: 1.4rem;
+}
+
+/*------------------------------------------------------------
+Projects Overview Page
+-------------------------------------------------------------*/
+
+.projects .title {
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.projects .nav-bar {
+    background: none;
+    background-color: white;
+    border-bottom: 1px solid grey;
+}
+
+.projects * {
+    color: black;
+}
+
+
+.projects main {
+    margin: var(--nav-bar-height) 5%;
+}
+
+
+.image-container {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.thumbnails {
+    border-bottom: 1px solid grey;
+    display: grid;
+    place-content: space-between;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    --border-radius: 9px;
+    gap: 15px;
+}
+
+
+.projects .title a:hover {
+    text-decoration: underline;
+    color: royalblue;
+}
+
+.projects img {
+    transition: all .3s ease-in-out;
+}
+
+.projects .project-thumbnail:hover img {
+    transform: scale(1.01);
+}
+
+.project-thumbnail {
+    border-top: 1px solid grey;
+    display: grid;
+    padding: 15px 0;
+    grid: minmax(auto, 200px) auto / 1fr;
+}
+
+/*below all posts solid grey line*/
+
+.project-thumbnail .description {
+    display: grid;
+}
+
+.project-thumbnail img {
+    border-radius: var(--border-radius);
+    place-self: center;
+}
+
+.project-thumbnail .image-container {
+    margin-bottom: 20px;
+}
+
+.project-thumbnail .description .title {
+    font-size: 2.4rem;
+    margin-bottom: 5px;
+}
+
+table tr:nth-child(even) {
+    background-color: rgb(230, 230, 230);
+}
+
+table td {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table tr:first-child {
+    border-top: solid 2px black;
+    border-bottom: solid 1.5px black;
+}
+
+table tr:last-child {
+    border-bottom: solid 2px black;
+}
+
+table th {
+    font-size: 1.6rem;
+    padding: 5px 0;
+}
+
+
+table td {
+    font-size: 1.4rem;
+    padding: 3px 0;
+}
+
+
+.blog-post a {
+    font-style: italic;
+    color: royalblue;
+}
+
+.table-footer {
+    font-size: 1.2rem !important;
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.blog-post ol {
+    list-style: inside !important;
 }

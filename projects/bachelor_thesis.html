@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--temporary fix-->
+<html lang="en" class="light-theme">
 
 <head>
     <meta charset="UTF-8">
@@ -16,35 +17,139 @@
     <link href="/assets/css/prism.css" rel="stylesheet" />
     <script src="/assets/js/prism.js"></script>
 
-    <!--add prop js script-->
-    <script src="/assets/js/app.js"></script>
     <title>Thesis - Margin Procyclicality</title>
 
 <body class="blog-post">
-
-    <!--include navbar / header-->
-    <div id="header"></div>
-
+    <nav>
+        <!--build UL from this!-->
+        <ul class="nav-bar">
+            <li id="blog">
+                Blog
+            </li>
+            <li id="all-posts">
+                All Posts
+            </li>
+            <li id="home">
+                Home
+            </li>
+        </ul>
+    </nav>
     <div class="post-header">
-        <div class="background"></div>
-        <div class="title-picture-container">
-            <div class="title">
-                <h2>Margin Procyclicality during Covid 19</h2>
-                <p>Bachelor Thesis - Executive Summary</p>
+        <div class="background">
+            <div class="title page-margin">
+                <h2>US Election Financing</h2>
+                <p>An analysis of FEC Donations for Presidential Elections between 1992 and 2020 in R</p>
             </div>
-            <div class="picture full-size"><img src="/assets/images/title_image_margin_procyclicality.jpg"></div>
+        </div>
+        <div class="page-margin post-picture">
+            <img src="/assets/images/election_funding_image.jpg">
         </div>
     </div>
-    <div class="date-container">
-        <p class="font-black">POST_DATE</p>
+    <div class="start-bar page-margin">
+        <a href="https://github.com/svensglinz/US_Presidential_Elections" target="_blank">
+            <div class="project-code">
+                <img src="/assets/images/github-mark-white.svg">
+                <p>Code for this Project</p>
+            </div>
+        </a>
+        <div class="separator">|</div>
+        <div class="date-container">
+            <p>31. August 2023</p>
+        </div>
     </div>
     <main>
         <section>
-            <h3 class="section-title">Research Question</h3>
-            <p>section text here</p>
+            <h2 class="blog-title">Purpose</h2>
+            <p>
+                This post gives a brief summary of the main resuls of by Bachelor Thesis on Margin Procyclicality in
+                Derivative Markets. For the purpose of brevity, only a coarse overview over the methodology is presented
+                and only the main
+                results describing the procyclicality of margin models are presented. If you are interested in further
+                details, please feel free to reach out.
+            </p>
         </section>
         <section>
-            <h3 class="section-title font-black font-bold">Methodology</h3>
+            <h2 class="blog-title">Research Question</h2>
+            <p>
+                My bachelor thesis summarizes and investigates the issue of large spikes in margin requirements in
+                financial markets with a specific focus on centrally cleared derivative markets. As the market turmoil
+                during the Covid Outbreak in March 2020 endured,
+                margins for derivative contracts rose sharply at most clearing houses which brought about new regulatory
+                scrutiny about how such margins behave during crises.
+                In my thesis, the h
+                <br>
+                <br>
+                Since the Great Financial Crisis in 2008, derivative markets underwent significant reforms, among other
+                mandatory clearing requirements for ETD and most standardized OTC transatcions. Central clearing of
+                these contracts removes the buildup of large, sometimes uncolalteralized bilateral exposures
+                between market participants and bundles all risk in one entity, the CCP. Through prudent risk management
+                and the daily collection of margin from its participants, the CCP thus virtually eliminates counterparty
+                risk between market participants as it is the sole conterparty to every derivative contract.
+                However, to shield itself from market risks, real-time margin calculations at CCPs can transform credit
+                risks into liquidity risks, where a sudden spike in financial market volatility leads the CCP to quickly
+                adjust its margins upwards
+                which can lead to liquidity outflows at members in already stressed times. In the works case, this can
+                lead to a self-enforcing downward spiral,
+                where members have to sell liquid assets to meed their liquidity neeeds which further pushes volatility
+                up and assset values down and can ultimately end in a crisis.
+            </p>
+        </section>
+        <section>
+            <h2 class="blog-title">Central Clearing and Margin Requirements</h2>
+        </section>
+        <section>
+            <h3 class="blog-title font-black font-bold">Methodology</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Popular Products</th>
+                    <th>Collateral (USD)</th>
+                </tr>
+                <tr>
+                    <td>LCH.Clearnet</td>
+                    <td>CDS, NDF-Forex, IRS, Equity (eg. LSE), Repo</td>
+                    <td>330 Bio</td>
+                </tr>
+                <tr>
+                    <td>ICE Clear</td>
+                    <td>Cofee, Sugar, Brent/ WTI Crude Oil, CDS</td>
+                    <td>250 Bio</td>
+                </tr>
+                <tr>
+                    <td>CME Clearing</td>
+                    <td>Eurodollar, S&P 500 E-Mini, Natural Gas, 10 Year T-Note</td>
+                    <td>207 Bio</td>
+                </tr>
+                <tr>
+                    <td>Options Clearing Corp. (OCC)</td>
+                    <td>Cboe VIX, Equity Derivatives</td>
+                    <td>136 Bio</td>
+                </tr>
+                <tr>
+                    <td>Eurex Clearing</td>
+                    <td>Cofee, Sugar, Brent/ WTI Crude Oil, CDS</td>
+                    <td>132 Bio.</td>
+                </tr>
+            </table>
+            <p class="table-footer">Data from <a href="https://ccp-global.org/pqd/">CCP12 PQD</a> (Q2 2022) Data field
+                6.2.15 <span style="font-style: italic;">Total IM PreHaircut</span></p>
+            <p>
+                To mitigage margin procyclcality, various tools have been suggested in literature as well as by
+                regulatory bodies such as the XXX.
+                In the following, a simple margin model as it is used by various CCPs around the world is used to
+                calculate margin requirements on a single portfolio ETD position.
+                Subsequently, various mitigation techniques are applied and risk parameters are calculated to compare
+                the different methods to each other.
+                <!--put these two next to each other on a wider screen - class can be developed for such a container as well!-->
+                <img class="inline-img" src="/assets/images/daily_returns_FESX.svg">
+                <img class="inline-img" src="/assets/images/ewma_1d_FESX.svg">
+                <img class="inline-img" src="/assets/images/APC_comparison_long.svg">
+                <img class="inline-img" src="/assets/images/long_short_margin_test.svg">
+                <img class="inline-img" src="/assets/images/LTM_stress_periods_long.svg">
+                <img class="inline-img" src="/assets/images/LTM_total_long.svg">
+                <img class="inline-img" src="/assets/images/ccp_clearing.png">
+
+            </p>
             <p>$$\hat{\sigma}(t) = \sqrt{1-\lambda*r(t) - \hat{t}^2 + \lambda * \hat{\sigma}^2(t-1)}$$
                 $$\hat{\mu}(t) = (1-\lambda)*r(t) + \lambda * \hat{\mu}(t-1)$$
                 $$IM(\tau) = VAR_{\rho}(\rightarrow{PnL_i})$$
@@ -52,25 +157,66 @@
                 $$\tilde{z_i}(t) = \frac{z_i(t) - \hat{\mu_i(t-1)}}{\hat{\sigma_i}(t-1)} * \hat{\sigma_i}(\tau)$$
                 $$\hat{\mu_i}(t) = \frac{1-\lambda}{1-\lambda^{\sigma}}\sum_{x = 0}^{\sigma -1}\lambda^x * z_i(t-x)$$
             </p>
+            <ol>
+                <li>Margin Buffer of at least 25% which can be temporarily exhausted when margin requirements are rising
+                    significantly</li>
+                <li>Assigning at least 25% weight to stressed observations in the lookback period</li>
+                <li>Ensuring that marign requiremnts are no lower than those that whoudl be calculated using volatility
+                    estimated over a 10-year historical lookback period</li>
+            </ol>
+
+
+            FURTHER SUGGESTIONS IN LITERATURE -- ADD ALL HERE TO SAVE SPACE
         </section>
         <section>
-            <h3 class="section-title font-black font-bold">Background on Margin Procyclicality</h3>
+            <h3 class="blog-title font-black font-bold">Background on Margin Procyclicality</h3>
             <p>section text here</p>
         </section>
         <section>
-            <h3 class="section-title font-black font-bold">The Margin Model</h3>
+            <h3 class="blog-title font-black font-bold">The Margin Model</h3>
+        </section>
+        <section>
+            <h3 class="blog-title font-black font-bold">Results</h3>
             <p>section text here</p>
         </section>
         <section>
-            <h3 class="section-title font-black font-bold">Results</h3>
-            <p>section text here</p>
-        </section>
-        <section>
-            <h3 class="section-title font-black font-bold">Conclusions</h3>
+            <h3 class="blog-title font-black font-bold">Sources</h3>
             <p>section text here</p>
         </section>
     </main>
+    <footer>
+        <hr>
+        <p>&copy Sven Glinz 2022</p>
+    </footer>
 
+    <!--add prop js script-->
+    <script src="/assets/js/posts.js"></script>
+    <script>
+        const navBarX = document.querySelector('nav');
+        const navBarList = document.querySelector('.nav-bar')
+        const startBg = document.querySelector('.background');
+        const postTitle = document.querySelector('.title');
+        changeNavBg = function () {
+            const navBarHeight = navBarX.clientHeight;
+            const startBgHeight = startBg.clientHeight;
+            var scroll = window.scrollY;
+
+            if (scroll > navBarHeight + startBgHeight) {
+                // set here property dark and bright! (also account for different themes!)
+                navBarX.style.backgroundColor = "var(--font-color-inverse)";
+                Array.from(navBarList.children).forEach(child => {
+                    child.style.color = "var(--primary-dark)";
+                });
+            } else {
+                Array.from(navBarList.children).forEach(child => {
+                    child.style.color = "var(--primary-light)";
+                });
+                navBarX.style.backgroundColor = "var(--primary-dark)";
+            }
+        }
+
+        document.addEventListener('scroll', changeNavBg); 
+    </script>
 </body>
 
 </html>

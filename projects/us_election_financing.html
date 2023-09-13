@@ -24,13 +24,13 @@
         <!--build UL from this!-->
         <ul class="nav-bar">
             <li id="blog">
-                Blog
+                <img src="/assets/images/blog_svg.svg" style="width: 40px;">
             </li>
             <li id="all-posts">
-                All Posts
+                <a>All Posts</a>
             </li>
             <li id="home">
-                Home
+                <a href="../index.html">Home</a>
             </li>
         </ul>
     </nav>
@@ -46,10 +46,12 @@
         </div>
     </div>
     <div class="start-bar page-margin">
-        <div class="project-code">
-            <img src="/assets/images/github-mark-white.svg">
-            <p>Code for this Project</p>
-        </div>
+        <a href="https://github.com/svensglinz/US_Presidential_Elections" target="_blank">
+            <div class="project-code">
+                <img src="/assets/images/github-mark-white.svg">
+                <p>Code for this Project</p>
+            </div>
+        </a>
         <div class="separator">|</div>
         <div class="date-container">
             <p>31. August 2023</p>
@@ -90,10 +92,14 @@
             <p>section text here</p>
         </section>
         <section>
-            <h3></h3>
+            <h3 class="blog-title font-black font-bold">Sources</h3>
             <p>section text here</p>
         </section>
     </main>
+    <footer>
+        <hr>
+        <p>&copy Sven Glinz 2022</p>
+    </footer>
 
     <!--add prop js script-->
     <script src="/assets/js/posts.js"></script>
