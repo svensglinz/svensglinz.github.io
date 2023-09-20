@@ -267,17 +267,12 @@ observeIntersection("fade-in-left", "fadeInLeft", "-100px");
 
 
 // select needed DOM elements
-const startImage = document.querySelector("#picture-me");
-const startImageMe = document.querySelector("#picture-me");
-const bgImage = document.querySelector("#start-bg");
-const startPage = document.querySelector(".start-page");
-const startText = document.querySelector(".start-text");
-var scrollSpeedImg = .5;
+const startPicture = document.querySelector("#picture-me");
+
 
 /*initialize opacity value for the background*/
-var scrollPos = startPage.scrollTop;
 var bgOpacity = .4;
-startImage.style.setProperty('--opac', Math.max(bgOpacity, .4));
+startPicture.style.setProperty('--opac', Math.min(bgOpacity, 1));
 
 const text0 = document.getElementById("text-0");
 const text1 = document.getElementById("text-1");
@@ -285,14 +280,17 @@ const text2 = document.getElementById("text-2");
 
 textArray = Array.from([text0, text1, text2])
 
+// set variable opacity of Start Picture with scroll 
 const setBgOpacity2 = function () {
     scrollPos = window.scrollY;
-    bgOpacity = window.scrollY / window.innerHeight;
-    bgImage.style.setProperty('--opac', Math.max(bgOpacity, .3));
+    bgOpacity = 0.3 - window.scrollY / 1000;
+    opacStartPic = 1 - window.scrollY / (window.innerHeight / 2);
+    startPicture.style.setProperty('--opac', Math.min(opacStartPic, 1));
 }
 
 window.addEventListener("scroll", setBgOpacity2);
 
+// NEXT FUNCTION
 var ImageScroll = function () {
     startImage.style.transform = `translateY(-${window.scrollY / 2 + "px"})`
     startImage.style.opacity = `${.8 - window.scrollY / window.innerHeight}`;
