@@ -22,253 +22,18 @@ function observeIntersection(className, addClass, rootMargin) {
     elements.forEach(element => observer.observe(element));
 }
 
-// creates a scrolldot that is connected to one child element --> If this comes into view, the scroll-dot will change class (scroll-dot, child combo)
-class scrollArrows {
-    constructor(parentElement) {
-        this.parentElement = parentElement;
-        this.observer = this.#createObserver();
-        this.observePosition();
-        this.firstChild = parentElement.firstElementChild;
-        this.lastChild = parentElement.lastElementChild;
-        this.arrowLeft = this.createArrow("left");
-        this.arrowRight = this.createArrow("right");
-        this.observeClick();
-        this.lastInView = undefined;
-        this.lastOutView = undefined; // hard coded for first click
-    }
-
-    #createObserver() {
-
-        let options = {
-            root: this.parentElement,
-            rootMargin: "0px",
-            threshold: .8,
-        };
-
-        const observer = new IntersectionObserver(entries => {
-            const index = [];
-            for (const entry of entries) {
-
-                // get the element that left the screen
-                if (!entry.isIntersecting) {
-                    this.lastOutView = Array.from(this.parentElement.children).indexOf(entry.target);
-                    index.push(this.lastOutView);
-                }
-
-                if (entry.isIntersecting) {
-                    this.lastInView = Array.from(this.parentElement.children).indexOf(entry.target);
-                    index.push(this.lastInView);
-                }
-
-                if (entry.target == this.firstChild) {
-                    if (entry.isIntersecting) {
-                        this.arrowLeft.style.visibility = "hidden";
-                    } else {
-                        this.arrowLeft.style.visibility = "visible";
-                    }
-                }
-
-                if (entry.target == this.lastChild) {
-                    if (entry.isIntersecting) {
-                        this.arrowRight.style.visibility = "hidden";
-                    } else {
-                        this.arrowRight.style.visibility = "visible";
-                    }
-                }
-                console.log("lastOutView = " + index);
-                console.log("lastInView = " + index);
-            }
-
-        }, options);
-
-        return observer;
-    }
-
-    observePosition() {
-        Array.from(this.parentElement.children).forEach(child => {
-            this.observer.observe(child);
-        });
-    }
-
-    unobservePosition() {
-        this.observer.unobserve(children);
-    }
-
-    createArrow(direction) {
-        const arrow = document.createElement("div");
-        arrow.classList.add("timeline-button");
-        if (direction == "left") {
-            arrow.classList.add("left");
-            arrow.innerHTML += "<span>&#8592</span>";
-        } else if (direction == "right") {
-            arrow.classList.add("right");
-            arrow.innerHTML += "<span>&#8594</span>";
-        }
-        return arrow;
-    }
-
-    clickNext() {
-        let scrollTo;
-        if (this.lastInView > this.lastOutView) {
-            scrollTo = this.lastInView + 1;
-        } else {
-            scrollTo = this.lastOutView;
-        }
-
-        this.parentElement.children[scrollTo].scrollIntoView({ behavior: "smooth", block: "nearest" })
-
-    }
-
-    clickPrevious() {
-        let scrollTo;
-        if (this.lastInView > this.lastOutView) {
-            scrollTo = this.lastOutView;
-        } else {
-            scrollTo = this.lastInView - 1;
-        }
-        this.parentElement.children[scrollTo].scrollIntoView({ behavior: "smooth", block: "nearest" })
-
-
-    }
-
-    observeClick() {
-        this.arrowRight.addEventListener("click", () => {
-            // add direction left and right!
-            this.clickNext();
-        });
-
-        this.arrowLeft.addEventListener("click", () => {
-            this.clickPrevious();
-
-        })
-    }
-}
-
-class ScrollDot {
-    constructor(childElement) {
-        this.childElement = childElement;
-        this.dotElement = this.createDot();
-        this.observeClick();
-        this.observer = this.#createObserver();
-        this.observeElement();
-    }
-
-    createDot() {
-        const dotElement = document.createElement("div");
-        dotElement.classList.add("scroll-dot");
-        return dotElement;
-    }
-
-    observeClick() {
-        this.dotElement.addEventListener("click", () => {
-            this.childElement.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        })
-    }
-
-    #createObserver() {
-
-        let options = {
-            root: this.childElement.parentElement,
-            rootMargin: "0px",
-            threshold: .5,
-        };
-
-        const observer = new IntersectionObserver(entry => {
-            if (entry[0].isIntersecting) {
-                this.dotElement.classList.add("active");
-            } else {
-                this.dotElement.classList.remove("active");
-            }
-        }, options);
-
-        return observer;
-    }
-
-    observeElement() {
-        this.observer.observe(this.childElement);
-    }
-
-    unobserveElement() {
-        this.observer.unobserve(this.ChildElement);
-    }
-}
-
-class ScrollContainer {
-    constructor(gridElement) {
-        this.gridElement = gridElement;
-        this.scrollItems = this.gridElement.children;
-        this.arrows = this.createArrows();
-        this.scrollBox = this.createScrollBox();
-        this.dots = this.createDots();
-        this.appendArrows();
-        this.appendScrollBox();
-        // this.observeDots();
-    }
-
-    // creates arrows for traversing through the scrollBox; 
-    createArrows() {
-        const arrows = new scrollArrows(this.gridElement);
-        return [arrows.arrowLeft, arrows.arrowRight];
-    }
-
-    appendArrows() {
-        this.gridElement.parentNode.appendChild(this.arrows[0]);
-        this.gridElement.parentNode.appendChild(this.arrows[1]);
-    }
-
-    createScrollBox() {
-        const scrollBox = document.createElement("div");
-        scrollBox.classList.add("scroll-box");
-        return scrollBox;
-    }
-
-    // creates dots to append to scrollBox 
-    createDots() {
-        const dots = [];
-        for (let i = 0; i < this.scrollItems.length; i++) {
-            const dot = new ScrollDot(this.scrollItems[i]);
-            dots.push(dot);
-        }
-
-        // first dot is active;
-        return dots;
-    }
-
-    // fill scrollBox with scrollDots
-    appendScrollBox() {
-        this.scrollBox.innerHTML = "";
-        for (const dot of this.dots) {
-            this.scrollBox.appendChild(dot.dotElement);
-        }
-
-        // add scrollbox below container
-        this.gridElement.insertAdjacentElement("afterend", this.scrollBox);
-    }
-}
-
-const test = document.querySelector(".career-grid");
-const testcontainer = new ScrollContainer(test);
-const testarows = new scrollArrows(test);
-
-const smartphone_screen = window.matchMedia("(min-width: 768px)");
-smartphone_screen.addEventListener("change", (event) => {
-    if (event.matches) {
-        scroll_box.style.display = "none";
-    } else {
-        scroll_box.style.display = "inline-block";
-    }
-})
-
 // observe elements for fade-in
 observeIntersection("download-cv", "test", "0px");
 observeIntersection("expand", "expandBars", "0px");
 observeIntersection("fade-in", "fadeIn", "0px");
 observeIntersection("fade-in-left", "fadeInLeft", "-100px");
 
-
 // select needed DOM elements
 const startPicture = document.querySelector("#picture-me");
 
+/*------------------------------------------------------------------------------------
+Controls opacity of the start picture
+------------------------------------------------------------------------------------*/
 
 /*initialize opacity value for the background*/
 var bgOpacity = .4;
@@ -290,53 +55,6 @@ const setBgOpacity2 = function () {
 
 window.addEventListener("scroll", setBgOpacity2);
 
-// NEXT FUNCTION
-var ImageScroll = function () {
-    startImage.style.transform = `translateY(-${window.scrollY / 2 + "px"})`
-    startImage.style.opacity = `${.8 - window.scrollY / window.innerHeight}`;
-}
-
-window.addEventListener("scroll", ImageScroll);
-function smoothScrollTo(targetElement) {
-    const startPosition = window.scrollY;
-    const targetPosition = targetElement.offsetTop;
-    const distance = targetPosition - startPosition;
-    const duration = 500; // Duration in milliseconds
-
-    let startTime = null;
-
-    function animationStep(timestamp) {
-        if (!startTime) startTime = timestamp;
-
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        const interpolatedPosition = startPosition + distance * progress;
-
-        window.scrollTo(0, interpolatedPosition);
-
-        if (progress < 1) {
-            requestAnimationFrame(animationStep);
-        }
-    }
-
-    requestAnimationFrame(animationStep);
-}
-
-/*------------------------------------------------------------------------------------
-Controls smooth scroll
-------------------------------------------------------------------------------------*/
-
-const smoothScroll = document.querySelectorAll('.smooth-scroll');
-
-smoothScroll.forEach(elem => {
-    elem.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const targetId = link.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        smoothScrollTo(targetElement);
-    });
-});
 
 /*------------------------------------------------------------------------------------
 Controls typewriter effect of section titles
@@ -382,7 +100,6 @@ const observeTypeWriter = new IntersectionObserver(entries => {
 Array.from(typeWriterElem).forEach(elem => {
     observeTypeWriter.observe(elem);
 });
-
 
 /*------------------------------------------------------------------------------------
 Control Page Theme (Dark / Light) via theme toggler
@@ -535,6 +252,10 @@ expandSubNav = function () {
 for (let i = 0; i < dropDownElems.length; i++) {
     dropDownElems[i].children.item("a").addEventListener('click', expandSubNav);
 }
+
+/*------------------------------------------------------------------------------------
+Controls behavior of NavBar
+------------------------------------------------------------------------------------*/
 
 createSpanLetters = function (elem) {
     const text = elem.innerHTML.trim();
