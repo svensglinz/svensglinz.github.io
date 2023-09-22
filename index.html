@@ -27,51 +27,9 @@
 
     <!--CSS Styles -->
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <style>
-        #loader::after {
-            content: "";
-            border: 12px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 12px solid #444444;
-            width: 70px;
-            height: 70px;
-            animation: spin 1s linear infinite;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-        }
-
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
 </head>
 
 <body class="index">
-    <!--controls visibility during loading state-->
-    <div id="loader" style="width: 100vw; height: 100vh; z-index: 100000"></div>
-    <script>
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-        document.onreadystatechange = async function () {
-            // do nothing if the DOM content is loaed within 150ms
-            if (document.readyState != "complete") {
-                document.documentElement.style.visibility = "hidden";
-                document.querySelector("#loader").style.visibility = "visible";
-            } else {
-                await sleep(100);
-                document.querySelector("#loader").style.display = "none";
-                document.documentElement.style.visibility = "visible";
-
-            };
-        }
-    </script>
     <!-- toggle between dark & light theme-->
     <div id="theme-toggler"></div>
     <!--navbar-->
@@ -112,15 +70,13 @@
     <!--background image of start page section-->
     <main>
         <section class="start-page">
+            <div class="blue-bg"></div>
             <img id="picture-me" src="assets/images/blur_edges_2.png">
             <div class="start-text">
                 <div class="tess">
                     <h1 class="section-title">
                         Hi, I'm Sven
                     </h1>
-                    <lottie-player class="waving_hand"
-                        src="https://lottie.host/b4f329d7-8305-46f1-b90a-07b7f3680598/y9miQzitFs.json" speed="1" loop
-                        autoplay direction="1" mode="normal"></lottie-player>
                 </div>
                 <div>
                     <p>
@@ -142,11 +98,6 @@
 
         <section id="about-me">
             <h2 class="section-title type-writer">About Me</h2>
-            <div class="click-element download-cv">
-                <a href="/docs/cv_sven.pdf" target="_blank">
-                    <p>Download CV</p>
-                </a>
-            </div>
             <div class="subsection education fade-in">
                 <h3 class="subsection-title">Education</h3>
                 <div id="light-bulb-anim"></div>
@@ -237,14 +188,17 @@
                             <li>Capital Markets (Bonds/Equities/Derivatives)</li>
                             <li>Retail & Commercial Banking</li>
                             <li>Risk Management</li>
+                            <li>Risk Management</li>
+                            <li>Risk Management</li>
+                            <li>Risk Management</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
         <section id="projects">
+            <h2 class="section-title type-writer">Recent Projects</h2>
             <div class="recent-projects">
-                <h2 class="section-title type-writer">Recent Projects</h2>
                 <div onclick="location.href = '/projects/us_election_financing.html'" id="project1"
                     class="project-tile fade-in-left">
                     <img src="/assets/images/election_funding_image.jpg" class="background-image full-size scale-in">
@@ -275,56 +229,50 @@
                         <p>View all projects</p>
                     </a>
                 </div>
-            </div>
         </section>
 
         <section class="social-media-section">
+            <div class="blue-bg"></div>
             <div id="social-media-bar">
-                <div class="section-titlee">
-                    <h2 class="section-title type-writer type-writer-no-blink" style="margin-bottom: 50px;">Let's
-                        get in touch</h2>
-                    <div class="calling_man">
-                        <img src="/assets/images/calling-man.png">
+                <h2 class="section-title type-writer type-writer-no-blink" style="margin-bottom: 50px;">Let's
+                    get in touch
+                </h2>
+                <div class="calling_man">
+                    <img src="/assets/images/calling-man.png">
+                </div>
+                <div class="text">
+                    <h3>Thank you for visiting my website</h3>
+                    <p>
+                        If you are interested in collaborating feel free
+                        to reach out via any of my socials or email.
+                    </p>
+                    <br>
+                    <br>
+                    <div id="download_cv">
+                        <a href="/docs/cv_sven.pdf" target="_blank">
+                            Download CV
+                        </a>
                     </div>
                 </div>
-                <div class="social-media-bar">
-                    <div class="blue-bg"></div>
-                    <div class="text">
-                        <div class="spacer"></div>
-                        <h3>Thank you for visiting my website</h3>
-                        <p>
-                            If you are interested in collaborating feel free
-                            to reach out via any of my socials or email.
-                        </p>
-                        <br>
-                        <br>
-                        <div id="download_cv">
-                            <a href="/docs/cv_sven.pdf" target="_blank">
-                                Download CV
-                            </a>
-                        </div>
-                    </div>
-
-                    <p class="copy">&copy Sven Glinz 2023</p>
-                    <div class="icons">
-                        <div class="icon" id="linkedin_link">
-                            <a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
-                                <img src="/assets/images/linkedin_icon.svg">
-                            </a>
-                        </div>
-                        <div class="icon" id="email_link">
-                            <a href="mailto:sven.glinz@gmail.com"></a>
-                            <img src="/assets/images/email-icon.svg">
-                            </a>
-                        </div>
-                        <div class="icon" id="github_link">
-                            <a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
-                                <img src="/assets/images/github_icon.svg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <ul class="icons">
+                    <li class="icon" id="linkedin_link">
+                        <a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
+                            <img src="/assets/images/linkedin_icon.svg">
+                        </a>
+                    </li>
+                    <li class="icon" id="email_link">
+                        <a href="mailto:sven.glinz@gmail.com"></a>
+                        <img src="/assets/images/email-icon.svg">
+                        </a>
+                    </li>
+                    <li class="icon" id="github_link">
+                        <a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
+                            <img src="/assets/images/github_icon.svg">
+                        </a>
+                    </li>
+                </ul>
             </div>
+            <p class="copy">&copy Sven Glinz 2023</p>
         </section>
     </main>
     <!--add js-->
