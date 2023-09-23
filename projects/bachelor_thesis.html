@@ -26,25 +26,25 @@
                 BLOG
             </li>
             <li id="all-posts">
-                All Posts
+                <a href="/projects.html">All Posts</a>
             </li>
             <li id="home">
-                Home
+                <a href="/index.html">Home</a>
             </li>
         </ul>
     </nav>
     <div class="post-header">
         <div class="background">
-            <div class="title page-margin">
+            <div class="title">
                 <h2>Margin Procyclicality in Financial Markets</h2>
                 <p>An analysis of Margin Procyclicality in Derivatives Markets (Bachelor Thesis in Economics)</p>
             </div>
         </div>
-        <div class="page-margin post-picture">
+        <div class="post-picture">
             <img src="/assets/images/title_image_margin_procyclicality.jpg">
         </div>
     </div>
-    <div class="start-bar page-margin">
+    <div class="start-bar">
         <a href="https://github.com/svensglinz/US_Presidential_Elections" target="_blank">
             <div class="project-code">
                 <img src="/assets/images/github-mark-white.svg">
@@ -58,7 +58,7 @@
     </div>
     <main>
         <section>
-            <h2 class="blog-title">Purpose</h2>
+            <h3 class="blog-title">Purpose</h3>
             <p>
                 This post gives a brief summary of the main resuls of by Bachelor Thesis on Margin Procyclicality in
                 Derivative Markets. For the purpose of brevity, only a coarse overview over the methodology is presented
@@ -68,7 +68,7 @@
             </p>
         </section>
         <section>
-            <h2 class="blog-title">Research Question</h2>
+            <h3 class="blog-title">Research Question</h3>
             <p>
                 My bachelor thesis summarizes and investigates the issue of large spikes in margin requirements in
                 financial markets with a specific focus on centrally cleared derivative markets. As the market turmoil
@@ -94,7 +94,7 @@
             </p>
         </section>
         <section>
-            <h2 class="blog-title">Central Clearing and Margin Requirements</h2>
+            <h3 class="blog-title">Central Clearing and Margin Requirements</h3>
         </section>
         <section>
             <h3 class="blog-title font-black font-bold">Methodology</h3>
@@ -140,16 +140,20 @@
                 Subsequently, various mitigation techniques are applied and risk parameters are calculated to compare
                 the different methods to each other.
                 <!--put these two next to each other on a wider screen - class can be developed for such a container as well!-->
+            <div class="img-grid">
                 <img class="inline-img" src="/assets/images/daily_returns_FESX.svg">
                 <img class="inline-img" src="/assets/images/ewma_1d_FESX.svg">
-                <img class="inline-img" src="/assets/images/APC_comparison_long.svg">
-                <img class="inline-img" src="/assets/images/long_short_margin_test.svg">
-                <img class="inline-img" src="/assets/images/LTM_stress_periods_long.svg">
-                <img class="inline-img" src="/assets/images/LTM_total_long.svg">
-                <img class="inline-img" src="/assets/images/ccp_clearing.png">
+            </div>
+            <img class="inline-img" style="margin-bottom: 35px" src="/assets/images/LTM_total_long.svg">
+            <img class="inline-img" style="margin-bottom: 35px" src="/assets/images/LTM_stress_periods_long.svg">
+            <img class="inline-img" style="margin-bottom: 35px" src="/assets/images/APC_comparison_long.svg">
+            <img class="inline-img" style="margin-bottom: 35px" src="/assets/images/long_short_margin_test.svg">
+            <img class="inline-img" style="margin-bottom: 35px" src="/assets/images/ccp_clearing.png">
+            <img class="inline-img" style="margin-bottom: 35px" src="/assets/images/release_levels_long.svg">
 
             </p>
-            <p>$$\hat{\sigma}(t) = \sqrt{1-\lambda*r(t) - \hat{t}^2 + \lambda * \hat{\sigma}^2(t-1)}$$
+            <p class="math">$$\hat{\sigma}(t) = \sqrt{1-\lambda*r(t) - \hat{t}^2 + \lambda *
+                \hat{\sigma}^2(t-1)}$$
                 $$\hat{\mu}(t) = (1-\lambda)*r(t) + \lambda * \hat{\mu}(t-1)$$
                 $$IM(\tau) = VAR_{\rho}(\rightarrow{PnL_i})$$
                 $$\tilde{r_i}(t) = exp\big(\tilde{z_i}(t)\big)-1$$
