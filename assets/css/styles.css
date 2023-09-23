@@ -4,6 +4,7 @@ Import Fonts
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Bitter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Permanent+Marker&display=swap');
+
 /*----------------------------------------------------------------------------------
 Root Variables
 ----------------------------------------------------------------------------------*/
@@ -15,10 +16,10 @@ Root Variables
     --nav-bar-height: 70px;
     --section-title-margin: 70px;
     /*width of main content on the page relative to the full screen*/
-    --side-padding-s: 10%;
-    --side-padding-m: 15%;
-    --side-padding-l: 20%;
-    --main--page-width: 1170px;
+    --width-s: 80%;
+    --width-m: 70%;
+    --width-l: 60%;
+    --max-width: 1170px;
     --page-inner-margin: 5%;
     --primary-light: rgb(225, 225, 225);
     --primary-dark: rgb(20, 20, 20)
@@ -100,17 +101,9 @@ section {
     section {
         /*adjust by subtracting var(--nav-bar-height)*/
         min-height: calc(800px) !important;
-        border: 2px solid red !important;
     }
 }
 
-@media screen and (min-width: 1170px) {
-    section {
-        /*fix-this when zooming-out!!!*/
-        /*max-width: 1170px !important*/
-        padding: 0 var(--side-padding-l);
-    }
-}
 
 /*where to put this --> Does this work on smartphones?*/
 main {
@@ -145,6 +138,10 @@ h1 {
     font-size: 5rem;
 }
 
+/*
+to control max width--> Put one container into a separate one!!! and control width 
+of that one and center it
+*/
 h2 {
     font-size: 3rem;
 }
@@ -283,13 +280,35 @@ Theme (Dark / Light) toggler
 /*----------------------------------------------------------------------------------
 Start Page
 ----------------------------------------------------------------------------------*/
+
+/*put this in general section*/
+.content {
+    margin: 0 auto;
+    width: var(--width-s);
+    max-width: var(--max-width);
+}
+
+@media screen and (min-width: 800px) {
+    .content {
+        width: var(--width-m);
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .content {
+        width: var(--width-l);
+    }
+}
+
+/*for positioning of blue triangle*/
 .start-page {
+    position: relative;
+}
+
+.start-page .content {
+    position: relative;
     display: grid;
     grid: 40vh 15vh auto / 100%;
-    place-content: start;
-    padding: 0 5%;
-    margin: 0;
-    width: 100vw;
     min-height: 100vh;
 }
 
@@ -313,15 +332,13 @@ Start Page
     grid-column: 1;
 }
 
-.start-page p {
+.start-page .content p {
     font-weight: 500;
     text-align: justify;
 }
 
 @media screen and (min-width: 768px) {
-    .start-page {
-        position: relative !important;
-        padding: 0 var(--side-padding-l);
+    .start-page .content {
         grid: auto / 60% 40%;
         place-content: center;
     }
@@ -396,9 +413,7 @@ Section: About Me
 }
 
 @media screen and (min-width: 768px) {
-
-    #about-me {
-        padding: 0 var(--side-padding-l);
+    #about-me .content {
         /*check where slight margin comes from without this statement*/
         display: grid;
         grid: repeat(2, auto) / repeat(2, 1fr);
@@ -433,9 +448,28 @@ Section: About Me
         display: grid;
         list-style: none;
         width: 100%;
-        grid-template-columns: repeat(auto-fill, 300px);
+        grid-auto-rows: 60px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, max-content));
         grid-column: 1 / span 2;
         column-gap: 15px;
+    }
+
+    .skills .further li {
+        display: flex;
+        border-radius: 7px;
+        background: rgba(250, 250, 250, .5);
+        place-items: center;
+        place-content: center;
+
+    }
+
+    .skill-animation {
+        display: none;
+    }
+
+    #light-bulb-anim {
+        transform: rotate(0);
+        top: 50px;
     }
 }
 
@@ -550,6 +584,11 @@ Recent Projects
 }
 
 /*hover effects over project tile*/
+
+.project-tile:hover {
+    cursor: pointer;
+}
+
 .project-tile:hover .project-title h4 {
     color: royalblue;
 }
@@ -603,6 +642,7 @@ get in touch
 /*----------------------------------------------------------------------------------
 navBar
 ----------------------------------------------------------------------------------*/
+/*
 nav {
     background-color: var(--nav-bar-color);
     position: sticky;
@@ -661,7 +701,6 @@ nav {
     width: 80%;
 }
 
-/*for main and sub-dropdown lists*/
 nav ul {
     padding: 0 15px;
 }
@@ -674,7 +713,6 @@ nav ul {
     position: fixed;
 }
 
-/*height is set in JS for transition effect*/
 .nav-buttons.active {
     overflow: scroll;
 }
@@ -697,12 +735,10 @@ nav li {
     transition-delay: .3s;
 }
 
-/*1st level dropdown*/
 .nav-buttons>li {
     padding: 15px 0;
 }
 
-/*2nd and ff level dropdown*/
 .dropdown li {
     opacity: 0;
     height: 0;
@@ -735,11 +771,19 @@ nav li {
     height: 0;
     transition: height .3s linear;
 }
+*/
 
 @media screen and (min-width: 768px) {
 
-    .nav-bar-name-wide {
-        display: initial;
+    nav {
+        background: var(--font-color-inverse);
+        position: sticky;
+        top: 0;
+        z-index: 10000;
+    }
+
+    nav ul {
+        list-style: none;
     }
 
     .hamb {
@@ -747,36 +791,51 @@ nav li {
     }
 
     .nav-buttons {
-        padding: 0 var(--side-padding-l);
-        height: 80px;
-        display: flex;
-        place-content: space-around;
+        padding: 0 calc((100% - var(--width-l)) / 2);
+        height: var(--nav-bar-height);
+        position: sticky;
+        top: 0;
         align-items: center;
+        display: flex;
+        flex-direction: row;
+        place-content: space-around;
+    }
+
+    .nav-buttons>li:hover>a {
+        text-decoration: underline;
     }
 
     .nav-buttons>li {
-        opacity: 1;
         display: flex;
-        flex-direction: column;
-        transform: translateX(0px);
+        height: 100%;
+        place-items: center;
     }
 
-    .dropdown ul {
-        display: none !important;
+    .dropdown {
+        position: relative;
     }
 
-    /*2nd and ff level dropdown*/
-    .dropdown ul {
-        height: 0 !important;
-        width: 0 !important;
-    }
-
-    .nav-buttons .dropdown * {
-        all: unset;
-    }
-
-    .nav-buttons a::after {
+    .dropdown>ul {
+        background: rgba(255, 255, 255, .5);
+        border-radius: 7px;
+        width: 200%;
         display: none;
+        position: absolute;
+        top: 100%;
+    }
+
+    .dropdown ul li {
+        border-radius: 7px;
+        padding: 15px 10px;
+    }
+
+    .dropdown li:hover {
+        cursor: pointer;
+        background: grey;
+    }
+
+    .dropdown:hover ul {
+        display: block;
     }
 }
 
@@ -812,12 +871,12 @@ socialMediaBar
     fill: white;
     width: auto;
     height: 60px;
+    transition: .3s ease-in-out;
 }
 
 .icons img:hover {
     cursor: pointer;
     transform: scale(1.1);
-    transition: .3s ease-in-out;
     fill: royalblue;
 }
 

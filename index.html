@@ -11,8 +11,8 @@
 
         gtag('config', 'G-4EW3YYEBLE');
     </script>
-
     <!--json animations-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
     <meta charset="UTF-8" />
@@ -47,17 +47,16 @@
         </div>
         <!--Navbar elements-->
         <ul class="nav-buttons">
-            <li class="nav-bar-name-wide"><a>Sven Glinz</a></li>
-            <li class="dropdown"><a href="#my-education-and-career">About Me</a>
+            <li class="dropdown"><a href="#my-education-and-career">About Me <i class="fa fa-caret-down"></i></a>
                 <ul>
-                    <li>Education</li>
-                    <li>Career</li>
+                    <li><a href="#">Education</a></li>
+                    <li><a href="#">Career</a></li>
                 </ul>
             </li>
             <li><a href="#my-skills">Recent Projects</a></li>
             <li> <a href="#projects">My Blog</a></li>
             <li class="dropdown">
-                <a>Contact</a>
+                <a>Contact <i class="fa fa-caret-down"></i></a>
                 <ul>
                     <li><a href="https://www.linkedin.com/in/svenglinz/" target="_blank">Linkedin</a></li>
                     <li><a href="mailto:svenglinz@gmail.com">E-Mail</a></li>
@@ -71,208 +70,212 @@
     <main>
         <section class="start-page">
             <div class="blue-bg"></div>
-            <img id="picture-me" src="assets/images/blur_edges_2.png">
-            <div class="start-text">
-                <div class="tess">
-                    <h1 class="section-title">
-                        Hi, I'm Sven
-                    </h1>
-                </div>
-                <div>
-                    <p>
-                        A former Economics Student, who decided to follow his
-                        fascination for technology and is now studying towards a Computer Science Degree.
-                        <br>
-                        <br>
-                        I have previous experience in Banking, Finance and Risk Management and am currently
-                        working as a Data Analyst where I mostly use R to analyze large datasets and generate
-                        insightful plots.
-                        <br>
-                        <br>
-                        Scroll down to explore more about my current and past projects and work
+            <div class="content">
+                <img id="picture-me" src="assets/images/blur_edges_2.png">
+                <div class="start-text">
+                    <div class="tess">
+                        <h1 class="section-title">
+                            Hi, I'm Sven
+                        </h1>
+                    </div>
+                    <div>
+                        <p>
+                            A former Economics Student, who decided to follow his
+                            fascination for technology and is now studying towards a Computer Science Degree.
+                            <br>
+                            <br>
+                            I have previous experience in Banking, Finance and Risk Management and am currently
+                            working as a Data Analyst where I mostly use R to analyze large datasets and generate
+                            insightful plots.
+                            <br>
+                            <br>
+                            Scroll down to explore more about my current and past projects and work
 
-                    </p>
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
-
         <section id="about-me">
-            <h2 class="section-title type-writer">About Me</h2>
-            <div class="subsection education fade-in">
-                <h3 class="subsection-title">Education</h3>
-                <div id="light-bulb-anim"></div>
-                <div class="university-grid">
-                    <div class="university">
-                        <h4 class="title">Bachelor in Computer Scince</h4>
-                        <p class="university-name font-bold">ETH Zurich, Switzerland</p>
-                        <p class="year">2023-2026</p>
-                    </div>
-                    <div class="university">
-                        <h4 class="title">Bachelor in Economics</h4>
-                        <p class="university-name font-bold">HSG St. Gallen, Switzerland</p>
-                        <p class="year">2019-2023</p>
-                        <p class="details">Courses on Micro- and Macroeconomics, Mathematics for Economists,
-                            Econometrics
-                            as well as Finance</p>
-                    </div>
-                    <div class="university">
-                        <h4 class="title">Exchange Semester</h4>
-                        <p class="university-name font-bold">NCCU, Taiwan</p>
-                        <p class="year">2022</p>
-                        <p class="details">Classes included Investments, Big Data Analyis and Advanced Financial
-                            Derivatives</p>
-                    </div>
-                </div>
-            </div>
-            <div class="subsection career fade-in">
-                <h3 class="subsection-title">Experience</h3>
-                <div class="career-grid">
-                    <div class="career-item">
-                        <h4 class="title font-bold">SGEPT</h4>
-                        <p class="location_time">St. Gallen, CH | Jan. 2023 - current </p>
-                        <p class="description">Junior Data Analyst</p>
-                    </div>
-                    <div class="career-item">
-                        <h4 class="title font-bold">Mizuho Securities</h4>
-                        <p class="location_time">Frankfurt, DE & London, UK | Jul. 2022 - Aug. 2022</p>
-                        <p class="description">Summer Intern - FI Sales & Trading</p>
-                        </p>
-                    </div>
-                    <div class="career-item">
-                        <h4 class="title font-bold">Eurex Clearing AG</h4>
-                        <p class="location_time">Frankfurt, DE | Aug. 2021 - Jan. 2022 </p>
-                        <p class="description">Intern - Risk Exposure Management</p>
-                    </div>
-                    <div class="career-item">
-                        <h4 class="title font-bold">Raiffeisen Switzerland</h4>
-                        <p class="location_time">St. Gallen, CH | Jul. 2020 - Jul. 2021 </p>
-                        <p class="description">Customer Support</p>
-                    </div>
-                    <div class="career-item">
-                        <h4 class="title font-bold">UBS Switzerland AG</h4>
-                        <p class="location_time">St. Gallen, CH | Mar. 2018 - Sept. 2019</p>
-                        <p class="description">Junior Talent Trainee (BEM)</p>
+            <div class="content">
+                <h2 class="section-title type-writer">About Me</h2>
+                <div class="subsection education fade-in">
+                    <h3 class="subsection-title">Education</h3>
+                    <div id="light-bulb-anim"></div>
+                    <div class="university-grid">
+                        <div class="university">
+                            <h4 class="title">Bachelor in Computer Science</h4>
+                            <p class="university-name font-bold">ETH Zurich, Switzerland</p>
+                            <p class="year">2023-2026</p>
+                        </div>
+                        <div class="university">
+                            <h4 class="title">Bachelor in Economics</h4>
+                            <p class="university-name font-bold">HSG St. Gallen, Switzerland</p>
+                            <p class="year">2019-2023</p>
+                            <p class="details">Courses on Micro- and Macroeconomics, Mathematics for Economists,
+                                Econometrics
+                                as well as Finance</p>
+                        </div>
+                        <div class="university">
+                            <h4 class="title">Exchange Semester</h4>
+                            <p class="university-name font-bold">NCCU, Taiwan</p>
+                            <p class="year">2022</p>
+                            <p class="details">Classes included Investments, Big Data Analyis and Advanced Financial
+                                Derivatives</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="subsection fade-in skills">
-                <h3 class="subsection-title">Skills</h3>
-                <lottie-player class="skill-animation"
-                    src="https://lottie.host/9d9d2aa0-5896-429b-8ee4-2c069b902433/oJRO3KTESl.json" speed="1"
-                    direction="1" mode="normal" loop autoplay>
-                </lottie-player>
-                <div class="grid-container skills-container">
-                    <div class="skill languages">
-                        <h4 class="title">Languages:</h4>
-                        <ul class="expand">
-                            <li style="--item-width: 100%">German (Mother Tongue)</li>
-                            <li style="--item-width: 100%">English (Fluent)</li>
-                            <li style="--item-width: 50%">French (Intermediate)</li>
-                            <li style="--item-width: 35%">Spanish (Conversational)</li>
-                        </ul>
+                <div class="subsection career fade-in">
+                    <h3 class="subsection-title">Experience</h3>
+                    <div class="career-grid">
+                        <div class="career-item">
+                            <h4 class="title font-bold">SGEPT</h4>
+                            <p class="location_time">St. Gallen, CH | Jan. 2023 - current </p>
+                            <p class="description">Junior Data Analyst</p>
+                        </div>
+                        <div class="career-item">
+                            <h4 class="title font-bold">Mizuho Securities</h4>
+                            <p class="location_time">Frankfurt, DE & London, UK | Jul. 2022 - Aug. 2022</p>
+                            <p class="description">Summer Intern - FI Sales & Trading</p>
+                            </p>
+                        </div>
+                        <div class="career-item">
+                            <h4 class="title font-bold">Eurex Clearing AG</h4>
+                            <p class="location_time">Frankfurt, DE | Aug. 2021 - Jan. 2022 </p>
+                            <p class="description">Intern - Risk Exposure Management</p>
+                        </div>
+                        <div class="career-item">
+                            <h4 class="title font-bold">Raiffeisen Switzerland</h4>
+                            <p class="location_time">St. Gallen, CH | Jul. 2020 - Jul. 2021 </p>
+                            <p class="description">Customer Support</p>
+                        </div>
+                        <div class="career-item">
+                            <h4 class="title font-bold">UBS Switzerland AG</h4>
+                            <p class="location_time">St. Gallen, CH | Mar. 2018 - Sept. 2019</p>
+                            <p class="description">Junior Talent Trainee (BEM)</p>
+                        </div>
                     </div>
-                    <div class="skill coding">
-                        <h4 class="title">Coding:</h4>
-                        <ul class="expand">
-                            <li style="--item-width: 85%">R [Base, Tidyverse] (Advanced)</li>
-                            <li style="--item-width: 50%">Python (Intermediate)</li>
-                            <li style="--item-width: 20%">HTML (Beginner)</li>
-                            <li style="--item-width: 20%">CSS (Beginner)</li>
-                        </ul>
-                    </div>
-                    <div class="skill further">
-                        <h4 class="title">Further:</h4>
-                        <ul>
-                            <li>Git / GitHub</li>
-                            <li>Bloomberg</li>
-                            <li>Capital Markets (Bonds/Equities/Derivatives)</li>
-                            <li>Retail & Commercial Banking</li>
-                            <li>Risk Management</li>
-                            <li>Risk Management</li>
-                            <li>Risk Management</li>
-                            <li>Risk Management</li>
-                        </ul>
+                </div>
+                <div class="subsection fade-in skills">
+                    <h3 class="subsection-title">Skills</h3>
+                    <lottie-player class="skill-animation"
+                        src="https://lottie.host/9d9d2aa0-5896-429b-8ee4-2c069b902433/oJRO3KTESl.json" speed="1"
+                        direction="1" mode="normal" loop autoplay>
+                    </lottie-player>
+                    <div class="grid-container skills-container">
+                        <div class="skill languages">
+                            <h4 class="title">Languages:</h4>
+                            <ul class="expand">
+                                <li style="--item-width: 100%">German (Mother Tongue)</li>
+                                <li style="--item-width: 100%">English (Fluent)</li>
+                                <li style="--item-width: 50%">French (Intermediate)</li>
+                                <li style="--item-width: 35%">Spanish (Conversational)</li>
+                            </ul>
+                        </div>
+                        <div class="skill coding">
+                            <h4 class="title">Coding:</h4>
+                            <ul class="expand">
+                                <li style="--item-width: 85%">R [Base, Tidyverse] (Advanced)</li>
+                                <li style="--item-width: 50%">Python (Intermediate)</li>
+                                <li style="--item-width: 20%">HTML (Beginner)</li>
+                                <li style="--item-width: 20%">CSS (Beginner)</li>
+                            </ul>
+                        </div>
+                        <div class="skill further">
+                            <h4 class="title">Further:</h4>
+                            <ul>
+                                <li>Git / GitHub</li>
+                                <li>Bloomberg</li>
+                                <li>Capital Markets (Bonds/Equities/Derivatives)</li>
+                                <li>Retail & Commercial Banking</li>
+                                <li>Risk Management</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         <section id="projects">
-            <h2 class="section-title type-writer">Recent Projects</h2>
-            <div class="recent-projects">
-                <div onclick="location.href = '/projects/us_election_financing.html'" id="project1"
-                    class="project-tile fade-in-left">
-                    <img src="/assets/images/election_funding_image.jpg" class="background-image full-size">
-                    <div class="project-title">
-                        <h4>US Election Funding</h4>
-                        <p>Data Analysis Project in R (Tidyverse)</p>
+            <div class="content">
+                <h2 class="section-title type-writer">Recent Projects</h2>
+                <div class="recent-projects">
+                    <div onclick="location.href = '/projects/us_election_financing.html'" id="project1"
+                        class="project-tile fade-in-left">
+                        <img src="/assets/images/election_funding_image.jpg" class="background-image full-size">
+                        <div class="project-title">
+                            <h4>US Election Funding</h4>
+                            <p>Data Analysis Project in R (Tidyverse)</p>
+                        </div>
                     </div>
-                </div>
-                <div onclick="location.href = '/projects/bachelor_thesis.html'" id="project2"
-                    class="project-tile fade-in-left">
-                    <img src="/assets/images/option_post_picture.jpg" class="background-image full-size">
-                    <div class="project-title">
-                        <h4>Margin Procyclicality</h4>
-                        <p>Bachelor Thesis in Economics</p>
+                    <div onclick="location.href = '/projects/bachelor_thesis.html'" id="project2"
+                        class="project-tile fade-in-left">
+                        <img src="/assets/images/option_post_picture.jpg" class="background-image full-size">
+                        <div class="project-title">
+                            <h4>Margin Procyclicality</h4>
+                            <p>Bachelor Thesis in Economics</p>
+                        </div>
                     </div>
-                </div>
-                <div onclick="location.href = '/projects/us_election_financing.html'" id="project3"
-                    class="project-tile fade-in-left">
-                    <img src="/assets/images/title_image_margin_procyclicality.jpg" class="background-image full-size">
-                    <div class="project-title">
-                        <h4>Option Calculator</h4>
-                        <p>Simple project in Python</p>
+                    <div onclick="location.href = '/projects/us_election_financing.html'" id="project3"
+                        class="project-tile fade-in-left">
+                        <img src="/assets/images/title_image_margin_procyclicality.jpg"
+                            class="background-image full-size">
+                        <div class="project-title">
+                            <h4>Option Calculator</h4>
+                            <p>Simple project in Python</p>
+                        </div>
                     </div>
-                </div>
-                <div id="explore-projects" class="click-element">
-                    <a href="/projects.html">
-                        <p>View all projects</p>
-                    </a>
+                    <div id="explore-projects" class="click-element">
+                        <a href="/projects.html">
+                            <p>View all projects</p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
-
         <section class="social-media-section">
             <div class="blue-bg"></div>
-            <div id="social-media-bar">
-                <h2 class="section-title type-writer type-writer-no-blink" style="margin-bottom: 50px;">Let's
-                    get in touch
-                </h2>
-                <div class="calling_man">
-                    <img src="/assets/images/calling-man.png">
-                </div>
-                <div class="text">
-                    <h3>Thank you for visiting my website</h3>
-                    <p>
-                        If you are interested in collaborating feel free
-                        to reach out via any of my socials or email.
-                    </p>
-                    <br>
-                    <br>
-                    <div id="download_cv">
-                        <a href="/docs/cv_sven.pdf" target="_blank">
-                            Download CV
-                        </a>
+            <div class="content">
+                <div id="social-media-bar">
+                    <h2 class="section-title type-writer type-writer-no-blink" style="margin-bottom: 50px;">Let's
+                        get in touch
+                    </h2>
+                    <div class="calling_man">
+                        <img src="/assets/images/calling-man.png">
                     </div>
+                    <div class="text">
+                        <h3>Thank you for visiting my website</h3>
+                        <p>
+                            If you are interested in collaborating feel free
+                            to reach out via any of my socials or email.
+                        </p>
+                        <br>
+                        <br>
+                        <div id="download_cv">
+                            <a href="/docs/cv_sven.pdf" target="_blank">
+                                Download CV
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="icons">
+                        <li class="icon" id="linkedin_link">
+                            <a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
+                                <img src="/assets/images/linkedin_icon.svg">
+                            </a>
+                        </li>
+                        <li class="icon" id="email_link">
+                            <a href="mailto:sven.glinz@gmail.com"></a>
+                            <img src="/assets/images/email-icon.svg">
+                            </a>
+                        </li>
+                        <li class="icon" id="github_link">
+                            <a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
+                                <img src="/assets/images/github_icon.svg">
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="icons">
-                    <li class="icon" id="linkedin_link">
-                        <a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
-                            <img src="/assets/images/linkedin_icon.svg">
-                        </a>
-                    </li>
-                    <li class="icon" id="email_link">
-                        <a href="mailto:sven.glinz@gmail.com"></a>
-                        <img src="/assets/images/email-icon.svg">
-                        </a>
-                    </li>
-                    <li class="icon" id="github_link">
-                        <a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
-                            <img src="/assets/images/github_icon.svg">
-                        </a>
-                    </li>
-                </ul>
+                <p class="copy">&copy Sven Glinz 2023</p>
             </div>
-            <p class="copy">&copy Sven Glinz 2023</p>
         </section>
     </main>
     <!--add js-->
