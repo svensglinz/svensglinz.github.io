@@ -15,16 +15,16 @@ Root Variables
     --nav-bar-height: 70px;
     --section-title-margin: 70px;
     /*width of main content on the page relative to the full screen*/
-    --main-width-s: 90%;
-    --main-width-m: 80%;
+    --side-padding-s: 10%;
+    --side-padding-m: 15%;
     --side-padding-l: 20%;
-    --main-width-xl: 1170px;
-    --scroll: 0;
+    --main--page-width: 1170px;
     --page-inner-margin: 5%;
     --primary-light: rgb(225, 225, 225);
     --primary-dark: rgb(20, 20, 20)
 }
 
+/*light theme color palette*/
 .light-theme {
     --font-color: black;
     --font-color-inverse: white;
@@ -33,6 +33,7 @@ Root Variables
     --bg-color-inverse: rgb(25, 25, 25);
 }
 
+/*dark theme color palette*/
 .dark-theme {
     --font-color: white;
     --font-color-inverse: black;
@@ -63,33 +64,65 @@ body {
 }
 
 .section-title {
-    display: inline-block;
+    margin-bottom: 50px;
+}
+
+.section-title::after {
+    content: "";
+    position: relative;
+    bottom: -15px;
+    display: block;
+    width: 70px;
+    border: 2px solid royalblue;
 }
 
 .subsection-title {
     color: royalblue;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-/*apply base margin to header & main content*/
-main {
-    margin: 0 auto;
+.subsection {
+    margin-bottom: 50px;
 }
 
 section {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    place-content: flex-end;
+    place-content: center;
     min-height: calc(100vh - var(--nav-bar-height)) !important;
     height: max-content;
     margin-bottom: 100px !important;
 }
 
 /*ensure that section height <=  ~ 1000px*/
-@media screen and (display-height >=1000px) {
+@media screen and (min-height: 800px) {
     section {
-        min-height: auto;
+        /*adjust by subtracting var(--nav-bar-height)*/
+        min-height: calc(800px) !important;
+        border: 2px solid red !important;
     }
+}
+
+@media screen and (min-width: 1170px) {
+    section {
+        /*fix-this when zooming-out!!!*/
+        /*max-width: 1170px !important*/
+        padding: 0 var(--side-padding-l);
+    }
+}
+
+/*where to put this --> Does this work on smartphones?*/
+main {
+    overflow: hidden;
+}
+
+section {
+    overflow: hidden;
+}
+
+section:last-child {
+    margin: 0 !important;
 }
 
 /*-----------------------------------------------------------------------------
@@ -128,21 +161,25 @@ li {
 
 @media screen and (min-width: 800px) {
     h1 {
-        font-size: 9.5rem !important;
+        font-size: 7rem !important;
     }
 
     h2 {
-        font-size: 8rem;
+        font-size: 5rem;
     }
 
     h3 {
-        font-size: 4rem;
+        font-size: 3rem;
+    }
+
+    h4 {
+        font-size: 2.5rem;
     }
 
     p,
     li {
-        font-size: 2.1rem;
-        line-height: 1.4;
+        font-size: 1.8rem;
+        line-height: 1.3;
     }
 }
 
@@ -170,42 +207,6 @@ a:hover {
     color: black !important;
 }
 
-/*scales content on hover*/
-.scale-in {
-    transition: all .3s ease-in;
-}
-
-.scale-in:hover {
-    transform: translateY(-10px);
-    opacity: .7;
-}
-
-
-.section-title {
-    place-self: start;
-    /*font-size: 5rem;*/
-    margin-bottom: 50px;
-}
-
-
-.section-title::after {
-    position: relative;
-    bottom: -15px;
-    display: block;
-    content: "";
-    width: 90px;
-    border: 2px solid royalblue;
-}
-
-/*MAKE THIS TO A PADDING*/
-section {
-    margin: 0 5%;
-}
-
-.subsection {
-    margin-bottom: 50px;
-}
-
 .click-element {
     text-transform: uppercase;
     width: max-content;
@@ -223,14 +224,6 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-@media screen and (min-width: 800px) {
-    section {
-        /*this can be removed as soon as the padding above is added instead of margin*/
-        margin: 0 auto;
-        padding: var(--side-padding-l);
-    }
 }
 
 /*----------------------------------------------------------------------------------
@@ -285,17 +278,6 @@ Theme (Dark / Light) toggler
         rotate: 360deg;
         transform: scale(1);
     }
-}
-
-section {
-    overflow: hidden;
-    max-width: 100vw !important;
-}
-
-section:last-child {
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0 !important;
 }
 
 /*----------------------------------------------------------------------------------
@@ -536,9 +518,7 @@ Skills
 /*----------------------------------------------------------------------------------
 Recent Projects
 ----------------------------------------------------------------------------------*/
-
 .recent-projects .section-title {
-    font-size: 4.5rem;
     color: var(--font-color);
     grid-row: 1;
 }
@@ -549,14 +529,12 @@ Recent Projects
     grid: 1fr auto / 80%;
     position: relative;
     height: 25vh;
-    border-radius: var(--tile-border-radius);
 }
 
 .project-tile .background-image {
     box-shadow: 0 0 12px rgba(120, 120, 120, .4);
     grid-row: 1 / span 2;
     grid-column: 1;
-    border-radius: var(--tile-border-radius);
 }
 
 .project-title {
@@ -571,13 +549,18 @@ Recent Projects
     opacity: .9;
 }
 
-.project-title h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
+/*hover effects over project tile*/
+.project-tile:hover .project-title h4 {
+    color: royalblue;
 }
 
-.project-tile:hover .project-title h2 {
-    color: royalblue;
+.project-tile:hover .background-image {
+    transform: translateY(-10px);
+    opacity: .7;
+}
+
+.project-tile .background-image {
+    transition: all .3s ease-in;
 }
 
 #explore-projects {
@@ -800,11 +783,6 @@ nav li {
 /*----------------------------------------------------------------------------------
 socialMediaBar
 ----------------------------------------------------------------------------------*/
-
-section {
-    max-width: 100vw !important;
-}
-
 /*for absolute placement of blue-bg*/
 .social-media-section {
     position: relative;
@@ -904,6 +882,8 @@ section {
 
     .icons img {
         height: 100px;
+        /*make sure this works!*/
+        fill: black !important;
     }
 
     .calling_man {
@@ -914,6 +894,8 @@ section {
     #social-media-bar .calling_man img {
         width: 500px;
         right: 10%;
+        opacity: 1;
+
     }
 
     .copy {
