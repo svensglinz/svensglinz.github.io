@@ -1216,7 +1216,25 @@ Individual Posts styling
 }
 
 .blog-post .nav-bar li {
+    display: grid;
+    position: relative;
     padding: 0 8px;
+}
+
+.blog-post .nav-bar img {
+    grid-row: 1;
+    grid-column: 1;
+    height: calc(var(--nav-bar-height) / 2);
+}
+
+/*implement dark light changes via click on moon resp sun*/
+
+.light-theme .blog-post .light-theme-img {
+    display: none;
+}
+
+.dark-theme-theme .blog-post .dark-theme-img {
+    display: none;
 }
 
 .blog-post .nav-bar li a {
