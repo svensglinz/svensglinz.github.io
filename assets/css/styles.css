@@ -470,6 +470,7 @@ Section: About Me
     #light-bulb-anim {
         transform: rotate(0);
         top: 50px;
+        left: 0;
     }
 }
 
