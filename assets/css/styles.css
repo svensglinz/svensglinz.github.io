@@ -28,6 +28,7 @@ Root Variables
 /*light theme color palette*/
 .light-theme {
     --font-color: black;
+    --font-color-inverse-light: rgba(255, 255, 255, .4);
     --font-color-inverse: white;
     --bg-color: rgb(225, 225, 225);
     --nav-bar-color: rgb(200, 200, 200);
@@ -38,6 +39,7 @@ Root Variables
 .dark-theme {
     --font-color: white;
     --font-color-inverse: black;
+    --font-color-inverse-light: rgba(0, 0, 0, .4);
     --bg-color: rgb(25, 25, 25);
     --bg-color-inverse: rgb(225, 225, 225);
     --nav-bar-color: rgb(0, 0, 0);
@@ -455,9 +457,10 @@ Section: About Me
     }
 
     .skills .further li {
+        padding: 5%;
         display: flex;
         border-radius: 7px;
-        background: rgba(250, 250, 250, .5);
+        box-shadow: 0 0 12px rgba(120, 120, 120, .4);
         place-items: center;
         place-content: center;
 
@@ -817,7 +820,7 @@ nav li {
     }
 
     .dropdown>ul {
-        background: rgba(255, 255, 255, .5);
+        background: var(--font-color-inverse-light);
         border-radius: 7px;
         width: 200%;
         display: none;
