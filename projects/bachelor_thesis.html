@@ -5,10 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--CSS Styles -->
     <link rel="stylesheet" href="/assets/css/styles.css" />
-
     <!-- add mathjax support-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -64,36 +62,59 @@
         <section>
             <h3 class="blog-title">Purpose</h3>
             <p>
-                This post gives a brief summary of the main resuls of by Bachelor Thesis on Margin Procyclicality in
+                <span class="tab"></span>This post gives a brief summary of the main resuls of by Bachelor Thesis on
+                Margin Procyclicality in
                 Derivative Markets. For the purpose of brevity, only a coarse overview over the methodology is presented
-                and only the main
-                results describing the procyclicality of margin models are presented. If you are interested in further
-                details, please feel free to reach out.
+                and only the main results describing the procyclicality of margin models are presented. If you are
+                interested in further details, please feel free to reach out.
             </p>
         </section>
         <section>
             <h3 class="blog-title">Research Question</h3>
             <p>
-                My bachelor thesis summarizes and investigates the issue of large spikes in margin requirements in
-                financial markets with a specific focus on centrally cleared derivative markets. As the market turmoil
-                during the Covid Outbreak in March 2020 endured,
-                margins for derivative contracts rose sharply at most clearing houses which brought about new regulatory
+                <span class="tab"></span>My bachelor thesis describes and investigates the issue of large spikes in
+                margin requirements in
+                financial markets with a specific focus on centrally cleared derivative markets.
+                <br>
+                <br>
+                <img class="inline-img" style="margin-right: 20px; margin-bottom: 35px; width: 50%; float: left; "
+                    src="/assets/images/IM_concept.svg">
+                <span class="tab"></span>Margins for financial instruments (of for portfolios of
+                financial instruments) usually consist of a backward looking compoment (Variation Margin) which
+                transfers the daily PnL from one party to another, and a forward looking component (Initial Margin). As
+                shown in Figure 1, Initial Margin is normally a function of their volatility and of the instrument's
+                liquidity (ie. the time it reasonably takes the clearing house to liquidate a position in case of a
+                default, also called <span style="font-style: italic;">Margin Period of Risk (MPOR)</span>).
+                <br>
+                <span class="tab"></span>As the market turmoil during the Covid Outbreak in March 2020 endured,
+                margins for derivative contracts rose sharply at most clearing houses as a result of an increase in
+                volatility, which is dynamically adjusted in most margin models.
+                -->which brought about new
+                regulatory
                 scrutiny about how such margins behave during crises.
                 In my thesis, the h
                 <br>
                 <br>
-                Since the Great Financial Crisis in 2008, derivative markets underwent significant reforms, among other
+                <span class="tab"></span>Since the Great Financial Crisis in 2008, derivative markets underwent
+                significant reforms, among
+                other
                 mandatory clearing requirements for ETD and most standardized OTC transatcions. Central clearing of
                 these contracts removes the buildup of large, sometimes uncolalteralized bilateral exposures
-                between market participants and bundles all risk in one entity, the CCP. Through prudent risk management
-                and the daily collection of margin from its participants, the CCP thus virtually eliminates counterparty
+                between market participants and bundles all risk in one entity, the CCP. Through prudent risk
+                management
+                and the daily collection of margin from its participants, the CCP thus virtually eliminates
+                counterparty
                 risk between market participants as it is the sole conterparty to every derivative contract.
-                However, to shield itself from market risks, real-time margin calculations at CCPs can transform credit
-                risks into liquidity risks, where a sudden spike in financial market volatility leads the CCP to quickly
+                However, to shield itself from market risks, real-time margin calculations at CCPs can transform
+                credit
+                risks into liquidity risks, where a sudden spike in financial market volatility leads the CCP to
+                quickly
                 adjust its margins upwards
-                which can lead to liquidity outflows at members in already stressed times. In the works case, this can
+                which can lead to liquidity outflows at members in already stressed times. In the works case, this
+                can
                 lead to a self-enforcing downward spiral,
-                where members have to sell liquid assets to meed their liquidity neeeds which further pushes volatility
+                where members have to sell liquid assets to meed their liquidity neeeds which further pushes
+                volatility
                 up and assset values down and can ultimately end in a crisis.
             </p>
         </section>
@@ -137,7 +158,8 @@
             <p class="table-footer">Data from <a href="https://ccp-global.org/pqd/">CCP12 PQD</a> (Q2 2022) Data field
                 6.2.15 <span style="font-style: italic;">Total IM PreHaircut</span></p>
             <p>
-                To mitigage margin procyclcality, various tools have been suggested in literature as well as by
+                <span class="tab"></span>To mitigage margin procyclcality, various tools have been suggested in
+                literature as well as by
                 regulatory bodies such as the XXX.
                 In the following, a simple margin model as it is used by various CCPs around the world is used to
                 calculate margin requirements on a single portfolio ETD position.
@@ -193,7 +215,7 @@
     </main>
     <footer>
         <hr>
-        <p>&copy Sven Glinz 2022</p>
+        <p>&copy Sven Glinz 2023</p>
     </footer>
 
     <!--add prop js script-->

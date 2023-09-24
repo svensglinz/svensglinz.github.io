@@ -1221,6 +1221,11 @@ Individual Posts styling
     padding: 0 8px;
 }
 
+span.tab {
+    display: inline-block;
+    margin-left: 45px;
+}
+
 .blog-post .nav-bar img {
     grid-row: 1;
     grid-column: 1;
@@ -1285,6 +1290,7 @@ Individual Posts styling
 }
 
 .blog-post section p {
+    text-align: justify;
     font-size: 1.6rem;
     line-height: 1.666;
 }
@@ -1305,8 +1311,8 @@ Individual Posts styling
 }
 
 .blog-post footer {
-    margin: 5px auto;
-    width: 90%;
+    margin: 20px auto;
+    width: var(--post-width-l);
 }
 
 .blog-post footer hr {
