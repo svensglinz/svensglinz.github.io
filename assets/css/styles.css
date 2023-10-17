@@ -106,7 +106,6 @@ section {
     }
 }
 
-
 /*where to put this --> Does this work on smartphones?*/
 main {
     overflow: hidden;
@@ -659,10 +658,10 @@ nav *::-webkit-scrollbar {
 }
 
 nav {
-    background-color: var(--nav-bar-color);
+    background: var(--nav-bar-color);
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 1000000;
 }
 
 .hamb {
@@ -722,8 +721,8 @@ nav ul {
 }
 
 .nav-buttons {
+    background: var(--nav-bar-color);
     padding: 0 25px;
-    background-color: var(--nav-bar-color);
     width: 100%;
     height: 0;
     transition: all .3s linear;
@@ -789,17 +788,25 @@ nav li {
     transition: height .3s linear;
 }
 
+i.fa-caret-down {
+    display: none;
+}
+
 @media screen and (min-width: 768px) {
 
+    i.fa-caret-down {
+        display: inline-block;
+    }
+
     nav {
-        background: var(--font-color-inverse);
+        height: var(--nav-bar-height);
         position: sticky;
         top: 0;
-        z-index: 10000;
     }
 
     nav ul {
         list-style: none;
+        padding: 0;
     }
 
     .hamb {
@@ -807,13 +814,13 @@ nav li {
     }
 
     .nav-buttons {
-        padding: 0 calc((100% - var(--width-l)) / 2);
-        height: var(--nav-bar-height);
         position: sticky;
         top: 0;
-        align-items: center;
+        height: var(--nav-bar-height) !important;
+        padding: 0 calc((100% - var(--width-l)) / 2);
         display: flex;
         flex-direction: row;
+        align-items: center;
         place-content: space-around;
     }
 
@@ -822,6 +829,7 @@ nav li {
     }
 
     .nav-buttons>li {
+        opacity: 1;
         display: flex;
         height: 100%;
         place-items: center;
@@ -833,16 +841,18 @@ nav li {
 
     .dropdown>ul {
         background: var(--font-color-inverse-light);
-        border-radius: 7px;
+        border-radius: 0 0 5px 5px;
         width: 200%;
         display: none;
         position: absolute;
         top: 100%;
     }
 
-    .dropdown ul li {
-        border-radius: 7px;
-        padding: 15px 10px;
+    .dropdown li {
+        padding-left: 15px !important;
+        padding-bottom: 10px;
+        opacity: 1;
+        height: max-content;
     }
 
     .dropdown li:hover {
@@ -850,8 +860,16 @@ nav li {
         background: grey;
     }
 
-    .dropdown:hover ul {
+    .nav-buttons .dropdown:hover>ul {
+        background: var(--nav-bar-color);
+        opacity: 1;
         display: block;
+        height: max-content;
+    }
+
+
+    .nav-buttons .dropdown>a::after {
+        content: "";
     }
 }
 

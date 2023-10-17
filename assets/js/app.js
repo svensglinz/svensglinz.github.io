@@ -37,7 +37,11 @@ Controls opacity of the start picture
 
 /*initialize opacity value for the background*/
 var bgOpacity = .4;
-startPicture.style.setProperty('--opac', Math.min(bgOpacity, 1));
+if (window.innerWidth < 768) {
+    startPicture.style.setProperty('--opac', Math.min(bgOpacity, 1));
+} else {
+    startPicture.style.setProperty('--opac', .92);
+}
 
 const text0 = document.getElementById("text-0");
 const text1 = document.getElementById("text-1");
@@ -47,10 +51,12 @@ textArray = Array.from([text0, text1, text2])
 
 // set variable opacity of Start Picture with scroll 
 const setBgOpacity2 = function () {
-    scrollPos = window.scrollY;
-    bgOpacity = 0.3 - window.scrollY / 1000;
-    opacStartPic = 1 - window.scrollY / (window.innerHeight / 2);
-    startPicture.style.setProperty('--opac', Math.min(opacStartPic, 1));
+    if (window.innerWidth < 768) {
+        scrollPos = window.scrollY;
+        bgOpacity = 0.3 - window.scrollY / 1000;
+        opacStartPic = 1 - window.scrollY / (window.innerHeight / 2);
+        startPicture.style.setProperty('--opac', Math.min(opacStartPic, 1));
+    }
 }
 
 window.addEventListener("scroll", setBgOpacity2);
@@ -203,49 +209,48 @@ const mainDropDown = document.querySelector(".nav-buttons");
 
 expandNav = function () {
 
-    // remove class active from all sub dropdown menus
-    for (let i = 0; i < dropDownElems.length; i++) {
-        dropDownElems[i].classList.remove('active');
-        dropDownElems[i].children[1].style.setProperty("height", 0);
-    }
+    if (window.innerWidth < 768) {
+        // remove class active from all sub dropdown menus
+        for (let i = 0; i < dropDownElems.length; i++) {
+            dropDownElems[i].classList.remove('active');
+            dropDownElems[i].children[1].style.setProperty("height", 0);
+        }
 
-    if (hambButton.classList.contains('active')) {
-        mainDropDown.style.setProperty("height", 0);
-        hambButton.classList.remove('active');
-        mainDropDown.classList.remove('active');
-    } else {
-        mainDropDown.style.setProperty("height", mainDropDown.scrollHeight + 25 + "px");
-        hambButton.classList.add('active');
-        mainDropDown.classList.add('active');
+        if (hambButton.classList.contains('active')) {
+            mainDropDown.style.setProperty("height", 0);
+            hambButton.classList.remove('active');
+            mainDropDown.classList.remove('active');
+        } else {
+            mainDropDown.style.setProperty("height", mainDropDown.scrollHeight + 25 + "px");
+            hambButton.classList.add('active');
+            mainDropDown.classList.add('active');
+        }
     }
 }
 
-// expand Nav Bar on Mobile upon click on Hamb Button
 document.querySelector('#hamb-button').addEventListener('click', expandNav);
 
-
 expandSubNav = function () {
+    if (window.innerWidth < 768) {
+        if (this.parentElement.classList.contains('active')) {
+            // close all subsequent active lists
+            this.parentElement.children[1].style.setProperty("height", 0);
+            this.parentElement.classList.remove('active');
+            const allLists = this.parentElement.querySelectorAll('.dropdown');
+            for (let i = 0; i < allLists.length; i++) {
+                allLists[i].classList.remove('active');
+            }
+            // adjust height of main navbar as a result of expanding / collapsing sub-menus
+            mainDropDown.style.setProperty("height", mainDropDown.lastElementChild.offsetTop + mainDropDown.lastElementChild.clientHeight - this.parentElement.children[1].scrollHeight + "px");
 
-    if (this.parentElement.classList.contains('active')) {
-        // close all subsequent active lists
-        this.parentElement.children[1].style.setProperty("height", 0);
-        this.parentElement.classList.remove('active');
-        const allLists = this.parentElement.querySelectorAll('.dropdown');
-        for (let i = 0; i < allLists.length; i++) {
-            allLists[i].classList.remove('active');
+        } else {
+            // add active only to clicked list
+            this.parentElement.classList.add('active');
+            this.parentElement.children[1].style.setProperty("height", this.parentElement.children[1].scrollHeight + "px");
+            // adjust height of main navbar as a result of expanding / collapsing sub-menus
+            mainDropDown.style.setProperty("height", mainDropDown.lastElementChild.offsetTop + mainDropDown.lastElementChild.clientHeight + this.parentElement.children[1].scrollHeight + "px");
         }
-        // adjust height of main navbar as a result of expanding / collapsing sub-menus
-        mainDropDown.style.setProperty("height", mainDropDown.lastElementChild.offsetTop + mainDropDown.lastElementChild.clientHeight - this.parentElement.children[1].scrollHeight + "px");
-
-    } else {
-        // add active only to clicked list
-        this.parentElement.classList.add('active');
-        this.parentElement.children[1].style.setProperty("height", this.parentElement.children[1].scrollHeight + "px");
-        // adjust height of main navbar as a result of expanding / collapsing sub-menus
-        mainDropDown.style.setProperty("height", mainDropDown.lastElementChild.offsetTop + mainDropDown.lastElementChild.clientHeight + this.parentElement.children[1].scrollHeight + "px");
-
     }
-
 }
 
 // add click event listener to dropdown buttons
