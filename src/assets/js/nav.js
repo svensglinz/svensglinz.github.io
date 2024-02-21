@@ -3,6 +3,10 @@
 const themeToggler = document.querySelector('.theme');
 const icon = document.querySelector('.theme img');
 
+// initial setting of the theme
+if (window.localStorage.getItem('dark') === '0'){
+    document.querySelector('body').classList.add('theme_light');
+}
 
 function switchTheme(){
     const main = document.querySelector('body');
