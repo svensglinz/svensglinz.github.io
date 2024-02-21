@@ -3,14 +3,18 @@
 const themeToggler = document.querySelector('.theme');
 const icon = document.querySelector('.theme img');
 
+
 function switchTheme(){
     const main = document.querySelector('body');
-    if (main.classList.contains('theme_dark')){
-        main.classList.replace('theme_dark', 'theme_light');
+    let mode = window.localStorage.getItem('dark');
+    if (mode == null || mode === '1'){
+        main.classList.add('theme_light');
+        window.localStorage.setItem('dark', '0');
         icon.src = "/src/assets/images/moon_icon.svg"
     }
     else {
-        main.classList.replace('theme_light', 'theme_dark');
+        window.localStorage.setItem('dark', '1');
+        main.classList.remove('theme_light');
         icon.src = "/src/assets/images/sun_icon.svg"
     }
 }

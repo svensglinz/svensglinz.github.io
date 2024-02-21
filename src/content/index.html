@@ -34,15 +34,15 @@
     <h3 style="font-size: 2rem; margin-bottom:15px; font-weight: 700; margin-left: 8px;">Some recent Projects</h3>
     <div class="projects">
         {{#each recentProjects}}
-        <div class="project-tile">
+        <a href="{{path}}"><div class="project-tile">
             <div class="title">
-                <a href="{{path}}"><h2>{{title}}</h2></a>
+                <a ><h2>{{title}}</h2></a>
                 <p>{{date}}</p>
             </div>
             <div class="description">
                 <p>{{description}}</p>
             </div>
-        </div>
+        </div></a>
         {{/each}}
     </div>
     </div>
