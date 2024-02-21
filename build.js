@@ -25,7 +25,7 @@ const blogPosts = fs.readdirSync('src/content/posts');
 const index = Handlebars.compile(indexSource);
 const blogLanding = Handlebars.compile(blogLandingSource);
 const blogTemplate = Handlebars.compile(blogTemplateSource);
-//const cv = Handlebars.compile(cvSource);
+const cv = Handlebars.compile(cvSource);
 
 
 // create posts as html files from .md
@@ -61,4 +61,4 @@ fs.writeFileSync('index.html', index({'recentProjects': listOfPosts.slice(0, 3)}
 
 // build CV Section
 
-//fs.writeFileSync('dist/cv.html', cv(undefined, undefined));
+fs.writeFileSync('dist/cv.html', cv(undefined, undefined));

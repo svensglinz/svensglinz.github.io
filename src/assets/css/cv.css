@@ -51,22 +51,23 @@ nav .options a {
     color: var(--primary-font-color);
 }
 
+body {
+    --primary-font-color: white;
+    --bg-color: rgb(25, 25, 25);
+    --nav-bg: linear-gradient(to bottom, rgba(25, 25, 25, 1) 0%, rgba(25, 25, 25, .7)  65%, rgba(25, 25, 25, 0) 100%);
+    --img-bg: rgba(255, 255, 255, .16);
+    --tile-bg: rgb(32, 32, 32);
+    --tile-shade: black;
+}
+
 body.theme_light {
     --primary-font-color: black;
     --bg-color: rgb(225, 225, 225);
-    --nav-bg: transparent;
+    --nav-bg: linear-gradient(to bottom, rgba(225, 225, 225, 1) 0%, rgba(225, 225, 225, .7)  65%, rgba(225, 225, 225, 0) 100%);
     --img-bg: rgba(0, 0, 0, .1);
-    --date-color: darkgrey;
+    --tile-bg: rgb(235, 235, 235);
+    --tile-shade: white;
 }
-
-body.theme_dark {
-    --primary-font-color: white;
-    --bg-color: rgb(30, 30, 30);
-    --nav-bg: transparent;
-    --img-bg: rgba(255, 255, 255, .16);
-    --date-color: palegoldenrod;
-}
-
 nav {
     box-shadow: none;
     backdrop-filter: blur(5px);

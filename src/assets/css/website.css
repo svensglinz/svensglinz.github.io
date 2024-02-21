@@ -31,9 +31,11 @@ body {
 
 body {
     --primary-font-color: white;
-    --bg-color: rgb(30, 30, 30);
-    --nav-bg: linear-gradient(to bottom, rgba(30, 30, 30, 1) 0%, rgba(30, 30, 30, .7)  65%, rgba(30, 30, 30, 0) 100%);
+    --bg-color: rgb(25, 25, 25);
+    --nav-bg: linear-gradient(to bottom, rgba(25, 25, 25, 1) 0%, rgba(25, 25, 25, .7)  65%, rgba(25, 25, 25, 0) 100%);
     --img-bg: rgba(255, 255, 255, .16);
+    --tile-bg: rgb(32, 32, 32);
+    --tile-shade: black;
 }
 
 body.theme_light {
@@ -41,6 +43,8 @@ body.theme_light {
     --bg-color: rgb(225, 225, 225);
     --nav-bg: linear-gradient(to bottom, rgba(225, 225, 225, 1) 0%, rgba(225, 225, 225, .7)  65%, rgba(225, 225, 225, 0) 100%);
     --img-bg: rgba(0, 0, 0, .1);
+    --tile-bg: rgb(235, 235, 235);
+    --tile-shade: white;
 }
 
 
@@ -111,10 +115,6 @@ a {
 
 .darkgrey {
     color: darkgrey;
-}
-
-.description p {
-    color: silver !important;
 }
 
 main {
@@ -194,8 +194,6 @@ nav .options a::after {
     display: none;
 }
 
-
-
 /* -------------------------------------------------------------------
                             MAIN
 ------------------------------------------------------------------- */
@@ -266,11 +264,11 @@ nav .options a::after {
 }
 
 .projects {
+    margin-bottom: 20px;
     display: grid;
     place-content: space-around !important;
     grid-template-columns: repeat(1, minmax(0,1fr));
     gap: 20px;
-
 }
 
 .date {
@@ -285,17 +283,20 @@ nav .options a::after {
 /* -------------------------------------------------------------------
                             MAIN SECTION
 ------------------------------------------------------------------- */
-
 .date p{
     font-size: 1.4rem;
     color: var(--date-color);
 }
 
+.projects .project-tile {
+    box-shadow: .5rem 1rem 1.5rem var(--tile-shade);
+}
+
 .project-tile {
-    margin-bottom: 20px;
-    border: 3px solid dodgerblue;
+    background: var(--tile-bg);
+    border: 1px solid dodgerblue;
     display: grid;
-    border-radius: 10px;
+    border-radius: 6px;
     transition-duration: .4s;
     padding: 15px;
 }
