@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/src/assets/css/post.css"/>
+    <link rel="stylesheet" href="/src/assets/css/website.css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="theme_dark">
+{{> navbar}}
+<main>
+    <div class="header-mobile">
+        <h2 class="title">{{title}}</h2>
+        <p class="date">{{date}}</p>
+    </div>
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            {{#each titles}}
+            <li class="{{tag_type}}"><a href="{{ref}}">{{title}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="blog_content">
+        <div class="header-screen">
+            <h2 class="title">{{title}}</h2>
+            <p class="date">{{date}}</p>
+        </div>
+    {{{content}}}
+    </div>
+    {{> footer}}
+    </main>
+</body>
+<script src = "/src/assets/js/nav.js"></script>
+<script src = "/src/assets/js/post.js"></script>
+</html>

@@ -1,0 +1,451 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Dancing+Script:wght@400..700&family=Limelight&family=Londrina+Outline&display=swap');
+
+
+:root {
+    --primary-light: rgb(225, 225, 225);
+    --primary-dark: rgb(30, 30, 30);
+}
+
+:root {
+    font-size: 62.5%;
+    --main-width-s: 95%;
+    --main-width-m: 85%;
+    --main-width-l: 80%;
+    --main-width-xl: 55%;
+}
+
+.theme {
+    display: flex;
+    text-align: center;
+}
+
+.theme:hover{
+    cursor: pointer;
+}
+
+.theme img {
+    height: 20px;
+    fill: var(--primary-font-color);
+}
+
+nav .options {
+    display: flex;
+    align-items: center;
+    place-items: center;
+}
+
+* {
+    color: var(--primary-font-color);
+}
+
+main *{
+    color: blacK !important;
+}
+
+nav .options a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 30px;
+    color: var(--primary-font-color);
+}
+
+body.theme_light {
+    --primary-font-color: black;
+    --bg-color: rgb(225, 225, 225);
+    --nav-bg: transparent;
+    --img-bg: rgba(0, 0, 0, .1);
+    --date-color: darkgrey;
+}
+
+body.theme_dark {
+    --primary-font-color: white;
+    --bg-color: rgb(30, 30, 30);
+    --nav-bg: transparent;
+    --img-bg: rgba(255, 255, 255, .16);
+    --date-color: palegoldenrod;
+}
+
+nav {
+    box-shadow: none;
+    backdrop-filter: blur(5px);
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transition-duration: .3s;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+p, li {
+    font-size: 14px;
+    line-height: 19px;
+    margin-bottom: 1px;
+}
+
+h3 {
+    margin-bottom: 5px;
+}
+
+nav .content{
+    width: 47%;
+    place-self: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+body {
+    margin-top: 120px;
+    font-family: "Gill Sans MT", serif;
+    background: var(--bg-color);
+    position: relative;
+}
+
+h4 {
+    margin-bottom: 3px;
+    margin-top: 9px;
+}
+
+section {
+    margin-top: 24px;
+}
+
+@page
+{
+    size:  auto;   /* auto is the initial value */
+    margin: 0;  /* this affects the margin in the printer settings */
+}
+
+@media print {
+
+    body {
+        margin-top: 0;
+    }
+
+    nav *{
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .print-download {
+        display: none !important;
+    }
+    .picture img {
+        width: 160px !important;
+        height: 160px !important;
+        object-fit: contain !important;
+    }
+
+    .picture {
+        margin-bottom: 20px !important;
+    }
+
+    main {
+        background: white !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        box-shadow: initial !important;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    p, li {
+        font-size: 11px !important;
+    }
+
+    .title, h3 {
+        font-size: 15px !important;
+    }
+
+    .location, .date, h4 {
+        font-size: 12px !important;
+    }
+    .education-entry, .title {
+        margin-bottom: 6px !important;
+    }
+
+    .job-description {
+        margin-bottom: 10px !important;
+    }
+
+    h4 {
+        margin-top: 0 !important;
+    }
+
+    #right {
+        padding: 11% !important;
+    }
+
+    #left {
+        padding: 6% !important;
+    }
+
+    #right * {
+        z-index: 1;
+    }
+}
+
+main {
+    box-shadow: 1rem 2rem 3rem rgba(102, 102, 102, .5);
+    margin: 0 auto 30px auto;
+    width: 42%;
+    display: grid;
+    grid-template-columns: 73% 27%;
+    background: mintcream;
+    min-height: min(100%, 1000px);
+}
+
+footer{
+    font-size: 1.2rem;
+    position: relative;
+    left: 29%;
+    margin-bottom: 20px;
+}
+
+.blue_bg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+}
+#right {
+    position: relative;
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+/*media queries*/
+@media screen and (min-width: 1024px){
+
+}
+
+@media screen and (min-width: 756px){
+
+}
+
+
+#left {
+    padding: 5%;
+}
+
+.name {
+    font-size: 45px;
+    letter-spacing: -3px;
+    margin-right: 35px;
+}
+
+.education-entry {
+    margin-bottom: 10px;
+}
+
+.education .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.print, .download {
+    width: 150px;
+    height: 38px !important;
+    background: grey;
+    margin-right: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    transition-duration: .3s;
+}
+
+.print:hover, .download:hover {
+    cursor: pointer;
+    background: darkgrey;
+    transition-duration: .3s;
+}
+.print img, .download img {
+    margin-right: 5px;
+    width: 20px;
+}
+
+.print-download {
+    width: 42%;
+    margin: 30px auto 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-family: 'Varela Round', serif;
+    color: royalblue;
+    font-size: 18px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.contact {
+    align-self: center;
+}
+
+.title::after {
+    display: block;
+    content: "";
+    border-top: dimgrey 1px solid;
+}
+
+.company-location {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+
+.title-date {
+    display: flex;
+}
+
+.location {
+    color: dimgrey;
+    font-size: 14px;
+}
+
+.location img {
+    height: 15px;
+    width: 15px;
+    margin-right: 0;
+}
+
+.title-date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date {
+    color: dimgrey;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.timeline {
+    border-left: dimgrey solid 2px;
+    padding-left: 10px;
+}
+
+.skills ul {
+    display: flex;
+
+}
+.experience ul {
+    list-style: outside;
+    margin-left: 20px;
+}
+
+ul {
+    list-style: none;
+}
+
+.job-description {
+    margin-bottom: 20px;
+}
+
+.description > div {
+    transition: .2s ease-in-out;
+}
+
+.description > div:hover {
+    transform: translateX(6px);
+    transition: .2s ease-in;
+}
+
+/*right part*/
+.picture {
+    text-align: center;
+    height: fit-content;
+}
+
+.picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: white;
+    object-fit: contain;
+}
+
+.contact li {
+    display: flex;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.contact li img {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.languages li, .skills li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.description {
+    border-left: 1px solid dimgrey;
+    padding-left: 8px;
+}
+
+.skills h3, .languages h3, .hobbies h3 {
+    display: flex;
+}
+
+.skills, .hobbies, .languages{
+    margin-bottom: 20px;
+    flex-direction: row;
+}
+.skills h3::after, .skills h3::before, .languages h3::before, .languages h3::after, .hobbies h3::before, .hobbies h3::after {
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid black;
+    margin: auto;
+}
+
+.skills h3::after, .languages h3::after, .hobbies h3::after {
+    margin-left: 10px;
+}
+
+.skills h3::before, .languages h3::before, .hobbies h3::before {
+    margin-right: 10px;
+}
+
+
+
+.contact > h3, .languages > h3, .skills > h3, .hobbies >h3 {
+    font-family: 'Varela Round', serif;
+}
+
+.contact, .languages, .skills {
+    margin-bottom: 40px;
+}

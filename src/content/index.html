@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EW3YYEBLE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-4EW3YYEBLE');
+    </script>
+    <link rel="stylesheet" href="/src/assets/css/index.css" />
+    <link rel="stylesheet" href="/src/assets/css/index.css" />
+    <title></title>
+</head>
+<body class="theme_dark">
+<!-- NAVBAR -->
+    {{> navbar}}
+<main>
+    <div class="welcome">
+        <div class="text">
+            <p class="greeting">HI, I'M SVEN</p>
+            <p class="more">I currently study computer science at ETH Zurich and hold a bachelor in Economics from HSG. ..., ... and ... Interests</p>
+            <!--SOCIAL MEDIAL-->
+            <div class="social_media">
+                <a href="https://www.linkedin.com/in/svenglinz/"><div id="linkedin"><img src="/src/assets/images/linkedin_icon.svg" alt=""></div></a>
+                <a href="mailto:svenglinz@gmail.com"><div id="email"><img src="/src/assets/images/email-icon.svg" alt=""></div></a>
+                <a href="https://github.com/svensglinz"><div id="github"><img src="/src/assets/images/github_icon.svg" alt=""></div></a>
+            </div>
+        </div>
+        <div class="image">
+            <img src="/src/assets/images/blur_edges.png" alt="">
+        </div>
+    </div>
+    <div class="projects-wrapper">
+    <h3 style="font-size: 2rem; margin-bottom:15px; font-weight: 700; margin-left: 8px;">Some recent Projects</h3>
+    <div class="projects">
+        {{#each recentProjects}}
+        <div class="project-tile">
+            <div class="title">
+                <a href="{{path}}">{{title}}</a>
+            </div>
+            <div class="date">
+                <p>{{date}}</p>
+            </div>
+            <div class="description">
+                <p>{{description}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    </div>
+    {{> footer}}
+</main>
+    <script src = "/src/assets/js/nav.js"></script>
+<script src = "/src/assets/js/index.js"></script>
+
+</body>

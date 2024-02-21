@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/src/assets/css/website.css"/>
+</head>
+<body class="theme_dark">
+    {{> navbar}}
+    <main>
+    <div class="blog-posts">
+        <h3 style="font-size: 3rem; margin-bottom: 20px;">Blog Posts</h3>
+        {{#each listOfPosts}}
+        <a href="{{path}}"><div class="project-tile">
+            <div class="title">
+                <h3>{{title}}</h3>
+                <p class="gold">{{date}}</p>
+            </div>
+            <div class="description">
+                <p>{{description}}</p>
+            </div>
+        </div></a>
+        {{/each}}
+    </div>
+        {{> footer}}
+    </main>
+</body>
+<script src = "/src/assets/js/nav.js"></script>
+</html>

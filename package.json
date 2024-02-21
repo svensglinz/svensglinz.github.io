@@ -1,0 +1,19 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "author": "Sven Glinz",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "front-matter": "^4.0.2",
+    "fs": "^0.0.1-security",
+    "handlebars": "^4.7.8",
+    "mathjax": "^3.2.2",
+    "showdown": "^2.1.0"
+  }
+}
