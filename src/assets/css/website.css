@@ -111,6 +111,9 @@ a {
     color: darkgrey;
 }
 
+.description p {
+    color: silver !important;
+}
 
 main {
     width: var(--main-width-s);
@@ -303,10 +306,6 @@ nav .options a::after {
     height: 240px;
 }
 
-.image {
-    display: none; /* don't display image on smartphone */
-}
-
 /* -------------------------------------------------------------------
                             PROJECTS
 ------------------------------------------------------------------- */
@@ -331,32 +330,99 @@ nav .options a::after {
     font-size: 1.2rem;
 }
 
-.project-tile h3 {
+.project-tile h2 {
+    height: min-content;
     margin-bottom: 3px;
 }
-
-.project-tile {
-    gap: 5px;
-    display: grid;
-    padding: 45px;
-    border: 3px solid dodgerblue;
-    border-radius: 10px;
-    transition-duration: .4s;
-}
-
 
 /* -------------------------------------------------------------------
                             MAIN SECTION
 ------------------------------------------------------------------- */
 
+.projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2%;
+}
 
-/*TABLET & LAPTOP*/
-/*LAPTOP*/
+.date p{
+    font-size: 1.4rem;
+    color: var(--date-color);
+}
+
+.project-tile {
+    border: 3px solid dodgerblue;
+    display: grid;
+    border-radius: 10px;
+    transition-duration: .4s;
+    padding: 15px;
+}
+
+.projects a {
+    font-size: 1.9rem;
+}
+
+.social_media {
+    width: 65%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    grid-column: 1;
+}
+
+.social_media img{
+    height: 70px;
+    transition-duration: .4s;
+}
+
+.social_media img:hover {
+    transform: scale(1.05);
+    transition-duration: .4s;
+}
+
+.title a:hover {
+    text-decoration: underline;
+}
+
+.image {
+    overflow: hidden;
+    border-radius: 50%;
+    height: 240px;
+    width: 240px;
+    grid-column: 2;
+    grid-row: 1/4;
+    object-fit: cover;
+    text-align: center;
+    background: var(--img-bg);
+}
+
+.more {
+    font-size: 1.6rem;
+    width: max-content;
+    grid-column: 1/2;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.greeting{
+    width: fit-content;
+    line-height: 1;
+    color: royalblue;
+    font-size: 13rem;
+    font-family: 'Londrina Outline', serif;
+    text-shadow:  5px 5px 5px royalblue;
+}
+
+.welcome {
+    column-gap: 50px;
+    text-align: center;
+    height: min-content;
+    display: grid;
+    margin: auto auto 80px;
+}
 
 /*MONITOR*/
 @media screen and (min-width: 1400px){
-
-
 
     .project-tile {
         height: min(200px, auto);
@@ -488,11 +554,7 @@ main {
 }
 
 /*BLOG LANDING PAGE*/
-.project-tile {
-    height: fit-content(100%);
-    padding: 2% !important;
-    border-radius: 8px !important;
-}
+
 
 .blog-posts {
     place-content: start;
