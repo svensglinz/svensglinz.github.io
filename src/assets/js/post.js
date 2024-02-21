@@ -1,7 +1,5 @@
 
 // function to expand element on click
-
-
 function toggleTOC(){
     const toc = document.querySelector('.toc');
     if (toc.classList.contains('visible'))

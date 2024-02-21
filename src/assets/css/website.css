@@ -136,10 +136,10 @@ nav .content{
 }
 
 nav {
+    width: 100vw;
     box-shadow: none;
     backdrop-filter: blur(5px);
     position: fixed;
-    width: 100%;
     top: 0;
     justify-content: center;
     z-index: 1;
@@ -153,7 +153,7 @@ nav .logo {
 
 .options {
     align-items: center;
-    gap: 20px;
+    gap: 7%;
 }
 
 .theme {
@@ -190,57 +190,11 @@ nav .options a::after {
                             BODY / LAYOUT
 ------------------------------------------------------------------- */
 
-@media screen and (min-width: 768px){
-
-    /*BODY / LAYOUT */
-    main {
-        width: var(--main-width-s);
-    }
-
-    /*NAV BAR */
-    nav .content {
-        width: var(--main-width-s);
-    }
+.image {
+    display: none;
 }
 
-@media screen and (min-width: 992px){
 
-    /*BODY / LAYOUT */
-    main {
-        width: var(--main-width-m);
-    }
-
-    /*NAV BAR */
-    nav .content {
-        width: var(--main-width-m);
-    }
-}
-
-@media screen and (min-width: 1200px){
-
-    /*BODY / LAYOUT */
-    main {
-        width: var(--main-width-l);
-    }
-
-    /*NAV BAR */
-    nav .content {
-        width: var(--main-width-l);
-    }
-}
-
-@media screen and (min-width: 1400px){
-
-    /*BODY / LAYOUT */
-    main {
-        width: var(--main-width-xl);
-    }
-
-    /*NAV BAR */
-    nav .content {
-        width: var(--main-width-xl);
-    }
-}
 
 /* -------------------------------------------------------------------
                             MAIN
@@ -272,16 +226,6 @@ nav .options a::after {
 
 /*SOCIAL MEDIA DIV  */
 
-.social_media img {
-    height: 160px;
-    transition-duration: .4s;
-}
-
-.social_media {
-    place-self: center;
-    gap: 50px;
-    width: fit-content(100%);
-}
 
 .social_media img:hover {
     transform: scale(1.05);
@@ -323,8 +267,10 @@ nav .options a::after {
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    grid-gap: 40px;
+    place-content: space-around !important;
+    grid-template-columns: repeat(1, minmax(0,1fr));
+    gap: 20px;
+
 }
 
 .date {
@@ -340,18 +286,13 @@ nav .options a::after {
                             MAIN SECTION
 ------------------------------------------------------------------- */
 
-.projects {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2%;
-}
-
 .date p{
     font-size: 1.4rem;
     color: var(--date-color);
 }
 
 .project-tile {
+    margin-bottom: 20px;
     border: 3px solid dodgerblue;
     display: grid;
     border-radius: 10px;
@@ -364,9 +305,10 @@ nav .options a::after {
 }
 
 .social_media {
-    width: 65%;
-    height: auto;
+    place-self: center;
+    width: min-content;
     display: flex;
+    gap: 20px;
     justify-content: space-between;
     grid-column: 1;
 }
@@ -399,14 +341,19 @@ nav .options a::after {
 
 .more {
     font-size: 1.6rem;
-    width: max-content;
+    width: fit-content;
     grid-column: 1/2;
     margin-bottom: 30px;
     margin-top: 20px;
 }
 
+main {
+    max-width: 95vw !important;
+}
+
 .greeting{
-    width: fit-content;
+    width: auto;
+    max-width: 90vw;
     line-height: 1;
     color: royalblue;
     font-size: 13rem;
@@ -430,7 +377,7 @@ nav .options a::after {
     }
 
     .info h1 {
-        width: fit-content(100%) !important; /*to align social media in center of text (via js)*/
+        width: fit-content; /*to align social media in center of text (via js)*/
         font-size: 13rem;
         font-weight: normal;
         text-shadow: 5px 5px 5px royalblue;
@@ -440,6 +387,7 @@ nav .options a::after {
 /*FOOTER*/
 
 main {
+    margin: auto;
     position: relative !important;
 }
 
@@ -481,7 +429,7 @@ h2 {
 
 .toc.visible ul {
     padding-left: 30px;
-    height: fit-content(100%);
+    height: fit-content;
     display: block;
 }
 
@@ -515,7 +463,7 @@ h2 {
 @media screen and (min-width: 1000px){
     .toc ul {
         display: block;
-        height: fit-content(100%);
+        height: fit-content;
         padding-left: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
@@ -568,3 +516,69 @@ main {
     padding-left: 8px;
 }
 
+@media screen and (min-width: 620px){
+    .projects {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+}
+
+@media screen and (min-width: 768px){
+
+    /*BODY / LAYOUT */
+    main {
+        width: var(--main-width-s);
+    }
+
+    /*NAV BAR */
+    nav .content {
+        width: var(--main-width-s);
+    }
+}
+
+@media screen and (min-width: 992px){
+
+    .projects {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+
+    /*BODY / LAYOUT */
+    main {
+        width: var(--main-width-m);
+    }
+
+    /*NAV BAR */
+    nav .content {
+        width: var(--main-width-m);
+    }
+}
+
+@media screen and (min-width: 1200px){
+
+    .image {
+        display: block;
+    }
+
+    /*BODY / LAYOUT */
+    main {
+        width: var(--main-width-l);
+    }
+
+    /*NAV BAR */
+    nav .content {
+        width: var(--main-width-l);
+    }
+}
+
+@media screen and (min-width: 1400px){
+
+    /*BODY / LAYOUT */
+    main {
+        width: var(--main-width-xl);
+    }
+
+    /*NAV BAR */
+    nav .content {
+        width: var(--main-width-xl);
+    }
+}
