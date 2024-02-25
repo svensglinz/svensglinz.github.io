@@ -2,8 +2,8 @@
 title: "Margin Procyclicality in Derivatives Markets"
 date: 2024-02-19
 description: "A summary of my Bachelor Thesis in Economics about Margin Procyclicality of listed derivatives"
-
 ---
+
 # Purpose
 This post describes the motivation and the results behind my bachelor Thesis titled *Margin Procyclicality
 during Covid 19 - Drivers, Impact and Solutions*. It is described how outbursts of volatility in financial markets
@@ -53,18 +53,11 @@ any possible losses of a defaulted counterparty between the time of their defaul
 According to EMIR, initial margin must be calibrated to cover 99% (99.5% for OTC-instruments) of all potential 2-day (5-day) losses of members' portfolios. (ie IM = 99%/99.5% VaR)
 This gives the CCP enough time to orderly liquidate a defaulted member's portfolio without risking its own assets. 
 
-Initial Margin --> Most often considered when talking about procyclicality (mention below)
 ## Default Fund & Add-Ons
-
-## Margin Calls
-
-## Collateral 
-
-## APC Regulation in EMIR
-1. Margin Buffer of at least 25% which can be temporarily exhausted when margin requirements are rising significantly
-2. Assigning at least 25% weight to stressed observations in the lookback period
-3. Ensuring that margin requirements are no lower than those that would be calculated using volatility estimated over a 10-year 
-historical lookback period
+Since Initial Margin is not meant to cover losses of a members' portfolio in 100% of all cases, the default fund gives additional protection to the clearing house in case a Member's initial Margin 
+is not enough to cover the losses from liquidating its portfolio in a default scenario. 
+The default fund is an additional pool of assets to which all members contribute an amount relative to the share of risk they bring to the clearing house. In case the Initial margin of a member in a default is exhausted, 
+this pool of common assets can be tapped by the CCP which essentially means that excess losses are mutualized among the surviving clearing members. 
 
 # Margin Procyclicality during Covid 19
 <div class="img_container">
@@ -76,9 +69,19 @@ historical lookback period
 
 <img style="width: 100%;" src="/src/assets/images/LTM_stress_periods_long.svg">
 
-
 <img style="width: 100%;" src="/src/assets/images/LTM_stress_periods_long.svg">
 <img style="width: 100%;" src="/src/assets/images/release_levels_long.svg">
+
+## Current APC Regulation and further suggestions
+
+APC regulation in EMIR
+1. Margin Buffer of at least 25% which can be temporarily exhausted when margin requirements are rising significantly
+2. Assigning at least 25% weight to stressed observations in the lookback period
+3. Ensuring that margin requirements are no lower than those that would be calculated using volatility estimated over a 10-year
+   historical lookback period
+
+Further Suggestions
+...
 
 ## Margin Model 
 

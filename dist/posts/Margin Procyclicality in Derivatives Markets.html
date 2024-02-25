@@ -31,10 +31,8 @@
             <li class="h2"><a href="#variationmargin">Variation Margin</a></li>
             <li class="h2"><a href="#initialmargin">Initial Margin</a></li>
             <li class="h2"><a href="#defaultfund&amp;add-ons">Default Fund &amp; Add-Ons</a></li>
-            <li class="h2"><a href="#margincalls">Margin Calls</a></li>
-            <li class="h2"><a href="#collateral">Collateral</a></li>
-            <li class="h2"><a href="#apcregulationinemir">APC Regulation in EMIR</a></li>
             <li class="h1"><a href="#marginprocyclicalityduringcovid19">Margin Procyclicality during Covid 19</a></li>
+            <li class="h2"><a href="#currentapcregulationandfurthersuggestions">Current APC Regulation and further suggestions</a></li>
             <li class="h2"><a href="#marginmodel">Margin Model</a></li>
         </ul>
     </div>
@@ -111,17 +109,11 @@ In the case of future-style settled instruments such as most financial futures o
 any possible losses of a defaulted counterparty between the time of their default and the unwinding of their positions.</p>
 <p>According to EMIR, initial margin must be calibrated to cover 99% (99.5% for OTC-instruments) of all potential 2-day (5-day) losses of members' portfolios. (ie IM = 99%/99.5% VaR)
 This gives the CCP enough time to orderly liquidate a defaulted member's portfolio without risking its own assets. </p>
-<p>Initial Margin --&gt; Most often considered when talking about procyclicality (mention below)</p>
 <h2 id="defaultfundaddons">Default Fund &amp; Add-Ons</h2>
-<h2 id="margincalls">Margin Calls</h2>
-<h2 id="collateral">Collateral</h2>
-<h2 id="apcregulationinemir">APC Regulation in EMIR</h2>
-<ol>
-<li>Margin Buffer of at least 25% which can be temporarily exhausted when margin requirements are rising significantly</li>
-<li>Assigning at least 25% weight to stressed observations in the lookback period</li>
-<li>Ensuring that margin requirements are no lower than those that would be calculated using volatility estimated over a 10-year 
-historical lookback period</li>
-</ol>
+<p>Since Initial Margin is not meant to cover losses of a members' portfolio in 100% of all cases, the default fund gives additional protection to the clearing house in case a Member's initial Margin 
+is not enough to cover the losses from liquidating its portfolio in a default scenario. 
+The default fund is an additional pool of assets to which all members contribute an amount relative to the share of risk they bring to the clearing house. In case the Initial margin of a member in a default is exhausted, 
+this pool of common assets can be tapped by the CCP which essentially means that excess losses are mutualized among the surviving clearing members. </p>
 <h1 id="marginprocyclicalityduringcovid19">Margin Procyclicality during Covid 19</h1>
 <div class="img_container">
 <img src="/src/assets/images/ewma_1d_FESX.svg">
@@ -131,13 +123,22 @@ historical lookback period</li>
 <p><img style="width: 100%;" src="/src/assets/images/LTM_stress_periods_long.svg"></p>
 <p><img style="width: 100%;" src="/src/assets/images/LTM_stress_periods_long.svg">
 <img style="width: 100%;" src="/src/assets/images/release_levels_long.svg"></p>
+<h2 id="currentapcregulationandfurthersuggestions">Current APC Regulation and further suggestions</h2>
+<p>APC regulation in EMIR</p>
+<ol>
+<li>Margin Buffer of at least 25% which can be temporarily exhausted when margin requirements are rising significantly</li>
+<li>Assigning at least 25% weight to stressed observations in the lookback period</li>
+<li>Ensuring that margin requirements are no lower than those that would be calculated using volatility estimated over a 10-year
+historical lookback period</li>
+</ol>
+<p>Further Suggestions
+…</p>
 <h2 id="marginmodel">Margin Model</h2>
 <p>$$\alpha + \beta$$
 $$IM(\tau) = VaR_{\rho}(PnL_i) * \lambda$$</p>
 <p>$$PnL_i = (\hat{r_i (\tau)}$$
 $$\hat{r_i(tau)} = (\hat{r_i (\tau)}$$
-$$\hat{r_i(tau)} = (\hat{r_i (\tau)}$$
-$a + b$</p>
+$$\hat{r_i(tau)} = (\hat{r_i (\tau)}$$</p>
     </div>
     <footer>&copy Sven Glinz, 2023</footer>
     </main>
