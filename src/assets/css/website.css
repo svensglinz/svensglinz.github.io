@@ -71,7 +71,7 @@ h1, h2, h3, nav a, .title a{
     font-family: 'Varela Round', serif;
 }
 
-p {
+p, li {
     line-height: 1.5;
     font-size: 1.4rem;
 }
@@ -584,3 +584,36 @@ main {
         width: var(--main-width-xl);
     }
 }
+
+.blog_post main {
+    gap: 100px;
+    width: 55% !important;
+}
+
+.blog_post img {
+    display: flex;
+    width: 70%;
+    margin: 20px auto;
+}
+
+.blog_post table {
+    border-spacing: 25px 8px;
+    margin: 20px auto;
+}
+
+table th {
+    border-bottom: 2px solid black;
+}
+.blog_post table {
+    font-size: 12px;
+}
+
+tr {
+    padding: 10px;
+}
+
+.blog_post .img_container {
+    display: flex;
+    gap: 20px;
+}
+

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/src/assets/css/website.css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body class="theme_dark">
+<body class="theme_dark blog_post">
 <nav class="flex">
     <div class="content flex">
         <a href="/index.html"><div class="logo font-dancing">Sven Glinz</div></a>
@@ -26,16 +26,16 @@
         <h2>Table of Contents</h2>
         <ul>
             <li class="h1"><a href="#purpose">Purpose</a></li>
-            <li class="h1"><a href="#researchquestion">Research Question</a></li>
-            <li class="h1"><a href="#backgroundonmarginprocyclicality">Background on Margin Procyclicality</a></li>
-            <li class="h2"><a href="#procyclicalityduringcovid">Procyclicality during Covid</a></li>
-            <li class="h2"><a href="#researchonprocyclicality">Research on Procyclicality</a></li>
-            <li class="h1"><a href="#themarginmodel">The Margin Model</a></li>
-            <li class="h1"><a href="#results">Results</a></li>
-            <li class="h2"><a href="#test1">test 1</a></li>
-            <li class="h2"><a href="#test2">test 2</a></li>
-            <li class="h2"><a href="#test3">test 3</a></li>
-            <li class="h1"><a href="#sources">Sources</a></li>
+            <li class="h1"><a href="#margininderivativesmarkets">Margin in Derivatives Markets</a></li>
+            <li class="h1"><a href="#ccpriskmanagement">CCP Risk Management</a></li>
+            <li class="h2"><a href="#variationmargin">Variation Margin</a></li>
+            <li class="h2"><a href="#initialmargin">Initial Margin</a></li>
+            <li class="h2"><a href="#defaultfund&amp;add-ons">Default Fund &amp; Add-Ons</a></li>
+            <li class="h2"><a href="#margincalls">Margin Calls</a></li>
+            <li class="h2"><a href="#collateral">Collateral</a></li>
+            <li class="h2"><a href="#apcregulationinemir">APC Regulation in EMIR</a></li>
+            <li class="h1"><a href="#marginprocyclicalityduringcovid19">Margin Procyclicality during Covid 19</a></li>
+            <li class="h2"><a href="#marginmodel">Margin Model</a></li>
         </ul>
     </div>
     <div class="blog_content">
@@ -44,22 +44,100 @@
             <p class="date">Feb 19, 2024</p>
         </div>
     <h1 id="purpose">Purpose</h1>
-<p>This is the content of my blog post.</p>
-<h1 id="researchquestion">Research Question</h1>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-<h1 id="backgroundonmarginprocyclicality">Background on Margin Procyclicality</h1>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-<h2 id="procyclicalityduringcovid">Procyclicality during Covid</h2>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-<h2 id="researchonprocyclicality">Research on Procyclicality</h2>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-<h1 id="themarginmodel">The Margin Model</h1>
-<h1 id="results">Results</h1>
-<h2 id="test1">test 1</h2>
-<h2 id="test2">test 2</h2>
-<h3 id="test100">test 100</h3>
-<h2 id="test3">test 3</h2>
-<h1 id="sources">Sources</h1>
+<p>This post describes the motivation and the results behind my bachelor Thesis titled <em>Margin Procyclicality
+during Covid 19 - Drivers, Impact and Solutions</em>. It is described how outbursts of volatility in financial markets
+can result in sharp spikes of margin requirements at Central Counterparties (CCPs) which may lead to financial instabilities.
+    This has brought regulators to discuss potential remedies to tackle the problem. Those solutions are discussed and analyzed at
+the example of a margin model as applied to a single-instrument portfolio (FESX future) which shows that different approaches
+come with their own set of advantages and disadvantages.</p>
+<h1 id="margininderivativesmarkets">Margin in Derivatives Markets</h1>
+<p>After the financial crisis in 2008, regulators started imposing central clearing mandates on many derivatives transactions.
+Central clearing reduces the complex web between counterparties in OTC markets to a single exposure towards a central
+clearing party. In turn, this leads to a concentration in risk at one single node in the system, as the CCP guarantees
+the fulfilment of every transaction it clears.</p>
+<p><img src="/src/assets/images/ccp_clearing.png"></p>
+<p>Thus, CCPs are highly regulated entities and are subject to certain rules, eg.
+regarding their margining practices. The collection of margin by CCPs is often procyclical (ie. increases with financial market volatility).
+This means that at times when market parcicipants' liquidity may already be strained, a sharp increase in margin demands from CCPs (which must often be in highly liquid assets)
+may lead to fire sales and downward spirals in asset prices which further reduces the value of existing collateral and further fuels the downwards spiral. </p>
+<h1 id="ccpriskmanagement">CCP Risk Management</h1>
+<p>In total, the 5 largest clearing houses have almost 1 trillion USD in deposited collateral which highlights their systemic importance in the global financial markets landscape. </p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Popular Products</th>
+<th>Collateral</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LCH.Clearnet</td>
+<td>CDS, NDF-Forex, IRS, Equity (via LSE), Repo</td>
+<td>330 Bio. USD</td>
+</tr>
+<tr>
+<td>ICE Clear</td>
+<td>Coffee, Sugar, Brent /WTI Crude Oil, CDS</td>
+<td>250 Bio. USD</td>
+</tr>
+<tr>
+<td>CME Clearing</td>
+<td>Eurodollar, S&amp;P 500 E-mini, Natural Gas, 10Y T-Note</td>
+<td>207 Bio. USD</td>
+</tr>
+<tr>
+<td>OCC</td>
+<td>Cboe VIX, Equity Derivatives</td>
+<td>136 Bio. USD</td>
+</tr>
+<tr>
+<td>Eurex Clearing</td>
+<td>Bund, EuroStoxx50, IRS, Equities (via XETRA &amp; FWB)</td>
+<td>132 Bio. USD</td>
+</tr>
+</tbody>
+</table>
+<p>To make CCPs as 'fail-safe' as possible, various bodies supervise and regulate CCPs, such as ESMA in Europe or the CFTC in the US with primary regulation 
+found in EMIR (European Market Infrastructure Regulation) in the EU as well as international standards such as the <em>Principles for Fiancial Market Infrastructures</em> (PFMI).
+To shield themselves from a potential default of one of their members, CCPs generally resort to three different 'categories' of securities they demand from their members.
+The two most important being initial - and variation margin. </p>
+<h2 id="variationmargin">Variation Margin</h2>
+<p>Variation Margin is the backward-looking component of Margin which ensures that all open positions at the CCP are marked to market. Variaion Margin (VM) is typically called for 
+at the end of the day and ensures that the CCP has zero open exposure to its clients at the opening of every new day.
+In the case of future-style settled instruments such as most financial futures or IRS, VM is not held by the CCP but is passed through from one side of the contract ot the other to settle daily profits and losses.</p>
+<h2 id="initialmargin">Initial Margin</h2>
+<p>In contrast to VM, initial Margin (IM) is a forward-looking component that acts as a buffer for future prices changes and protects the clearing house from 
+any possible losses of a defaulted counterparty between the time of their default and the unwinding of their positions.</p>
+<p>According to EMIR, initial margin must be calibrated to cover 99% (99.5% for OTC-instruments) of all potential 2-day (5-day) losses of members' portfolios. (ie IM = 99%/99.5% VaR)
+This gives the CCP enough time to orderly liquidate a defaulted member's portfolio without risking its own assets. </p>
+<p>Initial Margin --&gt; Most often considered when talking about procyclicality (mention below)</p>
+<h2 id="defaultfundaddons">Default Fund &amp; Add-Ons</h2>
+<h2 id="margincalls">Margin Calls</h2>
+<h2 id="collateral">Collateral</h2>
+<h2 id="apcregulationinemir">APC Regulation in EMIR</h2>
+<ol>
+<li>Margin Buffer of at least 25% which can be temporarily exhausted when margin requirements are rising significantly</li>
+<li>Assigning at least 25% weight to stressed observations in the lookback period</li>
+<li>Ensuring that margin requirements are no lower than those that would be calculated using volatility estimated over a 10-year 
+historical lookback period</li>
+</ol>
+<h1 id="marginprocyclicalityduringcovid19">Margin Procyclicality during Covid 19</h1>
+<div class="img_container">
+<img src="/src/assets/images/ewma_1d_FESX.svg">
+<img src="/src/assets/images/daily_returns_FESX.svg">
+</div>
+<p><img style="width: 100%;" src="/src/assets/images/APC_comparison_long.svg"></p>
+<p><img style="width: 100%;" src="/src/assets/images/LTM_stress_periods_long.svg"></p>
+<p><img style="width: 100%;" src="/src/assets/images/LTM_stress_periods_long.svg">
+<img style="width: 100%;" src="/src/assets/images/release_levels_long.svg"></p>
+<h2 id="marginmodel">Margin Model</h2>
+<p>$$\alpha + \beta$$
+$$IM(\tau) = VaR_{\rho}(PnL_i) * \lambda$$</p>
+<p>$$PnL_i = (\hat{r_i (\tau)}$$
+$$\hat{r_i(tau)} = (\hat{r_i (\tau)}$$
+$$\hat{r_i(tau)} = (\hat{r_i (\tau)}$$
+$a + b$</p>
     </div>
     <footer>&copy Sven Glinz, 2023</footer>
     </main>

@@ -4,7 +4,7 @@ const fs = require('fs');
 const frontMatter = require('front-matter');
 const Handlebars = require('handlebars');
 const showdown = require('showdown');
-const converter = new showdown.Converter()
+const converter = new showdown.Converter({tables: true, literalMidWordUnderscores: true})
 const cheerio = require('cheerio');
 
 // inject nav bar and footer
@@ -27,7 +27,6 @@ const blogLanding = Handlebars.compile(blogLandingSource);
 const blogTemplate = Handlebars.compile(blogTemplateSource);
 const cv = Handlebars.compile(cvSource);
 
-
 // create posts as html files from .md
 const listOfPosts = [];
 blogPosts.forEach(blogPost => {
@@ -36,7 +35,7 @@ blogPosts.forEach(blogPost => {
     attributes.path = `/dist/posts/${attributes.title}.html`;
     attributes.date = attributes.date.toLocaleDateString('en-us', {month: "short", day: "numeric", year: "numeric"});
     listOfPosts.push(attributes);
-
+    console.log(converter.makeHtml(body));
     const $ = cheerio.load(converter.makeHtml(body));
     const titles = [];
 
