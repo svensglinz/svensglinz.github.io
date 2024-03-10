@@ -30,12 +30,12 @@ const cv = Handlebars.compile(cvSource);
 // create posts as html files from .md
 const listOfPosts = [];
 blogPosts.forEach(blogPost => {
+
     const post = fs.readFileSync(`src/content/posts/${blogPost}`, 'utf-8');
     const {attributes, body} = frontMatter(post);
     attributes.path = `/dist/posts/${attributes.title}.html`;
     attributes.date = attributes.date.toLocaleDateString('en-us', {month: "short", day: "numeric", year: "numeric"});
     listOfPosts.push(attributes);
-    console.log(converter.makeHtml(body));
     const $ = cheerio.load(converter.makeHtml(body));
     const titles = [];
 
@@ -46,18 +46,15 @@ blogPosts.forEach(blogPost => {
         const ref = "#" + title.toLowerCase().replace(/\s/g, '');
         titles.push({ tag_type, title, ref});
     });
-    fs.writeFileSync(`dist/posts/${attributes.title}.html`, blogTemplate({'title': attributes.title, 'date': attributes.date, 'titles': titles, 'content': converter.makeHtml(body)}));
+
+    fs.writeFileSync(`dist/posts/${attributes.title}.html`, blogTemplate({'title': attributes.title, 'titleImg': attributes.picture, 'date': attributes.date, 'content': converter.makeHtml(body)}));
 });
 
-console.log(listOfPosts);
 // Sort the listOfPosts array in descending order based on the date attribute
 listOfPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
 fs.writeFileSync(`dist/blog.html`, blogLanding({listOfPosts}));
 fs.writeFileSync('index.html', index({'recentProjects': listOfPosts.slice(0, 3)}));
 
-// write cv
-
 // build CV Section
-
 fs.writeFileSync('dist/cv.html', cv(undefined, undefined));

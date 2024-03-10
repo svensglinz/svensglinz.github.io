@@ -1,6 +1,7 @@
 ---
 title: "Margin Procyclicality in Derivatives Markets"
 date: 2024-02-19
+picture: "/src/assets/images/title_image_margin_procyclicality.jpg"
 description: "A summary of my Bachelor Thesis in Economics about Margin Procyclicality of listed derivatives"
 ---
 
@@ -51,7 +52,8 @@ In contrast to VM, initial Margin (IM) is a forward-looking component that acts 
 any possible losses of a defaulted counterparty between the time of their default and the unwinding of their positions.
 
 According to EMIR, initial margin must be calibrated to cover 99% (99.5% for OTC-instruments) of all potential 2-day (5-day) losses of members' portfolios. (ie IM = 99%/99.5% VaR)
-This gives the CCP enough time to orderly liquidate a defaulted member's portfolio without risking its own assets. 
+This gives the CCP enough time to orderly liquidate a defaulted member's portfolio without risking its own assets. Furthermore, regulation requires Initial Margin to be dynamic such that the 
+99% confidence interval ideally holds unconditionally, and not only over a long term average.
 
 ## Default Fund & Add-Ons
 Since Initial Margin is not meant to cover losses of a members' portfolio in 100% of all cases, the default fund gives additional protection to the clearing house in case a Member's initial Margin 
@@ -60,6 +62,7 @@ The default fund is an additional pool of assets to which all members contribute
 this pool of common assets can be tapped by the CCP which essentially means that excess losses are mutualized among the surviving clearing members. 
 
 # Margin Procyclicality during Covid 19
+
 <div class="img_container">
 <img src="/src/assets/images/ewma_1d_FESX.svg">
 <img src="/src/assets/images/daily_returns_FESX.svg">
@@ -73,6 +76,9 @@ this pool of common assets can be tapped by the CCP which essentially means that
 <img style="width: 100%;" src="/src/assets/images/release_levels_long.svg">
 
 ## Current APC Regulation and further suggestions
+As described in ()[#Initial Margin], the fact that the 99% VaR should hold unconditionally, this results in highly procyclical margins, as an increase in volatility
+scales the likely future returns of an asset which in turn incresaes the VaR and thus margin values. As such procyclicality is undesired as described, EMIR requires CCPs to implement one of three 
+options in a try to mitigigate margin procyclicality. 
 
 APC regulation in EMIR
 1. Margin Buffer of at least 25% which can be temporarily exhausted when margin requirements are rising significantly
@@ -80,7 +86,7 @@ APC regulation in EMIR
 3. Ensuring that margin requirements are no lower than those that would be calculated using volatility estimated over a 10-year
    historical lookback period
 
-Further Suggestions
+Further suggestions from reserachers, but not currently included in regulation, include 
 ...
 
 ## Margin Model 

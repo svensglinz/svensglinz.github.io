@@ -18,26 +18,9 @@
     </div>
 </nav>
 <main>
-    <div class="header-mobile">
-        <h2 class="title">Margin Procyclicality in Derivatives Markets</h2>
-        <p class="date">Feb 19, 2024</p>
-    </div>
-    <div class="toc">
-        <h2>Table of Contents</h2>
-        <ul>
-            <li class="h1"><a href="#purpose">Purpose</a></li>
-            <li class="h1"><a href="#margininderivativesmarkets">Margin in Derivatives Markets</a></li>
-            <li class="h1"><a href="#ccpriskmanagement">CCP Risk Management</a></li>
-            <li class="h2"><a href="#variationmargin">Variation Margin</a></li>
-            <li class="h2"><a href="#initialmargin">Initial Margin</a></li>
-            <li class="h2"><a href="#defaultfund&amp;add-ons">Default Fund &amp; Add-Ons</a></li>
-            <li class="h1"><a href="#marginprocyclicalityduringcovid19">Margin Procyclicality during Covid 19</a></li>
-            <li class="h2"><a href="#currentapcregulationandfurthersuggestions">Current APC Regulation and further suggestions</a></li>
-            <li class="h2"><a href="#marginmodel">Margin Model</a></li>
-        </ul>
-    </div>
     <div class="blog_content">
         <div class="header-screen">
+            <img id="titleImg" src="/src/assets/images/title_image_margin_procyclicality.jpg">
             <h2 class="title">Margin Procyclicality in Derivatives Markets</h2>
             <p class="date">Feb 19, 2024</p>
         </div>
@@ -108,7 +91,8 @@ In the case of future-style settled instruments such as most financial futures o
 <p>In contrast to VM, initial Margin (IM) is a forward-looking component that acts as a buffer for future prices changes and protects the clearing house from 
 any possible losses of a defaulted counterparty between the time of their default and the unwinding of their positions.</p>
 <p>According to EMIR, initial margin must be calibrated to cover 99% (99.5% for OTC-instruments) of all potential 2-day (5-day) losses of members' portfolios. (ie IM = 99%/99.5% VaR)
-This gives the CCP enough time to orderly liquidate a defaulted member's portfolio without risking its own assets. </p>
+This gives the CCP enough time to orderly liquidate a defaulted member's portfolio without risking its own assets. Furthermore, regulation requires Initial Margin to be dynamic such that the 
+99% confidence interval ideally holds unconditionally, and not only over a long term average.</p>
 <h2 id="defaultfundaddons">Default Fund &amp; Add-Ons</h2>
 <p>Since Initial Margin is not meant to cover losses of a members' portfolio in 100% of all cases, the default fund gives additional protection to the clearing house in case a Member's initial Margin 
 is not enough to cover the losses from liquidating its portfolio in a default scenario. 
@@ -124,6 +108,9 @@ this pool of common assets can be tapped by the CCP which essentially means that
 <p><img style="width: 100%;" src="/src/assets/images/LTM_stress_periods_long.svg">
 <img style="width: 100%;" src="/src/assets/images/release_levels_long.svg"></p>
 <h2 id="currentapcregulationandfurthersuggestions">Current APC Regulation and further suggestions</h2>
+<p>As described in ()[#Initial Margin], the fact that the 99% VaR should hold unconditionally, this results in highly procyclical margins, as an increase in volatility
+scales the likely future returns of an asset which in turn incresaes the VaR and thus margin values. As such procyclicality is undesired as described, EMIR requires CCPs to implement one of three 
+options in a try to mitigigate margin procyclicality. </p>
 <p>APC regulation in EMIR</p>
 <ol>
 <li>Margin Buffer of at least 25% which can be temporarily exhausted when margin requirements are rising significantly</li>
@@ -131,7 +118,7 @@ this pool of common assets can be tapped by the CCP which essentially means that
 <li>Ensuring that margin requirements are no lower than those that would be calculated using volatility estimated over a 10-year
 historical lookback period</li>
 </ol>
-<p>Further Suggestions
+<p>Further suggestions from reserachers, but not currently included in regulation, include 
 …</p>
 <h2 id="marginmodel">Margin Model</h2>
 <p>$$\alpha + \beta$$

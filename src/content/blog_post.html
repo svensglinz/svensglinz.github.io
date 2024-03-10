@@ -9,20 +9,9 @@
 <body class="theme_dark blog_post">
 {{> navbar}}
 <main>
-    <div class="header-mobile">
-        <h2 class="title">{{title}}</h2>
-        <p class="date">{{date}}</p>
-    </div>
-    <div class="toc">
-        <h2>Table of Contents</h2>
-        <ul>
-            {{#each titles}}
-            <li class="{{tag_type}}"><a href="{{ref}}">{{title}}</a></li>
-            {{/each}}
-        </ul>
-    </div>
     <div class="blog_content">
         <div class="header-screen">
+            <img id="titleImg" src="{{titleImg}}">
             <h2 class="title">{{title}}</h2>
             <p class="date">{{date}}</p>
         </div>

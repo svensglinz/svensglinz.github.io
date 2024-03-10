@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Varela+Round&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Dancing+Script:wght@400..700&family=Limelight&family=Londrina+Outline&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 :root {
     --primary-light: rgb(225, 225, 225);
@@ -206,13 +206,26 @@ section {
 main {
     box-shadow: 1rem 2rem 3rem rgba(102, 102, 102, .5);
     margin: 0 auto 30px auto;
-    width: 42%;
     display: grid;
     grid-template-columns: 73% 27%;
     background: mintcream;
     min-height: min(100%, 1000px);
 }
 
+@media screen and (min-width: 650px){
+
+}
+
+@media screen and (min-width: 1000px){
+    main {
+        width: 63%;
+    }
+}
+@media screen and (min-width: 1400px){
+    main {
+        width: 42%;
+    }
+}
 footer{
     font-size: 1.2rem;
     position: relative;

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Dancing+Script:wght@400..700&family=Limelight&family=Londrina+Outline&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Varela+Round&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Varela+Round&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 /* ROOT VARS & GLOBAL*/
 :root {
     font-size: 62.5%;
@@ -90,6 +90,7 @@ a {
 }
 
 .font-dancing {
+    font-size: 2rem !important;
     font-family: 'Dancing Script',serif;
 }
 
@@ -253,7 +254,7 @@ nav .options a::after {
                             PROJECTS
 ------------------------------------------------------------------- */
 
-.project-tile:hover {
+.project-tile a:hover {
     transform: scale(1.01);
     transition-duration: .4s;
 }
@@ -275,10 +276,11 @@ nav .options a::after {
     font-size: 1.2rem;
 }
 
-.project-tile h2 {
+.project-tile a h2 {
     height: min-content;
     margin-bottom: 3px;
 }
+
 
 /* -------------------------------------------------------------------
                             MAIN SECTION
@@ -288,11 +290,16 @@ nav .options a::after {
     color: var(--date-color);
 }
 
+.blog_content .date {
+    margin-bottom: 10px;
+}
+
 .projects .project-tile {
     box-shadow: .5rem 1rem 1.5rem var(--tile-shade);
 }
 
 .project-tile {
+    height: 100%;
     background: var(--tile-bg);
     border: 1px solid dodgerblue;
     display: grid;
@@ -357,9 +364,8 @@ main {
     max-width: 90vw;
     line-height: 1;
     color: royalblue;
-    font-size: 13rem;
-    font-family: 'Londrina Outline', serif;
-    text-shadow:  5px 5px 5px royalblue;
+    font-size: 12rem;
+    font-family: fantasy;
 }
 
 .welcome {
@@ -373,8 +379,8 @@ main {
 /*MONITOR*/
 @media screen and (min-width: 1400px){
 
-    .project-tile {
-        height: min(200px, auto);
+    a .project-tile {
+        height: min(200px, auto) !important;
     }
 
     .info h1 {
@@ -390,6 +396,7 @@ main {
 main {
     margin: auto;
     position: relative !important;
+    margin-bottom: 10px;
 }
 
 footer {
@@ -403,15 +410,21 @@ footer {
                             BLOG POST
 ------------------------------------------------------------------- */
 
-.content p {
-    line-height: 1.8;
-    font-size: 1.5rem;
+#titleImg {
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100%;
+    height: 300px;
+
 }
 
-/* Table of Contents */
-.toc li {
-    line-height: 1.8;
+.blog_content{
+    border-bottom: 1px solid grey;
+    margin-bottom: 10px;
+}
 
+.content p {
+    line-height: 1.8;
     font-size: 1.5rem;
 }
 
@@ -422,44 +435,15 @@ h2 {
 .toc {
     margin-bottom: 100px;
 }
-.toc ul{
-    border-left: 2px dashed dimgrey;
-    list-style: none;
-    height: 0;
-    display: none;
-}
-
-.toc.visible ul {
-    padding-left: 30px;
-    height: fit-content;
-    display: block;
-}
-
-.toc h2 {
-    padding: 10px;
-    margin-top: 60px;
-    background: saddlebrown;
-    border-radius: 15px;
-}
-
-.toc li{
-}
-
-.toc li.h2 {
-    margin-left: 10px;
-}
-
-.blog_content {
-    padding-bottom: 20px;
-    border-bottom: 2px solid white;
-}
-
-.header-screen {
-    display: none;
-}
 
 .blog_content p {
     margin-bottom: 40px;
+}
+
+.header-screen {
+    border-bottom: 1px solid grey;
+    margin-bottom: 50px;
+    display: block;
 }
 
 @media screen and (min-width: 1000px){
@@ -471,9 +455,7 @@ h2 {
         padding-bottom: 20px;
     }
 
-    .header-screen {
-        display: block;
-    }
+
 
     .toc h2 {
         display: none;
@@ -583,13 +565,17 @@ main {
     nav .content {
         width: var(--main-width-xl);
     }
+
+    .blog_post main {
+        gap: 100px;
+        width: 40% !important;
+    }
 }
 
-.blog_post main {
-    gap: 100px;
-    width: 55% !important;
-}
 
+.blog_post p {
+    text-align: justify;
+}
 .blog_post img {
     display: flex;
     width: 70%;
@@ -605,7 +591,7 @@ table th {
     border-bottom: 2px solid black;
 }
 .blog_post table {
-    font-size: 12px;
+    font-size: 1.4rem;
 }
 
 tr {
@@ -613,7 +599,27 @@ tr {
 }
 
 .blog_post .img_container {
-    display: flex;
+    place-self: center;
     gap: 20px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
 }
 
+.img_container img {
+    width: 100%;
+}
+
+.blog_post .title {
+    font-size: 3rem !important;
+}
+
+.blog_post p {
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+
+.blog_post li {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
