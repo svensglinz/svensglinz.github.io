@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Dancing+Script:wght@400..700&family=Limelight&family=Londrina+Outline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+
+:root {
+    --primary-light: rgb(225, 225, 225);
+    --primary-dark: rgb(30, 30, 30);
+}
+
+body {
+    --primary-font-color: black;
+    --bg-color: rgb(25, 25, 25);
+    --nav-bg: linear-gradient(to bottom, rgba(25, 25, 25, 1) 0%, rgba(25, 25, 25, .7)  65%, rgba(25, 25, 25, 0) 100%);
+    --img-bg: rgba(255, 255, 255, .16);
+    --tile-bg: rgb(32, 32, 32);
+    --tile-shade: black;
+}
+
+body.theme_light {
+    --primary-font-color: black;
+    --bg-color: rgb(225, 225, 225);
+    --nav-bg: linear-gradient(to bottom, rgba(225, 225, 225, 1) 0%, rgba(225, 225, 225, .7)  65%, rgba(225, 225, 225, 0) 100%);
+    --img-bg: rgba(0, 0, 0, .1);
+    --tile-bg: rgb(235, 235, 235);
+    --tile-shade: white;
+}
+
+img {
+    height: 40px;
+}
+
+main {
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+
+h2, h3 {
+    font-family: 'Varela Round', serif;
+
+}
+
+* {
+    color: var(--primary-font-color);
+}
+
+.picture {
+    display: none;
+}
+
+.print-download {
+    display: none;
+}
+
+.print-download-mobile {
+    width: 42%;
+    margin: 30px auto 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.print, .download {
+    width: 150px;
+    height: 38px !important;
+    background: grey;
+    margin-right: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    transition-duration: .3s;
+}
+
+a {
+    text-decoration: none;
+}
+
+.profile {
+    margin-top: 100px;
+}
+
+.print:hover, .download:hover {
+    cursor: pointer;
+    background: darkgrey;
+    transition-duration: .3s;
+}
+
+.print img, .download img {
+    margin-right: 5px;
+    width: 20px;
+}
+
+.picture-mobile img {
+    fill: var(--primary-font-color);
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: white;
+    object-fit: contain;
+}
+
+p, li, h4 {
+    font-family: "Gill Sans MT", serif;
+}
+
+.picture-mobile {
+    text-align: center;
+}
+
+.profile p {
+    text-align: justify;
+}
+section {
+    margin-bottom: 30px;
+    border-bottom: 1px solid grey;
+}
+.top {
+    text-align: center;
+    font-size: 2rem;
+}
+
+@media screen and (min-width: 500px){
+    main {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 600px){
+    main {
+        width: 70%;
+    }
+}
+
+.contact {
+    display: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.contact-mobile ul{
+    display: flex;
+    flex-direction: row;
+    place-content: space-between;
+    width: 60%;
+    margin: auto;
+}
+
+.contact-mobile img {
+    height: 50px;
+}
+
+.skills {
+    display: flex;
+    flex-direction: row;
+}

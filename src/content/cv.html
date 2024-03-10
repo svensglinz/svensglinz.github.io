@@ -3,7 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - SVEN GLINZ</title>
-    <link rel="stylesheet" href="/src/assets/css/cv.css"/>
+    <link rel="stylesheet" media="screen and (min-width: 756px)" href="/src/assets/css/cv.css"/>
+    <link rel="stylesheet" media="screen and (max-width: 756px)" href="/src/assets/css/cv_mobile.css"/>
 </head>
 <body class="theme_dark">
 <!-- NAVBAR -->
@@ -14,9 +15,28 @@
 </div>
 <main class="CV">
     <div id="left">
+<div class="picture-mobile">
+<img src="/src/assets/images/blur_edges.png" alt="">
+</div>
         <div class="top">
             <h1 class="name">SVEN <span style="color: rgba(10, 10, 10, .5);">GLINZ</span></h1>
         </div>
+<div class="contact-mobile">
+<ul>
+<li id="github"><img src="/src/assets/images/github_icon.svg" alt="">
+</li>
+<li id="mail"><img src="/src/assets/images/email-icon.svg" alt="">
+</li>
+<li id="linkedin"><img src="/src/assets/images/linkedin_icon.svg" alt="">
+</li>
+<li id="website"><img src="/src/assets/images/website.svg" alt="">
+</li>
+</ul>
+</div>
+<div class="print-download-mobile">
+<a href="/src/assets/CV%20-%20SVEN%20GLINZ.pdf" target="_blank"><div class="download"><img src="/src/assets/images/download.svg" alt="">Download CV</div></a>
+<div class="print" onclick="window.print()"><img src="/src/assets/images/print.svg" alt="">Print CV</div>
+</div>
         <section>
             <div class="profile">
                 <h2 class="title">PROFILE</h2>
@@ -24,8 +44,7 @@
                     Fixed Income Sales & Trading as well as CCP Risk Management. Strongly interested in finance,
                     capital markets and quantitative subjects such as mathematics and data analytics.
                     Strong communication - as well as quantitative skills demonstrated at university
-                    and in various technical and sales-oriented roles at financial companies.
-
+                    and in various technical and sales-oriented roles at financial companies.</p>
             </div>
         </section>
         <section>
@@ -180,6 +199,7 @@
             </ul>
         </div>
         <div class="skills">
+    <div>
             <h3>Skills</h3>
             <h4>Programming:</h4>
             <ul class="prog-langauges">
@@ -189,6 +209,8 @@
                 <li>Python</li>
                 <li>SQL</li>
             </ul>
+    </div>
+    <div>
             <h4>Other:</h4>
             <ul class="other">
                 <li>Bloomberg</li>
@@ -196,6 +218,7 @@
                 <li>Git</li>
             </ul>
         </div>
+    </div>
         <div class="languages">
             <h3>Languages</h3>
             <ul>

@@ -15,6 +15,9 @@
     --main-width-xl: 55%;
 }
 
+.picture-mobile {
+    display: none;
+}
 .theme {
     display: flex;
     text-align: center;
@@ -68,6 +71,7 @@ body.theme_light {
     --tile-bg: rgb(235, 235, 235);
     --tile-shade: white;
 }
+
 nav {
     box-shadow: none;
     backdrop-filter: blur(5px);
@@ -213,7 +217,9 @@ main {
 }
 
 @media screen and (min-width: 650px){
-
+    main {
+        width: 100vw;
+    }
 }
 
 @media screen and (min-width: 1000px){
@@ -296,6 +302,7 @@ footer{
     background: darkgrey;
     transition-duration: .3s;
 }
+
 .print img, .download img {
     margin-right: 5px;
     width: 20px;
@@ -306,6 +313,10 @@ footer{
     margin: 30px auto 20px;
     display: flex;
     justify-content: center;
+}
+
+.print-download-mobile {
+    display: none;
 }
 
 .title {
@@ -320,6 +331,10 @@ footer{
 a {
     color: black;
     text-decoration: none;
+}
+
+.contact-mobile {
+    display: none;
 }
 
 .contact {
