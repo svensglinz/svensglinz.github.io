@@ -1,4 +1,3 @@
-
 // import needed packages
 const fs = require('fs');
 const frontMatter = require('front-matter');
@@ -44,10 +43,15 @@ blogPosts.forEach(blogPost => {
         const tag_type = element.tagName.toLowerCase();
         const title = $(element).text().trim();
         const ref = "#" + title.toLowerCase().replace(/\s/g, '');
-        titles.push({ tag_type, title, ref});
+        titles.push({tag_type, title, ref});
     });
 
-    fs.writeFileSync(`dist/posts/${attributes.title}.html`, blogTemplate({'title': attributes.title, 'titleImg': attributes.picture, 'date': attributes.date, 'content': converter.makeHtml(body)}));
+    fs.writeFileSync(`dist/posts/${attributes.title}.html`, blogTemplate({
+        'title': attributes.title,
+        'titleImg': attributes.picture,
+        'date': attributes.date,
+        'content': converter.makeHtml(body)
+    }));
 });
 
 // Sort the listOfPosts array in descending order based on the date attribute

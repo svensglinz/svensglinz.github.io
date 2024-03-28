@@ -6,50 +6,63 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EW3YYEBLE"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
         gtag('config', 'G-4EW3YYEBLE');
     </script>
-    <link rel="stylesheet" href="/src/assets/css/website.css" />
+    <link rel="stylesheet" href="/src/assets/css/website.css"/>
     <title></title>
 </head>
 <body class="theme_dark">
 <!-- NAVBAR -->
-    {{> navbar}}
+{{> navbar}}
 <main>
-    <div class="welcome">
-            <p class="greeting">HI, I'M SVEN</p>
-            <p class="more">I currently study computer science at ETH Zurich and hold a bachelor in Economics from HSG. ..., ... and ... Interests</p>
-            <!--SOCIAL MEDIAL-->
-            <div class="social_media">
-                <a href="https://www.linkedin.com/in/svenglinz/" target="_blank"><div id="linkedin"><img src="/src/assets/images/linkedin_icon.svg" alt=""></div></a>
-                <a href="mailto:svenglinz@gmail.com" target="_blank"><div id="email"><img src="/src/assets/images/email-icon.svg" alt=""></div></a>
-                <a href="https://github.com/svensglinz" target="_blank"><div id="github"><img src="/src/assets/images/github_icon.svg" alt=""></div></a>
-            </div>
-        <div class="image">
+    <!--MAIN TEXT-->
+    <div class="welcome center-text">
+        <h1 class="greeting lh-default col-royalblue">HI, I'M SVEN</h1>
+        <p class="more">I currently study computer science at ETH Zurich and hold a bachelor in Economics from HSG.
+            Feel free to take a look around and check out some of my recent projects and posts</p>
+        <!--SOCIAL MEDIAL-->
+        <ul class="social-media no-list-style h-center">
+            <li><a href="https://www.linkedin.com/in/svenglinz/" target="_blank">
+                <div id="linkedin"><img src="/src/assets/images/linkedin_icon.svg" alt=""></div>
+            </a></li>
+            <li><a href="mailto:svenglinz@gmail.com" target="_blank">
+                <div id="email"><img src="/src/assets/images/email-icon.svg" alt=""></div>
+            </a></li>
+            <li><a href="https://github.com/svensglinz" target="_blank">
+                <div id="github"><img src="/src/assets/images/github_icon.svg" alt=""></div>
+            </a></li>
+        </ul>
+        <div class="image no-display-small">
             <img src="/src/assets/images/blur_edges.png" alt="">
         </div>
     </div>
     <div class="projects-wrapper">
-    <h3 style="font-size: 2rem; margin-bottom:15px; font-weight: 700; margin-left: 8px;">Some recent Projects</h3>
-    <div class="projects">
-        {{#each recentProjects}}
-        <a href="{{path}}"><div class="project-tile">
-            <div class="title">
-                <h2>{{title}}</h2>
-                <p>{{date}}</p>
-            </div>
-            <div class="description">
-                <p>{{description}}</p>
-            </div>
-        </div></a>
-        {{/each}}
-    </div>
+        <!-- style="font-size: 2rem; margin-bottom:15px; font-weight: 700; margin-left: 8px; -->
+        <h2 id="recent-projects">Some recent Projects</h2>
+        <div class="projects">
+            {{#each recentProjects}}
+            <a href="{{path}}">
+                <div class="project-tile">
+                    <div>
+                        <h2 class="title">{{title}}</h2>
+                        <p>{{date}}</p>
+                    </div>
+                    <div class="description">
+                        <p>{{description}}</p>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+        </div>
     </div>
     {{> footer}}
 </main>
-    <script src = "/src/assets/js/nav.js"></script>
-<script src = "/src/assets/js/index.js"></script>
-
+<script src="/src/assets/js/nav.js"></script>
+<script src="/src/assets/js/index.js"></script>
 </body>
