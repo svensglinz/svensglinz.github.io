@@ -234,6 +234,7 @@ nav .options a::after {
 }
 
 .social-media {
+    margin-top: 30px;
     width: min-content;
     display: flex;
     gap: 20px;
@@ -386,12 +387,15 @@ body {
                             BLOG POST
 ------------------------------------------------------------------- */
 
+.blog_post h1 {
+    font-size: 3.5rem;
+}
+
 #titleImg {
     object-fit: cover;
     border-radius: 10px;
     width: 100%;
     height: 300px;
-
 }
 
 .blog_content{
@@ -404,12 +408,6 @@ body {
     font-size: 1.5rem;
 }
 
-
-
-.toc {
-    margin-bottom: 100px;
-}
-
 .blog_content p {
     margin-bottom: 40px;
 }
@@ -419,43 +417,6 @@ body {
     margin-bottom: 50px;
     display: block;
 }
-
-@media screen and (min-width: 1000px){
-    .toc ul {
-        display: block;
-        height: fit-content;
-        padding-left: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-
-
-
-    .toc h2 {
-        display: none;
-    }
-
-    .header-mobile {
-        display: none;
-    }
-
-    .toc {
-        grid-column: 2;
-        place-self: flex-start;
-        position: sticky;
-        top: 190px;
-    }
-
-    .blog_content {
-        grid-row: 1;
-    }
-
-}
-
-
-
-/*BLOG LANDING PAGE*/
-
 
 .blog-posts {
     place-content: start;
@@ -475,14 +436,11 @@ body {
 
 }
 
-
-
 @media screen and (min-width: 992px){
 
     .projects {
         grid-template-columns: repeat(3, minmax(0,1fr));
     }
-
 
     /*NAV BAR */
     nav .content {
@@ -515,6 +473,9 @@ body {
         width: 40% !important;
     }
 }
+
+
+
 
 
 .blog_post p {
